@@ -1,0 +1,21 @@
+{
+	"name": "NCSStorageSourceDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "NCSdataStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "ncsdata"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

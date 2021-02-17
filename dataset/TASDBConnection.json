@@ -1,0 +1,16 @@
+{
+	"name": "TASDBConnection",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

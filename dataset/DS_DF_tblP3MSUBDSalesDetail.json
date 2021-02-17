@@ -1,0 +1,147 @@
+{
+	"name": "DS_DF_tblP3MSUBDSalesDetail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "PnGDataFoundation",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SUBDCode",
+				"type": "varchar"
+			},
+			{
+				"name": "DSECode",
+				"type": "varchar"
+			},
+			{
+				"name": "CustCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SBF",
+				"type": "varchar"
+			},
+			{
+				"name": "InvNo",
+				"type": "varchar"
+			},
+			{
+				"name": "InvDate",
+				"type": "date"
+			},
+			{
+				"name": "Qty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NetValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "GrossAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TaxAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RETAILING",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "UPC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RetQty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RetNetValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RetGrossAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RetTaxAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RetRETAILING",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "InvQty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvNetValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "InvGrossAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "InvTaxAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "InvRETAILING",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "InvId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblP3MSUBDSalesDetail"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

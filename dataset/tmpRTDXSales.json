@@ -1,0 +1,154 @@
+{
+	"name": "tmpRTDXSales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/NCS Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BRANCHCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "DSECODE",
+				"type": "varchar"
+			},
+			{
+				"name": "CUSTCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SRNNO",
+				"type": "varchar"
+			},
+			{
+				"name": "INVNO",
+				"type": "varchar"
+			},
+			{
+				"name": "SRNDATE",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "SKUCCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUDCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUEANCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "BATCHCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "QTY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SELECTEDDATE",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "TIMESTAMP",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "GROSSINVAMT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "NETINVAMT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "LINEDISC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "INITDISC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TAXES",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "UPC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETAILING",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "BranchId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FileSetId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "flgProcess",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRTDXSales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

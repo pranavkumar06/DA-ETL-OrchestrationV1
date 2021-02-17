@@ -1,0 +1,208 @@
+{
+	"name": "DS_TAS_TmpRawLeapStoreMasterDetails",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "TAS_DBConnection"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BranchCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreName",
+				"type": "varchar"
+			},
+			{
+				"name": "ContactNo",
+				"type": "varchar"
+			},
+			{
+				"name": "ContactPerson",
+				"type": "varchar"
+			},
+			{
+				"name": "Channel",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "City",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer_Class",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DRCPChannel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Town",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Town_Class",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Tin_No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Drug_Licence No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GSTIN_No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pan_No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CoverageType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sectorization",
+				"type": "nvarchar"
+			},
+			{
+				"name": "My_Channel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Dse_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STL_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GPS_Lat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GPS_Long",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RtrRemark4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RtrRemark5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DL_No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RtrRemark7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Distance_in_KM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RtrRemark10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pin_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MKT_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrgStoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ReplaceStoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "town_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "class_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subchannel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mr_account_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mr_account_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "certificate_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_Radius",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "flgActive",
+				"type": "tinyint",
+				"precision": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TmpRawLeapStoreMasterDetails"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

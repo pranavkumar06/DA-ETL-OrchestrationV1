@@ -1,0 +1,83 @@
+{
+	"name": "DS_TAS_tblDownloadOrderDetail_Error",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "TASOrders"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Branch_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Order_Number",
+				"type": "varchar"
+			},
+			{
+				"name": "DSE_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Retailer_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Route_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Order_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Exp_Delivery_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "SUBBF_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Order_Qty",
+				"type": "varchar"
+			},
+			{
+				"name": "TeleCaller_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "TeleCaller_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "PO_Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Error_Description",
+				"type": "varchar"
+			},
+			{
+				"name": "TrnsCycleId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CycleId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblDownloadOrderDetail_Error"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

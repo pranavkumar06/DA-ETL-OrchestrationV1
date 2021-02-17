@@ -1,0 +1,98 @@
+{
+	"name": "DRCP_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "branchcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branchname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailercode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailername",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retaileraddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailercontact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "stlname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dsecode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dsename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channeltype",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channeldescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "routecode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "routename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sectorname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "latitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "longitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_DRCP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

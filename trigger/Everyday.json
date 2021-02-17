@@ -1,0 +1,39 @@
+{
+	"name": "Everyday",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataMovement",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"windowStart": "@trigger().outputs.windowStartTime",
+					"windowEnd": "@trigger().outputs.windowEndTime"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-06-02T01:00:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						1,
+						9,
+						11,
+						17
+					]
+				}
+			}
+		}
+	}
+}

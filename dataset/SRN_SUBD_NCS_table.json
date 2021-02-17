@@ -1,0 +1,137 @@
+{
+	"name": "SRN_SUBD_NCS_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "PnGDataFoundation",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/NCS Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SUBDCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "DSECODE",
+				"type": "varchar"
+			},
+			{
+				"name": "CUSTCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SRNNO",
+				"type": "varchar"
+			},
+			{
+				"name": "INVNO",
+				"type": "varchar"
+			},
+			{
+				"name": "SRNDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SKUCCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUDCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUEANCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "BATCHCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "QTY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SELECTEDDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "GROSSINVAMT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "NETINVAMT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "LINEDISC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "INITDISC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TAXES",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "UPC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETAILING",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NC_SRN_SUBD_Current"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,504 @@
+{
+	"name": "CopyNCS_Staging-To-DB",
+	"properties": {
+		"description": "Copy file data from Staging to DB",
+		"activities": [
+			{
+				"name": "GetFileList",
+				"description": "Get the list of file",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "NCSStorageSourceDataset",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems",
+						"lastModified",
+						"itemName"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEachFile",
+				"description": "Iterate each file, and move them one by one.",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "FilterFiles",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('FilterFiles').output.value",
+						"type": "Expression"
+					},
+					"batchCount": 20,
+					"activities": [
+						{
+							"name": "Location master",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@bool(startswith(item().name,'Import_RTDXOctSaleData'))",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "location master data",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"additionalColumns": [
+													{
+														"name": "Filename",
+														"value": {
+															"value": "@item().name",
+															"type": "Expression"
+														}
+													},
+													{
+														"name": "LastModifiedDatetime",
+														"value": {
+															"value": "@activity('GetFileList').output.lastModified",
+															"type": "Expression"
+														}
+													}
+												],
+												"storeSettings": {
+													"type": "AzureBlobStorageReadSettings",
+													"recursive": true,
+													"wildcardFileName": "Import_RTDXOctSaleData*",
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings",
+													"compressionProperties": {
+														"type": "ZipDeflateReadSettings"
+													}
+												}
+											},
+											"sink": {
+												"type": "AzureSqlSink"
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"mappings": [
+													{
+														"source": {
+															"name": "SRCE_SYS_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SRCE_SYS_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "FACT_TYPE_CODE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "FACT_TYPE_CODE",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SBMSN_TYPE_CODE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SBMSN_TYPE_CODE",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "INVDATE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "INVDATE",
+															"type": "DateTime"
+														}
+													},
+													{
+														"source": {
+															"name": "TIME_PERD_TYPE_CODE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "TIME_PERD_TYPE_CODE",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "TIME_PERD_START_DATE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "TIME_PERD_START_DATE",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "StoreCode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "StoreCode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "PrdCde",
+															"type": "String"
+														},
+														"sink": {
+															"name": "PrdCde",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "GEO_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "GEO_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "ORG_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ORG_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "LEGAL_ENT_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "LEGAL_ENT_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "PROFT_CTR_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "PROFT_CTR_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SCNDR_SHIP_FLAG",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SCNDR_SHIP_FLAG",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "TRADE_CHANL_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "TRADE_CHANL_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "ISO_CRNCY_CODE_CHAR",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ISO_CRNCY_CODE_CHAR",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "MM_HYBRID_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "MM_HYBRID_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "FUNC_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "FUNC_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "CAPTL_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "CAPTL_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "MEASR_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "MEASR_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "DEMND_PLAN_CUST_GRP_CODE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "DEMND_PLAN_CUST_GRP_CODE",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "GENRC_DMNSN_1_TYPE_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "GENRC_DMNSN_1_TYPE_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "BranchCode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "BranchCode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "GENRC_DMNSN_2_TYPE_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "GENRC_DMNSN_2_TYPE_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "GENRC_DMNSN_2_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "GENRC_DMNSN_2_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "GENRC_DMNSN_3_TYPE_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "GENRC_DMNSN_3_TYPE_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "GENRC_DMNSN_3_ID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "GENRC_DMNSN_3_ID",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "FACT_QLTY_CODE",
+															"type": "String"
+														},
+														"sink": {
+															"name": "FACT_QLTY_CODE",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "ATTR_VAL_1",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ATTR_VAL_1",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Amount",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Amount",
+															"type": "Decimal"
+														}
+													},
+													{
+														"source": {
+															"name": "ATTR_VAL_2",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ATTR_VAL_2",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Qty",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Qty",
+															"type": "Decimal"
+														}
+													},
+													{
+														"source": {
+															"name": "FACT_AMT_3",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Retailing",
+															"type": "Decimal"
+														}
+													},
+													{
+														"source": {
+															"name": "InstanceName",
+															"type": "String"
+														},
+														"sink": {
+															"name": "InstanceName",
+															"type": "String"
+														}
+													}
+												]
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "NCSCSV_2_Staging_WithHeader",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "tblRTDXAugSale",
+												"type": "DatasetReference"
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "FilterFiles",
+				"description": "Only files will be selected, the source-folders will not be selected.",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "GetFileList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetFileList').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(item().type, 'File')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Leap Data Pipeline"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-11-07T12:23:10Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

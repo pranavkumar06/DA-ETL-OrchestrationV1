@@ -1,0 +1,30 @@
+{
+	"name": "S3TASOrderDataSet_Cloud3_Folder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Leap_AmazonS3",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Directory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "TASOrders"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "leapdata-tas",
+				"folderPath": {
+					"value": "@dataset().Directory",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

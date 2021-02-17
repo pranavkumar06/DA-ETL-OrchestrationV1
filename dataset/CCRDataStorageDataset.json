@@ -1,0 +1,21 @@
+{
+	"name": "CCRDataStorageDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CCRDataStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "ccrdata"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

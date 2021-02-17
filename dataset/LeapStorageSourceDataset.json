@@ -1,0 +1,21 @@
+{
+	"name": "LeapStorageSourceDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "NCSdataStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "leap"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

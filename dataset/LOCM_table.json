@@ -1,0 +1,86 @@
+{
+	"name": "LOCM_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "country_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "country_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "division_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "region_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "region_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "site_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "site_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "distributor_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "distributor_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_LocationMaster"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

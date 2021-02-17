@@ -1,0 +1,102 @@
+{
+	"name": "COHGAP_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "coh_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_type_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sector_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "seller_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "seller_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "coh_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "target",
+				"type": "nvarchar"
+			},
+			{
+				"name": "achievement",
+				"type": "nvarchar"
+			},
+			{
+				"name": "achievement_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "calculation_rule",
+				"type": "nvarchar"
+			},
+			{
+				"name": "coh_detail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "withsale",
+				"type": "nvarchar"
+			},
+			{
+				"name": "nosale",
+				"type": "nvarchar"
+			},
+			{
+				"name": "distributor_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "distributor_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_COHGAP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

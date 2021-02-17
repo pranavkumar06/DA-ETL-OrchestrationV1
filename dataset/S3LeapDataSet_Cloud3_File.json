@@ -1,0 +1,31 @@
+{
+	"name": "S3LeapDataSet_Cloud3_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Leap_AmazonS3",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "FileConnection"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "leapdata-tas",
+				"folderPath": "LEAP/Cloud3",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

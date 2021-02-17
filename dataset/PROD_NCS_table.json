@@ -1,0 +1,115 @@
+{
+	"name": "PROD_NCS_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "PnGDataFoundation",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/NCS Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRODUCTCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCTNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "SLP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RLP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MRP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "UPC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "MSUFACTOR",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 6
+			},
+			{
+				"name": "CATEGORY",
+				"type": "varchar"
+			},
+			{
+				"name": "BRAND",
+				"type": "varchar"
+			},
+			{
+				"name": "BRANDFORM",
+				"type": "varchar"
+			},
+			{
+				"name": "TIMESTAMP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SAPUPC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Business",
+				"type": "varchar"
+			},
+			{
+				"name": "Sub Brand Form",
+				"type": "varchar"
+			},
+			{
+				"name": "itemid",
+				"type": "varchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Product_ncmaster"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
