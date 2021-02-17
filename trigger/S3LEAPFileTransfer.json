@@ -1,0 +1,28 @@
+{
+	"name": "S3LEAPFileTransfer",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyS3-To-Staging",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"windowStart": "@adddays(trigger().scheduledTime, -1)",
+					"windowEnd": "@trigger().scheduledTime"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-02-18T09:30:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
