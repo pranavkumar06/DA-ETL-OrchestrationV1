@@ -2,7 +2,7 @@
 	"name": "LeapStorageSourceDataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "NCSdataStorageLink",
+			"referenceName": "DFLeapTempStorageLink",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "leap"
+				"container": "leaptemp"
 			}
 		}
 	},
