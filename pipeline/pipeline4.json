@@ -22,7 +22,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "'LOCM_cloud01_2021feb18.csv'",
+									"value": "@string('LOCM_cloud01_2021feb18.csv')\n",
 									"type": "Expression"
 								}
 							},
