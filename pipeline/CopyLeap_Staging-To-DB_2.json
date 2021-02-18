@@ -170,7 +170,8 @@
 												"linkedServiceName": {
 													"referenceName": "DFPolybaseStagingStorageLink",
 													"type": "LinkedServiceReference"
-												}
+												},
+												"path": "polybasestaging"
 											},
 											"dataIntegrationUnits": 2,
 											"translator": {
