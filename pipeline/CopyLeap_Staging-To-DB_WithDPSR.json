@@ -58,7 +58,14 @@
 						{
 							"name": "SpFileEntry",
 							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "spGetFileID",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -96,162 +103,11 @@
 							}
 						},
 						{
-							"name": "BSBF_Could1",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "SpFileEntry",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'BSBF_cloud01_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "BSBF_Cloud1",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "BSBF_cloud01_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branchcode",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branchcode",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subbfname",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subbfname",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_BSBF_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
 							"name": "BSBF_Could2",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "BSBF_Could1",
+									"activity": "IFFileFound",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -6258,6 +6114,196 @@
 										]
 									}
 								]
+							}
+						},
+						{
+							"name": "IFFileFound",
+							"type": "Switch",
+							"dependsOn": [
+								{
+									"activity": "SpFileEntry",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@activity('spGetFileID').output.firstRow.FileID",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "1",
+										"activities": [
+											{
+												"name": "BSBF_Cloud1",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "BSBF_cloud01_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branchcode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branchcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subbfname",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subbfname",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_BSBF_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						},
+						{
+							"name": "spGetFileID",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpGetFileID]",
+									"storedProcedureParameters": {
+										"FileName": {
+											"type": "String",
+											"value": {
+												"value": "@item().name",
+												"type": "Expression"
+											}
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DS_ATTN_table",
+									"type": "DatasetReference"
+								}
 							}
 						}
 					]
