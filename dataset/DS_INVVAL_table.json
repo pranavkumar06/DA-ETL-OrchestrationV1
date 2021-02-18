@@ -1,0 +1,177 @@
+{
+	"name": "DS_INVVAL_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "warehouse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "stock_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "company",
+				"type": "nvarchar"
+			},
+			{
+				"name": "category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brandform",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subbrand_form",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sku_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sku_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hsn_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "batch_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mrp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "expiry_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "upc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rlp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sih_cases",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sih_pieces",
+				"type": "nvarchar"
+			},
+			{
+				"name": "draft_cases",
+				"type": "nvarchar"
+			},
+			{
+				"name": "draft_pieces",
+				"type": "nvarchar"
+			},
+			{
+				"name": "value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "msu",
+				"type": "nvarchar"
+			},
+			{
+				"name": "stn_intransit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "stn_intransit_value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "grn_intransit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "grn_intransit_value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BranchNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SKUNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockStatusId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_INVVAL"
+		}
+	}
+}
