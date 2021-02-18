@@ -81,56 +81,6 @@
 					},
 					"waitOnCompletion": true
 				}
-			},
-			{
-				"name": "CopyFiletoDBPart1_Error",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Send Notification",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"EmailTo": "avinash@astixsolutions.com,alok@astixsolutions.com,ashwani@astixsolutions.com",
-						"Subject": "TAS Datafactory Error",
-						"ErrorMessage": "Copy FiletoDB Part1 Failed, log on to portal for more details"
-					}
-				}
-			},
-			{
-				"name": "CopyFiletoDBPart2_Error",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "CopyLeap_Staging-To-DB_2",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Send Notification",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"EmailTo": "avinash@astixsolutions.com,alok@astixsolutions.com,ashwani@astixsolutions.com",
-						"Subject": "TAS Datafactory Error",
-						"ErrorMessage": "Copy FiletoDB Part2 Failed, log on to portal for more details"
-					}
-				}
 			}
 		],
 		"parameters": {
