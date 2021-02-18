@@ -32,6 +32,10 @@
 									"value": "@utcnow()",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "FileID",
+								"value": "1"
 							}
 						],
 						"storeSettings": {
@@ -173,6 +177,16 @@
 								},
 								"sink": {
 									"name": "branch_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FileID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FileSetId",
 									"type": "String"
 								}
 							},
