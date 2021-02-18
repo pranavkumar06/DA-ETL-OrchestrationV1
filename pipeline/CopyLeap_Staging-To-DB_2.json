@@ -165,7 +165,13 @@
 													"useTypeDefault": true
 												}
 											},
-											"enableStaging": false,
+											"enableStaging": true,
+											"stagingSettings": {
+												"linkedServiceName": {
+													"referenceName": "DFPolybaseStagingStorageLink",
+													"type": "LinkedServiceReference"
+												}
+											},
 											"dataIntegrationUnits": 2,
 											"translator": {
 												"type": "TabularTranslator",
