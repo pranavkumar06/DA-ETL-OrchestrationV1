@@ -4846,7 +4846,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -5354,7 +5355,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "RTRM_table",
+												"referenceName": "DS_RTRM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -5424,7 +5425,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -5572,7 +5574,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "LOCM_table",
+												"referenceName": "DS_LOCM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -5642,7 +5644,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -5790,7 +5793,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "LOCM_table",
+												"referenceName": "DS_LOCM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -5860,7 +5863,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -6008,7 +6012,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "LOCM_table",
+												"referenceName": "DS_LOCM_table",
 												"type": "DatasetReference"
 											}
 										]
