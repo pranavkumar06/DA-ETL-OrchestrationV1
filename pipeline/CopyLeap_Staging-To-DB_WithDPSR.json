@@ -296,7 +296,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -364,7 +365,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "BSBF_table",
+												"referenceName": "DS_BSBF_table",
 												"type": "DatasetReference"
 											}
 										]
