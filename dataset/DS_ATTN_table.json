@@ -16,11 +16,35 @@
 				"type": "nvarchar"
 			},
 			{
-				"name": "subbfname",
+				"name": "dsecode",
 				"type": "nvarchar"
 			},
 			{
-				"name": "status",
+				"name": "desename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "route_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "attendance",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "attendance_timestamp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "generated_at",
 				"type": "nvarchar"
 			},
 			{
