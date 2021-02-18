@@ -2989,7 +2989,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -3617,7 +3618,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DPSR_table",
+												"referenceName": "DS_DPSR_table",
 												"type": "DatasetReference"
 											}
 										]
