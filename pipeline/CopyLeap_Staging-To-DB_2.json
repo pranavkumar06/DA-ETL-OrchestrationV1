@@ -91,7 +91,7 @@
 								}
 							},
 							"linkedServiceName": {
-								"referenceName": "TASDatabase",
+								"referenceName": "DataFoundationDB",
 								"type": "LinkedServiceReference"
 							}
 						},
@@ -157,7 +157,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -345,7 +346,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "ACRV_table",
+												"referenceName": "DS_ACRV_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -415,7 +416,13 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												}
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -603,7 +610,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "ACRV_table",
+												"referenceName": "DS_ACRV_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -673,7 +680,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -861,7 +869,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "ACRV_table",
+												"referenceName": "DS_ACRV_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -931,7 +939,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -1059,7 +1068,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DSEM_table",
+												"referenceName": "DS_DSEM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -1129,7 +1138,13 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												}
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -1257,7 +1272,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DSEM_table",
+												"referenceName": "DS_DSEM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -1327,7 +1342,13 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												}
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -1455,7 +1476,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DSEM_table",
+												"referenceName": "DS_DSEM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -1525,7 +1546,13 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												}
 											},
 											"enableStaging": false,
 											"translator": {
@@ -1752,7 +1779,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "COHGAP_table",
+												"referenceName": "DS_COHGAP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -1822,7 +1849,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -2049,7 +2077,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "COHGAP_table",
+												"referenceName": "DS_COHGAP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -2119,7 +2147,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -2346,7 +2375,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "COHGAP_table",
+												"referenceName": "DS_COHGAP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -2416,7 +2445,13 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												}
 											},
 											"enableStaging": false,
 											"translator": {
@@ -2633,7 +2668,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DRCP_table",
+												"referenceName": "DS_DRCP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -2703,7 +2738,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -2920,7 +2956,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DRCP_table",
+												"referenceName": "DS_DRCP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -2990,7 +3026,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -3207,7 +3244,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DRCP_table",
+												"referenceName": "DS_DRCP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -3277,7 +3314,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -3534,7 +3572,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "PRDM_table",
+												"referenceName": "DS_PRDM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -3604,7 +3642,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -3861,7 +3900,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "PRDM_table",
+												"referenceName": "DS_PRDM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -3931,7 +3970,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"translator": {
@@ -4188,7 +4228,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "PRDM_table",
+												"referenceName": "DS_PRDM_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -4258,7 +4298,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -4576,7 +4617,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "INVVAL_table",
+												"referenceName": "DS_INVVAL_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -4646,7 +4687,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -4964,7 +5006,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "INVVAL_table",
+												"referenceName": "DS_INVVAL_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -5034,7 +5076,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -5352,7 +5395,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "INVVAL_table",
+												"referenceName": "DS_INVVAL_table",
 												"type": "DatasetReference"
 											}
 										]
