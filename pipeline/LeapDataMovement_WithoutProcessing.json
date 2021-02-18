@@ -25,14 +25,7 @@
 			{
 				"name": "SpDeleteOldtmpleapdata",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "CopyS3-To-Staging",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -137,19 +130,6 @@
 						"Subject": "TAS Datafactory Error",
 						"ErrorMessage": "Copy FiletoDB Part2 Failed, log on to portal for more details"
 					}
-				}
-			},
-			{
-				"name": "CopyS3-To-Staging",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyS3-To-Staging",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
 				}
 			}
 		],
