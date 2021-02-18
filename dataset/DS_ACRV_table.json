@@ -12,37 +12,68 @@
 		"type": "AzureSqlDWTable",
 		"schema": [
 			{
-				"name": "branchcode",
+				"name": "branch_code",
 				"type": "nvarchar"
 			},
 			{
-				"name": "subbfname",
+				"name": "branch_location",
 				"type": "nvarchar"
 			},
 			{
-				"name": "status",
+				"name": "dse_code",
 				"type": "nvarchar"
 			},
 			{
-				"name": "FileSetId",
-				"type": "bigint",
-				"precision": 19
+				"name": "dse_name",
+				"type": "nvarchar"
 			},
 			{
-				"name": "Filename",
-				"type": "varchar"
+				"name": "retailer_code",
+				"type": "nvarchar"
 			},
 			{
-				"name": "LastModifiedDatetime",
-				"type": "smalldatetime",
-				"precision": 16,
-				"scale": 0
+				"name": "retailer_name",
+				"type": "nvarchar"
 			},
 			{
-				"name": "TimeStampIns",
-				"type": "smalldatetime",
-				"precision": 16,
-				"scale": 0
+				"name": "sales_invoice_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sales_invoice_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "aging_days",
+				"type": "nvarchar"
+			},
+			{
+				"name": "net_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "paid_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "balance_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "credit_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileName",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
