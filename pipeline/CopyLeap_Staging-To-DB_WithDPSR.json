@@ -3688,7 +3688,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -4196,7 +4197,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "RTRM_table",
+												"referenceName": "DS_RTRM_table",
 												"type": "DatasetReference"
 											}
 										]
