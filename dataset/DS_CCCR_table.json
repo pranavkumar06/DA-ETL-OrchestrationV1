@@ -1,0 +1,120 @@
+{
+	"name": "DS_CCCR_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "route_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "contact_number_1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "contact_number_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sub_channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "start_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "end_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "intime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "productivity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_latitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_longitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "deviation_in_meter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "deviation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason_for_deviation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "on_route",
+				"type": "nvarchar"
+			},
+			{
+				"name": "remarks",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_CCCR"
+		}
+	}
+}
