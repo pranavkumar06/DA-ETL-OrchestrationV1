@@ -574,7 +574,8 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink",
+												"allowCopyCommand": true
 											},
 											"enableStaging": false,
 											"dataIntegrationUnits": 2,
@@ -830,26 +831,6 @@
 															"name": "remarks",
 															"type": "String"
 														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
 													}
 												]
 											}
@@ -862,7 +843,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "CCCR_table",
+												"referenceName": "DS_CCCR_table",
 												"type": "DatasetReference"
 											}
 										]
