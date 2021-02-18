@@ -91,7 +91,7 @@
 								}
 							},
 							"linkedServiceName": {
-								"referenceName": "TASDatabase",
+								"referenceName": "DataFoundationDB",
 								"type": "LinkedServiceReference"
 							}
 						},

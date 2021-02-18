@@ -7,7 +7,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpDeleteOLDDatafromtmptables_DF",
+						"activity": "SpDeleteOldtmpleapdata",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -435,33 +435,6 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "SpDeleteOLDDatafromtmptables_DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "SpDeleteOldtmpleapdata",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpDeleteOLDDatafromtmptables_DF]"
-				},
-				"linkedServiceName": {
-					"referenceName": "PnGDataFoundation",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
