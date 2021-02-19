@@ -2,7 +2,7 @@
 	"name": "ADLSCSVDataSource_Folder",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LinkedService_PnGADLS",
+			"referenceName": "dfdatafoundationLink",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -20,14 +20,14 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
+				"type": "AzureBlobStorageLocation",
 				"fileName": "DPSR_cloud01_2020Jun02.csv",
 				"folderPath": {
-					"value": "@{dataset().Directory}",
+					"value": "@dataset().Directory",
 					"type": "Expression"
 				},
-				"fileSystem": {
-					"value": "@{dataset().Container}",
+				"container": {
+					"value": "@dataset().Container",
 					"type": "Expression"
 				}
 			},

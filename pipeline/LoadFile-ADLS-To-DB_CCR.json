@@ -87,18 +87,18 @@
 					"batchCount": 20,
 					"activities": [
 						{
-							"name": "CCCR_Could1",
+							"name": "DRCP_Could1",
 							"type": "IfCondition",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@bool(startswith(item().name,'CCCR_cloud01_'))",
+									"value": "@bool(startswith(item().name,'DRCP_cloud01_'))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
 									{
-										"name": "CCCR_Cloud1",
+										"name": "DRCP_Cloud1",
 										"description": "Copy a file from the source store to the destination store.",
 										"type": "Copy",
 										"dependsOn": [],
@@ -133,10 +133,10 @@
 													"type": "AzureBlobFSReadSettings",
 													"recursive": true,
 													"wildcardFolderPath": {
-														"value": "/2020/08/10/",
+														"value": "@pipeline().parameters.Folder",
 														"type": "Expression"
 													},
-													"wildcardFileName": "CCCR_cloud01_*",
+													"wildcardFileName": "DRCP_cloud01_*",
 													"enablePartitionDiscovery": false
 												},
 												"formatSettings": {
@@ -145,7 +145,7 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink"
 											},
 											"enableStaging": false,
 											"translator": {
@@ -429,9 +429,12 @@
 												"referenceName": "ADLSCSVDataSource_Folder",
 												"type": "DatasetReference",
 												"parameters": {
-													"Container": "leap",
+													"Container": {
+														"value": "@pipeline().parameters.Container",
+														"type": "Expression"
+													},
 													"Directory": {
-														"value": "/2020/08/10/",
+														"value": "@pipeline().parameters.Folder",
 														"type": "Expression"
 													}
 												}
@@ -439,7 +442,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "CCCR_table",
+												"referenceName": "DS_DRCP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -448,11 +451,11 @@
 							}
 						},
 						{
-							"name": "CCCR_Could2",
+							"name": "DRCP_Could2",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "CCCR_Could1",
+									"activity": "DRCP_Could1",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -461,12 +464,12 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@bool(startswith(item().name,'CCCR_cloud02_'))",
+									"value": "@bool(startswith(item().name,'DRCP_cloud02_'))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
 									{
-										"name": "CCCR_Cloud2",
+										"name": "DRCP_Cloud2",
 										"description": "Copy a file from the source store to the destination store.",
 										"type": "Copy",
 										"dependsOn": [],
@@ -501,7 +504,7 @@
 													"type": "AzureBlobFSReadSettings",
 													"recursive": true,
 													"wildcardFolderPath": {
-														"value": "/2020/08/10/",
+														"value": "@pipeline().parameters.Folder",
 														"type": "Expression"
 													},
 													"wildcardFileName": "CCCR_cloud02_*",
@@ -513,7 +516,7 @@
 												"recursive": false
 											},
 											"sink": {
-												"type": "AzureSqlSink"
+												"type": "SqlDWSink"
 											},
 											"enableStaging": false,
 											"translator": {
@@ -797,9 +800,12 @@
 												"referenceName": "ADLSCSVDataSource_Folder",
 												"type": "DatasetReference",
 												"parameters": {
-													"Container": "leap",
+													"Container": {
+														"value": "@pipeline().parameters.Container",
+														"type": "Expression"
+													},
 													"Directory": {
-														"value": "/2020/08/10/",
+														"value": "@pipeline().parameters.Folder",
 														"type": "Expression"
 													}
 												}
@@ -807,7 +813,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "CCCR_table",
+												"referenceName": "DS_DRCP_table",
 												"type": "DatasetReference"
 											}
 										]
@@ -816,11 +822,11 @@
 							}
 						},
 						{
-							"name": "CCCR_Could3",
+							"name": "DRCP_Could3",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "CCCR_Could2",
+									"activity": "DRCP_Could2",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -829,7 +835,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@bool(startswith(item().name,'CCCR_cloud03_'))",
+									"value": "@bool(startswith(item().name,'DRCP_cloud03_'))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -1187,6 +1193,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"Container": {
+				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Other Pipelines"
 		},
