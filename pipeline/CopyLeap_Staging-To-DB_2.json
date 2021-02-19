@@ -377,7 +377,7 @@
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "Filename",
+																	"name": "FileName",
 																	"type": "String"
 																}
 															},
@@ -388,7 +388,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -632,7 +632,7 @@
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "Filename",
+																	"name": "FileName",
 																	"type": "String"
 																}
 															},
@@ -643,7 +643,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -887,7 +887,7 @@
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "Filename",
+																	"name": "FileName",
 																	"type": "String"
 																}
 															},
@@ -898,7 +898,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -1093,7 +1093,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -1288,7 +1288,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -1483,7 +1483,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -1777,7 +1777,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -2071,7 +2071,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -2365,7 +2365,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
