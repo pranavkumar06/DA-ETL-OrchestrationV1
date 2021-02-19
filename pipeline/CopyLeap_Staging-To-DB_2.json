@@ -4574,7 +4574,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -4959,7 +4959,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
@@ -5344,7 +5344,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "DateTime"
+																	"type": "String"
 																}
 															}
 														]
