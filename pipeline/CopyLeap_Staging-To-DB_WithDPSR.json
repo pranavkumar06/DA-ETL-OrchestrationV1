@@ -103,1055 +103,11 @@
 							}
 						},
 						{
-							"name": "BSBF_Could2",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "IFFileFound",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'BSBF_cloud02_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "BSBF_Cloud2",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "BSBF_cloud02_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branchcode",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branchcode",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subbfname",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subbfname",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_BSBF_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "BSBF_Could3",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "BSBF_Could2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'BSBF_cloud03_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "BSBF_Cloud3",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "BSBF_cloud03_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branchcode",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branchcode",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subbfname",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subbfname",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_BSBF_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "CCCR_Could1",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "BSBF_Could3",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'CCCR_cloud01_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "CCCR_Cloud1",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "CCCR_cloud01_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_location",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_location",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "date",
-															"type": "String"
-														},
-														"sink": {
-															"name": "date",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "route_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "route_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_number_1",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_number_1",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_number_2",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_number_2",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "sub_channel_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "sub_channel_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "start_time",
-															"type": "String"
-														},
-														"sink": {
-															"name": "start_time",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "end_time",
-															"type": "String"
-														},
-														"sink": {
-															"name": "end_time",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "intime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "intime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "order_value",
-															"type": "String"
-														},
-														"sink": {
-															"name": "order_value",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "productivity",
-															"type": "String"
-														},
-														"sink": {
-															"name": "productivity",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "reason",
-															"type": "String"
-														},
-														"sink": {
-															"name": "reason",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "visit_latitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "visit_latitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "visit_longitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "visit_longitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "deviation_in_meter",
-															"type": "String"
-														},
-														"sink": {
-															"name": "deviation_in_meter",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "deviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "deviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "reason_for_deviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "reason_for_deviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "on_route",
-															"type": "String"
-														},
-														"sink": {
-															"name": "on_route",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "remarks",
-															"type": "String"
-														},
-														"sink": {
-															"name": "remarks",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_CCCR_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "CCCR_Could2",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "CCCR_Could1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'CCCR_cloud02_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "CCCR_Cloud2",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "CCCR_cloud02_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_location",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_location",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "date",
-															"type": "String"
-														},
-														"sink": {
-															"name": "date",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "route_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "route_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_number_1",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_number_1",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_number_2",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_number_2",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "sub_channel_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "sub_channel_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "start_time",
-															"type": "String"
-														},
-														"sink": {
-															"name": "start_time",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "end_time",
-															"type": "String"
-														},
-														"sink": {
-															"name": "end_time",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "intime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "intime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "order_value",
-															"type": "String"
-														},
-														"sink": {
-															"name": "order_value",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "productivity",
-															"type": "String"
-														},
-														"sink": {
-															"name": "productivity",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "reason",
-															"type": "String"
-														},
-														"sink": {
-															"name": "reason",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "visit_latitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "visit_latitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "visit_longitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "visit_longitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "deviation_in_meter",
-															"type": "String"
-														},
-														"sink": {
-															"name": "deviation_in_meter",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "deviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "deviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "reason_for_deviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "reason_for_deviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "on_route",
-															"type": "String"
-														},
-														"sink": {
-															"name": "on_route",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "remarks",
-															"type": "String"
-														},
-														"sink": {
-															"name": "remarks",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_CCCR_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
 							"name": "CCCR_Could3",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "CCCR_Could2",
+									"activity": "IFFileFound",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -6263,6 +5219,986 @@
 												"outputs": [
 													{
 														"referenceName": "DS_BSBF_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "2",
+										"activities": [
+											{
+												"name": "BSBF_Cloud2",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "BSBF_cloud02_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branchcode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branchcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subbfname",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subbfname",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_BSBF_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "3",
+										"activities": [
+											{
+												"name": "BSBF_Cloud3",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "BSBF_cloud03_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branchcode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branchcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subbfname",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subbfname",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_BSBF_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "4",
+										"activities": [
+											{
+												"name": "CCCR_Cloud1",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "CCCR_cloud01_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_location",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_location",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "route_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "route_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_number_1",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_number_1",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_number_2",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_number_2",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sub_channel_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sub_channel_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "start_time",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "start_time",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "end_time",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "end_time",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "intime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "intime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "order_value",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "order_value",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "productivity",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "productivity",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "reason",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "reason",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_latitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_latitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_longitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_longitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "deviation_in_meter",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "deviation_in_meter",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "deviation",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "deviation",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "reason_for_deviation",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "reason_for_deviation",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "on_route",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "on_route",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "remarks",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "remarks",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_CCCR_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "5",
+										"activities": [
+											{
+												"name": "CCCR_Cloud2",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "CCCR_cloud02_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_location",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_location",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "route_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "route_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_number_1",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_number_1",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_number_2",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_number_2",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sub_channel_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sub_channel_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "start_time",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "start_time",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "end_time",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "end_time",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "intime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "intime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "order_value",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "order_value",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "productivity",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "productivity",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "reason",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "reason",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_latitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_latitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_longitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_longitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "deviation_in_meter",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "deviation_in_meter",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "deviation",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "deviation",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "reason_for_deviation",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "reason_for_deviation",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "on_route",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "on_route",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "remarks",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "remarks",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_CCCR_table",
 														"type": "DatasetReference"
 													}
 												]
