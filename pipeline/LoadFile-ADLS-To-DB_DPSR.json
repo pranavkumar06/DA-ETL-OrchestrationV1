@@ -18,7 +18,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ADLSDataset",
+						"referenceName": "ADLSDataset_Copy",
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
@@ -37,8 +37,7 @@
 						"itemName"
 					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true
+						"type": "AzureBlobStorageReadSettings"
 					},
 					"formatSettings": {
 						"type": "BinaryReadSettings"
