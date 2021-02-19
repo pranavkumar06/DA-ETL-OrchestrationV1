@@ -130,12 +130,8 @@
 													}
 												],
 												"storeSettings": {
-													"type": "AzureBlobFSReadSettings",
+													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
-													"wildcardFolderPath": {
-														"value": "@pipeline().parameters.Folder",
-														"type": "Expression"
-													},
 													"wildcardFileName": "DRCP_cloud01_*",
 													"enablePartitionDiscovery": false
 												},
@@ -152,253 +148,117 @@
 												"type": "TabularTranslator",
 												"mappings": [
 													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
 														"sink": {
-															"name": "branch_code",
+															"name": "branchcode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "branch_location",
-															"type": "String"
-														},
 														"sink": {
-															"name": "branch_location",
+															"name": "branchname",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "dse_code",
-															"type": "String"
-														},
 														"sink": {
-															"name": "dse_code",
+															"name": "retailercode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "dse_name",
-															"type": "String"
-														},
 														"sink": {
-															"name": "dse_name",
+															"name": "retailername",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "date",
-															"type": "String"
-														},
 														"sink": {
-															"name": "date",
+															"name": "retaileraddress",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "route_name",
-															"type": "String"
-														},
 														"sink": {
-															"name": "route_name",
+															"name": "retailercontact",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "retailer_code",
-															"type": "String"
-														},
 														"sink": {
-															"name": "retailer_code",
+															"name": "stlname",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "retailer_name",
-															"type": "String"
-														},
 														"sink": {
-															"name": "retailer_name",
+															"name": "dsecode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "contact_number_1",
-															"type": "String"
-														},
 														"sink": {
-															"name": "contact_number_1",
+															"name": "dsename",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "contact_number_2",
-															"type": "String"
-														},
 														"sink": {
-															"name": "contact_number_2",
+															"name": "channel",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "channel_name",
-															"type": "String"
-														},
 														"sink": {
-															"name": "channel_name",
+															"name": "channeltype",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "sub_channel_name",
-															"type": "String"
-														},
 														"sink": {
-															"name": "sub_channel_name",
+															"name": "channeldescription",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "start_time",
-															"type": "String"
-														},
 														"sink": {
-															"name": "start_time",
+															"name": "routecode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "end_time",
-															"type": "String"
-														},
 														"sink": {
-															"name": "end_time",
+															"name": "routename",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "intime",
-															"type": "String"
-														},
 														"sink": {
-															"name": "intime",
+															"name": "sectorname",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "order_value",
-															"type": "String"
-														},
 														"sink": {
-															"name": "order_value",
+															"name": "latitude",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "productivity",
-															"type": "String"
-														},
 														"sink": {
-															"name": "productivity",
+															"name": "longitude",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "reason",
-															"type": "String"
-														},
 														"sink": {
-															"name": "reason",
+															"name": "visit_date",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "visit_latitude",
-															"type": "String"
-														},
 														"sink": {
-															"name": "visit_latitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "visit_longitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "visit_longitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "deviation_in_meter",
-															"type": "String"
-														},
-														"sink": {
-															"name": "deviation_in_meter",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "deviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "deviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "reason_for_deviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "reason_for_deviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "on_route",
-															"type": "String"
-														},
-														"sink": {
-															"name": "on_route",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "remarks",
-															"type": "String"
-														},
-														"sink": {
-															"name": "remarks",
-															"type": "String"
+															"name": "FileSetId",
+															"type": "Int64"
 														}
 													},
 													{
@@ -418,6 +278,12 @@
 														},
 														"sink": {
 															"name": "LastModifiedDatetime",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "TimeStampIns",
 															"type": "DateTime"
 														}
 													}

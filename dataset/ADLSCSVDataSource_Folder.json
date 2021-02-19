@@ -21,7 +21,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "DPSR_cloud01_2020Jun02.csv",
+				"fileName": "DRCP_cloud01_2020Dec05.gz",
 				"folderPath": {
 					"value": "@dataset().Directory",
 					"type": "Expression"
