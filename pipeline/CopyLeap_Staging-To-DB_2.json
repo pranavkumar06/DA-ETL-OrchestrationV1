@@ -94,6 +94,13 @@
 											"type": "Expression"
 										},
 										"type": "DateTime"
+									},
+									"FileID": {
+										"value": {
+											"value": "@activity('spGetFileID').output.firstRow.FileID",
+											"type": "Expression"
+										},
+										"type": "Int16"
 									}
 								}
 							},
