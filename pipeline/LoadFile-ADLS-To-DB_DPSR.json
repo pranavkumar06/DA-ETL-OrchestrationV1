@@ -22,10 +22,13 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "/2020/08/10/",
+								"value": "@pipeline().parameters.Folder",
 								"type": "Expression"
 							},
-							"directory": "cntleap"
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
 						}
 					},
 					"fieldList": [

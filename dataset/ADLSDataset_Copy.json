@@ -1,0 +1,40 @@
+{
+	"name": "ADLSDataset_Copy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"directory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "OtherDataSet"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().folder",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().directory",
+					"type": "Expression"
+				}
+			},
+			"compression": {
+				"type": "gzip",
+				"level": "Optimal"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
