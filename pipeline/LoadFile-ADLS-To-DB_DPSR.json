@@ -1,5 +1,5 @@
 {
-	"name": "LoadFile-ADLS-To-DB_CCR",
+	"name": "LoadFile-ADLS-To-DB_DPSR",
 	"properties": {
 		"description": "LoadFile-ADLS-To-DB",
 		"activities": [
