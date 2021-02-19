@@ -123,7 +123,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"on": {
-									"value": "string(@activity('spGetFileID').output.firstRow.FileID)",
+									"value": "@string(activity('spGetFileID').output.firstRow.FileID)",
 									"type": "Expression"
 								},
 								"cases": [
