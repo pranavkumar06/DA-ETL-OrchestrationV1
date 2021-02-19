@@ -38,7 +38,7 @@
 					"storedProcedureName": "[dbo].[SpDeleteOLDDatafromtmpleaptables]"
 				},
 				"linkedServiceName": {
-					"referenceName": "TASDatabase",
+					"referenceName": "DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
 			},
