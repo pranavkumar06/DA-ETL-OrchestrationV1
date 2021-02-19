@@ -103,2472 +103,6 @@
 							}
 						},
 						{
-							"name": "RTRM_Could1",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "IFFileFound",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'RTRM_cloud01_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "RTRM_Cloud1",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "RTRM_cloud01_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_location",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_location",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "address_1",
-															"type": "String"
-														},
-														"sink": {
-															"name": "address_1",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "address_2",
-															"type": "String"
-														},
-														"sink": {
-															"name": "address_2",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "pin_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "pin_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "area_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "area_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "area",
-															"type": "String"
-														},
-														"sink": {
-															"name": "area",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town_class",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town_class",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "city",
-															"type": "String"
-														},
-														"sink": {
-															"name": "city",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "state",
-															"type": "String"
-														},
-														"sink": {
-															"name": "state",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mobile_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mobile_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "phone_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "phone_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_person",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_person",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "stl_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "stl_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "frequency",
-															"type": "String"
-														},
-														"sink": {
-															"name": "frequency",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distance",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distance",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "class_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "class_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "class",
-															"type": "String"
-														},
-														"sink": {
-															"name": "class",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subchannel_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subchannel_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subchannel",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subchannel",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mr_account_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mr_account_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mr_account_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mr_account_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "credit_limit",
-															"type": "String"
-														},
-														"sink": {
-															"name": "credit_limit",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "credit_period",
-															"type": "String"
-														},
-														"sink": {
-															"name": "credit_period",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "invoice_limit",
-															"type": "String"
-														},
-														"sink": {
-															"name": "invoice_limit",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "certificate_type",
-															"type": "String"
-														},
-														"sink": {
-															"name": "certificate_type",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "gst_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "gst_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "pan_no",
-															"type": "String"
-														},
-														"sink": {
-															"name": "pan_no",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dl_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dl_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dl_expiry_date",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dl_expiry_date",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "email",
-															"type": "String"
-														},
-														"sink": {
-															"name": "email",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dob",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dob",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "doa",
-															"type": "String"
-														},
-														"sink": {
-															"name": "doa",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "default_warehouse_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "default_warehouse_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "default_warehouse",
-															"type": "String"
-														},
-														"sink": {
-															"name": "default_warehouse",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "restricted_orderswap_status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "restricted_orderswap_status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "lattitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "lattitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "longitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "longitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_radius",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_radius",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_RTRM_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "RTRM_Could2",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "RTRM_Could1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'RTRM_cloud02_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "RTRM_Cloud2",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "RTRM_cloud02_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_location",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_location",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "address_1",
-															"type": "String"
-														},
-														"sink": {
-															"name": "address_1",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "address_2",
-															"type": "String"
-														},
-														"sink": {
-															"name": "address_2",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "pin_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "pin_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "area_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "area_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "area",
-															"type": "String"
-														},
-														"sink": {
-															"name": "area",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town_class",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town_class",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "city",
-															"type": "String"
-														},
-														"sink": {
-															"name": "city",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "state",
-															"type": "String"
-														},
-														"sink": {
-															"name": "state",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mobile_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mobile_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "phone_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "phone_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_person",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_person",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "stl_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "stl_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "frequency",
-															"type": "String"
-														},
-														"sink": {
-															"name": "frequency",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distance",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distance",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "class_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "class_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "class",
-															"type": "String"
-														},
-														"sink": {
-															"name": "class",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subchannel_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subchannel_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subchannel",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subchannel",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mr_account_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mr_account_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mr_account_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mr_account_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "credit_limit",
-															"type": "String"
-														},
-														"sink": {
-															"name": "credit_limit",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "credit_period",
-															"type": "String"
-														},
-														"sink": {
-															"name": "credit_period",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "invoice_limit",
-															"type": "String"
-														},
-														"sink": {
-															"name": "invoice_limit",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "certificate_type",
-															"type": "String"
-														},
-														"sink": {
-															"name": "certificate_type",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "gst_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "gst_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "pan_no",
-															"type": "String"
-														},
-														"sink": {
-															"name": "pan_no",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dl_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dl_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dl_expiry_date",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dl_expiry_date",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "email",
-															"type": "String"
-														},
-														"sink": {
-															"name": "email",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dob",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dob",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "doa",
-															"type": "String"
-														},
-														"sink": {
-															"name": "doa",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "default_warehouse_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "default_warehouse_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "default_warehouse",
-															"type": "String"
-														},
-														"sink": {
-															"name": "default_warehouse",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "restricted_orderswap_status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "restricted_orderswap_status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "lattitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "lattitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "longitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "longitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_radius",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_radius",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_RTRM_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "RTRM_Could3",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "RTRM_Could2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'RTRM_cloud03_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "RTRM_Cloud3",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "RTRM_cloud03_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_location",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_location",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "address_1",
-															"type": "String"
-														},
-														"sink": {
-															"name": "address_1",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "address_2",
-															"type": "String"
-														},
-														"sink": {
-															"name": "address_2",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "pin_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "pin_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "area_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "area_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "area",
-															"type": "String"
-														},
-														"sink": {
-															"name": "area",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "town_class",
-															"type": "String"
-														},
-														"sink": {
-															"name": "town_class",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "city",
-															"type": "String"
-														},
-														"sink": {
-															"name": "city",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "state",
-															"type": "String"
-														},
-														"sink": {
-															"name": "state",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mobile_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mobile_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "phone_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "phone_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "contact_person",
-															"type": "String"
-														},
-														"sink": {
-															"name": "contact_person",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "stl_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "stl_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dse_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dse_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "frequency",
-															"type": "String"
-														},
-														"sink": {
-															"name": "frequency",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distance",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distance",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "class_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "class_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "class",
-															"type": "String"
-														},
-														"sink": {
-															"name": "class",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "channel",
-															"type": "String"
-														},
-														"sink": {
-															"name": "channel",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subchannel_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subchannel_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "subchannel",
-															"type": "String"
-														},
-														"sink": {
-															"name": "subchannel",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mr_account_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mr_account_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mr_account_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mr_account_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "credit_limit",
-															"type": "String"
-														},
-														"sink": {
-															"name": "credit_limit",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "credit_period",
-															"type": "String"
-														},
-														"sink": {
-															"name": "credit_period",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "invoice_limit",
-															"type": "String"
-														},
-														"sink": {
-															"name": "invoice_limit",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "certificate_type",
-															"type": "String"
-														},
-														"sink": {
-															"name": "certificate_type",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "gst_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "gst_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "pan_no",
-															"type": "String"
-														},
-														"sink": {
-															"name": "pan_no",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dl_number",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dl_number",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dl_expiry_date",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dl_expiry_date",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "email",
-															"type": "String"
-														},
-														"sink": {
-															"name": "email",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "dob",
-															"type": "String"
-														},
-														"sink": {
-															"name": "dob",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "doa",
-															"type": "String"
-														},
-														"sink": {
-															"name": "doa",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "default_warehouse_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "default_warehouse_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "default_warehouse",
-															"type": "String"
-														},
-														"sink": {
-															"name": "default_warehouse",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "restricted_orderswap_status",
-															"type": "String"
-														},
-														"sink": {
-															"name": "restricted_orderswap_status",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "lattitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "lattitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "longitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "longitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "retailer_radius",
-															"type": "String"
-														},
-														"sink": {
-															"name": "retailer_radius",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_RTRM_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "LOCM_Could1",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "RTRM_Could3",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'LOCM_cloud01_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "LOCM_Cloud1",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "LOCM_cloud01_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "country_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "country_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "country_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "country_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "division_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "division_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "region_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "region_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "region_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "region_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "site_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "site_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "site_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "site_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distributor_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distributor_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distributor_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distributor_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_LOCM_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "LOCM_Could2",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "LOCM_Could1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'LOCM_cloud02_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "LOCM_Cloud2",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "LOCM_cloud02_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "country_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "country_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "country_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "country_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "division_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "division_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "region_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "region_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "region_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "region_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "site_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "site_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "site_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "site_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distributor_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distributor_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distributor_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distributor_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_LOCM_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
-							"name": "LOCM_Could3",
-							"type": "IfCondition",
-							"dependsOn": [
-								{
-									"activity": "LOCM_Could2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@bool(startswith(item().name,'LOCM_cloud03_'))",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
-									{
-										"name": "LOCM_Cloud3",
-										"description": "Copy a file from the source store to the destination store.",
-										"type": "Copy",
-										"dependsOn": [],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"additionalColumns": [
-													{
-														"name": "Filename",
-														"value": {
-															"value": "@item().name",
-															"type": "Expression"
-														}
-													},
-													{
-														"name": "LastModifiedDatetime",
-														"value": {
-															"value": "@activity('GetFileList').output.lastModified",
-															"type": "Expression"
-														}
-													}
-												],
-												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
-													"recursive": true,
-													"wildcardFileName": "LOCM_cloud03_*",
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings"
-												},
-												"recursive": false
-											},
-											"sink": {
-												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
-											},
-											"enableStaging": true,
-											"stagingSettings": {
-												"linkedServiceName": {
-													"referenceName": "DFPolybaseStagingStorageLink",
-													"type": "LinkedServiceReference"
-												},
-												"path": "polybasestaging"
-											},
-											"dataIntegrationUnits": 2,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "country_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "country_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "country_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "country_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "division_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "division_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "region_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "region_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "region_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "region_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "site_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "site_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "site_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "site_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distributor_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distributor_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "distributor_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "distributor_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_code",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_code",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "branch_name",
-															"type": "String"
-														},
-														"sink": {
-															"name": "branch_name",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Filename",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Filename",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "LastModifiedDatetime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "LastModifiedDatetime",
-															"type": "DateTime"
-														}
-													}
-												]
-											}
-										},
-										"inputs": [
-											{
-												"referenceName": "LeapCSV_Staging",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "DS_LOCM_table",
-												"type": "DatasetReference"
-											}
-										]
-									}
-								]
-							}
-						},
-						{
 							"name": "IFFileFound",
 							"type": "Switch",
 							"dependsOn": [
@@ -6135,6 +3669,2376 @@
 												"outputs": [
 													{
 														"referenceName": "DS_DPSR_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "10",
+										"activities": [
+											{
+												"name": "RTRM_Cloud1",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "RTRM_cloud01_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_location",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_location",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_1",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_1",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_2",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_2",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pin_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pin_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "area_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "area_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "area",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "area",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town_class",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town_class",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "city",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "city",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "state",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "state",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mobile_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mobile_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "phone_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "phone_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_person",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_person",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "stl_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stl_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "frequency",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "frequency",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distance",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distance",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "class_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "class_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "class",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "class",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subchannel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subchannel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subchannel",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subchannel",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mr_account_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mr_account_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mr_account_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mr_account_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_limit",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_limit",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_period",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_period",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_limit",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_limit",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "certificate_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "certificate_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "gst_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "gst_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pan_no",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pan_no",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dl_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dl_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dl_expiry_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dl_expiry_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "email",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "email",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dob",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dob",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "doa",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "doa",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "default_warehouse_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "default_warehouse_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "default_warehouse",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "default_warehouse",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "restricted_orderswap_status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "restricted_orderswap_status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "lattitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "lattitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "longitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "longitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_radius",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_radius",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "DateTime"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_RTRM_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "11",
+										"activities": [
+											{
+												"name": "RTRM_Cloud2",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "RTRM_cloud02_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_location",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_location",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_1",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_1",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_2",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_2",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pin_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pin_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "area_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "area_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "area",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "area",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town_class",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town_class",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "city",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "city",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "state",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "state",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mobile_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mobile_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "phone_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "phone_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_person",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_person",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "stl_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stl_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "frequency",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "frequency",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distance",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distance",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "class_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "class_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "class",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "class",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subchannel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subchannel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subchannel",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subchannel",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mr_account_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mr_account_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mr_account_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mr_account_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_limit",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_limit",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_period",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_period",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_limit",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_limit",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "certificate_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "certificate_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "gst_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "gst_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pan_no",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pan_no",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dl_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dl_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dl_expiry_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dl_expiry_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "email",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "email",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dob",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dob",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "doa",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "doa",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "default_warehouse_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "default_warehouse_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "default_warehouse",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "default_warehouse",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "restricted_orderswap_status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "restricted_orderswap_status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "lattitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "lattitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "longitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "longitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_radius",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_radius",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "DateTime"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_RTRM_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "12",
+										"activities": [
+											{
+												"name": "RTRM_Cloud3",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "RTRM_cloud03_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_location",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_location",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_1",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_1",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_2",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_2",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pin_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pin_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "area_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "area_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "area",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "area",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "town_class",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "town_class",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "city",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "city",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "state",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "state",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mobile_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mobile_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "phone_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "phone_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "contact_person",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "contact_person",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "stl_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stl_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "frequency",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "frequency",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distance",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distance",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "class_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "class_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "class",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "class",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subchannel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subchannel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subchannel",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subchannel",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mr_account_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mr_account_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mr_account_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mr_account_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_limit",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_limit",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_period",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_period",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_limit",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_limit",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "certificate_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "certificate_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "gst_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "gst_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pan_no",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pan_no",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dl_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dl_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dl_expiry_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dl_expiry_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "email",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "email",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dob",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dob",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "doa",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "doa",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "default_warehouse_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "default_warehouse_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "default_warehouse",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "default_warehouse",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "restricted_orderswap_status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "restricted_orderswap_status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "lattitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "lattitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "longitude",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "longitude",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_radius",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_radius",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "DateTime"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_RTRM_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "13",
+										"activities": [
+											{
+												"name": "LOCM_Cloud1",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "LOCM_cloud01_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "country_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "country_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "country_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "country_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "division_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "division_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "region_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "region_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "region_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "region_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "site_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "site_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "site_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "site_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "DateTime"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_LOCM_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "14",
+										"activities": [
+											{
+												"name": "LOCM_Cloud2",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "LOCM_cloud02_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "country_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "country_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "country_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "country_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "division_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "division_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "region_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "region_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "region_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "region_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "site_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "site_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "site_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "site_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "DateTime"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_LOCM_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "15",
+										"activities": [
+											{
+												"name": "LOCM_Cloud3",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "LOCM_cloud03_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "country_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "country_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "country_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "country_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "division_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "division_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "region_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "region_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "region_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "region_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "site_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "site_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "site_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "site_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "DateTime"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_LOCM_table",
 														"type": "DatasetReference"
 													}
 												]
