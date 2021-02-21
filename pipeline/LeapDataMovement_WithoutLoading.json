@@ -5,7 +5,14 @@
 			{
 				"name": "CopyLeapStaging-To-ADLS",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Copy S3 to Staging",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -45,6 +52,19 @@
 						"recursive": true,
 						"enablePartitionDiscovery": false
 					}
+				}
+			},
+			{
+				"name": "Copy S3 to Staging",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
