@@ -47,7 +47,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_3",
+						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -67,7 +67,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_2",
+						"activity": "CopyLeap_Staging-To-DB_3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -126,7 +126,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
+						"activity": "CopyLeap_Staging-To-DB_2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
