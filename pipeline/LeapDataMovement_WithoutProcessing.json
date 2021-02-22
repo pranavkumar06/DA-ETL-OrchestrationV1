@@ -82,7 +82,10 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"Directory": "cntleap",
-						"Folder": "/2021/02/02"
+						"Folder": {
+							"value": "@concat('/', formatDateTime(pipeline().parameters.DataProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.DataProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.DataProcessDate, 'dd'), '/')",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -124,6 +127,9 @@
 				"type": "string"
 			},
 			"windowEnd": {
+				"type": "string"
+			},
+			"DataProcessDate": {
 				"type": "string"
 			}
 		},
