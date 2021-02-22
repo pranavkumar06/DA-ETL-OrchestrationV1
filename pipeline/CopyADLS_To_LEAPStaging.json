@@ -37,7 +37,17 @@
 				"inputs": [
 					{
 						"referenceName": "ADLSDataset_Copy",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -48,6 +58,14 @@
 				]
 			}
 		],
+		"parameters": {
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Leap Data Pipeline"
 		},
