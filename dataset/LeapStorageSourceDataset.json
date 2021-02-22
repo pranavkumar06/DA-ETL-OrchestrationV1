@@ -14,10 +14,6 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"container": "leaptemp"
-			},
-			"compression": {
-				"type": "gzip",
-				"level": "Optimal"
 			}
 		}
 	},
