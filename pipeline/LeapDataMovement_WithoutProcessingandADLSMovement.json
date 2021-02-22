@@ -67,7 +67,7 @@
 				"type": "Delete",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_2",
+						"activity": "CopyLeapStaging-To-ADLS",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -92,6 +92,26 @@
 						"recursive": true,
 						"enablePartitionDiscovery": false
 					}
+				}
+			},
+			{
+				"name": "CopyLeapStaging-To-ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyLeapStaging-To-ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
