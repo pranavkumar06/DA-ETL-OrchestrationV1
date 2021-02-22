@@ -1,0 +1,139 @@
+{
+	"name": "DS_RTRTGT_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sub_channel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sub_channel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mr_account_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mr_account_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "report_month",
+				"type": "nvarchar"
+			},
+			{
+				"name": "report_year",
+				"type": "nvarchar"
+			},
+			{
+				"name": "target",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BranchNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MRAccountId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_RTRTGT"
+		}
+	}
+}
