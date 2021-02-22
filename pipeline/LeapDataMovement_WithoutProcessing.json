@@ -79,7 +79,11 @@
 						"referenceName": "CopyLeapStaging-To-ADLS",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"Directory": "cntleap",
+						"Folder": "/2021/02/02"
+					}
 				}
 			},
 			{
