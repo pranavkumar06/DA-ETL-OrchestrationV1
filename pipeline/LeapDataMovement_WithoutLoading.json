@@ -19,7 +19,17 @@
 						"referenceName": "CopyLeapStaging-To-ADLS",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"Directory": {
+							"value": "@pipeline().parameters.Directory",
+							"type": "Expression"
+						},
+						"Folder": {
+							"value": "@pipeline().parameters.Folder",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -73,6 +83,12 @@
 				"type": "string"
 			},
 			"windowEnd": {
+				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
+			},
+			"Directory": {
 				"type": "string"
 			}
 		},
