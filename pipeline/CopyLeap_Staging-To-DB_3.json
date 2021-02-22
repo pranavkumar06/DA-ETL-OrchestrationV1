@@ -230,31 +230,111 @@
 														"mappings": [
 															{
 																"source": {
-																	"name": "branchcode",
+																	"name": "branch_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "branchcode",
+																	"name": "branch_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "subbfname",
+																	"name": "branch_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "subbfname",
+																	"name": "branch_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "status",
+																	"name": "cfr_date",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "status",
+																	"name": "cfr_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "category",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "category",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "brandform",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "brandform",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sub_brandform",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sub_brandform",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "orders",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "orders",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "supply",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "supply",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "unserved_demand_qty",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "unserved_demand_qty",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "cfr_per",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "cfr_per",
 																	"type": "String"
 																}
 															},
@@ -264,7 +344,7 @@
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "Filename",
+																	"name": "FileName",
 																	"type": "String"
 																}
 															},
@@ -289,7 +369,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_BSBF_table",
+														"referenceName": "DS_CFR_table",
 														"type": "DatasetReference"
 													}
 												]
