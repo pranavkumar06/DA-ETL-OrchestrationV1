@@ -1779,7 +1779,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_CFR_table",
+														"referenceName": "DS_PLIST_table",
 														"type": "DatasetReference"
 													}
 												]
