@@ -1,0 +1,113 @@
+{
+	"name": "DS_PLIST_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "company",
+				"type": "nvarchar"
+			},
+			{
+				"name": "category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand_form",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sub_brand_form",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sku_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sku_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "product_batch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mrp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "slp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "srp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "upc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "msu",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hsn_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "spg_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "spg_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "expiry_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ean_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "weight",
+				"type": "nvarchar"
+			},
+			{
+				"name": "volume",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpPLISTData"
+		}
+	}
+}
