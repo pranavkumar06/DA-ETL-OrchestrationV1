@@ -1640,41 +1640,11 @@
 														"mappings": [
 															{
 																"source": {
-																	"name": "branch_code",
+																	"name": "company",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "branch_code",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "branch_name",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "branch_name",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "cfr_date",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "cfr_date",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "channel_name",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "channel_name",
+																	"name": "company",
 																	"type": "String"
 																}
 															},
@@ -1690,61 +1660,181 @@
 															},
 															{
 																"source": {
-																	"name": "brandform",
+																	"name": "brand",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "brandform",
+																	"name": "brand",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "sub_brandform",
+																	"name": "brand_form",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "sub_brandform",
+																	"name": "brand_form",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "orders",
+																	"name": "sub_brand_form",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "orders",
+																	"name": "sub_brand_form",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply",
+																	"name": "sku_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply",
+																	"name": "sku_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserved_demand_qty",
+																	"name": "sku_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserved_demand_qty",
+																	"name": "sku_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "cfr_per",
+																	"name": "product_batch",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "cfr_per",
+																	"name": "product_batch",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mrp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mrp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "slp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "slp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "srp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "srp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "upc",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "upc",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "msu",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "msu",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "hsn_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "hsn_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "spg_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "spg_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "spg_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "spg_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "expiry_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "expiry_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "ean_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "ean_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "weight",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "weight",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "volume",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "volume",
 																	"type": "String"
 																}
 															},
