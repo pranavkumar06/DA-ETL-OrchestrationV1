@@ -229,165 +229,173 @@
 														"type": "TabularTranslator",
 														"mappings": [
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 1
+																},
 																"sink": {
 																	"name": "Month",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 2
+																},
 																"sink": {
 																	"name": "Distributor Branch Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 3
+																},
 																"sink": {
 																	"name": "SubDistributor Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 4
+																},
 																"sink": {
 																	"name": "Seller Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 5
+																},
 																"sink": {
 																	"name": "Seller Route",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 6
+																},
 																"sink": {
 																	"name": "Seller Sector",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 7
+																},
 																"sink": {
 																	"name": "Brand Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 8
+																},
 																"sink": {
 																	"name": "Brand Initiative Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 9
+																},
 																"sink": {
 																	"name": "Brand Initiative Name",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 10
+																},
 																"sink": {
 																	"name": "Local Subchannel Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 11
+																},
 																"sink": {
 																	"name": "Customer Type",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 12
+																},
 																"sink": {
 																	"name": "NormWiseTarget(%)",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 13
+																},
 																"sink": {
 																	"name": "DstrbnTarget(%)",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 14
+																},
 																"sink": {
 																	"name": "Store Code",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 15
+																},
 																"sink": {
 																	"name": "Store Focus Brand Opportunity",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 16
+																},
 																"sink": {
 																	"name": "Store Focus Brand Hit",
 																	"type": "String"
 																}
 															},
 															{
+																"source": {
+																	"type": "String",
+																	"ordinal": 17
+																},
 																"sink": {
 																	"name": "Store Gap",
 																	"type": "String"
-																}
-															},
-															{
-																"sink": {
-																	"name": "BranchSubDNodeId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "BranchSubDNodeType",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "DSENodeId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "DSENodeType",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "BrandNodeId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "BrandNodeType",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "ChannelId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "SubChannelId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "StoreId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "SectorId",
-																	"type": "Int32"
 																}
 															},
 															{
@@ -401,21 +409,13 @@
 																}
 															},
 															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
 																"sink": {
 																	"name": "LastModifiedTime",
 																	"type": "String"
-																}
-															},
-															{
-																"sink": {
-																	"name": "FileSetId",
-																	"type": "Int32"
-																}
-															},
-															{
-																"sink": {
-																	"name": "FBID",
-																	"type": "Int32"
 																}
 															}
 														]
