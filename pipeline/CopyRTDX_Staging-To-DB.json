@@ -199,7 +199,7 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DTA_FOCUS_cloud01_*",
+															"wildcardFileName": "DTA_Focus_cloud01_*",
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -229,113 +229,165 @@
 														"type": "TabularTranslator",
 														"mappings": [
 															{
-																"source": {
-																	"name": "branch_code",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "branch_code",
+																	"name": "Month",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "branch_name",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "branch_name",
+																	"name": "Distributor Branch Code",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "cfr_date",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "cfr_date",
+																	"name": "SubDistributor Code",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "channel_name",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "channel_name",
+																	"name": "Seller Code",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "category",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "category",
+																	"name": "Seller Route",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "brandform",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "brandform",
+																	"name": "Seller Sector",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "sub_brandform",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "sub_brandform",
+																	"name": "Brand Code",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "orders",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "orders",
+																	"name": "Brand Initiative Code",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "supply",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "supply",
+																	"name": "Brand Initiative Name",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "unserved_demand_qty",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "unserved_demand_qty",
+																	"name": "Local Subchannel Code",
 																	"type": "String"
 																}
 															},
 															{
-																"source": {
-																	"name": "cfr_per",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "cfr_per",
+																	"name": "Customer Type",
 																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "NormWiseTarget(%)",
+																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "DstrbnTarget(%)",
+																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "Store Code",
+																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "Store Focus Brand Opportunity",
+																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "Store Focus Brand Hit",
+																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "Store Gap",
+																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "BranchSubDNodeId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "BranchSubDNodeType",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "DSENodeId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "DSENodeType",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "BrandNodeId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "BrandNodeType",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "ChannelId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "SubChannelId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "StoreId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "SectorId",
+																	"type": "Int32"
 																}
 															},
 															{
@@ -349,13 +401,21 @@
 																}
 															},
 															{
-																"source": {
-																	"name": "LastModifiedDatetime",
-																	"type": "String"
-																},
 																"sink": {
-																	"name": "LastModifiedDatetime",
+																	"name": "LastModifiedTime",
 																	"type": "String"
+																}
+															},
+															{
+																"sink": {
+																	"name": "FileSetId",
+																	"type": "Int32"
+																}
+															},
+															{
+																"sink": {
+																	"name": "FBID",
+																	"type": "Int32"
 																}
 															}
 														]
@@ -369,7 +429,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_CFR_table",
+														"referenceName": "DS_DTA_FOCUS",
 														"type": "DatasetReference"
 													}
 												]

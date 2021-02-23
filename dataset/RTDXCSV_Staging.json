@@ -13,13 +13,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "DTA_Focus_cloud01_20201231.gz",
 				"container": "cntrtdxvalidation"
 			},
 			"columnDelimiter": ",",
 			"compressionCodec": "gzip",
 			"compressionLevel": "Optimal",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
+			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
 		"schema": []
