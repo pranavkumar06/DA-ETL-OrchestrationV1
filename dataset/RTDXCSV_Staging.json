@@ -15,7 +15,7 @@
 				"type": "AzureBlobStorageLocation",
 				"container": "cntrtdxvalidation"
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": ",",
 			"compressionCodec": "gzip",
 			"compressionLevel": "Optimal",
 			"escapeChar": "\\",
