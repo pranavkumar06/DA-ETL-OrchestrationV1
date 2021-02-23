@@ -1875,6 +1875,616 @@
 												]
 											}
 										]
+									},
+									{
+										"value": "41",
+										"activities": [
+											{
+												"name": "PLIST_Cloud2",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "PLIST_cloud02_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "company",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "company",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "category",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "category",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "brand",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "brand",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "brand_form",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "brand_form",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sub_brand_form",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sub_brand_form",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sku_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sku_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sku_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sku_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "product_batch",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "product_batch",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mrp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mrp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "slp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "slp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "srp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "srp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "upc",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "upc",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "msu",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "msu",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "hsn_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "hsn_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "spg_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "spg_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "spg_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "spg_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "expiry_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "expiry_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "ean_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "ean_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "weight",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "weight",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "volume",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "volume",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "FileName",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_PLIST_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "42",
+										"activities": [
+											{
+												"name": "PLIST_Cloud3",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": "PLIST_cloud03_*",
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "company",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "company",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "category",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "category",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "brand",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "brand",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "brand_form",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "brand_form",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sub_brand_form",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sub_brand_form",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sku_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sku_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sku_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sku_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "product_batch",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "product_batch",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "mrp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "mrp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "slp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "slp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "srp",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "srp",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "upc",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "upc",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "msu",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "msu",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "hsn_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "hsn_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "spg_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "spg_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "spg_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "spg_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "expiry_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "expiry_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "ean_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "ean_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "weight",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "weight",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "volume",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "volume",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "FileName",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_PLIST_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
 									}
 								]
 							}
