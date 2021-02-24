@@ -140,8 +140,14 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "RTDXStorageSourceDataset",
-									"type": "DatasetReference"
+									"referenceName": "RTDXStorageSourceDataset_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@replace(item().name,'IVY','cloud02')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						},
