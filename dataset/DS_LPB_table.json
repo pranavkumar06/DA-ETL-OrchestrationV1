@@ -1,0 +1,106 @@
+{
+	"name": "DS_LPB_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "planned_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dsecode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dsename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "coverage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "totbills",
+				"type": "nvarchar"
+			},
+			{
+				"name": "productivebills",
+				"type": "nvarchar"
+			},
+			{
+				"name": "productivity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "totlines",
+				"type": "nvarchar"
+			},
+			{
+				"name": "lpb_percentage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BranchNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ChannelId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_LPB"
+		}
+	}
+}
