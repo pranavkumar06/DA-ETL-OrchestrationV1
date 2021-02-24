@@ -180,6 +180,22 @@
 												"typeProperties": {
 													"source": {
 														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
+															}
+														],
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
