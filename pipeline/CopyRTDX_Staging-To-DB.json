@@ -180,22 +180,6 @@
 												"typeProperties": {
 													"source": {
 														"type": "DelimitedTextSource",
-														"additionalColumns": [
-															{
-																"name": "Filename",
-																"value": {
-																	"value": "@item().name",
-																	"type": "Expression"
-																}
-															},
-															{
-																"name": "LastModifiedDatetime",
-																"value": {
-																	"value": "@activity('GetFileList').output.lastModified",
-																	"type": "Expression"
-																}
-															}
-														],
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
@@ -458,17 +442,11 @@
 														"additionalColumns": [
 															{
 																"name": "Filename",
-																"value": {
-																	"value": "@item().name",
-																	"type": "Expression"
-																}
+																"value": ""
 															},
 															{
 																"name": "LastModifiedDatetime",
-																"value": {
-																	"value": "@activity('GetFileList').output.lastModified",
-																	"type": "Expression"
-																}
+																"value": ""
 															}
 														],
 														"storeSettings": {
@@ -733,17 +711,11 @@
 														"additionalColumns": [
 															{
 																"name": "Filename",
-																"value": {
-																	"value": "@item().name",
-																	"type": "Expression"
-																}
+																"value": ""
 															},
 															{
 																"name": "LastModifiedDatetime",
-																"value": {
-																	"value": "@activity('GetFileList').output.lastModified",
-																	"type": "Expression"
-																}
+																"value": ""
 															}
 														],
 														"storeSettings": {
