@@ -1609,7 +1609,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "PLIST_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -1914,7 +1917,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "PLIST_cloud02_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -2219,7 +2225,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "PLIST_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
