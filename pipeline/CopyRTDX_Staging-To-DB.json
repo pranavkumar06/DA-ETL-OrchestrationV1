@@ -458,11 +458,17 @@
 														"additionalColumns": [
 															{
 																"name": "Filename",
-																"value": ""
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
 															},
 															{
 																"name": "LastModifiedDatetime",
-																"value": ""
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
 															}
 														],
 														"storeSettings": {
@@ -727,11 +733,17 @@
 														"additionalColumns": [
 															{
 																"name": "Filename",
-																"value": ""
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
 															},
 															{
 																"name": "LastModifiedDatetime",
-																"value": ""
+																"value": {
+																	"value": "@activity('GetFileList').output.lastModified",
+																	"type": "Expression"
+																}
 															}
 														],
 														"storeSettings": {
