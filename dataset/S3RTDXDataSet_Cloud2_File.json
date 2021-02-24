@@ -22,7 +22,7 @@
 					"value": "@dataset().filename",
 					"type": "Expression"
 				},
-				"folderPath": "Ivy2",
+				"folderPath": "IVY_Instance2",
 				"container": "cntrtdxvalidation"
 			}
 		}
