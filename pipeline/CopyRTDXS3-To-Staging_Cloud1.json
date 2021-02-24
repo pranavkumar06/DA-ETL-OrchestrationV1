@@ -97,7 +97,7 @@
 								"source": {
 									"type": "BinarySource",
 									"storeSettings": {
-										"type": "AmazonS3ReadSettings",
+										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
 										"modifiedDatetimeStart": {
 											"value": "@pipeline().parameters.windowStart",
@@ -106,7 +106,8 @@
 										"modifiedDatetimeEnd": {
 											"value": "@pipeline().parameters.windowEnd",
 											"type": "Expression"
-										}
+										},
+										"deleteFilesAfterCompletion": false
 									},
 									"formatSettings": {
 										"type": "BinaryReadSettings"
@@ -127,7 +128,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "S3LeapDataSet_Cloud1_File",
+									"referenceName": "S3RTDXDataSet_Cloud1_File",
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
@@ -139,7 +140,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "LeapStorageSourceDataset",
+									"referenceName": "RTDXStorageSourceDataset",
 									"type": "DatasetReference"
 								}
 							]
@@ -165,7 +166,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "S3LeapDataSet_Cloud1_File",
+									"referenceName": "S3RTDXDataSet_Cloud1_File",
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
@@ -183,7 +184,7 @@
 								},
 								"enableLogging": true,
 								"storeSettings": {
-									"type": "AmazonS3ReadSettings",
+									"type": "AzureBlobStorageReadSettings",
 									"recursive": true
 								}
 							}
