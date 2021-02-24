@@ -1,0 +1,31 @@
+{
+	"name": "S3RTDXDataSet_Cloud1_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "FileConnection"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "Ivy",
+				"container": "cntrtdxvalidation"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
