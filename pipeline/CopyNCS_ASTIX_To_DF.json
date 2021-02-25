@@ -1221,6 +1221,15 @@
 									"name": "SelectedDate",
 									"type": "DateTime"
 								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
 							}
 						]
 					}
@@ -1234,6 +1243,251 @@
 				"outputs": [
 					{
 						"referenceName": "DS_DF_NC_RouteCalendar_SUBD",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "NC_RETAILER_SUBD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SUBDCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBDCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTNAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTNAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CHANNEL",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CHANNEL",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DSE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTTYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTTYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TOWN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TOWN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TOWNCLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TOWNCLASS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AREA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AREA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COVERAGESTS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COVERAGESTS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTCLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTCLASS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MRAccCde",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MRAccCde",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECde",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSECde",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Latitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Longitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_NC_RETAILER_SUBD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_NC_RETAILER_SUBD",
 						"type": "DatasetReference"
 					}
 				]
