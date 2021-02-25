@@ -1,15 +1,12 @@
 {
-	"name": "DS_NC_Sales_SUBD",
+	"name": "DS_DF_NC_SUBD",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SQLServerNCSAstix",
+			"referenceName": "DataFoundationDB",
 			"type": "LinkedServiceReference"
 		},
-		"folder": {
-			"name": "SUBD_NCS"
-		},
 		"annotations": [],
-		"type": "SqlServerTable",
+		"type": "AzureSqlDWTable",
 		"schema": [
 			{
 				"name": "BRANCHCODE",
@@ -28,11 +25,19 @@
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "NC_SALES_SUBD"
+			"table": "Tmp_NC_SUBD"
 		}
 	}
 }

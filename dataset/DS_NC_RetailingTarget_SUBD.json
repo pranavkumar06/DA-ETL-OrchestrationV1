@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "NCS"
+			"name": "SUBD_NCS"
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
