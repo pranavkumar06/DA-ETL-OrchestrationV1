@@ -145,7 +145,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "ACRV_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -400,7 +403,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "ACRV_cloud02_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -655,7 +661,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "ACRV_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -910,7 +919,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DSEM_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -1105,7 +1117,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DSEM_cloud02_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -1300,7 +1315,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DSEM_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -1495,7 +1513,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "COHGAP_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -1789,7 +1810,7 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "COHGAP_cloud02_*",
+															"wildcardFileName": "@item().name",
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -2083,7 +2104,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "COHGAP_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -2377,7 +2401,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DRCP_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -2661,7 +2688,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DRCP_cloud02_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -2945,7 +2975,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "DRCP_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -3229,7 +3262,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "PRDM_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -3553,7 +3589,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "PRDM_cloud02_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -3877,7 +3916,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "PRDM_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -4201,7 +4243,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "INVVAL_cloud01_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -4586,7 +4631,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "INVVAL_cloud02_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
@@ -4971,7 +5019,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "INVVAL_cloud03_*",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
