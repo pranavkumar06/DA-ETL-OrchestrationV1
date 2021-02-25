@@ -17,8 +17,6 @@
 				"container": "cntrtdxvalidation"
 			},
 			"columnDelimiter": ",",
-			"compressionCodec": "gzip",
-			"compressionLevel": "Optimal",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": "\""
