@@ -149,16 +149,6 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "BRANCHCODE",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BRANCHCODE",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "SUBDCODE",
 									"type": "String"
 								},
@@ -169,11 +159,151 @@
 							},
 							{
 								"source": {
-									"name": "SUBDNAME",
+									"name": "DSECODE",
 									"type": "String"
 								},
 								"sink": {
-									"name": "SUBDNAME",
+									"name": "DSECODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INVNO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INVNO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INVDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "INVDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SKUCCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SKUCCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SKUDCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SKUDCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SKUEANCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SKUEANCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BATCHCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BATCHCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QTY",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "QTY",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "GROSSAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "GROSSAMOUNT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TAXAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TAXAMOUNT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "INITDISC",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "INITDISC",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "LINEDISC",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LINEDISC",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "NETAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NETAMOUNT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "INVREF",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INVREF",
 									"type": "String"
 								}
 							},
@@ -185,6 +315,26 @@
 								"sink": {
 									"name": "SELECTEDDATE",
 									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "UPC",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "UPC",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "RETAILING",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "RETAILING",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -207,7 +357,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_DF_NC_SUBD",
+						"referenceName": "DS_DF_NC_Sales_SUBD",
 						"type": "DatasetReference"
 					}
 				]
