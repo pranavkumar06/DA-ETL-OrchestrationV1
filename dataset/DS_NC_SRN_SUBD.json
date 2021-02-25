@@ -1,0 +1,38 @@
+{
+	"name": "DS_NC_SRN_SUBD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLServerNCSAstix",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "NCS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "BRANCHCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SUBDCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SUBDNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "SELECTEDDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NC_SRN_SUBD"
+		}
+	}
+}
