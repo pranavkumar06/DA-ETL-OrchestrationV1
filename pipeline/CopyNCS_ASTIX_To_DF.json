@@ -106,6 +106,111 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "NC_Sales_SUBD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BRANCHCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BRANCHCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBDCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBDCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBDNAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBDNAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_NC_Sales_SUBD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_NC_SUBD",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
