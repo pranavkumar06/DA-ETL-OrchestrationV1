@@ -731,6 +731,512 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "NC_FocusHitRate_SUBD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "DistributorBranchCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DistributorBranchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MONTH",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "MONTH",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Year",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDistributorCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDistributorCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SellerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerRoute",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SellerRoute",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerSector",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SellerSector",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Brand",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Brand",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Category",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BrandInitiativeCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BrandInitiativeCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BrandInitiativeName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BrandInitiativeName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LocalSubchannelCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LocalSubchannelCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerType",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NormWiseTargetPer",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NormWiseTargetPer",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "DstrbnTargetPer",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "DstrbnTargetPer",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StoreCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreFocusBrandOpportunity",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreFocusBrandOpportunity",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreFocusBrandHit",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreFocusBrandHit",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreGap",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreGap",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_NC_FocusHitRate_SUBD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_NC_FocusHitRate_SUBD",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "NC_RetailingTarget_SUBD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SubDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SellerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RetailingTarget",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "RetailingTarget",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SelectedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SelectedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_NC_RetailingTarget_SUBD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_NC_RetailingTarget_SUBD",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "NC_RouteCalendar_SUBD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SubDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SellerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteNumber",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "RouteNumber",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "visitDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "visitDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SectorCode",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SectorCode",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SelectedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SelectedDate",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_NC_RouteCalendar_SUBD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_NC_RouteCalendar_SUBD",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {

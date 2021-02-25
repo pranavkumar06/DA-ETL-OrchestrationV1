@@ -116,7 +116,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "NC_RouteCalendar_SUBD"
+			"table": "Tmp_NC_RouteCalendar_SUBD"
 		}
 	}
 }
