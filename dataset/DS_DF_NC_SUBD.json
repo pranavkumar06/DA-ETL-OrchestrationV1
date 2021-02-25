@@ -5,6 +5,9 @@
 			"referenceName": "DataFoundationDB",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "SUBD_DF"
+		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
 		"schema": [
