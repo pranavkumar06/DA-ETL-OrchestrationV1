@@ -1,0 +1,44 @@
+{
+	"name": "FocusBrandLoading-LEAP-TO-DF",
+	"properties": {
+		"activities": [
+			{
+				"name": "FileTransferfromS3toAzure",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyRTDXS3-To-Staging",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "FocusbrandLoadingtoDB",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "FileTransferfromS3toAzure",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyRTDX_Staging-To-DB",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Leap Data Pipeline"
+		},
+		"annotations": []
+	}
+}
