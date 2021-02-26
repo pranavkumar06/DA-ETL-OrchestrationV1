@@ -185,7 +185,17 @@
 						"referenceName": "CopyADLS_To_LEAPStaging",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"Container": {
+							"value": "@pipeline().parameters.Container",
+							"type": "Expression"
+						},
+						"Directory": {
+							"value": "@pipeline().parameters.Directory",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
@@ -197,6 +207,12 @@
 				"type": "string"
 			},
 			"DataProcessDate": {
+				"type": "string"
+			},
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
 				"type": "string"
 			}
 		},
