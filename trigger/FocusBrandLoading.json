@@ -1,0 +1,24 @@
+{
+	"name": "FocusBrandLoading",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "FocusBrandLoading-LEAP-TO-DF",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-02-28T09:00:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
