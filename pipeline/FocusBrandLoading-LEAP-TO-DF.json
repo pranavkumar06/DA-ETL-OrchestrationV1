@@ -5,7 +5,14 @@
 			{
 				"name": "FileTransferfromS3toAzure",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "SpDeleteFocusbrandTmpTable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -56,6 +63,26 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spDataLoadFocusBrand]"
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SpDeleteFocusbrandTmpTable",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SpDeleteFocusbrandTmpTable]"
 				},
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
