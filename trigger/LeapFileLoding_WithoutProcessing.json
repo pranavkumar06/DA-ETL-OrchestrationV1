@@ -1,0 +1,30 @@
+{
+	"name": "LeapFileLoding_WithoutProcessing",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataMovement_WithoutLoading",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"windowStart": "@adddays(trigger().scheduledTime, -1)",
+					"windowEnd": "@trigger().scheduledTime",
+					"Folder": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+					"Directory": "cntleap"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-02-28T07:00:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
