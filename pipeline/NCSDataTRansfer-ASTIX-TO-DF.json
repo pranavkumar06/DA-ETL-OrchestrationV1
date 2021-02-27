@@ -1,0 +1,24 @@
+{
+	"name": "NCSDataTRansfer-ASTIX-TO-DF",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyNCS_ASTIX_To_DF",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyNCS_ASTIX_To_DF",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "NCS"
+		},
+		"annotations": []
+	}
+}
