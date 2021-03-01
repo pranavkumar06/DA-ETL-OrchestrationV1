@@ -22,13 +22,10 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"Directory": {
-							"value": "@pipeline().parameters.Directory",
+							"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
 							"type": "Expression"
 						},
-						"Folder": {
-							"value": "@pipeline().parameters.Folder",
-							"type": "Expression"
-						}
+						"Folder": "cntleap"
 					}
 				}
 			},
@@ -83,12 +80,6 @@
 				"type": "string"
 			},
 			"windowEnd": {
-				"type": "string"
-			},
-			"Folder": {
-				"type": "string"
-			},
-			"Directory": {
 				"type": "string"
 			}
 		},
