@@ -83,14 +83,17 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeapStaging-To-ADLS",
+						"referenceName": "CopyLeapStaging-To-ADLS_OLDcopy",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"Directory": "cntleap",
+						"Directory": {
+							"value": "@pipeline().parameters.Container",
+							"type": "Expression"
+						},
 						"Folder": {
-							"value": "@concat('/', formatDateTime(pipeline().parameters.DataProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.DataProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.DataProcessDate, 'dd'), '/')",
+							"value": "@pipeline().parameters.Directory",
 							"type": "Expression"
 						}
 					}
