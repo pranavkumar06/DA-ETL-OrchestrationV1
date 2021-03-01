@@ -46,13 +46,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "@pipeline().parameters.Folder",
+								"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
 								"type": "Expression"
 							},
-							"directory": {
-								"value": "@pipeline().parameters.Directory",
-								"type": "Expression"
-							}
+							"directory": "cntleap"
 						}
 					}
 				]
