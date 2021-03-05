@@ -32,7 +32,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "NC_AR_SUBD"
+			"table": "tmp_NC_AR_SUBD"
 		}
 	}
 }
