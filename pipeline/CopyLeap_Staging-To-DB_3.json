@@ -3142,6 +3142,254 @@
 												]
 											}
 										]
+									},
+									{
+										"value": "49",
+										"activities": [
+											{
+												"name": "COS_Cloud1",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@addminutes(utcnow(),330)",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branchcode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branchcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dsename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dsename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dsecode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dsecode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailername",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailername",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailercode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailercode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "order_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "order_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "order_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "order_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoicedate",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoicedate",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subbrandform",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subbrandform",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "subbrandform_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "subbrandform_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "cutoffqty",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "cutoffqty",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "amount",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "amount",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "Filename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_COS_table",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
 									}
 								]
 							}
