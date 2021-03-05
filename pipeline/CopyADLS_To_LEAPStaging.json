@@ -37,7 +37,17 @@
 				"inputs": [
 					{
 						"referenceName": "ADLSDataset",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
