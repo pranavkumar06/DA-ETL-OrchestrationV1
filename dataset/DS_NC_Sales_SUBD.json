@@ -12,15 +12,80 @@
 		"type": "SqlServerTable",
 		"schema": [
 			{
-				"name": "BRANCHCODE",
-				"type": "varchar"
-			},
-			{
 				"name": "SUBDCODE",
 				"type": "varchar"
 			},
 			{
-				"name": "SUBDNAME",
+				"name": "DSECODE",
+				"type": "varchar"
+			},
+			{
+				"name": "CUSTCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "INVNO",
+				"type": "varchar"
+			},
+			{
+				"name": "INVDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SKUCCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUDCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUEANCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "BATCHCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "QTY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GROSSAMOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TAXAMOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "INITDISC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "LINEDISC",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "NETAMOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "INVREF",
 				"type": "varchar"
 			},
 			{
@@ -28,11 +93,22 @@
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
+			},
+			{
+				"name": "UPC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETAILING",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "NC_SALES_SUBD"
+			"table": "tmp_NC_Sales_SUBD"
 		}
 	}
 }
