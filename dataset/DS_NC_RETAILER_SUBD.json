@@ -32,7 +32,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "NC_RETAILER_SUBD"
+			"table": "tmp_NC_RETAILER_SUBD"
 		}
 	}
 }
