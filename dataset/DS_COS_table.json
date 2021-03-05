@@ -1,0 +1,124 @@
+{
+	"name": "DS_COS_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch",
+				"type": "varchar"
+			},
+			{
+				"name": "branchcode",
+				"type": "varchar"
+			},
+			{
+				"name": "dsename",
+				"type": "varchar"
+			},
+			{
+				"name": "dsecode",
+				"type": "varchar"
+			},
+			{
+				"name": "retailername",
+				"type": "varchar"
+			},
+			{
+				"name": "retailercode",
+				"type": "varchar"
+			},
+			{
+				"name": "order_number",
+				"type": "varchar"
+			},
+			{
+				"name": "order_date",
+				"type": "varchar"
+			},
+			{
+				"name": "invoice_number",
+				"type": "varchar"
+			},
+			{
+				"name": "invoicedate",
+				"type": "varchar"
+			},
+			{
+				"name": "subbrandform",
+				"type": "varchar"
+			},
+			{
+				"name": "subbrandform_code",
+				"type": "varchar"
+			},
+			{
+				"name": "cutoffqty",
+				"type": "varchar"
+			},
+			{
+				"name": "amount",
+				"type": "varchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BranchNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeType",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLeapTAS_COS"
+		}
+	}
+}
