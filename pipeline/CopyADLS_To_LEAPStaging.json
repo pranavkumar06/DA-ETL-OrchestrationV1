@@ -18,7 +18,7 @@
 					"source": {
 						"type": "BinarySource",
 						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
+							"type": "AzureBlobFSReadSettings",
 							"recursive": true
 						},
 						"formatSettings": {
@@ -36,18 +36,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ADLSDataset_Copy",
-						"type": "DatasetReference",
-						"parameters": {
-							"folder": {
-								"value": "@pipeline().parameters.Directory",
-								"type": "Expression"
-							},
-							"directory": {
-								"value": "@pipeline().parameters.Container",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "ADLSDataset",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
