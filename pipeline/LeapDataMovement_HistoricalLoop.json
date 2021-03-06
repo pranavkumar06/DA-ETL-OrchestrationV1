@@ -1,0 +1,92 @@
+{
+	"name": "LeapDataMovement_HistoricalLoop",
+	"properties": {
+		"activities": [
+			{
+				"name": "IfDataforProcess",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetDataForProccesing]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_COS_table",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ForEachDayProcessing",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "IfDataforProcess",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('IfDataforProcess').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "DailyDataProcessing",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "LeapDataMovement_WithoutProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"windowStart": {
+										"value": "@item().windowstartdate",
+										"type": "Expression"
+									},
+									"windowEnd": {
+										"value": "@item().windowenddate",
+										"type": "Expression"
+									},
+									"DataProcessDate": {
+										"value": "@item().DataDate",
+										"type": "Expression"
+									},
+									"Container": {
+										"value": "@item().container",
+										"type": "Expression"
+									},
+									"Directory": {
+										"value": "@item().directory",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "Leap Data Pipeline"
+		},
+		"annotations": []
+	}
+}
