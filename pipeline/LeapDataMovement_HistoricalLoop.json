@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "DS_COS_table",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
