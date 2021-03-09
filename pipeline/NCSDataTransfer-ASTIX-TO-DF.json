@@ -20,9 +20,16 @@
 						"sqlReaderStoredProcedureName": "[dbo].[SpDFGetDataLoadStatus]",
 						"storedProcedureParameters": {
 							"Date": {
-								"type": "Datetime",
+								"type": "DateTime",
 								"value": {
 									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							"flgDayorNight": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.ProcessingType",
 									"type": "Expression"
 								}
 							}
