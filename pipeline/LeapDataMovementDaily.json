@@ -166,7 +166,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spLoadLeapTasIntegration",
+						"activity": "DFDataProcessAfterLoading",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -185,6 +185,32 @@
 							"type": "Expression"
 						},
 						"Folder": "cntleap"
+					}
+				}
+			},
+			{
+				"name": "DFDataProcessAfterLoading",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spLoadLeapTasIntegration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DFDataProcessAfterLoading",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataDate": {
+							"value": "@adddays(pipeline().parameters.DataProcessDate,-1)",
+							"type": "Expression"
+						}
 					}
 				}
 			}
