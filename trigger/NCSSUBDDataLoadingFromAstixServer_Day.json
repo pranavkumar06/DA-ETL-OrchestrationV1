@@ -1,0 +1,27 @@
+{
+	"name": "NCSSUBDDataLoadingFromAstixServer_Day",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "NCSDataTransfer-ASTIX-TO-DF",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ProcessingType": 1
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2021-03-10T14:00:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
