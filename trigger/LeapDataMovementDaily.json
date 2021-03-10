@@ -1,0 +1,31 @@
+{
+	"name": "LeapDataMovementDaily",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataMovementDaily",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"windowStart": "@adddays(trigger().scheduledTime, -1)",
+					"windowEnd": "@trigger().scheduledTime",
+					"DataProcessDate": "utcnow()",
+					"Container": "cntleap",
+					"Directory": "@concat('/', formatDateTime(@trigger().scheduledTime, 'yyyy'), '/', formatDateTime(@trigger().scheduledTime, 'MM'), '/', formatDateTime(@trigger().scheduledTime, 'dd'), '/')"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-03-10T16:00:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
