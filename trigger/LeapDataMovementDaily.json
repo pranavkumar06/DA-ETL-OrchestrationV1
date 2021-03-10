@@ -24,7 +24,15 @@
 				"frequency": "Day",
 				"interval": 1,
 				"startTime": "2021-03-10T10:15:00",
-				"timeZone": "India Standard Time"
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						10
+					]
+				}
 			}
 		}
 	}
