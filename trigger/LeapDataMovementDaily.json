@@ -10,8 +10,8 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"windowStart": "@trigger().outputs.windowStartTime",
-					"windowEnd": "@trigger().outputs.windowEndTime",
+					"windowStart": "@adddays(trigger().scheduledTime, -1)",
+					"windowEnd": "@trigger().scheduledTime",
 					"DataProcessDate": "utcnow()",
 					"Container": "cntleap",
 					"Directory": "@concat('/', formatDateTime(@trigger().outputs.windowStartTime, 'yyyy'), '/', formatDateTime(@trigger().outputs.windowStartTime, 'MM'), '/', formatDateTime(@trigger().outputs.windowStartTime, 'dd'), '/')"
@@ -30,7 +30,7 @@
 						15
 					],
 					"hours": [
-						13
+						16
 					]
 				}
 			}
