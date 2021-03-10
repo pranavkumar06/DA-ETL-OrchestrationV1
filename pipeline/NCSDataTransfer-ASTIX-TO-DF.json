@@ -100,6 +100,33 @@
 								"referenceName": "DataFoundationDB",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "spExecuteSUBDDailySP",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "CopyNCS_ASTIX_To_DF",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[spExecuteSUBDDailySP]"
+							},
+							"linkedServiceName": {
+								"referenceName": "DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
