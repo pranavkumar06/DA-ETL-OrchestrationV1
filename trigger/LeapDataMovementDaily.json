@@ -2,7 +2,7 @@
 	"name": "LeapDataMovementDaily",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -12,7 +12,7 @@
 				"parameters": {
 					"windowStart": "@adddays(trigger().scheduledTime, -1)",
 					"windowEnd": "@trigger().scheduledTime",
-					"DataProcessDate": "formatDateTime(utcNow('dd-MMM-yyyy'))",
+					"DataProcessDate": "formatDateTime(utcNow('yyyy-MM-dd'))",
 					"Container": "cntleap",
 					"Directory": "@concat('/', formatDateTime(@trigger().scheduledTime, 'yyyy'), '/', formatDateTime(@trigger().scheduledTime, 'MM'), '/', formatDateTime(@trigger().scheduledTime, 'dd'), '/')"
 				}
