@@ -14,7 +14,7 @@
 					"windowEnd": "@trigger().scheduledTime",
 					"DataProcessDate": "@{formatDateTime(utcNow(),'dd-MM-yyyy')}",
 					"Container": "cntleap",
-					"Directory": "@concat('/', formatDateTime(@trigger().scheduledTime, 'yyyy'), '/', formatDateTime(@trigger().scheduledTime, 'MM'), '/', formatDateTime(@trigger().scheduledTime, 'dd'), '/')"
+					"Directory": "@{concat('/', formatDateTime(trigger().scheduledTime, 'yyyy'), '/', formatDateTime(trigger().scheduledTime, 'MM'), '/', formatDateTime(trigger().scheduledTime, 'dd'), '/')}"
 				}
 			}
 		],
