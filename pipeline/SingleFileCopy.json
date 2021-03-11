@@ -130,6 +130,10 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'), '/')",
+											"type": "Expression"
+										},
 										"wildcardFileName": "DPSR_*",
 										"enablePartitionDiscovery": false
 									},
@@ -686,9 +690,12 @@
 									"referenceName": "ADLSCSVDataSource_Folder",
 									"type": "DatasetReference",
 									"parameters": {
-										"Container": "cntleap",
+										"Container": {
+											"value": "@pipeline().parameters.Container",
+											"type": "Expression"
+										},
 										"Directory": {
-											"value": "@concat('/', formatDateTime(item().ProcessDate, 'yyyy'), '/', formatDateTime(item().ProcessDate, 'MM'), '/', formatDateTime(item().ProcessDate, 'dd'), '/')",
+											"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'), '/')\n",
 											"type": "Expression"
 										}
 									}
@@ -752,6 +759,17 @@
 				}
 			}
 		],
+		"parameters": {
+			"Container": {
+				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
+			},
+			"ProcessDate": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Leap Data Pipeline"
 		},
