@@ -643,10 +643,7 @@
 									"referenceName": "ADLSCSVDataSource_Folder",
 									"type": "DatasetReference",
 									"parameters": {
-										"Container": {
-											"value": "@pipeline().parameters.Container",
-											"type": "Expression"
-										},
+										"Container": "cntleap",
 										"Directory": {
 											"value": "@concat('/', formatDateTime(item().ProcessDate, 'yyyy'), '/', formatDateTime(item().ProcessDate, 'MM'), '/', formatDateTime(item().ProcessDate, 'dd'), '/')",
 											"type": "Expression"
@@ -712,11 +709,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Container": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "Leap Data Pipeline"
 		},
