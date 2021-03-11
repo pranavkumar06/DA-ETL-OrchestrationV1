@@ -55,7 +55,18 @@
 									"referenceName": "SingleFileCopy",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"Container": "cntleap",
+									"Folder": {
+										"value": "@concat('/', formatDateTime(item().ProcessDate, 'yyyy'), '/', formatDateTime(item().ProcessDate, 'MM'), '/', formatDateTime(item().ProcessDate, 'dd'), '/')\n",
+										"type": "Expression"
+									},
+									"ProcessDate": {
+										"value": "@item().ProcessDate",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
