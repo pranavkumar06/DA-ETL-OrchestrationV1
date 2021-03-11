@@ -703,7 +703,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DS_DPSR_table",
+									"referenceName": "DS_DPSR_table_History",
 									"type": "DatasetReference"
 								}
 							]
