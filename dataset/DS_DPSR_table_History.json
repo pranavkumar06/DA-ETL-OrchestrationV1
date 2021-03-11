@@ -1,0 +1,377 @@
+{
+	"name": "DS_DPSR_table_History",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "document_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "apply_to_doc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "document_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "transaction_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subbrandform_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "prod_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "customer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "customer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "pcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "customer_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hsn_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brandform",
+				"type": "nvarchar"
+			},
+			{
+				"name": "quantity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "gross_value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "discount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "taxable_scheme",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cgsttax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sgsttax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "igsttax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cesstax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mracc_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mracc_desc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "vendor",
+				"type": "nvarchar"
+			},
+			{
+				"name": "net_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tax_on_discount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tax_on_scheme",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tax_in_rlp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailing",
+				"type": "nvarchar"
+			},
+			{
+				"name": "gross_in_slp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "po_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "msu",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dist_gstinno",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ret_gstinno",
+				"type": "nvarchar"
+			},
+			{
+				"name": "srn_ref_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "composite",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cgsttax_rate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sgsttax_rate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "igsttax_rate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cesstax_rate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_mode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tc_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tc_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BranchNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CmpNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CmpNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CatNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CatNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrdNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrdNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dsenodeid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dsenodetype",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mraccid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SRNId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "batch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "upc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tcs_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "remarks",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tcs_rate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_gst_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dl_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dl_expiry_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "irn_no",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_DPSR_AugJan21"
+		}
+	}
+}
