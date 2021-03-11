@@ -322,9 +322,7 @@
 			},
 			{
 				"name": "LastModifiedDatetime",
-				"type": "smalldatetime",
-				"precision": 16,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "TimeStampIns",
@@ -367,6 +365,27 @@
 			{
 				"name": "irn_no",
 				"type": "nvarchar"
+			},
+			{
+				"name": "TrnTypeId",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "ReasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MRP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "SectorId",
+				"type": "int",
+				"precision": 10
 			}
 		],
 		"typeProperties": {
