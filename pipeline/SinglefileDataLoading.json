@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup_ProcessDate').output.firstRow",
+						"value": "@activity('Lookup_ProcessDate').output.value",
 						"type": "Expression"
 					},
 					"activities": [
