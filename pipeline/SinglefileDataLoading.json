@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT ProcessDate FROM tmpDateDataTobeProcess ORDER BY ProcessDate",
+						"sqlReaderQuery": "SELECT ProcessDate FROM tmpDateDataTobeProcess WHERE flgProcess=0 ORDER BY ProcessDate",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
