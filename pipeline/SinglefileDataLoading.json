@@ -33,7 +33,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "SpDeleteOldtmpleapdata",
+						"activity": "Lookup_ProcessDate",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -50,7 +50,14 @@
 						{
 							"name": "SingleFileCopy",
 							"type": "ExecutePipeline",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "SpDeleteOldtmpleapdata",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
@@ -70,35 +77,28 @@
 									}
 								}
 							}
+						},
+						{
+							"name": "SpDeleteOldtmpleapdata",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpDeleteDatafromtmpleaptable]"
+							},
+							"linkedServiceName": {
+								"referenceName": "DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
-				}
-			},
-			{
-				"name": "SpDeleteOldtmpleapdata",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Lookup_ProcessDate",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpDeleteDatafromtmpleaptable]"
-				},
-				"linkedServiceName": {
-					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
