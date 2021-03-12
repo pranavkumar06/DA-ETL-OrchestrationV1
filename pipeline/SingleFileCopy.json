@@ -698,7 +698,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DS_DPSR_table_History",
+									"referenceName": "DS_DPSR_table",
 									"type": "DatasetReference"
 								}
 							]
