@@ -86,7 +86,6 @@
 						"value": "@activity('FilterFiles').output.value",
 						"type": "Expression"
 					},
-					"batchCount": 1,
 					"activities": [
 						{
 							"name": "DPSR",
