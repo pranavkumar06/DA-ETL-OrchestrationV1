@@ -127,6 +127,49 @@
 								"referenceName": "DataFoundationDB",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "SpDFUpdateDataTransferStatus",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "spExecuteSUBDDailySP",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpDFUpdateDataTransferStatus]",
+								"storedProcedureParameters": {
+									"Date": {
+										"value": {
+											"value": "@utcnow()",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"flgDayorNight": {
+										"value": {
+											"value": "@pipeline().parameters.ProcessingType",
+											"type": "Expression"
+										},
+										"type": "Byte"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQLServerNCSAstix",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
