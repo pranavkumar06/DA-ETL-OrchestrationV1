@@ -208,7 +208,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"DataDate": {
-							"value": "@adddays(pipeline().parameters.DataProcessDate,-1)",
+							"value": "@adddays(formatDateTime(pipeline().parameters.DataProcessDate),-1)\n",
 							"type": "Expression"
 						}
 					}
