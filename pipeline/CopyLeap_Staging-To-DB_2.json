@@ -613,6 +613,12 @@
 																	"name": "LastModifiedDatetime",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "channel_type_name",
+																	"type": "String"
+																}
 															}
 														]
 													}

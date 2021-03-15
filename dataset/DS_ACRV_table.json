@@ -74,6 +74,19 @@
 			{
 				"name": "FileName",
 				"type": "nvarchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "channel_type_name",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
