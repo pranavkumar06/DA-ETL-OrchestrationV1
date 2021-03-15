@@ -346,6 +346,15 @@
 																	"name": "LastModifiedDatetime",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "channel_type_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_type_name"
+																}
 															}
 														]
 													}
@@ -1810,7 +1819,10 @@
 														"storeSettings": {
 															"type": "AzureBlobStorageReadSettings",
 															"recursive": true,
-															"wildcardFileName": "@item().name",
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
 															"enablePartitionDiscovery": false
 														},
 														"formatSettings": {
