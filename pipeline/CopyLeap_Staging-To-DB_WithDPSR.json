@@ -2240,6 +2240,12 @@
 																	"name": "irn_no",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "apply_to_doc_date",
+																	"type": "String"
+																}
 															}
 														]
 													}
