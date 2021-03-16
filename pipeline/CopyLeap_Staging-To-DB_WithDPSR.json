@@ -3657,8 +3657,10 @@
 															},
 															{
 																"source": {
-																	"name": "apply_to_doc_date",
-																	"type": "String"
+																	"name": "apply_to_doc_date"
+																},
+																"sink": {
+																	"name": "apply_to_doc_date"
 																}
 															}
 														]
