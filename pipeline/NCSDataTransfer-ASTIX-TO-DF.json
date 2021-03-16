@@ -108,7 +108,7 @@
 								{
 									"activity": "CopyNCS_ASTIX_To_DF",
 									"dependencyConditions": [
-										"Failed"
+										"Succeeded"
 									]
 								}
 							],
