@@ -63,7 +63,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@startswith(item().name,'DPSR')",
+						"value": "@startswith(item().name,'DPSR_MOR')",
 						"type": "Expression"
 					}
 				}
