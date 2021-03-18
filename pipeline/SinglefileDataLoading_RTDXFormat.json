@@ -48,7 +48,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "SingleFileCopy",
+							"name": "SingleFileCopy_RTDXFormat",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
@@ -61,7 +61,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "SingleFileCopy",
+									"referenceName": "SingleFileCopy_RTDXFormat",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
@@ -103,7 +103,7 @@
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
-									"activity": "SingleFileCopy",
+									"activity": "SingleFileCopy_RTDXFormat",
 									"dependencyConditions": [
 										"Succeeded"
 									]
