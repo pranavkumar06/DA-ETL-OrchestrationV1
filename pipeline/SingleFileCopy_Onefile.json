@@ -123,7 +123,7 @@
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
 										"wildcardFolderPath": {
-											"value": "@concat('PSR data/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'),formatDateTime(pipeline().parameters.ProcessDate, 'MM'),formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/')",
+											"value": "@pipeline().parameters.Folder",
 											"type": "Expression"
 										},
 										"wildcardFileName": {
@@ -159,8 +159,7 @@
 									"mappings": [
 										{
 											"source": {
-												"name": "document_no",
-												"type": "String"
+												"name": ""
 											},
 											"sink": {
 												"name": "document_no",
@@ -168,493 +167,423 @@
 											}
 										},
 										{
-											"source": {
-												"name": "apply_to_doc",
-												"type": "String"
-											},
 											"sink": {
 												"name": "apply_to_doc",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "document_date",
-												"type": "String"
-											},
 											"sink": {
 												"name": "document_date",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "transaction_type",
-												"type": "String"
-											},
 											"sink": {
 												"name": "transaction_type",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "subbrandform_name",
-												"type": "String"
-											},
 											"sink": {
 												"name": "subbrandform_name",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "prod_name",
-												"type": "String"
-											},
 											"sink": {
 												"name": "prod_name",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "customer_name",
-												"type": "String"
-											},
 											"sink": {
 												"name": "customer_name",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "customer_code",
-												"type": "String"
-											},
 											"sink": {
 												"name": "customer_code",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "channel_description",
-												"type": "String"
-											},
 											"sink": {
 												"name": "channel_description",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "dse",
-												"type": "String"
-											},
 											"sink": {
 												"name": "dse",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "pcode",
-												"type": "String"
-											},
 											"sink": {
 												"name": "pcode",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "customer_type",
-												"type": "String"
-											},
 											"sink": {
 												"name": "customer_type",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "hsn_code",
-												"type": "String"
-											},
 											"sink": {
 												"name": "hsn_code",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "category",
-												"type": "String"
-											},
 											"sink": {
 												"name": "category",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "brand",
-												"type": "String"
-											},
 											"sink": {
 												"name": "brand",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "brandform",
-												"type": "String"
-											},
 											"sink": {
 												"name": "brandform",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "quantity",
-												"type": "String"
-											},
 											"sink": {
 												"name": "quantity",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "gross_value",
-												"type": "String"
-											},
 											"sink": {
 												"name": "gross_value",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "discount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "discount",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "taxable_scheme",
-												"type": "String"
-											},
 											"sink": {
 												"name": "taxable_scheme",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "cgst_amount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "cgsttax",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "sgst_amount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "sgsttax",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "igst_amount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "igsttax",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "cess_amount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "cesstax",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "mracc_code",
-												"type": "String"
-											},
 											"sink": {
 												"name": "mracc_code",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "mracc_desc",
-												"type": "String"
-											},
 											"sink": {
 												"name": "mracc_desc",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "vendor",
-												"type": "String"
-											},
 											"sink": {
 												"name": "vendor",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "net_amount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "net_amount",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tax_on_discount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tax_on_discount",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tax_on_scheme",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tax_on_scheme",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tax_in_rlp",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tax_in_rlp",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "retailing",
-												"type": "String"
-											},
 											"sink": {
 												"name": "retailing",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "gross_in_slp",
-												"type": "String"
-											},
 											"sink": {
 												"name": "gross_in_slp",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "po_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "po_no",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "dse_code",
-												"type": "String"
-											},
 											"sink": {
 												"name": "dse_code",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "msu",
-												"type": "String"
-											},
 											"sink": {
 												"name": "msu",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "reason",
-												"type": "String"
-											},
 											"sink": {
 												"name": "reason",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "distributor_gst_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "dist_gstinno",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "retailer_gst_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "ret_gstinno",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "srn_ref_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "srn_ref_no",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "composite",
-												"type": "String"
-											},
 											"sink": {
 												"name": "composite",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "cgst_rate",
-												"type": "String"
-											},
 											"sink": {
 												"name": "cgsttax_rate",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "sgst_rate",
-												"type": "String"
-											},
 											"sink": {
 												"name": "sgsttax_rate",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "igst_rate",
-												"type": "String"
-											},
 											"sink": {
 												"name": "igsttax_rate",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "cess_rate",
-												"type": "String"
-											},
 											"sink": {
 												"name": "cesstax_rate",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "branch_code",
-												"type": "String"
-											},
 											"sink": {
 												"name": "branch_code",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "branch_name",
-												"type": "String"
-											},
 											"sink": {
 												"name": "branch_name",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "order_mode",
-												"type": "String"
-											},
 											"sink": {
 												"name": "order_mode",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tc_code",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tc_code",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tc_name",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tc_name",
 												"type": "String"
+											}
+										},
+										{
+											"sink": {
+												"name": "FileSetId",
+												"type": "Int64"
+											}
+										},
+										{
+											"sink": {
+												"name": "BranchNodeId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "BranchNodeType",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "StoreId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "CmpNodeId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "CmpNodeType",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "CatNodeId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "CatNodeType",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "BrandNodeId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "BrandNodeType",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "SBFNodeId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "SBFNodeType",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "PrdNodeId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "PrdNodeType",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "InvId",
+												"type": "Int64"
+											}
+										},
+										{
+											"sink": {
+												"name": "ChannelId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "SubChannelId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "dsenodeid",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "dsenodetype",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "mraccid",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "SRNId",
+												"type": "Int32"
 											}
 										},
 										{
@@ -678,92 +607,92 @@
 											}
 										},
 										{
-											"source": {
-												"name": "batch",
-												"type": "String"
-											},
+											"sink": {
+												"name": "TimeStampIns",
+												"type": "DateTime"
+											}
+										},
+										{
 											"sink": {
 												"name": "batch",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "upc",
-												"type": "String"
-											},
 											"sink": {
 												"name": "upc",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tcs_amount",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tcs_amount",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "remarks",
-												"type": "String"
-											},
 											"sink": {
 												"name": "remarks",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "tcs_rate",
-												"type": "String"
-											},
 											"sink": {
 												"name": "tcs_rate",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "branch_gst_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "branch_gst_no",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "dl_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "dl_no",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "dl_expiry_date",
-												"type": "String"
-											},
 											"sink": {
 												"name": "dl_expiry_date",
 												"type": "String"
 											}
 										},
 										{
-											"source": {
-												"name": "irn_no",
-												"type": "String"
-											},
 											"sink": {
 												"name": "irn_no",
+												"type": "String"
+											}
+										},
+										{
+											"sink": {
+												"name": "TrnTypeId",
+												"type": "Byte"
+											}
+										},
+										{
+											"sink": {
+												"name": "ReasonId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "MRP",
+												"type": "Decimal"
+											}
+										},
+										{
+											"sink": {
+												"name": "SectorId",
+												"type": "Int32"
+											}
+										},
+										{
+											"sink": {
+												"name": "apply_to_doc_date",
 												"type": "String"
 											}
 										}
@@ -772,18 +701,8 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ADLSCSVDataSource_Folder_withoutgzip",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@pipeline().parameters.Container",
-											"type": "Expression"
-										},
-										"Directory": {
-											"value": "@concat('PSR data/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'),formatDateTime(pipeline().parameters.ProcessDate, 'MM'),formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/')\n",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "ADLSCSVDataSource_Folder_WithComma",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
