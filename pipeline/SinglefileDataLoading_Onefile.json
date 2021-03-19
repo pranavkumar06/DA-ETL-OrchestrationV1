@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SingleFileCopy_RTDXFormat",
+				"name": "SingleFileCopy_Onefile",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -58,7 +58,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SingleFileCopy_RTDXFormat",
+						"activity": "SingleFileCopy_Onefile",
 						"dependencyConditions": [
 							"Succeeded"
 						]
