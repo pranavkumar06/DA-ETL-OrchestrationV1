@@ -1,0 +1,103 @@
+{
+	"name": "SinglefileDataLoading_Onefile",
+	"properties": {
+		"activities": [
+			{
+				"name": "SingleFileCopy_RTDXFormat",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpDeleteOldtmpleapdata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SingleFileCopy_Onefile",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Container": "cntleap",
+						"Folder": {
+							"value": "@concat('/cochinfeb20psr', '/')\n",
+							"type": "Expression"
+						},
+						"ProcessDate": {
+							"value": "@pipeline().parameters.ProcessDate",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "SpDeleteOldtmpleapdata",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SpDeleteDatafromtmpleaptable]"
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spLoadLeapDPSRIndividualProcess",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SingleFileCopy_RTDXFormat",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spLoadLeapDPSRIndividualProcess]",
+					"storedProcedureParameters": {
+						"dt": {
+							"value": {
+								"value": "@pipeline().parameters.ProcessDate",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"ProcessDate": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Leap Data Pipeline"
+		},
+		"annotations": []
+	}
+}
