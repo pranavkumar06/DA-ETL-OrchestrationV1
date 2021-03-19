@@ -21,7 +21,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "DPSR_cloud01_2020Oct06.gz",
+				"fileName": "Cochin29022020.gz",
 				"folderPath": {
 					"value": "@dataset().Directory",
 					"type": "Expression"
