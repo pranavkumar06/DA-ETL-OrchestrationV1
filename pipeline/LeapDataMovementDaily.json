@@ -151,7 +151,14 @@
 			{
 				"name": "Copy S3 to Staging",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "CopyLeapStaging-To-ADLS_OLDData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -180,11 +187,11 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"Directory": {
+						"Directory": "cntleap",
+						"Folder": {
 							"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
 							"type": "Expression"
-						},
-						"Folder": "cntleap"
+						}
 					}
 				}
 			},
@@ -209,6 +216,26 @@
 					"parameters": {
 						"DataDate": {
 							"value": "@adddays(formatDateTime(pipeline().parameters.DataProcessDate,'dd-MMM-yyyy'),-1)\n",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyLeapStaging-To-ADLS_OLDData",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyLeapStaging-To-ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Directory": "cntleap",
+						"Folder": {
+							"value": "@concat('/', formatDateTime(adddays(pipeline().TriggerTime,-1), 'yyyy'), '/', formatDateTime(adddays(pipeline().TriggerTime,-1), 'MM'), '/', formatDateTime(adddays(pipeline().TriggerTime,-1), 'dd'), '/')",
 							"type": "Expression"
 						}
 					}
