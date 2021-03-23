@@ -80,7 +80,7 @@
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spExecuteDailyAPISp]",
 					"storedProcedureParameters": {
-						"DMinus1Date": {
+						"DMinusOneDate": {
 							"value": {
 								"value": "@adddays(pipeline().parameters.DataDate,-1)",
 								"type": "Expression"
