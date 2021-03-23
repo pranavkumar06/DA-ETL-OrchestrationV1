@@ -46,7 +46,7 @@
 					"storedProcedureParameters": {
 						"DMinus1Date": {
 							"value": {
-								"value": "adddays(@pipeline().parameters.DataDate,-1)",
+								"value": "@adddays(pipeline().parameters.DataDate,-1)",
 								"type": "Expression"
 							},
 							"type": "DateTime"
@@ -82,7 +82,7 @@
 					"storedProcedureParameters": {
 						"DMinus1Date": {
 							"value": {
-								"value": "adddays(@pipeline().parameters.DataDate,-1)",
+								"value": "@adddays(pipeline().parameters.DataDate,-1)",
 								"type": "Expression"
 							},
 							"type": "DateTime"
