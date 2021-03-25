@@ -1,0 +1,21 @@
+{
+	"name": "DS_STR_DFDataFoundation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "leapproductmaster"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
