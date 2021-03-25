@@ -240,58 +240,6 @@
 						}
 					}
 				}
-			},
-			{
-				"name": "CopyProductMastertoSeperateBucket",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "DFDataProcessAfterLoading",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "BinarySource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "BinaryReadSettings"
-						}
-					},
-					"sink": {
-						"type": "BinarySink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"dataIntegrationUnits": 2
-				},
-				"inputs": [
-					{
-						"referenceName": "LeapStorageSourceDataset",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_STR_DFDataFoundation",
-						"type": "DatasetReference"
-					}
-				]
 			}
 		],
 		"parameters": {
