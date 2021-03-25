@@ -3627,12 +3627,6 @@
 														"referenceName": "LeapCSV_Staging",
 														"type": "DatasetReference"
 													}
-												],
-												"outputs": [
-													{
-														"referenceName": "DS_STR_DFDataFoundation",
-														"type": "DatasetReference"
-													}
 												]
 											}
 										]
@@ -3998,9 +3992,14 @@
 														}
 													},
 													"sink": {
-														"type": "BinarySink",
+														"type": "DelimitedTextSink",
 														"storeSettings": {
 															"type": "AzureBlobStorageWriteSettings"
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": true,
+															"fileExtension": ""
 														}
 													},
 													"enableStaging": false,
@@ -4015,7 +4014,13 @@
 												"outputs": [
 													{
 														"referenceName": "DS_STR_DFDataFoundation",
-														"type": "DatasetReference"
+														"type": "DatasetReference",
+														"parameters": {
+															"filename": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
 													}
 												]
 											}
@@ -4393,12 +4398,6 @@
 												"inputs": [
 													{
 														"referenceName": "LeapCSV_Staging",
-														"type": "DatasetReference"
-													}
-												],
-												"outputs": [
-													{
-														"referenceName": "DS_STR_DFDataFoundation",
 														"type": "DatasetReference"
 													}
 												]
