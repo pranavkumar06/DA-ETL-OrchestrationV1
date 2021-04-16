@@ -417,8 +417,7 @@
 															},
 															{
 																"source": {
-																	"name": "cfr_date",
-																	"type": "String"
+																	"name": "date"
 																},
 																"sink": {
 																	"name": "cfr_date",
