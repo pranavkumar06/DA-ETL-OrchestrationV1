@@ -486,7 +486,7 @@
 															},
 															{
 																"source": {
-																	"name": "unserved_demand_qty",
+																	"name": "unserveddemand_qty",
 																	"type": "String"
 																},
 																"sink": {
