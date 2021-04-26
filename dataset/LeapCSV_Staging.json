@@ -13,6 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "CFR_cloud01_2021Apr18.csv",
 				"container": "leaptemp"
 			},
 			"columnDelimiter": "|",
