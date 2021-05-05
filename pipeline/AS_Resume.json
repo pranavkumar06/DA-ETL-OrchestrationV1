@@ -28,11 +28,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Scaleval": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "Resource Management"
 		},
