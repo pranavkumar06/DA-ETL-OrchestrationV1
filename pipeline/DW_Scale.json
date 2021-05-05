@@ -18,7 +18,7 @@
 					"url": "https://management.azure.com/subscriptions/15354be3-bb86-4045-a1a1-7bf7d9ba1c31/resourceGroups/DataFoundation/providers/Microsoft.Sql/servers/pgdatafoundation/databases/DataFoundation?api-version=2020-08-01-preview",
 					"method": "PUT",
 					"body": {
-						"value": "{\n\tlocation: \"eastus2\",\n    \"sku\": {\n    \"name\": \"DW400c\"\n    }\n}",
+						"value": "{\n\tlocation: \"eastus2\",\n    \"sku\": {\n    \"name\": \"@{pipeline().parameters.Scaleval}\"\n    }\n}",
 						"type": "Expression"
 					},
 					"authentication": {
@@ -28,6 +28,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"Scaleval": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Other Pipelines"
 		},
