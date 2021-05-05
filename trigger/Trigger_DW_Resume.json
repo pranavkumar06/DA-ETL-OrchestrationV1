@@ -1,0 +1,32 @@
+{
+	"name": "Trigger_DW_Resume",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "DW_Resume",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-05-06T03:45:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						45
+					],
+					"hours": [
+						3
+					]
+				}
+			}
+		}
+	}
+}
