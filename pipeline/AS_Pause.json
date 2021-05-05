@@ -1,0 +1,41 @@
+{
+	"name": "AS_Pause",
+	"properties": {
+		"activities": [
+			{
+				"name": "AS_Pause_ActivityAPI",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/15354be3-bb86-4045-a1a1-7bf7d9ba1c31/resourceGroups/DBRDashboard/providers/Microsoft.AnalysisServices/servers/dbrdashboard/Suspend?api-version=2017-08-01",
+					"method": "POST",
+					"body": {
+						"value": "{\"Dummy\":\"Dummy\"}",
+						"type": "Expression"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.core.windows.net"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Scaleval": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Other Pipelines"
+		},
+		"annotations": []
+	}
+}
