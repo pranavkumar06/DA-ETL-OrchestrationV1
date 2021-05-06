@@ -228,7 +228,7 @@
 					{
 						"activity": "DW_Scale_400",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
