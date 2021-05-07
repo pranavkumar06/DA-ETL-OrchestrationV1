@@ -263,6 +263,29 @@
 						"Scaleval": "DW400c"
 					}
 				}
+			},
+			{
+				"name": "DW_Scale_200",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DFDataProcessAfterLoading",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DW_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "DW200c"
+					}
+				}
 			}
 		],
 		"parameters": {
