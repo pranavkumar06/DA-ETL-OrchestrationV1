@@ -1,0 +1,166 @@
+{
+	"name": "DS_ORDHTR_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "p_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subbf",
+				"type": "nvarchar"
+			},
+			{
+				"name": "po_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "po_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "upc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "account_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "qty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rlp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tc_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tc_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BranchNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectorId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeType",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_ORDHTR"
+		}
+	}
+}
