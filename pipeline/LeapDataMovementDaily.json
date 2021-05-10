@@ -200,7 +200,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Delete Staging Files",
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -312,6 +312,26 @@
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "FocusBrandLoading-LEAP-TO-DF",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Delete Staging Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "FocusBrandLoading-LEAP-TO-DF",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
