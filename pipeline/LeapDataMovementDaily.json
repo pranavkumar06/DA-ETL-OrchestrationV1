@@ -126,7 +126,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_3",
+						"activity": "spDataLoadRawLeap_ORDHTR",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -173,7 +173,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spDataLoadRawLeap_ORDHTR",
+						"activity": "spLoadLeapTasIntegration",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -292,7 +292,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spLoadLeapTasIntegration",
+						"activity": "CopyLeap_Staging-To-DB_3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
