@@ -1,0 +1,31 @@
+{
+	"name": "AS_CubeProcess_LogicApp",
+	"properties": {
+		"activities": [
+			{
+				"name": "AS_CubeProcess_LogicApp",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-48.eastus2.logic.azure.com:443/workflows/db6147463be54a76af021a63d45b1175/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=a3HFOzAcaVhiXq5gDPs259s1TMhjBNCSgJlZQVdAojk",
+					"method": "POST",
+					"body": {
+						"message": "hello world"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Resource Management"
+		},
+		"annotations": []
+	}
+}
