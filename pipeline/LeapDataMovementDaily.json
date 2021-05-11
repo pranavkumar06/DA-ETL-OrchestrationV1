@@ -126,7 +126,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spDataLoadRawLeap_ORDHTR",
+						"activity": "CopyLeap_Staging-To-DB_3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -285,33 +285,6 @@
 					"parameters": {
 						"Scaleval": "DW200c"
 					}
-				}
-			},
-			{
-				"name": "spDataLoadRawLeap_ORDHTR",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "CopyLeap_Staging-To-DB_3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadRawLeap_ORDHTR]"
-				},
-				"linkedServiceName": {
-					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
