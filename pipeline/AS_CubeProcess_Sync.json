@@ -230,6 +230,65 @@
 					],
 					"timeout": "7.00:00:00"
 				}
+			},
+			{
+				"name": "If Condition1_copy1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Until1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@not(equals(variables('status'),'succeeded'))",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Send Notification_copy1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": "avinash@astix.in,ashwani@astix.in,alok@astix.in",
+									"Subject": "Cube Processing Successful",
+									"ErrorMessage": "DataFoundation Cube Processing Success"
+								}
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Send Notification",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": "avinash@astix.in,ashwani@astix.in,alok@astix.in",
+									"Subject": "Cube Processing Not Successful",
+									"ErrorMessage": "DataFoundation Cube Processing Fails"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"variables": {
