@@ -21,7 +21,7 @@
 					},
 					"method": "POST",
 					"body": {
-						"value": "{\"Type\":\"Full\",\"CommitMode\":\"transactional\",\"MaxParallelism\":2,\"RetryCount\":2,\"Objects\":[{\"database\":\"PG_DMS\",\"table\":\"tblFactCFR\",\"partition\":\"PartitionCurrentQuarter_FactCFRData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCOS\",\"partition\":\"PartitionCurrentQuarter_FactCOSData\"}]}",
+						"value": "{\"Type\":\"Full\",\"CommitMode\":\"transactional\",\"MaxParallelism\":2,\"RetryCount\":2,\"Objects\":[{\"database\":\"PG_DMS\",\"table\":\"tblFactCOS\",\"partition\":\"PartitionCurrentQuarter_FactCOSData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactWorkingDays\",\"partition\":\"Partition\"}]}",
 						"type": "Expression"
 					},
 					"authentication": {
