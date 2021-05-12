@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "https://eastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DMS/refreshes",
+						"value": "https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DMS/sync",
 						"type": "Expression"
 					},
 					"method": "POST",
