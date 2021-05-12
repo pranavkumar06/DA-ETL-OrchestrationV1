@@ -269,7 +269,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DFDataProcessAfterLoading",
+						"activity": "AS_CubeProcess_Sync",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -302,6 +302,26 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "FocusBrandLoading-LEAP-TO-DF",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "AS_CubeProcess_Sync",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DFDataProcessAfterLoading",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Sync",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
