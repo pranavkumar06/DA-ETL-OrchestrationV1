@@ -162,7 +162,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_NoDelete",
+						"referenceName": "CopyS3-To-Staging",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
