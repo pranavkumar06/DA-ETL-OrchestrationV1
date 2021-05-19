@@ -262,8 +262,8 @@
 								"waitOnCompletion": true,
 								"parameters": {
 									"EmailTo": "avinash@astix.in,ashwani@astix.in,alok@astix.in",
-									"Subject": "Cube Processing Successful",
-									"ErrorMessage": "DataFoundation Cube Processing Success"
+									"Subject": "Cube Dimention Processing Successful",
+									"ErrorMessage": "DataFoundation Cube Dimention Processing Success"
 								}
 							}
 						}
@@ -282,8 +282,8 @@
 								"waitOnCompletion": true,
 								"parameters": {
 									"EmailTo": "avinash@astix.in,ashwani@astix.in,alok@astix.in",
-									"Subject": "Cube Processing Not Successful",
-									"ErrorMessage": "DataFoundation Cube Processing Fails"
+									"Subject": "Cube Dimention Processing Not Successful",
+									"ErrorMessage": "DataFoundation Cube Dimention Processing Fails"
 								}
 							}
 						}
