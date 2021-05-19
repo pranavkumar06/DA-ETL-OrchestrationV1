@@ -269,7 +269,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "AS_CubeProcess_Sync",
+						"activity": "AS_CubeProcess_Sync_Fact",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -308,7 +308,7 @@
 				}
 			},
 			{
-				"name": "AS_CubeProcess_Sync",
+				"name": "AS_CubeProcess_Sync_Dim",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -361,6 +361,26 @@
 				"userProperties": [],
 				"typeProperties": {
 					"waitTimeInSeconds": 300
+				}
+			},
+			{
+				"name": "AS_CubeProcess_Sync_Fact",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AS_CubeProcess_Sync_Dim",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Sync_Fact",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
