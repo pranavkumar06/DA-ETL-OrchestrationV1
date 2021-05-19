@@ -321,7 +321,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "AS_CubeProcess_Sync",
+						"referenceName": "AS_CubeProcess_Sync_Dim",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

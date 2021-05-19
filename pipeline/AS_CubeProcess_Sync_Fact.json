@@ -1,5 +1,5 @@
 {
-	"name": "AS_CubeProcess_Sync_Dim",
+	"name": "AS_CubeProcess_Sync_Fact",
 	"properties": {
 		"activities": [
 			{
@@ -21,7 +21,7 @@
 					},
 					"method": "POST",
 					"body": {
-						"value": "{\"Type\":\"Full\",\"CommitMode\":\"transactional\",\"MaxParallelism\":2,\"RetryCount\":2,\"Objects\":[{\"database\":\"PG_DMS\",\"table\":\"DSR Hierarchy\"},{\"database\":\"PG_DMS\",\"table\":\"Location Hierarchy\"},{\"database\":\"PG_DMS\",\"table\":\"Channel Hierarchy\"},{\"database\":\"PG_DMS\",\"table\":\"Store Master\"},{\"database\":\"PG_DMS\",\"table\":\"Product Hierarchy\"},{\"database\":\"PG_DMS\",\"table\":\"Date\"},{\"database\":\"PG_DMS\",\"table\":\"SRN Reason\"}]}",
+						"value": "{\"Type\":\"Full\",\"CommitMode\":\"transactional\",\"MaxParallelism\":2,\"RetryCount\":2,\"Objects\":[{\"database\":\"PG_DMS\",\"table\":\"tblFactSalesDetail\",\"partition\":\"PartitionCurrentQuarter_FactSalesDetails\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCoverage\",\"partition\":\"PartitionCurrentQuarter_FactCoverage\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCoverageStoreLvl\",\"partition\":\"PartitionCurrentQuarter_FactCoverageStoreLvl\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCoverageLPB\",\"partition\":\"PartitionCurrentQuarter_FactCoverageLPB\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactARData\",\"partition\":\"PartitionCurrentQuarter_FactARData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCFR\",\"partition\":\"PartitionCurrentQuarter_FactCFRData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCOS\",\"partition\":\"PartitionCurrentQuarter_FactCOSData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactFocusBrandData\",\"partition\":\"PartitionCurrentQuarter_FactFocusBrandData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactInventory\",\"partition\":\"PartitionCurrentQuarter_FactInventory\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactSBDData\",\"partition\":\"PartitionCurrentQuarter_FactSBDData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactStoreLvlSBDData\",\"partition\":\"PartitionCurrentQuarter_FactStoreLvlSBDData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactTargetData\",\"partition\":\"PartitionCurrentQuarter_FactTargetData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactOrderData\",\"partition\":\"PartitionCurrentQuarter_FactOrderData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactWorkingDays\",\"partition\":\"Partition\"}]}",
 						"type": "Expression"
 					},
 					"authentication": {
