@@ -1,0 +1,9 @@
+{
+	"name": "Dev-LEAP-DF-DataLoad",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "12aaa7cc-6be9-4f45-9f8e-c3373bc409c2",
+		"tenantId": "515445df-f272-4c96-aa97-d670cbdeab20"
+	}
+}
