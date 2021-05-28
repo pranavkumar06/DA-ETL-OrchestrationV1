@@ -362,6 +362,121 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Send Notification",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DW_Scale_400",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "CopyLeapStaging-To-ADLS_OLDData",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Copy S3 to Staging",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "SpDeleteOldtmpleapdata",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_3",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "spLoadLeapTasIntegration",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "CopyLeapStaging-To-ADLS",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Delete Staging Files",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "DFDataProcessAfterLoading",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "AS_Resume",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "AS_CubeProcess_Sync_Fact",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "DW_Scale_200",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
 			}
 		],
 		"parameters": {
