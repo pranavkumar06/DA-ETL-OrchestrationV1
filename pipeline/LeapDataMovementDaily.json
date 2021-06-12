@@ -25,14 +25,7 @@
 			{
 				"name": "SpDeleteOldtmpleapdata",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Copy S3 to Staging",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -149,26 +142,6 @@
 				}
 			},
 			{
-				"name": "Copy S3 to Staging",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "CopyLeapStaging-To-ADLS_OLDData",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyS3-To-Staging",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "CopyLeapStaging-To-ADLS",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -218,49 +191,6 @@
 							"value": "@adddays(formatDateTime(pipeline().parameters.DataProcessDate,'dd-MMM-yyyy'),0)",
 							"type": "Expression"
 						}
-					}
-				}
-			},
-			{
-				"name": "CopyLeapStaging-To-ADLS_OLDData",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Scale_400",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyLeapStaging-To-ADLS",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Directory": "cntleap",
-						"Folder": {
-							"value": "@concat('/', formatDateTime(adddays(pipeline().TriggerTime,-1), 'yyyy'), '/', formatDateTime(adddays(pipeline().TriggerTime,-1), 'MM'), '/', formatDateTime(adddays(pipeline().TriggerTime,-1), 'dd'), '/')",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "DW_Scale_400",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Scale",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Scaleval": "DW400c"
 					}
 				}
 			},
@@ -367,24 +297,6 @@
 				"name": "Send Notification",
 				"type": "ExecutePipeline",
 				"dependsOn": [
-					{
-						"activity": "DW_Scale_400",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "CopyLeapStaging-To-ADLS_OLDData",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "Copy S3 to Staging",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
 					{
 						"activity": "SpDeleteOldtmpleapdata",
 						"dependencyConditions": [
