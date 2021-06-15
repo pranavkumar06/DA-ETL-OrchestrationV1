@@ -126,7 +126,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_3",
+						"activity": "CopyLeap_Staging-To-DB_4",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -381,6 +381,12 @@
 						"dependencyConditions": [
 							"Failed"
 						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_4",
+						"dependencyConditions": [
+							"Failed"
+						]
 					}
 				],
 				"userProperties": [],
@@ -500,6 +506,26 @@
 						"Subject": "TAS Datafactory Error",
 						"ErrorMessage": "SpDailyRefreshSchemeData Failed, log on to portal for more details"
 					}
+				}
+			},
+			{
+				"name": "CopyLeap_Staging-To-DB_4",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyLeap_Staging-To-DB_4",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
