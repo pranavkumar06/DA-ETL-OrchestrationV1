@@ -476,10 +476,10 @@
 										]
 									},
 									{
-										"value": "35",
+										"value": "59",
 										"activities": [
 											{
-												"name": "CFR_Cloud2",
+												"name": "Creditnote_Cloud2",
 												"description": "Copy a file from the source store to the destination store.",
 												"type": "Copy",
 												"dependsOn": [],
@@ -567,181 +567,221 @@
 															},
 															{
 																"source": {
-																	"name": "date",
+																	"name": "location_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "cfr_date",
+																	"name": "location_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "channel_name",
+																	"name": "dse_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "channel_name",
+																	"name": "dse_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "category",
+																	"name": "dse_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "category",
+																	"name": "dse_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "brandform",
+																	"name": "retailer_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "brandform",
+																	"name": "retailer_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "sub_brandform",
+																	"name": "retailer_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "sub_brandform",
+																	"name": "retailer_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "orders",
+																	"name": "note_date",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "orders",
+																	"name": "note_date",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "orders_qty_case",
+																	"name": "credit_note_number",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "orders_qty_case",
+																	"name": "credit_note_number",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "order_value",
+																	"name": "credit_note_type",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "order_value",
+																	"name": "credit_note_type",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "order_msu",
+																	"name": "credit_period_from",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "order_msu",
+																	"name": "credit_period_from",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply",
+																	"name": "credit_period_to",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply",
+																	"name": "credit_period_to",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply_qty_case",
+																	"name": "credit_note_amount",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply_qty_case",
+																	"name": "credit_note_amount",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply_value",
+																	"name": "adjustment_mode",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply_value",
+																	"name": "adjustment_mode",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply_msu",
+																	"name": "adjusted_amount",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply_msu",
+																	"name": "adjusted_amount",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserveddemand_qty",
+																	"name": "balance_amount",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserved_demand_qty",
+																	"name": "balance_amount",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserverdemand_qty_case",
+																	"name": "cgsttax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserverdemand_qty_case",
+																	"name": "cgsttax",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserverdemand_value",
+																	"name": "sgsttax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserverdemand_value",
+																	"name": "sgsttax",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserverdemand_msu",
+																	"name": "igsttax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserverdemand_msu",
+																	"name": "igsttax",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "cfr_per",
+																	"name": "cesstax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "cfr_per",
+																	"name": "cesstax",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "reference_doc_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "reference_doc_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "applied_doc_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "applied_doc_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "applied_to_doc_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "applied_to_doc_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "applied_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "applied_date",
 																	"type": "String"
 																}
 															},
@@ -752,6 +792,16 @@
 																},
 																"sink": {
 																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "comment",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "comment",
 																	"type": "String"
 																}
 															},
@@ -761,7 +811,7 @@
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "FileName",
+																	"name": "Filename",
 																	"type": "String"
 																}
 															},
@@ -786,7 +836,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_CFR_table",
+														"referenceName": "DS_Creditnote_table",
 														"type": "DatasetReference"
 													}
 												]
@@ -794,10 +844,10 @@
 										]
 									},
 									{
-										"value": "36",
+										"value": "60",
 										"activities": [
 											{
-												"name": "CFR_Cloud3",
+												"name": "Creditnote_Cloud3",
 												"description": "Copy a file from the source store to the destination store.",
 												"type": "Copy",
 												"dependsOn": [],
@@ -885,181 +935,221 @@
 															},
 															{
 																"source": {
-																	"name": "date",
+																	"name": "location_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "cfr_date",
+																	"name": "location_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "channel_name",
+																	"name": "dse_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "channel_name",
+																	"name": "dse_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "category",
+																	"name": "dse_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "category",
+																	"name": "dse_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "brandform",
+																	"name": "retailer_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "brandform",
+																	"name": "retailer_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "sub_brandform",
+																	"name": "retailer_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "sub_brandform",
+																	"name": "retailer_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "orders",
+																	"name": "note_date",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "orders",
+																	"name": "note_date",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "orders_qty_case",
+																	"name": "credit_note_number",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "orders_qty_case",
+																	"name": "credit_note_number",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "order_value",
+																	"name": "credit_note_type",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "order_value",
+																	"name": "credit_note_type",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "order_msu",
+																	"name": "credit_period_from",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "order_msu",
+																	"name": "credit_period_from",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply",
+																	"name": "credit_period_to",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply",
+																	"name": "credit_period_to",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply_qty_case",
+																	"name": "credit_note_amount",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply_qty_case",
+																	"name": "credit_note_amount",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply_value",
+																	"name": "adjustment_mode",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply_value",
+																	"name": "adjustment_mode",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "supply_msu",
+																	"name": "adjusted_amount",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "supply_msu",
+																	"name": "adjusted_amount",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserveddemand_qty",
+																	"name": "balance_amount",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserved_demand_qty",
+																	"name": "balance_amount",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserverdemand_qty_case",
+																	"name": "cgsttax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserverdemand_qty_case",
+																	"name": "cgsttax",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserverdemand_value",
+																	"name": "sgsttax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserverdemand_value",
+																	"name": "sgsttax",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "unserverdemand_msu",
+																	"name": "igsttax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "unserverdemand_msu",
+																	"name": "igsttax",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "cfr_per",
+																	"name": "cesstax",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "cfr_per",
+																	"name": "cesstax",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "reference_doc_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "reference_doc_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "applied_doc_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "applied_doc_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "applied_to_doc_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "applied_to_doc_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "applied_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "applied_date",
 																	"type": "String"
 																}
 															},
@@ -1070,6 +1160,16 @@
 																},
 																"sink": {
 																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "comment",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "comment",
 																	"type": "String"
 																}
 															},
@@ -1079,7 +1179,7 @@
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "FileName",
+																	"name": "Filename",
 																	"type": "String"
 																}
 															},
@@ -1104,7 +1204,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_CFR_table",
+														"referenceName": "DS_Creditnote_table",
 														"type": "DatasetReference"
 													}
 												]
