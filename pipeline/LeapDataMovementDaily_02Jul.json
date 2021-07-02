@@ -3,32 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DFDataProcessAfterLoading",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "FocusBrandLoading-LEAP-TO-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DFDataProcessAfterLoading",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataDate": {
-							"value": "@adddays(formatDateTime(pipeline().parameters.DataProcessDate,'dd-MMM-yyyy'),0)",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "DW_Scale_200",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -52,65 +26,9 @@
 				}
 			},
 			{
-				"name": "FocusBrandLoading-LEAP-TO-DF",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "FocusBrandLoading-LEAP-TO-DF",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "AS_Resume",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DFDataProcessAfterLoading",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_Resume",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "AS_Resume",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
-				}
-			},
-			{
 				"name": "AS_CubeProcess_Sync_Fact",
 				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -124,30 +42,6 @@
 				"name": "Send Notification",
 				"type": "ExecutePipeline",
 				"dependsOn": [
-					{
-						"activity": "FocusBrandLoading-LEAP-TO-DF",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "DFDataProcessAfterLoading",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "AS_Resume",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
 					{
 						"activity": "AS_CubeProcess_Sync_Fact",
 						"dependencyConditions": [
