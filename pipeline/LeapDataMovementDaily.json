@@ -503,7 +503,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"EmailTo": "avinash@astix.in,ashwani@Astix.in,alok@astix.in",
-						"Subject": "TAS Datafactory Error",
+						"Subject": "DataFoundation Datafactory Error",
 						"ErrorMessage": "SpDailyRefreshSchemeData Failed, log on to portal for more details"
 					}
 				}
