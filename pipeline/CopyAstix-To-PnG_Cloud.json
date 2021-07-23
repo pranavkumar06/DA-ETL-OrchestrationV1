@@ -101,25 +101,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "DelimitedTextSource",
-									"additionalColumns": [
-										{
-											"name": "Filename",
-											"value": {
-												"value": "@item().name",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "Lastmodifieddatetime",
-											"value": {
-												"value": "@addminutes(utcnow(),330)",
-												"type": "Expression"
-											}
-										}
-									],
+									"type": "BinarySource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
+										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFolderPath": {
 											"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'), '/')",
@@ -129,10 +113,10 @@
 											"value": "@item().name",
 											"type": "Expression"
 										},
-										"enablePartitionDiscovery": false
+										"deleteFilesAfterCompletion": false
 									},
 									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
+										"type": "BinaryReadSettings"
 									}
 								},
 								"sink": {
@@ -147,15 +131,15 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ADLSCSVDataSource_Folder",
+									"referenceName": "ADLSBinaryDataSource_Folder",
 									"type": "DatasetReference",
 									"parameters": {
 										"Container": {
-											"value": "@pipeline().parameters.Container",
+											"value": "@pipeline().parameters.Folder",
 											"type": "Expression"
 										},
 										"Directory": {
-											"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'), '/')\n",
+											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
 										}
 									}
