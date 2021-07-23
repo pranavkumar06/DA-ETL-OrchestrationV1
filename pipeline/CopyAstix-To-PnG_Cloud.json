@@ -17,11 +17,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ADLSDataset_Copy",
+						"referenceName": "ADLSDataset",
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'))",
+								"value": "@pipeline().parameters.Folder",
 								"type": "Expression"
 							},
 							"directory": {
@@ -36,8 +36,7 @@
 						"itemName"
 					],
 					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"recursive": true
+						"type": "AzureBlobFSReadSettings"
 					},
 					"formatSettings": {
 						"type": "BinaryReadSettings"
