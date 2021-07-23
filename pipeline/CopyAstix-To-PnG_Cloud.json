@@ -35,7 +35,8 @@
 						"itemName"
 					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
 					},
 					"formatSettings": {
 						"type": "BinaryReadSettings"
@@ -133,11 +134,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Container": {
-											"value": "@pipeline().parameters.Folder",
+											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
 										},
 										"Directory": {
-											"value": "@pipeline().parameters.Container",
+											"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'), '/')\n",
 											"type": "Expression"
 										}
 									}
