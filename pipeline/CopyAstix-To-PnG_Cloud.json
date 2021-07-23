@@ -21,7 +21,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "@pipeline().parameters.Folder",
+								"value": "@concat('/', formatDateTime(pipeline().parameters.ProcessDate, 'yyyy'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'MM'), '/', formatDateTime(pipeline().parameters.ProcessDate, 'dd'), '/')",
 								"type": "Expression"
 							},
 							"directory": {
