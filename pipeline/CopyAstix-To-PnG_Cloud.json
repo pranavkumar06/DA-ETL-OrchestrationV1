@@ -63,7 +63,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@startswith(item().name,'CFR')",
+						"value": "@or(or(startswith(item().name,'CFR'),startswith(item().name,'BRODR')),startswith(item().name,'COS'))",
 						"type": "Expression"
 					}
 				}
@@ -88,7 +88,7 @@
 					},
 					"activities": [
 						{
-							"name": "CFR",
+							"name": "CFR_COS_BRODR",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
