@@ -35,36 +35,9 @@
 				}
 			},
 			{
-				"name": "spLoadLeapTasIntegration",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spLoadLeapTasIntegration]"
-				},
-				"linkedServiceName": {
-					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "CopyLeapStaging-To-ADLS",
 				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spLoadLeapTasIntegration",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -210,12 +183,6 @@
 				"name": "Send Notification",
 				"type": "ExecutePipeline",
 				"dependsOn": [
-					{
-						"activity": "spLoadLeapTasIntegration",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
 					{
 						"activity": "CopyLeapStaging-To-ADLS",
 						"dependencyConditions": [
