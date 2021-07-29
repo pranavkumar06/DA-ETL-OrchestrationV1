@@ -1,0 +1,29 @@
+{
+	"name": "tmpDataForrakesh_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "FileConnection"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DBRData",
+				"container": "pngdbrdata"
+			},
+			"columnDelimiter": "|",
+			"compressionCodec": "ZipDeflate",
+			"compressionLevel": "Fastest",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

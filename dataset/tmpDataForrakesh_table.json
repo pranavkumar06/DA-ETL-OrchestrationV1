@@ -1,0 +1,148 @@
+{
+	"name": "tmpDataForrakesh_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "DBRName",
+				"type": "varchar"
+			},
+			{
+				"name": "BranchCode",
+				"type": "varchar"
+			},
+			{
+				"name": "BranchName",
+				"type": "varchar"
+			},
+			{
+				"name": "TranType",
+				"type": "varchar"
+			},
+			{
+				"name": "InvDate",
+				"type": "date"
+			},
+			{
+				"name": "storeCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ChannelName",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreTypeName",
+				"type": "varchar"
+			},
+			{
+				"name": "SBF",
+				"type": "varchar"
+			},
+			{
+				"name": "SKUCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Gross_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Discount_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Taxable_Scheme_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_CGST_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_SGST_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_IGST_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_CESS_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Net_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Tax_on_Discount_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Tax_on_Scheme_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Tax_on_RLP_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Retailing_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Line_Gross_in_SLP_Val",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UPC",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpDataForrakesh"
+		}
+	}
+}
