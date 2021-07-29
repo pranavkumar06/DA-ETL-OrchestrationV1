@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "DBRData",
+				"fileName": "DBRData.csv",
 				"container": "pngdbrdata"
 			},
 			"columnDelimiter": "|",
