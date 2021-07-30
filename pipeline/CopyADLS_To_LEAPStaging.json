@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyLeapStaging-To-ADLS",
+				"name": "Copy-ADLS-To-LeapStaging",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
