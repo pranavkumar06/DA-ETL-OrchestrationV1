@@ -955,264 +955,84 @@
 										},
 										{
 											"source": {
-												"name": "Date",
+												"name": "OrderDate",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Date",
+												"name": "OrderDate",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "TransactionType",
+												"name": "DSECode",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "TransactionType",
+												"name": "DSECode",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "ChannelCode",
+												"name": "StoreCode",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "ChannelCode",
+												"name": "StoreCode",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "ChannelName",
+												"name": "SubbfCode",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "ChannelName",
+												"name": "SubbfCode",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "SubChannelCode",
+												"name": "SubbfName",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "SubChannelCode",
+												"name": "SubbfName",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "SubChannelName",
+												"name": "CutOffQty",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "SubChannelName",
+												"name": "CutOffQty",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "AccountCode",
+												"name": "Amount",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "AccountCode",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "AccountName",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "AccountName",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Pcode",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "Pcode",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "BatchCode",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "BatchCode",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "#ofStores",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "#ofStores",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Retailing",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "Retailing",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "NetValue",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "NetValue",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "GrossValue",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "GrossValue",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Discount",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "Discount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "TaxableScheme",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "TaxableScheme",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SGSTAmount",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "SGSTAmount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "CGSTAmount",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "CGSTAmount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "IGSTAmount",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "IGSTAmount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "CessAmount",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "CessAmount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "TaxonDiscount",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "TaxonDiscount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "TaxonScheme",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "TaxonScheme",
+												"name": "Amount",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -1239,7 +1059,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DS_DayPSRChnlBranch_table",
+									"referenceName": "DS_COSBranch_table",
 									"type": "DatasetReference"
 								}
 							],
@@ -1254,7 +1074,7 @@
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@{concat('DayPSRChnlBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"value": "@{concat('COSBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
 											"type": "Expression"
 										}
 									}
