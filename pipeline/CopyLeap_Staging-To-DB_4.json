@@ -5879,16 +5879,6 @@
 														"mappings": [
 															{
 																"source": {
-																	"name": "distributor_code",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "distributor_code",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
 																	"name": "distributor_name",
 																	"type": "String"
 																},
@@ -5909,181 +5899,111 @@
 															},
 															{
 																"source": {
-																	"name": "branch_name",
+																	"name": "branch_location",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "branch_name",
+																	"name": "branch_location",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "task_code",
+																	"name": "vendor",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "task_code",
+																	"name": "vendor",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "task_created_date",
+																	"name": "category",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "task_created_date",
+																	"name": "category",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "created_user_code",
+																	"name": "brand",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "created_user_code",
+																	"name": "brand",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "created_user_name",
+																	"name": "brandform",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "created_user_name",
+																	"name": "brandform",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "assigned_to",
+																	"name": "sub_brandform_code",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "assigned_to",
+																	"name": "sub_brandform_code",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "retailer_code",
+																	"name": "sub_brandform_name",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "retailer_code",
+																	"name": "sub_brandform_name",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "retailer_name",
+																	"name": "reference_no",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "retailer_name",
+																	"name": "reference_no",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "task_title",
+																	"name": "reference_date",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "task_title",
+																	"name": "reference_date",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "task_description",
+																	"name": "final_order_pieces",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "task_description",
+																	"name": "final_order_pieces",
 																	"type": "String"
 																}
 															},
 															{
 																"source": {
-																	"name": "due_date",
+																	"name": "final_order_cases",
 																	"type": "String"
 																},
 																"sink": {
-																	"name": "due_date",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "over_due",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "over_due",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "task_remark",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "task_remark",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "task_status",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "task_status",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "tas_task_date",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "tas_task_date",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "tas_task_id",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "tas_task_id",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "tas_seller_code",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "tas_seller_code",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "tas_seller_name",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "tas_seller_name",
+																	"name": "final_order_cases",
 																	"type": "String"
 																}
 															},
@@ -6118,7 +6038,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_TASK_table",
+														"referenceName": "DS_BRODR_table",
 														"type": "DatasetReference"
 													}
 												]
