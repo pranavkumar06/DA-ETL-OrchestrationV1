@@ -2,33 +2,47 @@
 	"name": "LeapAPIFileDataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "DFLeapTempStorageLink",
+			"referenceName": "LinkedService_PnGADLS",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
+			"directory": {
+				"type": "string"
+			},
+			"FolderPath": {
+				"type": "string"
+			},
 			"filename": {
 				"type": "string"
 			}
 		},
 		"folder": {
-			"name": "StagingSource"
+			"name": "FileConnection"
 		},
 		"annotations": [],
-		"type": "Binary",
+		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
+				"type": "AzureBlobFSLocation",
 				"fileName": {
 					"value": "@dataset().filename",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'), '/')}",
+					"value": "@dataset().FolderPath",
 					"type": "Expression"
 				},
-				"container": "apidatacontainer"
-			}
-		}
+				"fileSystem": {
+					"value": "@dataset().directory",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
