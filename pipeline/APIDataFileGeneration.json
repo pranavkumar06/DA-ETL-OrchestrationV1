@@ -476,7 +476,7 @@
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'), '/')}",
+											"value": "@{concat('DayPSRRawBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
 											"type": "Expression"
 										}
 									}
