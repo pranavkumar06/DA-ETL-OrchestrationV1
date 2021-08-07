@@ -1373,18 +1373,6 @@
 										},
 										{
 											"source": {
-												"name": "BranchName",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "BranchName",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
 												"name": "Date",
 												"type": "String",
 												"physicalType": "varchar"
@@ -1397,84 +1385,192 @@
 										},
 										{
 											"source": {
-												"name": "ChannelName",
+												"name": "BranchName",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "ChannelName",
+												"name": "BranchName",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "SubbfName",
+												"name": "Warehouse",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "SubbfName",
+												"name": "Warehouse",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "Order_case",
+												"name": "StockType",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Order_case",
+												"name": "StockType",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "Supply_case",
+												"name": "Pcode",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Supply_case",
+												"name": "Pcode",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "Order_value",
+												"name": "BatchCode",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Order_value",
+												"name": "BatchCode",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "Supply_value",
+												"name": "UPC",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Supply_value",
+												"name": "UPC",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "ActiveStatus",
+												"name": "ExpiryDate",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "ActiveStatus",
+												"name": "ExpiryDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "MRP",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "MRP",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DP",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DP",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "RP",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "RP",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SIH_CS",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SIH_CS",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SIH_PC",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SIH_PC",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Draft_CS",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Draft_CS",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Draft_PC",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Draft_PC",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "STN_Intransit_PC",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "STN_Intransit_PC",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "GRN_Intransit_PC",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "GRN_Intransit_PC",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -1606,6 +1702,18 @@
 										},
 										{
 											"source": {
+												"name": "RefNo",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "RefNo",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
 												"name": "Date",
 												"type": "String",
 												"physicalType": "varchar"
@@ -1618,12 +1726,12 @@
 										},
 										{
 											"source": {
-												"name": "ChannelName",
+												"name": "SubbfCode",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "ChannelName",
+												"name": "SubbfCode",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -1642,60 +1750,24 @@
 										},
 										{
 											"source": {
-												"name": "Order_case",
+												"name": "order_pc",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Order_case",
+												"name": "order_pc",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "Supply_case",
+												"name": "order_cs",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Supply_case",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Order_value",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "Order_value",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Supply_value",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "Supply_value",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ActiveStatus",
-												"type": "String",
-												"physicalType": "varchar"
-											},
-											"sink": {
-												"name": "ActiveStatus",
+												"name": "order_cs",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -1738,6 +1810,736 @@
 										},
 										"filename": {
 											"value": "@{concat('BranchOrder','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy OrdHstrBranch",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "OrderDate",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "OrderDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "OrderNumber",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "OrderNumber",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SellerCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SellerCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "StoreCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "StoreCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "OrderType",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "OrderType",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "OrderStatus",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "OrderStatus",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Pcode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Pcode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "PONumber",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "PONumber",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "PODate",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "PODate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "UPC",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "UPC",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Qty",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Qty",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Amount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TCCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TCCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ExtractDate",
+												"type": "DateTime",
+												"physicalType": "date"
+											},
+											"sink": {
+												"name": "ExtractDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_OrdHstrBranch_table",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "LeapAPIFileDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"directory": "apidatacontainer",
+										"FolderPath": {
+											"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'))}",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@{concat('OrdHstrBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy PurHstrBranch",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "WareHouse",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "WareHouse",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TransactionType",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TransactionType",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "PGInvoiceNo",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "PGInvoiceNo",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "PGRefNo",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "PGRefNo",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TransDate",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TransDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Status",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Status",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "RetRefNum",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "RetRefNum",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "GRNNum",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "GRNNum",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "GRNDate",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "GRNDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "VendorStateName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "VendorStateName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Pcode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Pcode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BatchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BatchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "StockType",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "StockType",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "UPC",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "UPC",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "QtyCs",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "QtyCs",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "QtyPc",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "QtyPc",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "MRP",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "MRP",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DPRate",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DPRate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SLPValue",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SLPValue",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "PurchDisc",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "PurchDisc",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SGSTAmt",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SGSTAmt",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CGSTAmt",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CGSTAmt",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "IGSTAmt",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "IGSTAmt",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CessAmt",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CessAmt",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TCSAmt",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TCSAmt",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "NetAmt",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "NetAmt",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ExtractDate",
+												"type": "DateTime",
+												"physicalType": "date"
+											},
+											"sink": {
+												"name": "ExtractDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_PurHstrBranch_table",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "LeapAPIFileDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"directory": "apidatacontainer",
+										"FolderPath": {
+											"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'))}",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@{concat('PurHstrBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
 											"type": "Expression"
 										}
 									}
