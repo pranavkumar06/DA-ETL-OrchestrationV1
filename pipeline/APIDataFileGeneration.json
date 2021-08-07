@@ -1080,6 +1080,669 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Copy CFRBranch",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Date",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Date",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ChannelName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChannelName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Order_case",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Order_case",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Supply_case",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Supply_case",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Order_value",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Order_value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Supply_value",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Supply_value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ActiveStatus",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ActiveStatus",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ExtractDate",
+												"type": "DateTime",
+												"physicalType": "date"
+											},
+											"sink": {
+												"name": "ExtractDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_CFRBranch_table",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "LeapAPIFileDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"directory": "apidatacontainer",
+										"FolderPath": {
+											"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'))}",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@{concat('CFRBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy InvValBranch",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Date",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Date",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ChannelName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChannelName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Order_case",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Order_case",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Supply_case",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Supply_case",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Order_value",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Order_value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Supply_value",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Supply_value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ActiveStatus",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ActiveStatus",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ExtractDate",
+												"type": "DateTime",
+												"physicalType": "date"
+											},
+											"sink": {
+												"name": "ExtractDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_InvValBranch_table",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "LeapAPIFileDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"directory": "apidatacontainer",
+										"FolderPath": {
+											"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'))}",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@{concat('InvValBranch','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy BranchOrder",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BranchName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Date",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Date",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ChannelName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChannelName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Order_case",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Order_case",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Supply_case",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Supply_case",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Order_value",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Order_value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Supply_value",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Supply_value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ActiveStatus",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ActiveStatus",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ExtractDate",
+												"type": "DateTime",
+												"physicalType": "date"
+											},
+											"sink": {
+												"name": "ExtractDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_BranchOrder_table",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "LeapAPIFileDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"directory": "apidatacontainer",
+										"FolderPath": {
+											"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'))}",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@{concat('BranchOrder','_',\nformatDateTime(utcnow(), 'dd'),formatDateTime(utcnow(), 'MM'),formatDateTime(utcnow(), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
