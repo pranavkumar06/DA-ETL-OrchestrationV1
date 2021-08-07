@@ -1,0 +1,112 @@
+{
+	"name": "DS_BRODR_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "distributor_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "distributor_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "task_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "task_created_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "created_user_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "created_user_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "assigned_to",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "task_title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "task_description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "due_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "over_due",
+				"type": "nvarchar"
+			},
+			{
+				"name": "task_remark",
+				"type": "nvarchar"
+			},
+			{
+				"name": "task_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tas_task_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tas_task_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tas_seller_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tas_seller_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLeapTAS_BRODR"
+		}
+	}
+}
