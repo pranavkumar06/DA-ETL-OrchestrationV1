@@ -503,6 +503,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlDWSource",
+									"sqlReaderQuery": {
+										"value": "SELECT * FROM tmpAPIExtractDayPSRChnlBranch WHERE DistCode=@item().DistributorCode",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
