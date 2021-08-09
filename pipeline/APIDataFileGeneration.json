@@ -45,7 +45,7 @@
 						"value": "@activity('Lookup All Distributor').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Copy data",
