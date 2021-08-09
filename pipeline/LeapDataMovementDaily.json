@@ -502,6 +502,26 @@
 					"referenceName": "DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "APIDataFileGeneration",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "API All Extract Data Populate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "APIDataFileGeneration",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
