@@ -897,7 +897,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractCOSBranch WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractCOSBranch WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -1110,7 +1110,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractCFRBranch WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractCFRBranch WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -1335,7 +1335,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractInvValBranch WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractInvValBranch WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -1656,7 +1656,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractBranchOrder WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractBranchOrder WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -1857,7 +1857,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractOrdHstrBranch WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractOrdHstrBranch WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -2154,7 +2154,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractPurHstrBranch WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractPurHstrBranch WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -2595,7 +2595,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractProdMaster WHERE DistCode=@item().DistributorCode",
+										"value": "SELECT * FROM tmpAPIExtractProdMaster WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
