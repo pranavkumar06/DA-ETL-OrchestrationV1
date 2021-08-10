@@ -2930,7 +2930,7 @@
 						"parameters": {
 							"directory": "apidatacontainer",
 							"FolderPath": {
-								"value": "@{concat(formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/', formatDateTime(utcnow(), 'dd'))}",
+								"value": "@{concat(formatDateTime(variables('TimeToday'), 'yyyy'), '/', formatDateTime(variables('TimeToday'), 'MM'), '/', formatDateTime(variables('TimeToday'), 'dd'))}",
 								"type": "Expression"
 							},
 							"filename": {
