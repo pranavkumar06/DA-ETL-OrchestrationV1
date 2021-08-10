@@ -1,0 +1,26 @@
+{
+	"name": "Testpipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "TimeToday",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),1,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"TimeToday": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
