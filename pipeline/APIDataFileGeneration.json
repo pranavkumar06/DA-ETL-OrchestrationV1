@@ -2975,8 +2975,8 @@
 				}
 			},
 			{
-				"name": "OLD Folder Data Delete",
-				"type": "Delete",
+				"name": "DeleteAllFilesinFolder",
+				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
 						"activity": "Copy ProdMaster",
@@ -2985,31 +2985,26 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "DS_dfdatafoundation",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container": "apidatacontainer",
-							"Directory": {
-								"value": "@{concat(formatDateTime(variables('DataDeleteDate'), 'yyyy'), '/', formatDateTime(variables('DataDeleteDate'), 'MM'), '/', formatDateTime(variables('DataDeleteDate'), 'dd'))}",
-								"type": "Expression"
-							}
-						}
+					"pipeline": {
+						"referenceName": "DeleteAllFilesinFolder",
+						"type": "PipelineReference"
 					},
-					"enableLogging": true,
-					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"recursive": true,
-						"enablePartitionDiscovery": false
+					"waitOnCompletion": true,
+					"parameters": {
+						"Containername": {
+							"value": "apidatacontainer",
+							"type": "Expression"
+						},
+						"Foldername": {
+							"value": "@{concat(formatDateTime(variables('DataDeleteDate'), 'yyyy'), '/', formatDateTime(variables('DataDeleteDate'), 'MM'), '/', formatDateTime(variables('DataDeleteDate'), 'dd'))}",
+							"type": "Expression"
+						},
+						"DataDeleteDate": {
+							"value": "@variables('DataDeleteDate')",
+							"type": "Expression"
+						}
 					}
 				}
 			}
