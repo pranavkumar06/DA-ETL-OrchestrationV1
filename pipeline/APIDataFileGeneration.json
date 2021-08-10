@@ -2944,7 +2944,14 @@
 			{
 				"name": "DataDatetime",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DeleteDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "TimeToday",
@@ -2953,10 +2960,65 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "DeleteDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataDeleteDate",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),7,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "OLD Folder Data Delete",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Copy ProdMaster",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_dfdatafoundation",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "apidatacontainer",
+							"Directory": {
+								"value": "@{concat(formatDateTime(variables('DataDeleteDate'), 'yyyy'), '/', formatDateTime(variables('DataDeleteDate'), 'MM'), '/', formatDateTime(variables('DataDeleteDate'), 'dd'))}",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
 		"variables": {
 			"TimeToday": {
+				"type": "String"
+			},
+			"DataDeleteDate": {
 				"type": "String"
 			}
 		},
