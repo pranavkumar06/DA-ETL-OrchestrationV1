@@ -2800,18 +2800,6 @@
 									"type": "String",
 									"physicalType": "String"
 								}
-							},
-							{
-								"source": {
-									"name": "ExtractDate",
-									"type": "DateTime",
-									"physicalType": "date"
-								},
-								"sink": {
-									"name": "ExtractDate",
-									"type": "String",
-									"physicalType": "String"
-								}
 							}
 						],
 						"typeConversion": true,
