@@ -450,18 +450,6 @@
 												"type": "String",
 												"physicalType": "String"
 											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
-												"type": "String",
-												"physicalType": "String"
-											}
 										}
 									],
 									"typeConversion": true,
@@ -843,18 +831,6 @@
 												"type": "String",
 												"physicalType": "String"
 											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
-												"type": "String",
-												"physicalType": "String"
-											}
 										}
 									],
 									"typeConversion": true,
@@ -1053,18 +1029,6 @@
 											},
 											"sink": {
 												"name": "Amount",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -1278,18 +1242,6 @@
 											},
 											"sink": {
 												"name": "ActiveStatus",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -1602,18 +1554,6 @@
 												"type": "String",
 												"physicalType": "String"
 											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
-												"type": "String",
-												"physicalType": "String"
-											}
 										}
 									],
 									"typeConversion": true,
@@ -1800,18 +1740,6 @@
 											},
 											"sink": {
 												"name": "order_cs",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -2097,18 +2025,6 @@
 											},
 											"sink": {
 												"name": "TCCode",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -2538,18 +2454,6 @@
 											},
 											"sink": {
 												"name": "NetAmt",
-												"type": "String",
-												"physicalType": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ExtractDate",
-												"type": "DateTime",
-												"physicalType": "date"
-											},
-											"sink": {
-												"name": "ExtractDate",
 												"type": "String",
 												"physicalType": "String"
 											}
