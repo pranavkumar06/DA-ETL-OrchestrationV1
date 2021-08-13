@@ -2861,7 +2861,7 @@
 				"typeProperties": {
 					"variableName": "DataDeleteDate",
 					"value": {
-						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),7,'Day'),'yyyy-MM-dd')",
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),8,'Day'),'yyyy-MM-dd')",
 						"type": "Expression"
 					}
 				}
