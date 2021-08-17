@@ -4496,6 +4496,36 @@
 																	"name": "LastModifiedDatetime",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "delivery_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "delivery_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_from",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_from",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_till",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_till",
+																	"type": "String"
+																}
 															}
 														]
 													}
@@ -4824,6 +4854,36 @@
 																	"name": "LastModifiedDatetime",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "delivery_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "delivery_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_from",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_from",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_till",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_till",
+																	"type": "String"
+																}
 															}
 														]
 													}
@@ -5150,6 +5210,36 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "delivery_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "delivery_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_from",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_from",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "visit_till",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "visit_till",
 																	"type": "String"
 																}
 															}
