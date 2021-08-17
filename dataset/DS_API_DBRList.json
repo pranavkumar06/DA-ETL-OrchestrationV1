@@ -1,0 +1,63 @@
+{
+	"name": "DS_API_DBRList",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "APIDB_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DbrNodeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DbrNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DbrCode",
+				"type": "varchar"
+			},
+			{
+				"name": "DbrName",
+				"type": "varchar"
+			},
+			{
+				"name": "BrnNodeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrnNOdeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SubDNodeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubDNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubDCode",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesHierarchyUptoSUBD"
+		}
+	}
+}
