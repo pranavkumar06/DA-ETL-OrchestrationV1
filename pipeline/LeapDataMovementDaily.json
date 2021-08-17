@@ -522,6 +522,26 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "MasterDataForAPI",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "APIDataFileGeneration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MasterDataForAPI",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
