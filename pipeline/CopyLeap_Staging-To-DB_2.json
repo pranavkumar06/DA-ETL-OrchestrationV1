@@ -4754,7 +4754,7 @@
 															},
 															{
 																"source": {
-																	"name": "batch_number",
+																	"name": "product_batch_code",
 																	"type": "String"
 																},
 																"sink": {
@@ -4929,7 +4929,7 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
-																	"type": "String"
+																	"type": "DateTime"
 																}
 															}
 														]
@@ -5142,7 +5142,7 @@
 															},
 															{
 																"source": {
-																	"name": "batch_number",
+																	"name": "product_batch_code",
 																	"type": "String"
 																},
 																"sink": {
@@ -5530,7 +5530,7 @@
 															},
 															{
 																"source": {
-																	"name": "batch_number",
+																	"name": "product_batch_code",
 																	"type": "String"
 																},
 																"sink": {
