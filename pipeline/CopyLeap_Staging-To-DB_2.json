@@ -3565,6 +3565,46 @@
 																	"name": "LastModifiedDatetime",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "is_food",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_food",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_name",
+																	"type": "String"
+																}
 															}
 														]
 													}
@@ -3958,6 +3998,46 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_food",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_food",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "distributor_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_name",
 																	"type": "String"
 																}
 															}
