@@ -5979,16 +5979,6 @@
 															},
 															{
 																"source": {
-																	"name": "bo_date",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "reference_date",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
 																	"name": "final_order_pieces",
 																	"type": "String"
 																},
@@ -6237,16 +6227,6 @@
 															},
 															{
 																"source": {
-																	"name": "bo_date",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "reference_date",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
 																	"name": "final_order_pieces",
 																	"type": "String"
 																},
@@ -6490,16 +6470,6 @@
 																},
 																"sink": {
 																	"name": "reference_no",
-																	"type": "String"
-																}
-															},
-															{
-																"source": {
-																	"name": "bo_date",
-																	"type": "String"
-																},
-																"sink": {
-																	"name": "reference_date",
 																	"type": "String"
 																}
 															},
