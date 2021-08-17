@@ -5816,6 +5816,96 @@
 																	"name": "phonenumber2_verifieddate",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "fssai_license_number",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "fssai_license_number",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "fssai_license_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "fssai_license_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "fssai_license_expiry",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "fssai_license_expiry",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_tds_apply",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_tds_apply",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_pan_aadhar_linked",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_pan_aadhar_linked",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_return_filled",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_return_filled",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_tcs_more_than_50k",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_tcs_more_than_50k",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_manual_override",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_manual_override",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_rate",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_rate",
+																	"type": "String"
+																}
 															}
 														]
 													}
