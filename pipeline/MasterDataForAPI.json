@@ -22,7 +22,9 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE SalesHierarchyUptoSUBD",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
