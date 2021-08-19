@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT DISTINCT DbrNodeID, DbrNodeType, DbrCode, DbrName, BrnNodeID, BrnNOdeType, BranchCode, SubDNodeID, SubDNodeType, SubDCode\nFROM [vwSalesHierarchyUptoSUBD]\n",
+						"sqlReaderQuery": "Select DISTINCT DbrNodeID,DbrNodeType,DbrCode,DbrName,BrnNodeID,BrnNOdeType,BranchCode,SubDNodeID,SubDNodeType,SubDCode\nFROM vwSalesHierarchyUptoSUBD WHERE DbrName <> 'Unknwon'\nUNION\nSelect DISTINCT DbrNodeID,DbrNodeType,DbrCode,DbrName,BrnNodeID,BrnNOdeType,BranchCode,NULL,NULL,NULL\nFROM vwSalesHierarchyUptoSUBD WHERE DbrName <> 'Unknwon'\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
