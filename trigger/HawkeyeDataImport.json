@@ -1,0 +1,41 @@
+{
+	"name": "HawkeyeDataImport",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "HawkeyeDataImport",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Container": "hawkeye-pwa",
+					"ProcessedDataDate": "26-Aug-2021"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-08-26T12:26:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						30,
+						0
+					],
+					"hours": [
+						15,
+						16,
+						17,
+						18,
+						19
+					]
+				}
+			}
+		}
+	}
+}
