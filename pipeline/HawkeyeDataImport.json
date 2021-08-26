@@ -3,6 +3,19 @@
 	"properties": {
 		"activities": [
 			{
+				"name": "DataDatetime",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
 				"name": "Copy RouteSummary",
 				"type": "Copy",
 				"dependsOn": [
@@ -375,16 +388,1314 @@
 				]
 			},
 			{
-				"name": "DataDatetime",
-				"type": "SetVariable",
-				"dependsOn": [],
+				"name": "Copy RouteData",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp RouteSummary",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "TimeToday",
-					"value": {
-						"value": "@formatDateTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),'yyyy-MM-dd')",
-						"type": "Expression"
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Daily_Route_Data",
+							"wildcardFileName": {
+								"value": "@{concat('Daily_Route_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"preCopyScript": "TRUNCATE TABLE tbltmpDailyRouteData_DirectLoad"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Weekly Visit Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Weekly Visit Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Next_Visit_Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Next_Visit_Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Distributor",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Distributor",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Branch",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Branch",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Branch Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Branch Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Routes Coversing Stores",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Routes Coversing Stores",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Local Channel Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Local Channel Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route_Type_Ind",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route_Type_Ind",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sectorized_Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sectorized_Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Nth_Visit_in_Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Nth_Visit_in_Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DSECode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Green_Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Green_Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "KBD_Retailing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "KBD_Retailing",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "KBD_Billing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "KBD_Billing",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "KBD_GP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "KBD_GP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Daily_Sales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Daily_Sales",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "P3M_Avg_Sales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "P3M_Avg_Sales",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Order_Value",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Order_Value",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MTD_Retailing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MTD_Retailing",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Expected_MTD_Retailing_Based_P3M",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Expected_MTD_Retailing_Based_P3M",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cut_Oversold",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cut_Oversold",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Order_Not_Processed",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Order_Not_Processed",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SRN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SRN",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Retailing_Loss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Retailing_Loss",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MTD_GP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MTD_GP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "P3M_Avg_GP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "P3M_Avg_GP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GP_Retailing_Loss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "GP_Retailing_Loss",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Billing Opportnity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Billing Opportnity",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Visit_Billing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Visit_Billing",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Billing_Loss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Billing_Loss",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Dead Store",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Dead Store",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Other",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Other",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_AR Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_AR Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Stock Available",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Stock Available",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Store Closed",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Store Closed",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Store Order Received",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Store Order Received",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Deviation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Deviation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Instore_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Instore_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route_Start_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route_Start_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route_End_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route_End_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Order_Processed",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Order_Processed",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Dead_Closed Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Dead_Closed Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Vacant Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Vacant Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Dead_Closed_Stores",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Dead_Closed_Stores",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Compliance_Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Compliance_Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Order_Processing_Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Order_Processing_Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CutOverSold_Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CutOverSold_Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SRN_Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SRN_Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Capability_Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Capability_Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Percentage_SOP_Retailing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Percentage_SOP_Retailing",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Broken_Route_Summary",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "RouteData_table",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy StoreData",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp RouteData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Daily_Store_Data",
+							"wildcardFileName": {
+								"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"preCopyScript": "TRUNCATE TABLE tbltmpDailyStoreData_DirectLoad"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Weekly Visit Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Weekly Visit Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Next_Visit_Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Next_Visit_Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Distributor",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Distributor",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Branch",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Branch",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Branch Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Branch Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Store Id",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Store Id",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Store Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Store Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Local Channel Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Local Channel Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cust Type Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cust Type Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Routes Coversing Stores",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Routes Coversing Stores",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DSECode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Number of Visit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Number of Visit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Visit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Visit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Daily_Sales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Daily_Sales",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "P3M_Avg_Sales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "P3M_Avg_Sales",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cut_Oversold",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cut_Oversold",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Order_Value",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Order_Value",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SRN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SRN",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MTD_GP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MTD_GP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "P3M_Avg_GP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "P3M_Avg_GP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Billing Opportnity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Billing Opportnity",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Visit_Billing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Visit_Billing",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Billing_Loss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Billing_Loss",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Deviation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Deviation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Reason_for_Deviation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Reason_for_Deviation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Instore_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Instore_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Visit_Start_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Visit_Start_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Visit_End_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Visit_End_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_AR Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_AR Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Dead Store",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Dead Store",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Other",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Other",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Others",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Others",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Stock Available",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Stock Available",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Store Closed",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Store Closed",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CCR_Store Order Received",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCR_Store Order Received",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Broken_Route_Summary",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "StoreData_table",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Sp StoreData",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy StoreData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDirectLoadSaveData]",
+					"storedProcedureParameters": {
+						"FileSetType": {
+							"value": "3",
+							"type": "Byte"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "HawkeyeDBOn67",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Sp RouteData",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy RouteData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDirectLoadSaveData]",
+					"storedProcedureParameters": {
+						"FileSetType": {
+							"value": "2",
+							"type": "Byte"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "HawkeyeDBOn67",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Sp RouteSummary",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy RouteSummary",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDirectLoadSaveData]",
+					"storedProcedureParameters": {
+						"FileSetType": {
+							"value": "1",
+							"type": "Byte"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "HawkeyeDBOn67",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
