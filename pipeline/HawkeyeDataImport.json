@@ -5,12 +5,19 @@
 			{
 				"name": "DataDatetime",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DataDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "TimeToday",
 					"value": {
-						"value": "@formatDateTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),'yyyy-MM-dd')",
+						"value": "@formatDateTime(convertTimeZone(variables('DataDate'),'UTC','India Standard Time'),'yyyy-MM-dd')",
 						"type": "Expression"
 					}
 				}
@@ -1697,15 +1704,34 @@
 					"referenceName": "HawkeyeDBOn67",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "DataDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataDate",
+					"value": {
+						"value": "@convertTimeZone(pipeline().parameters.ProcessedDataDate,'UTC','India Standard Time')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
 			"Container": {
 				"type": "string"
+			},
+			"ProcessedDataDate": {
+				"type": "string"
 			}
 		},
 		"variables": {
 			"TimeToday": {
+				"type": "String"
+			},
+			"DataDate": {
 				"type": "String"
 			}
 		},
