@@ -1,0 +1,9 @@
+{
+	"name": "HawkeyeDataImport",
+	"properties": {
+		"folder": {
+			"name": "Hawk Eye"
+		},
+		"annotations": []
+	}
+}

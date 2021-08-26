@@ -3398,6 +3398,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "API"
+		},
 		"annotations": []
 	}
 }

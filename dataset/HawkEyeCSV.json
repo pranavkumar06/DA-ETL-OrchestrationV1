@@ -14,7 +14,7 @@
 			}
 		},
 		"folder": {
-			"name": "FileConnection"
+			"name": "Hawk-Eye"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
