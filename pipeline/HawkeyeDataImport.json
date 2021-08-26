@@ -1,6 +1,403 @@
 {
 	"name": "HawkeyeDataImport",
 	"properties": {
+		"activities": [
+			{
+				"name": "Copy RouteSummary",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "DataDatetime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"preCopyScript": "TRUNCATE TABLE tblTmpBrokenRouteSummary_DirectLoad"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Weekly Visit Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Weekly Visit Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Next_Visit_Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Next_Visit_Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Distributor",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Distributor",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Branch",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Branch",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Branch Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Branch Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Routes Coversing Stores",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Routes Coversing Stores",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Route Type",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Route Type",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sectorized_Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sectorized_Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DSECode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TBE Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TBE Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BE Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BE Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SM Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SM Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Total Routes",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total Routes",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Green_Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Green_Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Red_Route",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Red_Route",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SOP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SOP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Bills Miss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Bills Miss",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GP_Miss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "GP_Miss",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Instore_Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Instore_Time",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Issue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BE",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TBE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TBE",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Owner",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Owner",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Broken_Route_Summary",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "RouteSummary_table",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DataDatetime",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Container": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"TimeToday": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Hawk Eye"
 		},
