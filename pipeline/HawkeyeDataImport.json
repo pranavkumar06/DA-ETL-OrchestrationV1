@@ -59,7 +59,7 @@
 						}
 					},
 					"sink": {
-						"type": "SqlServerSink",
+						"type": "AzureSqlSink",
 						"preCopyScript": "TRUNCATE TABLE tblTmpBrokenRouteSummary_DirectLoad"
 					},
 					"enableStaging": false,
@@ -389,7 +389,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "RouteSummary_table",
+						"referenceName": "DS_RouteSummary",
 						"type": "DatasetReference"
 					}
 				]
@@ -431,7 +431,7 @@
 						}
 					},
 					"sink": {
-						"type": "SqlServerSink",
+						"type": "AzureSqlSink",
 						"preCopyScript": "TRUNCATE TABLE tbltmpDailyRouteData_DirectLoad"
 					},
 					"enableStaging": false,
@@ -1085,7 +1085,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "RouteData_table",
+						"referenceName": "DS_RouteData",
 						"type": "DatasetReference"
 					}
 				]
@@ -1127,7 +1127,7 @@
 						}
 					},
 					"sink": {
-						"type": "SqlServerSink",
+						"type": "AzureSqlSink",
 						"preCopyScript": "TRUNCATE TABLE tbltmpDailyStoreData_DirectLoad"
 					},
 					"enableStaging": false,
@@ -1601,7 +1601,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "StoreData_table",
+						"referenceName": "DS_StoreData",
 						"type": "DatasetReference"
 					}
 				]
@@ -1635,7 +1635,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "HawkeyeDBOn67",
+					"referenceName": "HawkEye_LinkedService",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -1659,7 +1659,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDirectLoadSaveData]",
+					"storedProcedureName": "spDirectLoadSaveData",
 					"storedProcedureParameters": {
 						"FileSetType": {
 							"value": "2",
@@ -1668,7 +1668,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "HawkeyeDBOn67",
+					"referenceName": "HawkEye_LinkedService",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -1692,7 +1692,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDirectLoadSaveData]",
+					"storedProcedureName": "spDirectLoadSaveData",
 					"storedProcedureParameters": {
 						"FileSetType": {
 							"value": "1",
@@ -1701,7 +1701,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "HawkeyeDBOn67",
+					"referenceName": "HawkEye_LinkedService",
 					"type": "LinkedServiceReference"
 				}
 			},
