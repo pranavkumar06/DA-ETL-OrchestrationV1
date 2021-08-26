@@ -399,7 +399,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Sp RouteSummary",
+						"activity": "RouteSummary_Archive",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1095,7 +1095,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Sp RouteData",
+						"activity": "RouteData_Archive",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1717,6 +1717,450 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "RouteSummary_Archive",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp RouteSummary",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Broken_Route_Summary",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_HawkeyeFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "Broken_Route_Summary/Archive",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "RouteSummary_Error",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp RouteSummary",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Copy RouteSummary",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Broken_Route_Summary",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_HawkeyeFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "Broken_Route_Summary/Error",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "RouteData_Archive",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp RouteData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Daily_Route_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Daily_Route_Data",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_HawkeyeFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "Daily_Route_Data/Archive",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "RouteData_Error",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp RouteData",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Copy RouteData",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Daily_Route_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Daily_Route_Data",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_HawkeyeFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "Daily_Route_Data/Error",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "StoreData_Archive",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp StoreData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Daily_Store_Data",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_HawkeyeFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "Daily_Store_Data/Archive",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "StoreData_Error",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sp StoreData",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Copy StoreData",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFileName": {
+								"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "HawkEyeCSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderPath": "Daily_Store_Data",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_HawkeyeFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "Daily_Store_Data/Error",
+							"directory": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"parameters": {
