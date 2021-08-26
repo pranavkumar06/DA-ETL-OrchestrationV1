@@ -1,0 +1,126 @@
+{
+	"name": "StoreData_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HawkeyeDBOn67",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Hawk-Eye"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Weekly Visit Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Next_Visit_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Distributor",
+				"type": "varchar"
+			},
+			{
+				"name": "Branch",
+				"type": "varchar"
+			},
+			{
+				"name": "Site",
+				"type": "varchar"
+			},
+			{
+				"name": "Branch Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Route Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Routes Coversing Stores",
+				"type": "varchar"
+			},
+			{
+				"name": "Route Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Sectorized_Route",
+				"type": "varchar"
+			},
+			{
+				"name": "DSECode",
+				"type": "varchar"
+			},
+			{
+				"name": "TBE Code",
+				"type": "varchar"
+			},
+			{
+				"name": "BE Code",
+				"type": "varchar"
+			},
+			{
+				"name": "SM Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Total Routes",
+				"type": "varchar"
+			},
+			{
+				"name": "Green_Route",
+				"type": "varchar"
+			},
+			{
+				"name": "Red_Route",
+				"type": "varchar"
+			},
+			{
+				"name": "SOP",
+				"type": "varchar"
+			},
+			{
+				"name": "Bills Miss",
+				"type": "varchar"
+			},
+			{
+				"name": "GP_Miss",
+				"type": "varchar"
+			},
+			{
+				"name": "Instore_Time",
+				"type": "varchar"
+			},
+			{
+				"name": "Issue",
+				"type": "varchar"
+			},
+			{
+				"name": "BE",
+				"type": "varchar"
+			},
+			{
+				"name": "TBE",
+				"type": "varchar"
+			},
+			{
+				"name": "Owner",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblTmpDailyStoreData_DirectLoad"
+		}
+	}
+}
