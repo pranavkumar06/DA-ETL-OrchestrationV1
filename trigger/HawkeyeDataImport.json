@@ -11,7 +11,7 @@
 				},
 				"parameters": {
 					"Container": "hawkeye-pwa",
-					"ProcessedDataDate": "26-Aug-2021"
+					"ProcessedDataDate": "@{formatDateTime(utcNow(),'dd-MMM-yyyy')}"
 				}
 			}
 		],
