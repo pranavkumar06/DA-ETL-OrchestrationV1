@@ -1,0 +1,41 @@
+{
+	"name": "HawkEyeCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundation_Hawkeye",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FolderPath": {
+				"type": "string"
+			},
+			"directory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "FileConnection"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().FolderPath",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().directory",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
