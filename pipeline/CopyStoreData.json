@@ -1,5 +1,5 @@
 {
-	"name": "CopyRouteSummary",
+	"name": "CopyStoreData",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
@@ -18,7 +18,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DS_RouteSummaryFolder",
+						"referenceName": "DS_StoreDataFolder",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
@@ -56,7 +56,7 @@
 					"batchCount": 20,
 					"activities": [
 						{
-							"name": "Copy RouteSummary",
+							"name": "Copy StoreData",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -73,9 +73,9 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
-										"wildcardFolderPath": "Broken_Route_Summary",
+										"wildcardFolderPath": "Daily_Store_Data",
 										"wildcardFileName": {
-											"value": "@{concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+											"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 											"type": "Expression"
 										},
 										"enablePartitionDiscovery": false
@@ -86,7 +86,7 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": "TRUNCATE TABLE tblTmpBrokenRouteSummary_DirectLoad"
+									"preCopyScript": "TRUNCATE TABLE tbltmpDailyStoreData_DirectLoad"
 								},
 								"enableStaging": false,
 								"translator": {
@@ -166,6 +166,54 @@
 										},
 										{
 											"source": {
+												"name": "Store Id",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Store Id",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Store Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Store Name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Local Channel Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Local Channel Name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Cust Type Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Cust Type Name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
 												"name": "Route Code",
 												"type": "String",
 												"physicalType": "String"
@@ -190,30 +238,6 @@
 										},
 										{
 											"source": {
-												"name": "Route Type",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "Route Type",
-												"type": "String",
-												"physicalType": "varchar"
-											}
-										},
-										{
-											"source": {
-												"name": "Sectorized_Route",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "Sectorized_Route",
-												"type": "String",
-												"physicalType": "varchar"
-											}
-										},
-										{
-											"source": {
 												"name": "DSECode",
 												"type": "String",
 												"physicalType": "String"
@@ -226,108 +250,168 @@
 										},
 										{
 											"source": {
-												"name": "TBE Code",
+												"name": "Number of Visit",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "TBE Code",
+												"name": "Number of Visit",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "BE Code",
+												"name": "Visit",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "BE Code",
+												"name": "Visit",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "SM Code",
+												"name": "Daily_Sales",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "SM Code",
+												"name": "Daily_Sales",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "Total Routes",
+												"name": "P3M_Avg_Sales",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "Total Routes",
+												"name": "P3M_Avg_Sales",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "Green_Route",
+												"name": "Cut_Oversold",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "Green_Route",
+												"name": "Cut_Oversold",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "Red_Route",
+												"name": "Order_Value",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "Red_Route",
+												"name": "Order_Value",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "SOP",
+												"name": "SRN",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "SOP",
+												"name": "SRN",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "Bills Miss",
+												"name": "MTD_GP",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "Bills Miss",
+												"name": "MTD_GP",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "GP_Miss",
+												"name": "P3M_Avg_GP",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "GP_Miss",
+												"name": "P3M_Avg_GP",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Billing Opportnity",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Billing Opportnity",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Visit_Billing",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Visit_Billing",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Billing_Loss",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Billing_Loss",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Deviation",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Deviation",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Reason_for_Deviation",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Reason_for_Deviation",
 												"type": "String",
 												"physicalType": "varchar"
 											}
@@ -346,48 +430,108 @@
 										},
 										{
 											"source": {
-												"name": "Issue",
+												"name": "Visit_Start_Time",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "Issue",
+												"name": "Visit_Start_Time",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "BE",
+												"name": "Visit_End_Time",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "BE",
+												"name": "Visit_End_Time",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "TBE",
+												"name": "CCR_AR Issue",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "TBE",
+												"name": "CCR_AR Issue",
 												"type": "String",
 												"physicalType": "varchar"
 											}
 										},
 										{
 											"source": {
-												"name": "Owner",
+												"name": "CCR_Dead Store",
 												"type": "String",
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "Owner",
+												"name": "CCR_Dead Store",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "CCR_Other",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "CCR_Other",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "CCR_Others",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "CCR_Others",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "CCR_Stock Available",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "CCR_Stock Available",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "CCR_Store Closed",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "CCR_Store Closed",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "CCR_Store Order Received",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "CCR_Store Order Received",
 												"type": "String",
 												"physicalType": "varchar"
 											}
@@ -405,7 +549,7 @@
 									"referenceName": "HawkEyeCSV",
 									"type": "DatasetReference",
 									"parameters": {
-										"FolderPath": "Broken_Route_Summary",
+										"FolderPath": "Daily_Store_Data",
 										"directory": {
 											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
@@ -415,17 +559,17 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DS_RouteSummary",
+									"referenceName": "DS_StoreData",
 									"type": "DatasetReference"
 								}
 							]
 						},
 						{
-							"name": "Sp RouteSummary",
+							"name": "Sp StoreData",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
-									"activity": "Copy RouteSummary",
+									"activity": "Copy StoreData",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -440,10 +584,10 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "spDirectLoadSaveData",
+								"storedProcedureName": "[dbo].[spDirectLoadSaveData]",
 								"storedProcedureParameters": {
 									"FileSetType": {
-										"value": "1",
+										"value": "3",
 										"type": "Byte"
 									}
 								}
@@ -454,11 +598,11 @@
 							}
 						},
 						{
-							"name": "RouteSummary_Archive",
+							"name": "StoreData_Archive",
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Sp RouteSummary",
+									"activity": "Sp StoreData",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -478,9 +622,9 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
-										"wildcardFolderPath": "Broken_Route_Summary",
+										"wildcardFolderPath": "Daily_Store_Data",
 										"wildcardFileName": {
-											"value": "@{concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+											"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 											"type": "Expression"
 										},
 										"enablePartitionDiscovery": false
@@ -515,7 +659,7 @@
 									"referenceName": "HawkEyeCSV",
 									"type": "DatasetReference",
 									"parameters": {
-										"FolderPath": "Broken_Route_Summary",
+										"FolderPath": "Daily_Store_Data",
 										"directory": {
 											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
@@ -528,7 +672,7 @@
 									"referenceName": "HawkEyeCSV",
 									"type": "DatasetReference",
 									"parameters": {
-										"FolderPath": "Broken_Route_Summary\\Archive",
+										"FolderPath": "Daily_Store_Data/Archive",
 										"directory": {
 											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
@@ -538,11 +682,11 @@
 							]
 						},
 						{
-							"name": "RouteSummary_Error",
+							"name": "StoreData_Error",
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Sp RouteSummary",
+									"activity": "Sp StoreData",
 									"dependencyConditions": [
 										"Failed"
 									]
@@ -562,9 +706,9 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
-										"wildcardFolderPath": "Broken_Route_Summary",
+										"wildcardFolderPath": "Daily_Store_Data",
 										"wildcardFileName": {
-											"value": "@{concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
+											"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 											"type": "Expression"
 										},
 										"enablePartitionDiscovery": false
@@ -599,7 +743,7 @@
 									"referenceName": "HawkEyeCSV",
 									"type": "DatasetReference",
 									"parameters": {
-										"FolderPath": "Broken_Route_Summary",
+										"FolderPath": "Daily_Store_Data",
 										"directory": {
 											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
@@ -612,7 +756,7 @@
 									"referenceName": "HawkEyeCSV",
 									"type": "DatasetReference",
 									"parameters": {
-										"FolderPath": "Broken_Route_Summary\\Error",
+										"FolderPath": "Daily_Store_Data/Error",
 										"directory": {
 											"value": "@pipeline().parameters.Container",
 											"type": "Expression"
