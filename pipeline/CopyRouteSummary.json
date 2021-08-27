@@ -650,7 +650,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@equals(item().type, 'File')",
+						"value": "@startswith(item().name,concat('Broken_Route_Summary','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv'))",
 						"type": "Expression"
 					}
 				}

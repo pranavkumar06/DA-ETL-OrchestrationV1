@@ -794,7 +794,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@equals(item().type, 'File')",
+						"value": "@startswith(item().name,concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv'))",
 						"type": "Expression"
 					}
 				}
