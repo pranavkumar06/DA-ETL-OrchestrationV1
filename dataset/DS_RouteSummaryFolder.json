@@ -1,0 +1,22 @@
+{
+	"name": "DS_RouteSummaryFolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundation_Hawkeye",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Broken_Route_Summary",
+				"container": "hawkeye-pwa"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
