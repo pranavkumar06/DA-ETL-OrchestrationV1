@@ -1917,7 +1917,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFolderPath": "Daily_Route_Data",
 							"wildcardFileName": {
 								"value": "@{concat('Daily_Route_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 								"type": "Expression"
@@ -2007,7 +2007,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFolderPath": "Daily_Route_Data",
 							"wildcardFileName": {
 								"value": "@{concat('Daily_Route_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 								"type": "Expression"
@@ -2091,7 +2091,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFolderPath": "Daily_Store_Data",
 							"wildcardFileName": {
 								"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 								"type": "Expression"
@@ -2181,7 +2181,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "Broken_Route_Summary",
+							"wildcardFolderPath": "Daily_Store_Data",
 							"wildcardFileName": {
 								"value": "@{concat('Daily_Store_Data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'.csv')}",
 								"type": "Expression"
