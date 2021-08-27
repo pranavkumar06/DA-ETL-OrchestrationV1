@@ -1,0 +1,22 @@
+{
+	"name": "DS_StoreDataFolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundation_Hawkeye",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Daily_Store_Data",
+				"container": "hawkeye-pwa"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
