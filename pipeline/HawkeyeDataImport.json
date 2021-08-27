@@ -1,6 +1,61 @@
 {
 	"name": "HawkeyeDataImport",
 	"properties": {
+		"activities": [
+			{
+				"name": "CopyRouteSummary",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyRouteSummary",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CopyRouteData",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyRouteSummary",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyRouteData",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CopyStoreData",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyRouteData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyStoreData",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
 		"parameters": {
 			"Container": {
 				"type": "string"
