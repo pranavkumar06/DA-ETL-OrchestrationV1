@@ -982,7 +982,7 @@
 									"referenceName": "DS_RouteDataFolder",
 									"type": "DatasetReference"
 								},
-								"enableLogging": true,
+								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": false,
