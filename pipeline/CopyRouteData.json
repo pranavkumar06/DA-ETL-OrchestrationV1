@@ -1085,6 +1085,7 @@
 				}
 			}
 		],
+		"concurrency": 1,
 		"parameters": {
 			"Container": {
 				"type": "string"
