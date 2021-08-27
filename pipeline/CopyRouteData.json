@@ -7,7 +7,14 @@
 				"name": "GetFileList",
 				"description": "Get the list of file",
 				"type": "GetMetadata",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DataDatetime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -971,15 +978,54 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "DataDatetime",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DataDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(convertTimeZone(variables('DataDate'),'UTC','India Standard Time'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "DataDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataDate",
+					"value": {
+						"value": "@convertTimeZone(pipeline().parameters.ProcessedDataDate,'UTC','India Standard Time')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
 			"Container": {
 				"type": "string"
+			},
+			"ProcessedDataDate": {
+				"type": "string"
 			}
 		},
 		"variables": {
 			"TimeToday": {
+				"type": "String"
+			},
+			"DataDate": {
 				"type": "String"
 			}
 		},
