@@ -98,7 +98,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "DS_dfdatafoundation",
+									"referenceName": "DS_API",
 									"type": "DatasetReference",
 									"parameters": {
 										"Container": {
@@ -118,7 +118,7 @@
 								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
+									"recursive": false
 								}
 							}
 						}
