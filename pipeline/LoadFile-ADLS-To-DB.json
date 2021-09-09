@@ -22,10 +22,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "/2020/12/08/",
+								"value": "/2021/09/07/",
 								"type": "Expression"
 							},
-							"directory": "leap"
+							"directory": "cntleap"
 						}
 					},
 					"fieldList": [
@@ -130,7 +130,7 @@
 													}
 												],
 												"storeSettings": {
-													"type": "AzureBlobFSReadSettings",
+													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
 													"wildcardFolderPath": {
 														"value": "/2020/12/08/",
@@ -769,9 +769,9 @@
 												"referenceName": "ADLSCSVDataSource_Folder",
 												"type": "DatasetReference",
 												"parameters": {
-													"Container": "leap",
+													"Container": "cntleap",
 													"Directory": {
-														"value": "/2020/12/08/",
+														"value": "/2021/09/07/",
 														"type": "Expression"
 													}
 												}
@@ -838,7 +838,7 @@
 													}
 												],
 												"storeSettings": {
-													"type": "AzureBlobFSReadSettings",
+													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
 													"wildcardFolderPath": {
 														"value": "/2020/12/08/",
@@ -1477,9 +1477,9 @@
 												"referenceName": "ADLSCSVDataSource_Folder",
 												"type": "DatasetReference",
 												"parameters": {
-													"Container": "leap",
+													"Container": "cntleap",
 													"Directory": {
-														"value": "/2020/12/08/",
+														"value": "/2021/09/07/",
 														"type": "Expression"
 													}
 												}
@@ -1546,7 +1546,7 @@
 													}
 												],
 												"storeSettings": {
-													"type": "AzureBlobFSReadSettings",
+													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
 													"wildcardFolderPath": {
 														"value": "/2020/12/08/",
@@ -2185,9 +2185,9 @@
 												"referenceName": "ADLSCSVDataSource_Folder",
 												"type": "DatasetReference",
 												"parameters": {
-													"Container": "leap",
+													"Container": "cntleap",
 													"Directory": {
-														"value": "/2020/12/08/",
+														"value": "/2021/09/07/",
 														"type": "Expression"
 													}
 												}
