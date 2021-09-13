@@ -831,6 +831,18 @@
 												"type": "String",
 												"physicalType": "String"
 											}
+										},
+										{
+											"source": {
+												"name": "Qty",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Qty",
+												"type": "String",
+												"physicalType": "String"
+											}
 										}
 									],
 									"typeConversion": true,
