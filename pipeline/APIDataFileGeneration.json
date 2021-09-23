@@ -225,6 +225,54 @@
 										},
 										{
 											"source": {
+												"name": "ChnlCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChnlCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ChnlName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChnlName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CustTypeCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CustTypeCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CustTypeName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CustTypeName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
 												"name": "Pcode",
 												"type": "String",
 												"physicalType": "varchar"
@@ -243,6 +291,30 @@
 											},
 											"sink": {
 												"name": "BatchCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SubbfCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SubbfCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SubbfName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SubbfName",
 												"type": "String",
 												"physicalType": "String"
 											}
