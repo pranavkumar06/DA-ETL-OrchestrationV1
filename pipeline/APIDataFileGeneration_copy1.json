@@ -55,7 +55,7 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "Copy BranchOrder",
+							"name": "Copy data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -70,7 +70,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractBranchOrder WHERE DistCode=@{item().DistributorCode}",
+										"value": "SELECT * FROM tmpAPIExtractDayPSRRawBranch WHERE DistCode=@{item().DistributorCode}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -141,24 +141,156 @@
 										},
 										{
 											"source": {
-												"name": "RefNo",
+												"name": "Date",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "RefNo",
+												"name": "Date",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "Date",
+												"name": "DocNumber",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "Date",
+												"name": "DocNumber",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ApplyToDocNum",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ApplyToDocNum",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TransactionType",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TransactionType",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DSECode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DSECode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DSEName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "DSEName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "StoreCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "StoreCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ChnlCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChnlCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ChnlName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ChnlName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CustTypeCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CustTypeCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CustTypeName",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CustTypeName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Pcode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Pcode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "BatchCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "BatchCode",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -189,24 +321,204 @@
 										},
 										{
 											"source": {
-												"name": "order_pc",
+												"name": "UPC",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "order_pc",
+												"name": "UPC",
 												"type": "String",
 												"physicalType": "String"
 											}
 										},
 										{
 											"source": {
-												"name": "order_cs",
+												"name": "Qty",
 												"type": "String",
 												"physicalType": "varchar"
 											},
 											"sink": {
-												"name": "order_cs",
+												"name": "Qty",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "GrossValue",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "GrossValue",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Discount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Discount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TaxableScheme",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TaxableScheme",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SGSTAmount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "SGSTAmount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CGSTAmount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CGSTAmount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "IGSTAmount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "IGSTAmount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CessAmount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "CessAmount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "NetAmount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "NetAmount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TaxonDiscount",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TaxonDiscount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TaxonScheme",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TaxonScheme",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Retailing",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Retailing",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "PONumber",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "PONumber",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Reason",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Reason",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "OrderMode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "OrderMode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TCCode",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "TCCode",
 												"type": "String",
 												"physicalType": "String"
 											}
@@ -221,7 +533,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DS_BranchOrder_table",
+									"referenceName": "DS_tmpAPIExtractDayPSRRawBranch_table",
 									"type": "DatasetReference"
 								}
 							],
@@ -236,7 +548,7 @@
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@{concat('BranchOrder','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"value": "@{concat('DayPSRRawBranch','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'_',item().DistributorCode,'.csv')}",
 											"type": "Expression"
 										}
 									}
