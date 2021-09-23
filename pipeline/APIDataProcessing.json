@@ -1,0 +1,71 @@
+{
+	"name": "APIDataProcessing",
+	"properties": {
+		"activities": [
+			{
+				"name": "API All Extract Data Populate",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateAPIAllExtract]"
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "APIDataFileGeneration",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "API All Extract Data Populate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "APIDataFileGeneration",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "MasterDataForAPI",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "API All Extract Data Populate",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MasterDataForAPI",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "API"
+		},
+		"annotations": []
+	}
+}
