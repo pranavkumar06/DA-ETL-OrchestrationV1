@@ -210,6 +210,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "APIDataFileGeneration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -508,7 +514,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "API All Extract Data Populate",
+						"activity": "MasterDataForAPI",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -530,7 +536,7 @@
 					{
 						"activity": "API All Extract Data Populate",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
