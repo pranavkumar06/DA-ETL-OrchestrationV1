@@ -212,7 +212,7 @@
 						]
 					},
 					{
-						"activity": "APIDataFileGeneration",
+						"activity": "Send Success Notification",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -547,6 +547,31 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Send Success Notification",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "APIDataFileGeneration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com",
+						"Subject": "API Process Success",
+						"ErrorMessage": "API process and files generated successful"
+					}
 				}
 			}
 		],
