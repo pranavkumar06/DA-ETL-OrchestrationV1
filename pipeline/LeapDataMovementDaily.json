@@ -403,7 +403,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,gaurav@astix.in",
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com",
 						"Subject": "DataFoundation DataLoading Fails ",
 						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
 					}
