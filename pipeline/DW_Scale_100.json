@@ -1,0 +1,27 @@
+{
+	"name": "DW_Scale_100",
+	"properties": {
+		"activities": [
+			{
+				"name": "DW_Scale",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DW_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "DW100c"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Resource Management"
+		},
+		"annotations": []
+	}
+}
