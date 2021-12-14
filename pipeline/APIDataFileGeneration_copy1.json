@@ -935,7 +935,7 @@
 									"referenceName": "LeapAPIFileDataset",
 									"type": "DatasetReference",
 									"parameters": {
-										"directory": "apidatacontainer",
+										"directory": "apidatacontainertemp",
 										"FolderPath": {
 											"value": "@{concat(formatDateTime(variables('TimeToday'), 'yyyy'), '/', formatDateTime(variables('TimeToday'), 'MM'), '/', formatDateTime(variables('TimeToday'), 'dd'))}",
 											"type": "Expression"
