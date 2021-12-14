@@ -12,86 +12,112 @@
 		"type": "AzureSqlDWTable",
 		"schema": [
 			{
-				"name": "branch_code",
+				"name": "Source",
 				"type": "varchar"
 			},
 			{
-				"name": "branch_name",
+				"name": "DistCode",
 				"type": "varchar"
 			},
 			{
-				"name": "cfr_date",
+				"name": "BranchCode",
 				"type": "varchar"
 			},
 			{
-				"name": "channel_name",
+				"name": "BranchName",
 				"type": "varchar"
 			},
 			{
-				"name": "category",
+				"name": "Date",
 				"type": "varchar"
 			},
 			{
-				"name": "brandform",
+				"name": "TransactionType",
 				"type": "varchar"
 			},
 			{
-				"name": "sub_brandform",
+				"name": "ChannelCode",
 				"type": "varchar"
 			},
 			{
-				"name": "orders",
+				"name": "ChannelName",
 				"type": "varchar"
 			},
 			{
-				"name": "supply",
+				"name": "SubChannelCode",
 				"type": "varchar"
 			},
 			{
-				"name": "unserved_demand_qty",
+				"name": "SubChannelName",
 				"type": "varchar"
 			},
 			{
-				"name": "cfr_per",
+				"name": "AccountCode",
 				"type": "varchar"
 			},
 			{
-				"name": "FileName",
+				"name": "AccountName",
 				"type": "varchar"
 			},
 			{
-				"name": "LastModifiedDatetime",
+				"name": "Pcode",
 				"type": "varchar"
 			},
 			{
-				"name": "FileSetId",
-				"type": "bigint",
-				"precision": 19
+				"name": "BatchCode",
+				"type": "varchar"
 			},
 			{
-				"name": "BranchNodeId",
-				"type": "int",
-				"precision": 10
+				"name": "#ofStores",
+				"type": "varchar"
 			},
 			{
-				"name": "BranchNodeType",
-				"type": "int",
-				"precision": 10
+				"name": "Retailing",
+				"type": "varchar"
 			},
 			{
-				"name": "SBFNodeid",
-				"type": "int",
-				"precision": 10
+				"name": "NetValue",
+				"type": "varchar"
 			},
 			{
-				"name": "SBFNodeType",
-				"type": "int",
-				"precision": 10
+				"name": "GrossValue",
+				"type": "varchar"
 			},
 			{
-				"name": "ChannelId",
-				"type": "int",
-				"precision": 10
+				"name": "Discount",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxableScheme",
+				"type": "varchar"
+			},
+			{
+				"name": "SGSTAmount",
+				"type": "varchar"
+			},
+			{
+				"name": "CGSTAmount",
+				"type": "varchar"
+			},
+			{
+				"name": "IGSTAmount",
+				"type": "varchar"
+			},
+			{
+				"name": "CessAmount",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxonDiscount",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxonScheme",
+				"type": "varchar"
+			},
+			{
+				"name": "Qty",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {
