@@ -966,7 +966,7 @@
 				"typeProperties": {
 					"variableName": "TimeToday",
 					"value": {
-						"value": "@formatDateTime(subtractFromTime(convertTimeZone('10-Dec-2021','UTC','India Standard Time'),1,'Day'),'yyyy-MM-dd')",
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone('11-Dec-2021','UTC','India Standard Time'),1,'Day'),'yyyy-MM-dd')",
 						"type": "Expression"
 					}
 				}
