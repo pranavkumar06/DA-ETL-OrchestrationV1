@@ -3605,6 +3605,16 @@
 																	"name": "distributor_name",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "distributor_product_short_desc",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "distributor_product_short_desc",
+																	"type": "String"
+																}
 															}
 														]
 													}
