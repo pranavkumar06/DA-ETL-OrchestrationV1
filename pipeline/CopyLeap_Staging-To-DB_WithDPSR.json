@@ -4410,6 +4410,36 @@
 																	"name": "tax_rate",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "vc_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "vc_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "vc_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "vc_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "incoverage",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "incoverage",
+																	"type": "String"
+																}
 															}
 														]
 													}
