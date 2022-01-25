@@ -103,7 +103,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@activity('GetFileList').output.exists\n",
+									"value": "@and(activity('GetFileList').output.exists,equals(item().type, 'File'))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
