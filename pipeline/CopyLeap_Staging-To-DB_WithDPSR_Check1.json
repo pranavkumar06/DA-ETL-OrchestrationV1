@@ -83,8 +83,7 @@
 									"exists",
 									"itemName",
 									"lastModified",
-									"itemType",
-									"childItems"
+									"itemType"
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
