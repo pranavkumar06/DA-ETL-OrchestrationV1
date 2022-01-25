@@ -9265,7 +9265,7 @@
 												},
 												"DataDate": {
 													"value": {
-														"value": "@formatDateTime(pipeline().parameters.DataDate,'yyyy-MM-dd')",
+														"value": "@formatDateTime(pipeline().parameters.DataDate,'yyyy-MMM-dd')",
 														"type": "Expression"
 													},
 													"type": "DateTime"
