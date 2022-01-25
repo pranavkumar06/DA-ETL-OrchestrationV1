@@ -1023,6 +1023,26 @@
 															},
 															{
 																"source": {
+																	"name": "tbecode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stlcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tbename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stlname",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
 																	"name": "becode",
 																	"type": "String"
 																},
@@ -1221,6 +1241,26 @@
 															},
 															{
 																"source": {
+																	"name": "tbecode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stlcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tbename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stlname",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
 																	"name": "becode",
 																	"type": "String"
 																},
@@ -1414,6 +1454,26 @@
 																},
 																"sink": {
 																	"name": "dsename",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tbecode",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stlcode",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tbename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "stlname",
 																	"type": "String"
 																}
 															},
