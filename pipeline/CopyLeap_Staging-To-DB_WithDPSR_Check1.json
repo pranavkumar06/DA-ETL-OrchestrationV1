@@ -9320,7 +9320,7 @@
 												},
 												"DataDate": {
 													"value": {
-														"value": "@pipeline().parameters.DataDate",
+														"value": "@formatDateTime(pipeline().parameters.DataDate)",
 														"type": "Expression"
 													},
 													"type": "DateTime"
@@ -9334,7 +9334,7 @@
 												},
 												"FileName": {
 													"value": {
-														"value": "@item().name",
+														"value": "@activity('GetFileList').output.itemName",
 														"type": "Expression"
 													},
 													"type": "String"
