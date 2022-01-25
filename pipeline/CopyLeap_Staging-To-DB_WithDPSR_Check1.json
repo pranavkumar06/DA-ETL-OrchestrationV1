@@ -95,7 +95,7 @@
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "GetFileList",
+									"activity": "FilterFiles",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -104,7 +104,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@and(activity('GetFileList').output.exists,equals(activity('GetFileList').output.itemType, 'File'))",
+									"value": "@activity('GetFileList').output.exists",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -9352,6 +9352,30 @@
 										}
 									}
 								]
+							}
+						},
+						{
+							"name": "FilterFiles",
+							"description": "Only files will be selected, the source-folders will not be selected.",
+							"type": "Filter",
+							"dependsOn": [
+								{
+									"activity": "GetFileList",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"items": {
+									"value": "@activity('GetFileList').output.childItems",
+									"type": "Expression"
+								},
+								"condition": {
+									"value": "@equals(item().type, 'File')",
+									"type": "Expression"
+								}
 							}
 						}
 					]
