@@ -4560,6 +4560,96 @@
 																	"name": "incoverage",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "address_3",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_3",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_location_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_location_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_upi_id",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_upi_id",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_government",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_government",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_note_auto_adjustment_restriction",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_note_auto_adjustment_restriction",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "transaction_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "transaction_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pending_invoice_count",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pending_invoice_count",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "apply_tcs",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "apply_tcs",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_location_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_location_code",
+																	"type": "String"
+																}
 															}
 														]
 													}
@@ -5338,6 +5428,96 @@
 																	"name": "incoverage",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "address_3",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_3",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_location_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_location_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_upi_id",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_upi_id",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_government",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_government",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_note_auto_adjustment_restriction",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_note_auto_adjustment_restriction",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "transaction_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "transaction_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pending_invoice_count",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pending_invoice_count",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "apply_tcs",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "apply_tcs",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_location_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_location_code",
+																	"type": "String"
+																}
 															}
 														]
 													}
@@ -6114,6 +6294,96 @@
 																},
 																"sink": {
 																	"name": "incoverage",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "address_3",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "address_3",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_location_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_location_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_upi_id",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_upi_id",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "is_government",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "is_government",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "credit_note_auto_adjustment_restriction",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "credit_note_auto_adjustment_restriction",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "transaction_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "transaction_type",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "pending_invoice_count",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "pending_invoice_count",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "apply_tcs",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "apply_tcs",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "tax_location_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "tax_location_code",
 																	"type": "String"
 																}
 															}
