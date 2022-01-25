@@ -22,7 +22,10 @@
 						"storedProcedureParameters": {
 							"DFSetID": {
 								"type": "Int32",
-								"value": "1"
+								"value": {
+									"value": "@pipeline().parameters.SetID",
+									"type": "Expression"
+								}
 							}
 						},
 						"queryTimeout": "02:00:00",
@@ -9230,6 +9233,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"SetID": {
+				"type": "int",
+				"defaultValue": 1
+			}
+		},
 		"folder": {
 			"name": "Leap Data Pipeline"
 		},
