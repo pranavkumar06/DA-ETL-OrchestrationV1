@@ -9327,14 +9327,14 @@
 												},
 												"FileID": {
 													"value": {
-														"value": "item().FileID",
+														"value": "@item().FileID",
 														"type": "Expression"
 													},
 													"type": "Int32"
 												},
 												"FileName": {
 													"value": {
-														"value": "item().name",
+														"value": "@item().name",
 														"type": "Expression"
 													},
 													"type": "String"
