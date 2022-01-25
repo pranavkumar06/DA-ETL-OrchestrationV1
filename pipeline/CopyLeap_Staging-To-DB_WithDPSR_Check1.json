@@ -9268,7 +9268,7 @@
 														"value": "@formatDateTime(pipeline().parameters.DataDate,'yyyy-MMM-dd')",
 														"type": "Expression"
 													},
-													"type": "String"
+													"type": "Datetime"
 												},
 												"FileID": {
 													"value": {
