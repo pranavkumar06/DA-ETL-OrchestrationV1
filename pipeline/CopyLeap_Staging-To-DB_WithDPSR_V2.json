@@ -1,5 +1,5 @@
 {
-	"name": "CopyLeap_Staging-To-DB_WithDPSR_Check1",
+	"name": "CopyLeap_Staging-To-DB_WithDPSR_V2",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
