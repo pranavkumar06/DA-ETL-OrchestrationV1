@@ -155,7 +155,7 @@
 					{
 						"activity": "spLoadLeapTasIntegration",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -176,7 +176,7 @@
 				}
 			},
 			{
-				"name": "DFDataProcessAfterLoading",
+				"name": "DFDataOlapProcess",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -189,7 +189,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "DFDataProcessAfterLoading",
+						"referenceName": "DFDataOlapProcessing",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -235,7 +235,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Delete Staging Files",
+						"activity": "spLoadLeapTasIntegration",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -255,7 +255,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DFDataProcessAfterLoading",
+						"activity": "DFDataOlapProcess",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -341,25 +341,13 @@
 						]
 					},
 					{
-						"activity": "CopyLeapStaging-To-ADLS",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "Delete Staging Files",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
 						"activity": "FocusBrandLoading-LEAP-TO-DF",
 						"dependencyConditions": [
 							"Failed"
 						]
 					},
 					{
-						"activity": "DFDataProcessAfterLoading",
+						"activity": "DFDataOlapProcess",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -487,9 +475,9 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "DFDataProcessAfterLoading",
+						"activity": "DFDataAPIProcess",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
@@ -571,6 +559,32 @@
 						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com",
 						"Subject": "API Process Success",
 						"ErrorMessage": "API process and files generated successful"
+					}
+				}
+			},
+			{
+				"name": "DFDataAPIProcess",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DFDataAPIProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataDate": {
+							"value": "@adddays(formatDateTime(pipeline().parameters.DataProcessDate,'dd-MMM-yyyy'),0)",
+							"type": "Expression"
+						}
 					}
 				}
 			}
