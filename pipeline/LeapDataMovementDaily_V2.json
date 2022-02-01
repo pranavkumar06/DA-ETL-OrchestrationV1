@@ -60,7 +60,7 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_2",
+				"name": "CopyLeap_Staging-To-DB_2_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -73,10 +73,20 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_2",
+						"referenceName": "CopyLeap_Staging-To-DB_2_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -112,11 +122,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_3",
+				"name": "CopyLeap_Staging-To-DB_3_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_2",
+						"activity": "CopyLeap_Staging-To-DB_2_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -125,10 +135,20 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_3",
+						"referenceName": "CopyLeap_Staging-To-DB_3_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -136,7 +156,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_4",
+						"activity": "CopyLeap_Staging-To-DB_4_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -333,13 +353,13 @@
 						]
 					},
 					{
-						"activity": "CopyLeap_Staging-To-DB_2",
+						"activity": "CopyLeap_Staging-To-DB_2_V2",
 						"dependencyConditions": [
 							"Failed"
 						]
 					},
 					{
-						"activity": "CopyLeap_Staging-To-DB_3",
+						"activity": "CopyLeap_Staging-To-DB_3_V2",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -387,7 +407,7 @@
 						]
 					},
 					{
-						"activity": "CopyLeap_Staging-To-DB_4",
+						"activity": "CopyLeap_Staging-To-DB_4_V2",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -408,11 +428,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_4",
+				"name": "CopyLeap_Staging-To-DB_4_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_3",
+						"activity": "CopyLeap_Staging-To-DB_3_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -421,10 +441,20 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_4",
+						"referenceName": "CopyLeap_Staging-To-DB_4_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
