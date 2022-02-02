@@ -182,7 +182,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "DFDataProcessAfterLoading",
+						"referenceName": "DFDataOlapProcessing",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
