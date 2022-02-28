@@ -556,7 +556,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com",
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in",
 						"Subject": "API Process Success",
 						"ErrorMessage": "API process and files generated successful"
 					}
