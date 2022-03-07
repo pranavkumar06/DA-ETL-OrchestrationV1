@@ -311,42 +311,6 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpDeleteOldtmpleapdata",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "CopyLeap_Staging-To-DB_2",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "CopyLeap_Staging-To-DB_3",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "spLoadLeapTasIntegration",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "FocusBrandLoading-LEAP-TO-DF",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
 						"activity": "DFDataOlapProcess",
 						"dependencyConditions": [
 							"Failed"
@@ -372,12 +336,6 @@
 					},
 					{
 						"activity": "DW_Scale_200",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "CopyLeap_Staging-To-DB_4",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -585,6 +543,181 @@
 							"value": "@adddays(formatDateTime(pipeline().parameters.DataProcessDate,'dd-MMM-yyyy'),0)",
 							"type": "Expression"
 						}
+					}
+				}
+			},
+			{
+				"name": "Send Notification1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpDeleteOldtmpleapdata",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification1_copy1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spLoadLeapTasIntegration",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification1_copy1_copy1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_4",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification1_copy1_copy1_copy1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_3",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification1_copy1_copy1_copy1_copy1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification1_copy1_copy1_copy1_copy1_copy1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
 					}
 				}
 			}
