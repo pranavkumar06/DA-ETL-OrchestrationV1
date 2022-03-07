@@ -311,30 +311,6 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DFDataOlapProcess",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "AS_Resume",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
-						"activity": "AS_CubeProcess_Sync_Fact",
-						"dependencyConditions": [
-							"Failed"
-						]
-					},
-					{
 						"activity": "DW_Scale_200",
 						"dependencyConditions": [
 							"Failed"
@@ -702,6 +678,81 @@
 				"dependsOn": [
 					{
 						"activity": "CopyLeap_Staging-To-DB_WithDPSR",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DFDataOlapProcess",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification_copy2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AS_Resume",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
+			},
+			{
+				"name": "Send Notification_copy3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AS_CubeProcess_Sync_Fact",
 						"dependencyConditions": [
 							"Failed"
 						]
