@@ -1,0 +1,37 @@
+{
+	"name": "DS_Maximus_tblStoreListWithTownType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MaximusDBLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Maximus_DBConnection"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BranchCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SubDCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "flgTownType",
+				"type": "tinyint",
+				"precision": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblStoreListWithTownType"
+		}
+	}
+}
