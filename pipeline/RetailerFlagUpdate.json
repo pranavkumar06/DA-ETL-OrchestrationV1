@@ -1,0 +1,93 @@
+{
+	"name": "RetailerFlagUpdate",
+	"properties": {
+		"activities": [
+			{
+				"name": "tbltmpRetTASPlanned",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BranchCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BranchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StoreCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequency",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Frequency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_tbltmpRetTASPlanned",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_tbltmpRetTASPlanned",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Additional Process"
+		},
+		"annotations": []
+	}
+}
