@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "DF_DBConnection/LEAP Tables"
+			"name": "DF_DBConnection/RetailerUpdate"
 		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
@@ -44,6 +44,10 @@
 				"precision": 16,
 				"scale": 0
 			}
-		]
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbltmpRetTASPlanned"
+		}
 	}
 }
