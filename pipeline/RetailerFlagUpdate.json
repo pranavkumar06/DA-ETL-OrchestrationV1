@@ -83,6 +83,95 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "tblStoreListWithTownType",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "tbltmpRetTASPlanned",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BranchCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BranchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StoreCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "flgTownType",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgTownType",
+									"type": "Byte"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_Maximus_tblStoreListWithTownType",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_tblStoreListWithTownType",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
