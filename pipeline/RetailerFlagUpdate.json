@@ -5,7 +5,14 @@
 			{
 				"name": "tbltmpRetTASPlanned",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "spPopulateStoreListWithTownType",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -197,6 +204,26 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateStoreListWithTownType",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateStoreListWithTownType]"
+				},
+				"linkedServiceName": {
+					"referenceName": "MaximusDBLink",
 					"type": "LinkedServiceReference"
 				}
 			}
