@@ -771,6 +771,51 @@
 						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
 					}
 				}
+			},
+			{
+				"name": "RetailerMasterflagupdate",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "RetailerMasterflagupdate",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Send Notification1_copy1_copy2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "RetailerMasterflagupdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Ashwani@Astix.in,Alok@astix.in,phegade.md@pg.com,bussa.r@pg.com,ramesh@astix.in,varun@astix.in,helpdesk@astix.in",
+						"Subject": "DataFoundation DataLoading Fails ",
+						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
+					}
+				}
 			}
 		],
 		"parameters": {
