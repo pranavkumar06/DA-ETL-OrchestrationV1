@@ -31,7 +31,7 @@
 						"type": "SqlDWSink",
 						"allowCopyCommand": true
 					},
-					"enableStaging": false,
+					"enableStaging": true,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
