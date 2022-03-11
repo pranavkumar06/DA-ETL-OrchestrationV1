@@ -32,6 +32,13 @@
 						"allowCopyCommand": true
 					},
 					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "PolybaseLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -126,6 +133,13 @@
 						}
 					},
 					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "PolybaseLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
