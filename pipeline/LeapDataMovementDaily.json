@@ -799,7 +799,7 @@
 					{
 						"activity": "RetailerMasterflagupdate",
 						"dependencyConditions": [
-							"Succeeded"
+							"Failed"
 						]
 					}
 				],
