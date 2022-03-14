@@ -1,0 +1,121 @@
+{
+	"name": "DS_TAS_STN_MDAY_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "doc_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "doc_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "stock_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subbf_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sku_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sku_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hsn_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "upc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "case_qty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "piece_qty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "from_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_branch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "production_batch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "transaction_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "transfer_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "volume_utilization_perc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "weight_utilization_perc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLeapTAS_STN"
+		}
+	}
+}
