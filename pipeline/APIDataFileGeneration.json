@@ -3062,6 +3062,375 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Copy TAS STN MDAY",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderQuery": {
+										"value": "SELECT * FROM tmpAPIExtractTAS_STN WHERE DistCode='@{item().DistributorCode}'",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "DistCode",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DistName",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "DistName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "branch_code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "branch_code",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "branch_name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "branch_name",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "doc_no",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "doc_no",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "doc_date",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "doc_date",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "stock_type",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "stock_type",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "subbf_code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "subbf_code",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "sku_code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "sku_code",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "sku_name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "sku_name",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "hsn_code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "hsn_code",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "upc",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "upc",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "case_qty",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "case_qty",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "piece_qty",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "piece_qty",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "rate",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "rate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "value",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "value",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "from_location",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "from_location",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "destination_branch",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "destination_branch",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "destination_location",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "destination_location",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "production_batch",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "production_batch",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "transaction_status",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "transaction_status",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "transfer_status",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "transfer_status",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "volume_utilization_perc",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "volume_utilization_perc",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "weight_utilization_perc",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "weight_utilization_perc",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_TAS_STN_MDAY_table",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "LeapAPIFileDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"directory": "apidatacontainer",
+										"FolderPath": {
+											"value": "@{concat(formatDateTime(variables('TimeToday'), 'yyyy'), '/', formatDateTime(variables('TimeToday'), 'MM'), '/', formatDateTime(variables('TimeToday'), 'dd'))}",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@{concat('STNHstrBranch','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
