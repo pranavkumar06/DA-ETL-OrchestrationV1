@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "tbltmpRetTASPlanned",
+				"name": "tbltmpGTMModel",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -87,13 +87,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_tbltmpRetTASPlanned",
+						"referenceName": "DS_tbltmpGTMModel",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_tbltmpRetTASPlanned",
+						"referenceName": "DS_tbltmpGTMModel",
 						"type": "DatasetReference"
 					}
 				]
@@ -103,7 +103,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "tbltmpRetTASPlanned",
+						"activity": "tbltmpGTMModel",
 						"dependencyConditions": [
 							"Succeeded"
 						]
