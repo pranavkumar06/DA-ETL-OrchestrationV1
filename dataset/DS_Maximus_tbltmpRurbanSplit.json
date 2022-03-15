@@ -1,5 +1,5 @@
 {
-	"name": "DS_Maximus_tblStoreListWithTownType",
+	"name": "DS_Maximus_tbltmpRurbanSplit",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "MaximusDBLink",
@@ -31,7 +31,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblStoreListWithTownType"
+			"table": "tbltmpRurbanSplit"
 		}
 	}
 }
