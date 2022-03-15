@@ -1,5 +1,5 @@
 {
-	"name": "DS_TAS_tbltmpRetTASPlanned",
+	"name": "DS_TAS_tbltmpGTMModel",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "TASDatabase",
