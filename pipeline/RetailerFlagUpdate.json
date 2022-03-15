@@ -99,7 +99,7 @@
 				]
 			},
 			{
-				"name": "tblStoreListWithTownType",
+				"name": "tbltmpRurbanSplit",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -188,13 +188,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_Maximus_tblStoreListWithTownType",
+						"referenceName": "DS_Maximus_tbltmpRurbanSplit",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_tblStoreListWithTownType",
+						"referenceName": "DS_tbltmpRurbanSplit",
 						"type": "DatasetReference"
 					}
 				]
@@ -204,7 +204,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "tblStoreListWithTownType",
+						"activity": "tbltmpRurbanSplit",
 						"dependencyConditions": [
 							"Succeeded"
 						]
