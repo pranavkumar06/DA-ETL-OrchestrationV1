@@ -47,7 +47,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tbltmpRetTASPlanned"
+			"table": "tbltmpGTMModel"
 		}
 	}
 }
