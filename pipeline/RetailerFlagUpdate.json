@@ -65,11 +65,11 @@
 							{
 								"source": {
 									"name": "Frequency",
-									"type": "String"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Frequency",
-									"type": "String"
+									"type": "Int32"
 								}
 							},
 							{
