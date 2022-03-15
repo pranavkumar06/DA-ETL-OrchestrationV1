@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlDWSource",
+						"type": "AzureSqlSource",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -65,7 +65,7 @@
 							{
 								"source": {
 									"name": "Frequency",
-									"type": "Int32"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Frequency",
@@ -87,7 +87,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_tbltmpGTMModel",
+						"referenceName": "DS_TAS_tbltmpGTMModel",
 						"type": "DatasetReference"
 					}
 				],
