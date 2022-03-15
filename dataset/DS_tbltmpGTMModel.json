@@ -1,5 +1,5 @@
 {
-	"name": "DS_tbltmpRetTASPlanned",
+	"name": "DS_tbltmpGTMModel",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataFoundationDB",
