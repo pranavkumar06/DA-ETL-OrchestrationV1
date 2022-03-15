@@ -1,5 +1,5 @@
 {
-	"name": "DS_tblStoreListWithTownType",
+	"name": "DS_tbltmpRurbanSplit",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataFoundationDB",
@@ -47,7 +47,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblStoreListWithTownType"
+			"table": "tbltmpRurbanSplit"
 		}
 	}
 }
