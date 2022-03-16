@@ -5,14 +5,7 @@
 			{
 				"name": "AS_Pause_ActivityAPI",
 				"type": "WebActivity",
-				"dependsOn": [
-					{
-						"activity": "AS_Scale",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -32,19 +25,6 @@
 						"type": "MSI",
 						"resource": "https://management.core.windows.net"
 					}
-				}
-			},
-			{
-				"name": "AS_Scale",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_Scale",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
 				}
 			}
 		],

@@ -291,7 +291,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "AS_Scale_S4",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -818,7 +818,7 @@
 				}
 			},
 			{
-				"name": "AS_Scale",
+				"name": "AS_Scale_S2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -832,6 +832,26 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "AS_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "AS_Scale_S4",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_Scale_S4",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
