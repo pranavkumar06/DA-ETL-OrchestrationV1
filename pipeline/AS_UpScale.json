@@ -23,7 +23,7 @@
 					},
 					"authentication": {
 						"type": "MSI",
-						"resource": "https://management.core.windows.net"
+						"resource": "https://management.azure.com/"
 					}
 				}
 			}
