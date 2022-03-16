@@ -831,7 +831,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "AS_Scale",
+						"referenceName": "AS_Scale_S2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
