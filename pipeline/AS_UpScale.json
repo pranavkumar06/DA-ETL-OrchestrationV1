@@ -18,7 +18,7 @@
 					"url": "https://management.azure.com/subscriptions/15354be3-bb86-4045-a1a1-7bf7d9ba1c31/resourceGroups/DBRDashboard/providers/Microsoft.AnalysisServices/servers/dbrdashboard/?api-version=2017-08-01",
 					"method": "PATCH",
 					"body": {
-						"value": "{\n   \"sku\":{\n      \"capacity\":1,\n      \"name\":\"S1\",\n      \"tier\":\"Standard\"\n   }\n}",
+						"value": "{\n   \"sku\":{\n      \"capacity\":1,\n      \"name\":\"S2\",\n      \"tier\":\"Standard\"\n   }\n}",
 						"type": "Expression"
 					},
 					"authentication": {
