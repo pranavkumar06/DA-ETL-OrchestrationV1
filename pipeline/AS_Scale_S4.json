@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "AS_Scale",
+				"name": "AS_Scale_S4",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
