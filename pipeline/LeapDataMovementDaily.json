@@ -816,6 +816,26 @@
 						"ErrorMessage": "Processing Fails , login to Portal for more deatils."
 					}
 				}
+			},
+			{
+				"name": "AS_Scale",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DW_Scale_200",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
