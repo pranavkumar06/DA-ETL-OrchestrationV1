@@ -206,13 +206,13 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "AS_CubeProcess_Sync_Fact",
+						"activity": "Send Success Notification",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "Send Success Notification",
+						"activity": "AS_Scale_S2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -291,7 +291,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "AS_Scale_S4",
+						"activity": "Wait_AS_Scaling",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -822,7 +822,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Scale_200",
+						"activity": "AS_CubeProcess_Sync_Fact",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -855,6 +855,22 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Wait_AS_Scaling",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "AS_Scale_S4",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 300
 				}
 			}
 		],
