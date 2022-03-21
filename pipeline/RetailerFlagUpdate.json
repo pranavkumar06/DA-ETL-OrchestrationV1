@@ -103,7 +103,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "tbltmpGTMModel",
+						"activity": "tbltmpTASSellerType",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -245,6 +245,122 @@
 					"referenceName": "MaximusDBLink",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "tbltmpTASSellerType",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "tbltmpGTMModel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "PolybaseLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BranchCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BranchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBDCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StoreCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "InvCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "InvCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "InvDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InvDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerType",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SellerType",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_TAS_tbltmpTASSellerType",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_tbltmpTASSellerType",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
