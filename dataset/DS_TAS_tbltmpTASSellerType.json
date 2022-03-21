@@ -1,0 +1,37 @@
+{
+	"name": "DS_TAS_tbltmpTASSellerType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "TAS_DBConnection"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BranchCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Frequency",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbltmpTASSellerType"
+		}
+	}
+}
