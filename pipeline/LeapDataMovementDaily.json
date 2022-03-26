@@ -777,7 +777,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"activity": "CopyS3-To-Staging_Cloud1",
 						"dependencyConditions": [
 							"Completed"
 						]
