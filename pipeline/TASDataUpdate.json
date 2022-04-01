@@ -1,5 +1,5 @@
 {
-	"name": "RetailerMasterflagupdate",
+	"name": "TASDataUpdate",
 	"properties": {
 		"activities": [
 			{
@@ -10,6 +10,26 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "RetailerFlagUpdate",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TeleCallerListForDay",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "RetailerFlagUpdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TeleCallerListForDay",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

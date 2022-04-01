@@ -786,7 +786,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "RetailerMasterflagupdate",
+						"referenceName": "TASDataUpdate",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
