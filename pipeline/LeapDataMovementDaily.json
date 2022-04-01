@@ -773,7 +773,7 @@
 				}
 			},
 			{
-				"name": "RetailerMasterflagupdate",
+				"name": "TASDataUpdate",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -797,7 +797,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "RetailerMasterflagupdate",
+						"activity": "TASDataUpdate",
 						"dependencyConditions": [
 							"Failed"
 						]
