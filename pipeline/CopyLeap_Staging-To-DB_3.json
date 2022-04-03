@@ -3088,7 +3088,7 @@
 															},
 															{
 																"source": {
-																	"name": "planned_date",
+																	"name": "date",
 																	"type": "String"
 																},
 																"sink": {
@@ -3098,7 +3098,7 @@
 															},
 															{
 																"source": {
-																	"name": "dsecode",
+																	"name": "dse_code",
 																	"type": "String"
 																},
 																"sink": {
@@ -3108,7 +3108,7 @@
 															},
 															{
 																"source": {
-																	"name": "dsename",
+																	"name": "dse_name",
 																	"type": "String"
 																},
 																"sink": {
@@ -3138,7 +3138,7 @@
 															},
 															{
 																"source": {
-																	"name": "totbills",
+																	"name": "total_bills",
 																	"type": "String"
 																},
 																"sink": {
@@ -3148,7 +3148,7 @@
 															},
 															{
 																"source": {
-																	"name": "productivebills",
+																	"name": "productive_bills",
 																	"type": "String"
 																},
 																"sink": {
@@ -3168,7 +3168,7 @@
 															},
 															{
 																"source": {
-																	"name": "totlines",
+																	"name": "total_lines",
 																	"type": "String"
 																},
 																"sink": {
@@ -3178,7 +3178,7 @@
 															},
 															{
 																"source": {
-																	"name": "lpb_percentage",
+																	"name": "lpb",
 																	"type": "String"
 																},
 																"sink": {
@@ -3203,6 +3203,16 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "productivity_norm",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "productivity_norm",
 																	"type": "String"
 																}
 															}
