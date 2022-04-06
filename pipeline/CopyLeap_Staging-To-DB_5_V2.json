@@ -449,7 +449,7 @@
 													"value": "82",
 													"activities": [
 														{
-															"name": "Creditnote_Cloud2",
+															"name": "ATTN_cloud02",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -501,7 +501,8 @@
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -517,261 +518,91 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "branchcode",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "branchcode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_name",
+																				"name": "user_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_name",
+																				"name": "dsecode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "location_name",
+																				"name": "user_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "location_name",
+																				"name": "desename",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "visit_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "visit_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_name",
+																				"name": "route_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_name",
+																				"name": "route_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_code",
+																				"name": "attendance",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_code",
+																				"name": "attendance",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_name",
+																				"name": "reason",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_name",
+																				"name": "reason",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "note_date",
+																				"name": "attendance_timestamp",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "note_date",
+																				"name": "attendance_timestamp",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "credit_note_number",
+																				"name": "generated_at",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "credit_note_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period_from",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period_from",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period_to",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period_to",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "adjustment_mode",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "adjustment_mode",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "adjusted_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "adjusted_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "balance_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "balance_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "cgsttax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "cgsttax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "sgsttax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "sgsttax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "igsttax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "igsttax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "cesstax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "cesstax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "reference_doc_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "reference_doc_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "applied_doc_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "applied_doc_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "applied_to_doc_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "applied_to_doc_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "applied_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "applied_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "comment",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "comment",
+																				"name": "generated_at",
 																				"type": "String"
 																			}
 																		},
@@ -792,7 +623,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -806,7 +637,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_Creditnote_table",
+																	"referenceName": "DS_ATTN_table",
 																	"type": "DatasetReference"
 																}
 															]
@@ -817,7 +648,7 @@
 													"value": "83",
 													"activities": [
 														{
-															"name": "Creditnote_Cloud3",
+															"name": "ATTN_cloud03",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -869,7 +700,8 @@
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -885,261 +717,91 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "branchcode",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "branchcode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_name",
+																				"name": "user_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_name",
+																				"name": "dsecode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "location_name",
+																				"name": "user_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "location_name",
+																				"name": "desename",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "visit_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "visit_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_name",
+																				"name": "route_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_name",
+																				"name": "route_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_code",
+																				"name": "attendance",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_code",
+																				"name": "attendance",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_name",
+																				"name": "reason",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_name",
+																				"name": "reason",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "note_date",
+																				"name": "attendance_timestamp",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "note_date",
+																				"name": "attendance_timestamp",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "credit_note_number",
+																				"name": "generated_at",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "credit_note_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period_from",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period_from",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period_to",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period_to",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "adjustment_mode",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "adjustment_mode",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "adjusted_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "adjusted_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "balance_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "balance_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "cgsttax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "cgsttax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "sgsttax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "sgsttax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "igsttax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "igsttax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "cesstax",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "cesstax",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "reference_doc_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "reference_doc_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "applied_doc_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "applied_doc_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "applied_to_doc_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "applied_to_doc_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "applied_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "applied_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "comment",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "comment",
+																				"name": "generated_at",
 																				"type": "String"
 																			}
 																		},
@@ -1160,7 +822,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -1174,7 +836,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_Creditnote_table",
+																	"referenceName": "DS_ATTN_table",
 																	"type": "DatasetReference"
 																}
 															]
