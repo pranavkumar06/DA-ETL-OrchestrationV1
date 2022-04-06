@@ -4459,7 +4459,7 @@
 													"value": "94",
 													"activities": [
 														{
-															"name": "TASK_Cloud1",
+															"name": "PickList_MDAY_Cloud1",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -4527,26 +4527,6 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "distributor_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "distributor_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "distributor_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "distributor_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "branch_code",
 																				"type": "String"
 																			},
@@ -4557,61 +4537,81 @@
 																		},
 																		{
 																			"source": {
-																				"name": "branch_name",
+																				"name": "branch_location",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_name",
+																				"name": "branch_location",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "task_code",
+																				"name": "picklist_number",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "task_code",
+																				"name": "picklist_number",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "task_created_date",
+																				"name": "picklist_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "task_created_date",
+																				"name": "picklist_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "created_user_code",
+																				"name": "picklist_delivery_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "created_user_code",
+																				"name": "picklist_delivery_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "created_user_name",
+																				"name": "db_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "created_user_name",
+																				"name": "db_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "assigned_to",
+																				"name": "db_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "assigned_to",
+																				"name": "db_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "invoice_number",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "invoice_number",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "invoice_date",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "invoice_date",
 																				"type": "String"
 																			}
 																		},
@@ -4637,101 +4637,151 @@
 																		},
 																		{
 																			"source": {
-																				"name": "task_title",
+																				"name": "category",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "task_title",
+																				"name": "category",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "task_description",
+																				"name": "product_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "task_description",
+																				"name": "product_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "due_date",
+																				"name": "product_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "due_date",
+																				"name": "product_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "over_due",
+																				"name": "case",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "over_due",
+																				"name": "case",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "task_remark",
+																				"name": "pcs",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "task_remark",
+																				"name": "pcs",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "task_status",
+																				"name": "upc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "task_status",
+																				"name": "upc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "tas_task_date",
+																				"name": "mrp",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "tas_task_date",
+																				"name": "mrp",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "tas_task_id",
+																				"name": "srp",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "tas_task_id",
+																				"name": "srp",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "tas_seller_code",
+																				"name": "exp_dt",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "tas_seller_code",
+																				"name": "exp_dt",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "tas_seller_name",
+																				"name": "batch_no",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "tas_seller_name",
+																				"name": "batch_no",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "value",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "value",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "invoice_delivery_status",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "invoice_delivery_status",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "picklist_status",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "picklist_status",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "volume_utilization_perc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "volume_utilization_perc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "weight_utilization_perc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "weight_utilization_perc",
 																				"type": "String"
 																			}
 																		},
@@ -4752,7 +4802,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -4766,7 +4816,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_TASK_table",
+																	"referenceName": "DS_PickList_MDAY_table",
 																	"type": "DatasetReference"
 																}
 															]
