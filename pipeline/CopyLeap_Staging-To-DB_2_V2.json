@@ -4,7 +4,7 @@
 		"description": "Copy file data from Staging to DB",
 		"activities": [
 			{
-				"name": "GetFileList-Set1",
+				"name": "GetFileList-Set2",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -43,7 +43,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "GetFileList-Set1",
+						"activity": "GetFileList-Set2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -52,7 +52,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('GetFileList-Set1').output.value\r\n",
+						"value": "@activity('GetFileList-Set2').output.value\n",
 						"type": "Expression"
 					},
 					"activities": [
