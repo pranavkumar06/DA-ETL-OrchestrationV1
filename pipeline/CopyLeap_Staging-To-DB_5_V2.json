@@ -3743,7 +3743,7 @@
 													"value": "92",
 													"activities": [
 														{
-															"name": "IHR_MDAY_Cloud2",
+															"name": "PickList_Cloud2",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -3811,201 +3811,251 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branchcode",
+																				"name": "branch_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branchcode",
+																				"name": "branch_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branchname",
+																				"name": "branch_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branchname",
+																				"name": "branch_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "salesinvoiceno",
+																				"name": "warehouse",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "salesinvoiceno",
+																				"name": "warehouse",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "shipdate",
+																				"name": "store_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "shipdate",
+																				"name": "store_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailercode",
+																				"name": "ira_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailercode",
+																				"name": "ira_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailername",
+																				"name": "ira_number",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailername",
+																				"name": "ira_number",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel",
+																				"name": "ira_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel",
+																				"name": "ira_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dsecode",
+																				"name": "created_user_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dsecode",
+																				"name": "created_user_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dsename",
+																				"name": "created_user_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dsename",
+																				"name": "created_user_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativecode",
+																				"name": "include_draft",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativecode",
+																				"name": "include_draft",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativename",
+																				"name": "product_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativename",
+																				"name": "product_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativetype",
+																				"name": "product_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativetype",
+																				"name": "product_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativestartdate",
+																				"name": "batch_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativestartdate",
+																				"name": "batch_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativeenddate",
+																				"name": "batch_expiry_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativeenddate",
+																				"name": "batch_expiry_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "amountdisbursed",
+																				"name": "mrp",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "amountdisbursed",
+																				"name": "mrp",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "qty",
+																				"name": "upc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "qty",
+																				"name": "upc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "distributorgstno",
+																				"name": "system_case",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "distributorgstno",
+																				"name": "system_case",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailergstno",
+																				"name": "system_piece",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailergstno",
+																				"name": "system_piece",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "siebelno",
+																				"name": "physical_case",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "siebelno",
+																				"name": "physical_case",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "order_mode",
+																				"name": "physical_piece",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "order_mode",
+																				"name": "physical_piece",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "ira_percentage",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "ira_percentage",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "sub_brand_form",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sub_brand_form",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "brand_form",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "brand_form",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "brand",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "brand",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "category",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "category",
 																				"type": "String"
 																			}
 																		},
@@ -4026,7 +4076,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -4040,7 +4090,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_IHR_table",
+																	"referenceName": "DS_PickList_table",
 																	"type": "DatasetReference"
 																}
 															]
@@ -4051,7 +4101,7 @@
 													"value": "93",
 													"activities": [
 														{
-															"name": "IHR_MDAY_Cloud3",
+															"name": "PickList_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -4119,201 +4169,251 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branchcode",
+																				"name": "branch_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branchcode",
+																				"name": "branch_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branchname",
+																				"name": "branch_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branchname",
+																				"name": "branch_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "salesinvoiceno",
+																				"name": "warehouse",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "salesinvoiceno",
+																				"name": "warehouse",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "shipdate",
+																				"name": "store_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "shipdate",
+																				"name": "store_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailercode",
+																				"name": "ira_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailercode",
+																				"name": "ira_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailername",
+																				"name": "ira_number",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailername",
+																				"name": "ira_number",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel",
+																				"name": "ira_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel",
+																				"name": "ira_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dsecode",
+																				"name": "created_user_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dsecode",
+																				"name": "created_user_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dsename",
+																				"name": "created_user_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dsename",
+																				"name": "created_user_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativecode",
+																				"name": "include_draft",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativecode",
+																				"name": "include_draft",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativename",
+																				"name": "product_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativename",
+																				"name": "product_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativetype",
+																				"name": "product_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativetype",
+																				"name": "product_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativestartdate",
+																				"name": "batch_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativestartdate",
+																				"name": "batch_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "initiativeenddate",
+																				"name": "batch_expiry_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "initiativeenddate",
+																				"name": "batch_expiry_date",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "amountdisbursed",
+																				"name": "mrp",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "amountdisbursed",
+																				"name": "mrp",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "qty",
+																				"name": "upc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "qty",
+																				"name": "upc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "distributorgstno",
+																				"name": "system_case",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "distributorgstno",
+																				"name": "system_case",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailergstno",
+																				"name": "system_piece",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailergstno",
+																				"name": "system_piece",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "siebelno",
+																				"name": "physical_case",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "siebelno",
+																				"name": "physical_case",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "order_mode",
+																				"name": "physical_piece",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "order_mode",
+																				"name": "physical_piece",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "ira_percentage",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "ira_percentage",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "sub_brand_form",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sub_brand_form",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "brand_form",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "brand_form",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "brand",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "brand",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "category",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "category",
 																				"type": "String"
 																			}
 																		},
@@ -4334,7 +4434,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -4348,7 +4448,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_IHR_table",
+																	"referenceName": "DS_PickList_table",
 																	"type": "DatasetReference"
 																}
 															]
