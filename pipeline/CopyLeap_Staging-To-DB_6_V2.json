@@ -1245,7 +1245,7 @@
 													"value": "107",
 													"activities": [
 														{
-															"name": "DBGPS_Cloud2",
+															"name": "SCHMTR_Cloud2",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1313,381 +1313,291 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "scheme_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "scheme_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_location",
+																				"name": "description",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_location",
+																				"name": "description",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "db_code",
+																				"name": "short_description",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "db_code",
+																				"name": "short_description",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "db_name",
+																				"name": "scheme_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "db_name",
+																				"name": "scheme_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_date",
+																				"name": "valid_from",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_date",
+																				"name": "valid_from",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_delivery_date",
+																				"name": "valid_to",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_delivery_date",
+																				"name": "valid_to",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_no",
+																				"name": "scheme_buy_logic",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_no",
+																				"name": "scheme_buy_logic",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_code",
+																				"name": "is_accumulation",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_code",
+																				"name": "is_accumulation",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_name",
+																				"name": "scheme_process_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_name",
+																				"name": "scheme_process_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "contact_number_1",
+																				"name": "retailer_apply_count",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "contact_number_1",
+																				"name": "retailer_apply_count",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "contact_number_2",
+																				"name": "promotion_group_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "contact_number_2",
+																				"name": "promotion_group_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel_name",
+																				"name": "level_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel_name",
+																				"name": "level_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "sub_channel_name",
+																				"name": "level_desc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "sub_channel_name",
+																				"name": "level_desc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "promotion_group_logic",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "promotion_group_logic",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_number",
+																				"name": "promotion_get_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_number",
+																				"name": "promotion_get_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "order_date",
+																				"name": "promotion_slab_description",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "order_date",
+																				"name": "promotion_slab_description",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_date",
+																				"name": "promotion_slab_buy_min",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_date",
+																				"name": "promotion_slab_buy_min",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "actual_delivery_attempt_date",
+																				"name": "promotion_slab_buy_max",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "actual_delivery_attempt_date",
+																				"name": "promotion_slab_buy_max",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "ar_at_day_start",
+																				"name": "promotion_slab_get_discount",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "ar_at_day_start",
+																				"name": "promotion_slab_get_discount",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_value",
+																				"name": "promotion_slab_buy_uom",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_value",
+																				"name": "promotion_slab_buy_uom",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "delivery_status",
+																				"name": "promotion_slab_get_forevery_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "delivery_status",
+																				"name": "promotion_slab_get_forevery_qty",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "delivered_time",
+																				"name": "promotion_slab_get_forevery_qty_uom",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "delivered_time",
+																				"name": "promotion_slab_get_forevery_qty_uom",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "reason_for_partial_no_delivery",
+																				"name": "promotion_slab_get_for_every_value",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "reason_for_partial_no_delivery",
+																				"name": "promotion_slab_get_for_every_value",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "reason_for_on_hold",
+																				"name": "slab_max_limit",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "reason_for_on_hold",
+																				"name": "slab_max_limit",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "delivered_value",
+																				"name": "free_product_desc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "delivered_value",
+																				"name": "free_product_desc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "collection_amount",
+																				"name": "free_product_uom",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "collection_amount",
+																				"name": "free_product_uom",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "advance_collection",
+																				"name": "free_product_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "advance_collection",
+																				"name": "free_product_qty",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "visit_latitude",
+																				"name": "variance",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "visit_latitude",
+																				"name": "variance",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "visit_longitude",
+																				"name": "scheme_apply_on",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "visit_longitude",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "deviation_in_meter",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "deviation_in_meter",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "deviation",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "deviation",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "reason_for_deviation",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "reason_for_deviation",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "remarks",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "remarks",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_predicted_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_predicted_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "in_store_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "in_store_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_start_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_start_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_end_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_end_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "battery_perc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "battery_perc",
+																				"name": "scheme_apply_on",
 																				"type": "String"
 																			}
 																		},
@@ -1722,7 +1632,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DBGPS_table",
+																	"referenceName": "DS_SCHMTR_table",
 																	"type": "DatasetReference"
 																}
 															]
@@ -1733,7 +1643,7 @@
 													"value": "108",
 													"activities": [
 														{
-															"name": "DBGPS_Cloud3",
+															"name": "SCHMTR_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1801,381 +1711,291 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "scheme_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "scheme_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_location",
+																				"name": "description",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_location",
+																				"name": "description",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "db_code",
+																				"name": "short_description",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "db_code",
+																				"name": "short_description",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "db_name",
+																				"name": "scheme_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "db_name",
+																				"name": "scheme_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_date",
+																				"name": "valid_from",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_date",
+																				"name": "valid_from",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_delivery_date",
+																				"name": "valid_to",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_delivery_date",
+																				"name": "valid_to",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_no",
+																				"name": "scheme_buy_logic",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_no",
+																				"name": "scheme_buy_logic",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_code",
+																				"name": "is_accumulation",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_code",
+																				"name": "is_accumulation",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_name",
+																				"name": "scheme_process_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_name",
+																				"name": "scheme_process_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "contact_number_1",
+																				"name": "retailer_apply_count",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "contact_number_1",
+																				"name": "retailer_apply_count",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "contact_number_2",
+																				"name": "promotion_group_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "contact_number_2",
+																				"name": "promotion_group_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel_name",
+																				"name": "level_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel_name",
+																				"name": "level_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "sub_channel_name",
+																				"name": "level_desc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "sub_channel_name",
+																				"name": "level_desc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "promotion_group_logic",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "promotion_group_logic",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_number",
+																				"name": "promotion_get_type",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_number",
+																				"name": "promotion_get_type",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "order_date",
+																				"name": "promotion_slab_description",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "order_date",
+																				"name": "promotion_slab_description",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_date",
+																				"name": "promotion_slab_buy_min",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_date",
+																				"name": "promotion_slab_buy_min",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "actual_delivery_attempt_date",
+																				"name": "promotion_slab_buy_max",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "actual_delivery_attempt_date",
+																				"name": "promotion_slab_buy_max",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "ar_at_day_start",
+																				"name": "promotion_slab_get_discount",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "ar_at_day_start",
+																				"name": "promotion_slab_get_discount",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_value",
+																				"name": "promotion_slab_buy_uom",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_value",
+																				"name": "promotion_slab_buy_uom",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "delivery_status",
+																				"name": "promotion_slab_get_forevery_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "delivery_status",
+																				"name": "promotion_slab_get_forevery_qty",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "delivered_time",
+																				"name": "promotion_slab_get_forevery_qty_uom",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "delivered_time",
+																				"name": "promotion_slab_get_forevery_qty_uom",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "reason_for_partial_no_delivery",
+																				"name": "promotion_slab_get_for_every_value",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "reason_for_partial_no_delivery",
+																				"name": "promotion_slab_get_for_every_value",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "reason_for_on_hold",
+																				"name": "slab_max_limit",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "reason_for_on_hold",
+																				"name": "slab_max_limit",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "delivered_value",
+																				"name": "free_product_desc",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "delivered_value",
+																				"name": "free_product_desc",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "collection_amount",
+																				"name": "free_product_uom",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "collection_amount",
+																				"name": "free_product_uom",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "advance_collection",
+																				"name": "free_product_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "advance_collection",
+																				"name": "free_product_qty",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "visit_latitude",
+																				"name": "variance",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "visit_latitude",
+																				"name": "variance",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "visit_longitude",
+																				"name": "scheme_apply_on",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "visit_longitude",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "deviation_in_meter",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "deviation_in_meter",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "deviation",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "deviation",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "reason_for_deviation",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "reason_for_deviation",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "remarks",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "remarks",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_predicted_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_predicted_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "in_store_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "in_store_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_start_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_start_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_end_time",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_end_time",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "battery_perc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "battery_perc",
+																				"name": "scheme_apply_on",
 																				"type": "String"
 																			}
 																		},
@@ -2210,7 +2030,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DBGPS_table",
+																	"referenceName": "DS_SCHMTR_table",
 																	"type": "DatasetReference"
 																}
 															]
