@@ -1,0 +1,77 @@
+{
+	"name": "DS_SCHMPG_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branchcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dsecode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "desename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "route_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "attendance",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "attendance_timestamp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "generated_at",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_SCHMPG"
+		}
+	}
+}
