@@ -1,0 +1,193 @@
+{
+	"name": "DS_COHTGT_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "db_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "db_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "picklist_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "picklist_delivery_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "picklist_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "contact_number_1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "contact_number_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sub_channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "invoice_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "order_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "invoice_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "actual_delivery_attempt_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ar_at_day_start",
+				"type": "nvarchar"
+			},
+			{
+				"name": "invoice_value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "delivery_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "delivered_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason_for_partial_no_delivery",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason_for_on_hold",
+				"type": "nvarchar"
+			},
+			{
+				"name": "delivered_value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "collection_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "advance_collection",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_latitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "visit_longitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "deviation_in_meter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "deviation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason_for_deviation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "remarks",
+				"type": "nvarchar"
+			},
+			{
+				"name": "store_predicted_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "in_store_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "store_start_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "store_end_time",
+				"type": "nvarchar"
+			},
+			{
+				"name": "battery_perc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_COHTGT"
+		}
+	}
+}
