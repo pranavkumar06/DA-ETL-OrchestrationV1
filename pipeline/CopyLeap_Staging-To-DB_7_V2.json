@@ -1648,10 +1648,10 @@
 													]
 												},
 												{
-													"value": "109",
+													"value": "130",
 													"activities": [
 														{
-															"name": "TGTACT_Cloud1",
+															"name": "COHTGT_Cloud1",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1719,41 +1719,61 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "channel_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "channel_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_location",
+																				"name": "channel_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_location",
+																				"name": "channel_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "focus_brand_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "focus_brand_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_name",
+																				"name": "focus_brand_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_name",
+																				"name": "focus_brand_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "from_date",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "from_date",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "to_date",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "to_date",
 																				"type": "String"
 																			}
 																		},
@@ -1764,36 +1784,6 @@
 																			},
 																			"sink": {
 																				"name": "target",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "achieved",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "achieved",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "percentage",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "percentage",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "balance_on_target",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "balance_on_target",
 																				"type": "String"
 																			}
 																		},
@@ -1828,7 +1818,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_TGTACT_table",
+																	"referenceName": "DS_COHTGT_table",
 																	"type": "DatasetReference"
 																}
 															]
