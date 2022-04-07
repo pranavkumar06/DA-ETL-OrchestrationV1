@@ -1,0 +1,4802 @@
+{
+	"name": "CopyLeap_Staging-To-DB_7_V2",
+	"properties": {
+		"description": "Copy file data from Staging to DB",
+		"activities": [
+			{
+				"name": "GetFileList-Set7",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetFileDetails]",
+						"storedProcedureParameters": {
+							"DFSetID": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.SetID",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEachFileTobeimported",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetFileList-Set7",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetFileList-Set7').output.value\n",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "GetFileList",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "LeapStorageSourceDataset_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@concat(item().name,'_', formatDateTime(pipeline().parameters.DataDate, 'yyyy'), formatDateTime(pipeline().parameters.DataDate, 'MMM'), formatDateTime(pipeline().parameters.DataDate, 'dd'), '.csv')",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"exists",
+									"itemName",
+									"lastModified",
+									"itemType"
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							}
+						},
+						{
+							"name": "If File Exists",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "GetFileList",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@activity('GetFileList').output.exists",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "SpCycFileEntry",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[SpCycFileEntry]",
+											"storedProcedureParameters": {
+												"CycleID": {
+													"value": {
+														"value": "@pipeline().parameters.CycleID",
+														"type": "Expression"
+													},
+													"type": "Int64"
+												},
+												"DataDate": {
+													"value": {
+														"value": "@formatDateTime(pipeline().parameters.DataDate,'yyyy-MMM-dd')",
+														"type": "Expression"
+													},
+													"type": "Datetime"
+												},
+												"FileID": {
+													"value": {
+														"value": "@item().FileID",
+														"type": "Expression"
+													},
+													"type": "Int32"
+												},
+												"FileName": {
+													"value": {
+														"value": "@activity('GetFileList').output.itemName",
+														"type": "Expression"
+													},
+													"type": "String"
+												},
+												"flgProcessType": {
+													"value": "1",
+													"type": "Byte"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
+									},
+									{
+										"name": "SpCycFileUpdate",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "IfFileFound",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[SpCycFileEntry]",
+											"storedProcedureParameters": {
+												"CycleID": {
+													"value": {
+														"value": "@pipeline().parameters.CycleID",
+														"type": "Expression"
+													},
+													"type": "Int64"
+												},
+												"DataDate": {
+													"value": {
+														"value": "@formatDateTime(pipeline().parameters.DataDate)",
+														"type": "Expression"
+													},
+													"type": "DateTime"
+												},
+												"FileID": {
+													"value": {
+														"value": "@item().FileID",
+														"type": "Expression"
+													},
+													"type": "Int32"
+												},
+												"FileName": {
+													"value": {
+														"value": "@activity('GetFileList').output.itemName",
+														"type": "Expression"
+													},
+													"type": "String"
+												},
+												"flgProcessType": {
+													"value": "2",
+													"type": "Byte"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
+									},
+									{
+										"name": "IfFileFound",
+										"type": "Switch",
+										"dependsOn": [
+											{
+												"activity": "SpCycFileEntry",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"on": {
+												"value": "@item().FileID",
+												"type": "Expression"
+											},
+											"cases": [
+												{
+													"value": "124",
+													"activities": [
+														{
+															"name": "COHMPG_cloud01",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	},
+																	"disableMetricsCollection": false
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "group_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "group_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "channel_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "channel_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "type_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "type_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "siebel_number",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "siebel_number",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "account_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "account_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_COHMPG_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "125",
+													"activities": [
+														{
+															"name": "COHMPG_cloud02",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	},
+																	"disableMetricsCollection": false
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "group_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "group_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "channel_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "channel_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "type_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "type_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "siebel_number",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "siebel_number",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "account_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "account_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_COHMPG_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "126",
+													"activities": [
+														{
+															"name": "COHMPG_cloud03",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	},
+																	"disableMetricsCollection": false
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "group_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "group_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "channel_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "channel_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "type_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "type_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "siebel_number",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "siebel_number",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "account_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "account_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_COHMPG_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "106",
+													"activities": [
+														{
+															"name": "SCHMTR_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "short_description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "short_description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "valid_from",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "valid_from",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "valid_to",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "valid_to",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_buy_logic",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_buy_logic",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "is_accumulation",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "is_accumulation",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_process_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_process_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_apply_count",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_apply_count",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_group_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_group_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "level_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "level_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "level_desc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "level_desc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_group_logic",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_group_logic",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_get_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_get_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_min",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_min",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_max",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_max",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_discount",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_discount",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_forevery_qty",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_forevery_qty",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_for_every_value",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_for_every_value",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "slab_max_limit",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "slab_max_limit",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_desc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_desc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_qty",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_qty",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "variance",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "variance",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_apply_on",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_apply_on",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_SCHMTR_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "107",
+													"activities": [
+														{
+															"name": "SCHMTR_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "short_description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "short_description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "valid_from",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "valid_from",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "valid_to",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "valid_to",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_buy_logic",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_buy_logic",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "is_accumulation",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "is_accumulation",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_process_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_process_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_apply_count",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_apply_count",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_group_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_group_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "level_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "level_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "level_desc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "level_desc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_group_logic",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_group_logic",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_get_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_get_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_min",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_min",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_max",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_max",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_discount",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_discount",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_forevery_qty",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_forevery_qty",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_for_every_value",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_for_every_value",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "slab_max_limit",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "slab_max_limit",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_desc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_desc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_qty",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_qty",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "variance",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "variance",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_apply_on",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_apply_on",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_SCHMTR_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "108",
+													"activities": [
+														{
+															"name": "SCHMTR_Cloud3",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "short_description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "short_description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "valid_from",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "valid_from",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "valid_to",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "valid_to",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_buy_logic",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_buy_logic",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "is_accumulation",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "is_accumulation",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_process_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_process_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_apply_count",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_apply_count",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_group_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_group_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "level_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "level_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "level_desc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "level_desc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_group_logic",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_group_logic",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_get_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_get_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_description",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_description",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_min",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_min",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_max",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_max",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_discount",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_discount",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_buy_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_buy_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_forevery_qty",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_forevery_qty",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "promotion_slab_get_for_every_value",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "promotion_slab_get_for_every_value",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "slab_max_limit",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "slab_max_limit",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_desc",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_desc",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_uom",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_uom",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "free_product_qty",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "free_product_qty",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "variance",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "variance",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "scheme_apply_on",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "scheme_apply_on",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_SCHMTR_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "109",
+													"activities": [
+														{
+															"name": "TGTACT_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_location",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_location",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "dse_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "dse_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "dse_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "dse_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "target",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "target",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "achieved",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "achieved",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "percentage",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "percentage",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "balance_on_target",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "balance_on_target",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_TGTACT_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "110",
+													"activities": [
+														{
+															"name": "TGTACT_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_location",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_location",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "dse_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "dse_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "dse_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "dse_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "target",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "target",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "achieved",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "achieved",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "percentage",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "percentage",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "balance_on_target",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "balance_on_target",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_TGTACT_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "111",
+													"activities": [
+														{
+															"name": "TGTACT_Cloud3",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_location",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_location",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "dse_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "dse_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "dse_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "dse_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "target",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "target",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "achieved",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "achieved",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "percentage",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "percentage",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "balance_on_target",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "balance_on_target",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_TGTACT_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "112",
+													"activities": [
+														{
+															"name": "Supervisordetailed_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "AppVersionNumber",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "AppVersionNumber",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LoggedDate",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LoggedDate",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LoginTime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LoginTime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LogoutTime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LogoutTime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpentOnApp",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpentOnApp",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "ModuleTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "ModuleTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisordetailed_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "113",
+													"activities": [
+														{
+															"name": "Supervisordetailed_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "AppVersionNumber",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "AppVersionNumber",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LoggedDate",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LoggedDate",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LoginTime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LoginTime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LogoutTime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LogoutTime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpentOnApp",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpentOnApp",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "ModuleTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "ModuleTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisordetailed_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "114",
+													"activities": [
+														{
+															"name": "Supervisordetailed_Cloud3",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "AppVersionNumber",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "AppVersionNumber",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LoggedDate",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LoggedDate",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LoginTime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LoginTime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LogoutTime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LogoutTime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpentOnApp",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpentOnApp",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "ModuleTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "ModuleTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisordetailed_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "115",
+													"activities": [
+														{
+															"name": "Supervisorsummary_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "Distributor",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distributor",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Branch",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Branch",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Average",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Average",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisorsummary_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "116",
+													"activities": [
+														{
+															"name": "Supervisorsummary_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "Distributor",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distributor",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Branch",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Branch",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Average",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Average",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisorsummary_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "117",
+													"activities": [
+														{
+															"name": "Supervisorsummary_Cloud3",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "Distributor",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distributor",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Branch",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Branch",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Average",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Average",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisorsummary_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "118",
+													"activities": [
+														{
+															"name": "Supervisortrade_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "Distributor",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distributor",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Branch",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Branch",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Average",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Average",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisortrade_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "119",
+													"activities": [
+														{
+															"name": "Supervisortrade_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "Distributor",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distributor",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Branch",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Branch",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Average",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Average",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisortrade_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "120",
+													"activities": [
+														{
+															"name": "Supervisortrade_Cloud3",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "Distributor",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distributor",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Branch",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Branch",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserCode",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserCode",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserName",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserName",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "UserType",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "UserType",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FunctionalityUsed",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "TotalTimeSpent",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Average",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Average",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Supervisortrade_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "121",
+													"activities": [
+														{
+															"name": "SBDMPG_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_SBDMPG_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "122",
+													"activities": [
+														{
+															"name": "SBDMPG_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_SBDMPG_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "123",
+													"activities": [
+														{
+															"name": "SBDMPG_Cloud3",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@item().name",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	}
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "DateTime"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_SBDMPG_table",
+																	"type": "DatasetReference"
+																}
+															]
+														}
+													]
+												},
+												{
+													"value": "Case22"
+												}
+											]
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"SetID": {
+				"type": "int",
+				"defaultValue": 7
+			},
+			"CycleID": {
+				"type": "int"
+			},
+			"DataDate": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Leap Data Pipeline"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-12-09T03:23:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
