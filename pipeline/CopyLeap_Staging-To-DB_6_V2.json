@@ -3226,10 +3226,10 @@
 													]
 												},
 												{
-													"value": "94",
+													"value": "115",
 													"activities": [
 														{
-															"name": "PickList_MDAY_Cloud1",
+															"name": "Supervisorsummary_Cloud1",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -3297,261 +3297,81 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "Distributor",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "Distributor",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_location",
+																				"name": "Branch",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_location",
+																				"name": "Branch",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_number",
+																				"name": "UserCode",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_number",
+																				"name": "UserCode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_date",
+																				"name": "UserName",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_date",
+																				"name": "UserName",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "picklist_delivery_date",
+																				"name": "UserType",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "picklist_delivery_date",
+																				"name": "UserType",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "db_name",
+																				"name": "FunctionalityUsed",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "db_name",
+																				"name": "FunctionalityUsed",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "db_code",
+																				"name": "TotalTimeSpent",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "db_code",
+																				"name": "TotalTimeSpent",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "invoice_number",
+																				"name": "Average",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "invoice_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "invoice_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "invoice_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "category",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "category",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "product_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "product_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "product_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "product_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "case",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "case",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pcs",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pcs",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "upc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "upc",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mrp",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mrp",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "srp",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "srp",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "exp_dt",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "exp_dt",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "batch_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "batch_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "value",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "value",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "invoice_delivery_status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "invoice_delivery_status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "picklist_status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "picklist_status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "volume_utilization_perc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "volume_utilization_perc",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "weight_utilization_perc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "weight_utilization_perc",
+																				"name": "Average",
 																				"type": "String"
 																			}
 																		},
@@ -3572,7 +3392,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "DateTime"
+																				"type": "String"
 																			}
 																		}
 																	]
@@ -3586,7 +3406,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_PickList_MDAY_table",
+																	"referenceName": "DS_Supervisorsummary_table",
 																	"type": "DatasetReference"
 																}
 															]
@@ -3594,7 +3414,7 @@
 													]
 												},
 												{
-													"value": "95",
+													"value": "116",
 													"activities": [
 														{
 															"name": "PickList_MDAY_Cloud2",
