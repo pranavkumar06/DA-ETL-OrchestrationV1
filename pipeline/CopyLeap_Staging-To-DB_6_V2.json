@@ -2038,10 +2038,10 @@
 													]
 												},
 												{
-													"value": "88",
+													"value": "109",
 													"activities": [
 														{
-															"name": "IRA_Cloud1",
+															"name": "TGTACT_Cloud1",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -2119,241 +2119,71 @@
 																		},
 																		{
 																			"source": {
-																				"name": "branch_name",
+																				"name": "branch_location",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_name",
+																				"name": "branch_location",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "warehouse",
+																				"name": "dse_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "warehouse",
+																				"name": "dse_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "store_type",
+																				"name": "dse_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "store_type",
+																				"name": "dse_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "ira_date",
+																				"name": "target",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "ira_date",
+																				"name": "target",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "ira_number",
+																				"name": "achieved",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "ira_number",
+																				"name": "achieved",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "ira_name",
+																				"name": "percentage",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "ira_name",
+																				"name": "percentage",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "created_user_code",
+																				"name": "balance_on_target",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "created_user_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "created_user_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "created_user_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "include_draft",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "include_draft",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "product_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "product_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "product_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "product_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "batch_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "batch_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "batch_expiry_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "batch_expiry_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mrp",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mrp",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "upc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "upc",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "system_case",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "system_case",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "system_piece",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "system_piece",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "physical_case",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "physical_case",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "physical_piece",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "physical_piece",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "ira_percentage",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "ira_percentage",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "sub_brand_form",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "sub_brand_form",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "brand_form",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "brand_form",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "brand",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "brand",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "category",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "category",
+																				"name": "balance_on_target",
 																				"type": "String"
 																			}
 																		},
@@ -2388,7 +2218,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_IRA_table",
+																	"referenceName": "DS_TGTACT_table",
 																	"type": "DatasetReference"
 																}
 															]
