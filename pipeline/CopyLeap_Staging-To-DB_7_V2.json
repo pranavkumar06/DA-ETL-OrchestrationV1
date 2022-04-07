@@ -1112,10 +1112,10 @@
 													]
 												},
 												{
-													"value": "107",
+													"value": "128",
 													"activities": [
 														{
-															"name": "SCHMTR_Cloud2",
+															"name": "COHMTR_Cloud2",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1253,31 +1253,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "is_accumulation",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "is_accumulation",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "scheme_process_type",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "scheme_process_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_apply_count",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_apply_count",
 																				"type": "String"
 																			}
 																		},
@@ -1303,11 +1283,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "level_desc",
+																				"name": "level_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "level_desc",
+																				"name": "level_code",
 																				"type": "String"
 																			}
 																		},
@@ -1323,51 +1303,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "promotion_get_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_get_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "promotion_slab_description",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "promotion_slab_description",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_buy_min",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_buy_min",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_buy_max",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_buy_max",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_get_discount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_get_discount",
 																				"type": "String"
 																			}
 																		},
@@ -1383,91 +1323,21 @@
 																		},
 																		{
 																			"source": {
-																				"name": "promotion_slab_get_forevery_qty",
+																				"name": "promotion_slab_buy_min_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "promotion_slab_get_forevery_qty",
+																				"name": "promotion_slab_buy_min_qty",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"name": "promotion_slab_buy_max_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "promotion_slab_get_forevery_qty_uom",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_get_for_every_value",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_get_for_every_value",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "slab_max_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "slab_max_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "free_product_desc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "free_product_desc",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "free_product_uom",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "free_product_uom",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "free_product_qty",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "free_product_qty",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "variance",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "variance",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "scheme_apply_on",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "scheme_apply_on",
+																				"name": "promotion_slab_buy_max_qty",
 																				"type": "String"
 																			}
 																		},
@@ -1502,7 +1372,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_SCHMTR_table",
+																	"referenceName": "DS_COHMTR_table",
 																	"type": "DatasetReference"
 																}
 															]
@@ -1510,10 +1380,10 @@
 													]
 												},
 												{
-													"value": "108",
+													"value": "129",
 													"activities": [
 														{
-															"name": "SCHMTR_Cloud3",
+															"name": "COHMTR_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1651,31 +1521,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "is_accumulation",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "is_accumulation",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "scheme_process_type",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "scheme_process_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_apply_count",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_apply_count",
 																				"type": "String"
 																			}
 																		},
@@ -1701,11 +1551,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "level_desc",
+																				"name": "level_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "level_desc",
+																				"name": "level_code",
 																				"type": "String"
 																			}
 																		},
@@ -1721,51 +1571,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "promotion_get_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_get_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "promotion_slab_description",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "promotion_slab_description",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_buy_min",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_buy_min",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_buy_max",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_buy_max",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_get_discount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_get_discount",
 																				"type": "String"
 																			}
 																		},
@@ -1781,91 +1591,21 @@
 																		},
 																		{
 																			"source": {
-																				"name": "promotion_slab_get_forevery_qty",
+																				"name": "promotion_slab_buy_min_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "promotion_slab_get_forevery_qty",
+																				"name": "promotion_slab_buy_min_qty",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "promotion_slab_get_forevery_qty_uom",
+																				"name": "promotion_slab_buy_max_qty",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "promotion_slab_get_forevery_qty_uom",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "promotion_slab_get_for_every_value",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "promotion_slab_get_for_every_value",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "slab_max_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "slab_max_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "free_product_desc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "free_product_desc",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "free_product_uom",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "free_product_uom",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "free_product_qty",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "free_product_qty",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "variance",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "variance",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "scheme_apply_on",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "scheme_apply_on",
+																				"name": "promotion_slab_buy_max_qty",
 																				"type": "String"
 																			}
 																		},
@@ -1900,7 +1640,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_SCHMTR_table",
+																	"referenceName": "DS_COHMTR_table",
 																	"type": "DatasetReference"
 																}
 															]
