@@ -3978,10 +3978,10 @@
 													]
 												},
 												{
-													"value": "98",
+													"value": "119",
 													"activities": [
 														{
-															"name": "SBDGAP_Cloud2",
+															"name": "Supervisortrade_Cloud2",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -4049,131 +4049,81 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "Distributor",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "Distributor",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_location",
+																				"name": "Branch",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_location",
+																				"name": "Branch",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "UserCode",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "UserCode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_name",
+																				"name": "UserName",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_name",
+																				"name": "UserName",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel_description",
+																				"name": "UserType",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel_description",
+																				"name": "UserType",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_code",
+																				"name": "FunctionalityUsed",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_code",
+																				"name": "FunctionalityUsed",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer",
+																				"name": "TotalTimeSpent",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer",
+																				"name": "TotalTimeSpent",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "gap_status",
+																				"name": "Average",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "gap_status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "with_sale",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "with_sale",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "no_sale",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "no_sale",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "p3m_p1m_mapping",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "p3m_p1m_mapping",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "report_month",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "report_month",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "report_year",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "report_year",
+																				"name": "Average",
 																				"type": "String"
 																			}
 																		},
@@ -4194,7 +4144,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "DateTime"
+																				"type": "String"
 																			}
 																		}
 																	]
@@ -4208,7 +4158,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_SBDGAP_table",
+																	"referenceName": "DS_Supervisortrade_table",
 																	"type": "DatasetReference"
 																}
 															]
@@ -4216,10 +4166,10 @@
 													]
 												},
 												{
-													"value": "99",
+													"value": "120",
 													"activities": [
 														{
-															"name": "SBDGAP_Cloud3",
+															"name": "Supervisortrade_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -4287,131 +4237,81 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "Distributor",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
+																				"name": "Distributor",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "branch_location",
+																				"name": "Branch",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_location",
+																				"name": "Branch",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_code",
+																				"name": "UserCode",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_code",
+																				"name": "UserCode",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse_name",
+																				"name": "UserName",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "dse_name",
+																				"name": "UserName",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel_description",
+																				"name": "UserType",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel_description",
+																				"name": "UserType",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_code",
+																				"name": "FunctionalityUsed",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_code",
+																				"name": "FunctionalityUsed",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer",
+																				"name": "TotalTimeSpent",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer",
+																				"name": "TotalTimeSpent",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "gap_status",
+																				"name": "Average",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "gap_status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "with_sale",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "with_sale",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "no_sale",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "no_sale",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "p3m_p1m_mapping",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "p3m_p1m_mapping",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "report_month",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "report_month",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "report_year",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "report_year",
+																				"name": "Average",
 																				"type": "String"
 																			}
 																		},
@@ -4432,7 +4332,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "DateTime"
+																				"type": "String"
 																			}
 																		}
 																	]
@@ -4446,7 +4346,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_SBDGAP_table",
+																	"referenceName": "DS_Supervisortrade_table",
 																	"type": "DatasetReference"
 																}
 															]
