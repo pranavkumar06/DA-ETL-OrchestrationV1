@@ -150,32 +150,6 @@
 				}
 			},
 			{
-				"name": "SpCycleStart",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpCycEntry]",
-					"storedProcedureParameters": {
-						"flgInOut": {
-							"value": "1",
-							"type": "Byte"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "CopyLeap_Staging-To-DB_5_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -233,6 +207,37 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "SpCycleStart",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycEntry]",
+						"storedProcedureParameters": {
+							"flgInOut": {
+								"type": "Byte",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
+					}
 				}
 			}
 		],
