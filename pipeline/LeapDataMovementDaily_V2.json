@@ -22,7 +22,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.CycleID",
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
@@ -79,7 +79,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.CycleID",
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
@@ -109,7 +109,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.CycleID",
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
@@ -139,7 +139,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.CycleID",
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
@@ -166,7 +166,17 @@
 						"referenceName": "CopyLeap_Staging-To-DB_5_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -186,7 +196,17 @@
 						"referenceName": "CopyLeap_Staging-To-DB_6_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -206,7 +226,17 @@
 						"referenceName": "CopyLeap_Staging-To-DB_7_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
