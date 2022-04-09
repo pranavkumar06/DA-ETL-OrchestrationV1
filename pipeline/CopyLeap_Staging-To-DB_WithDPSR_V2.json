@@ -127,7 +127,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"on": {
-												"value": "item().FileID",
+												"value": "@item().FileID",
 												"type": "Expression"
 											},
 											"cases": [
