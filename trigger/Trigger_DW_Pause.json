@@ -2,7 +2,7 @@
 	"name": "Trigger_DW_Pause",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
