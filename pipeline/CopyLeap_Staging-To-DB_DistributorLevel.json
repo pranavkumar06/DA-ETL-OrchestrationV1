@@ -1857,7 +1857,7 @@
 												},
 												"FileID": {
 													"value": {
-														"value": "@item().FileID",
+														"value": "@string(activity('spGetFileID').output.firstRow.FileID)",
 														"type": "Expression"
 													},
 													"type": "Int32"
