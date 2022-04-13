@@ -1311,6 +1311,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -1476,6 +1483,15 @@
 																			"sink": {
 																				"name": "smname",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
@@ -1529,6 +1545,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -1695,6 +1718,15 @@
 																				"name": "smname",
 																				"type": "String"
 																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
+																			}
 																		}
 																	]
 																}
@@ -1745,6 +1777,13 @@
 																			"name": "LastModifiedDatetime",
 																			"value": {
 																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
 																				"type": "Expression"
 																			}
 																		}
@@ -1991,6 +2030,14 @@
 																			"sink": {
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
