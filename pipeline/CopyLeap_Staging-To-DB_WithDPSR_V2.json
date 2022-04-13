@@ -474,6 +474,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetId",
+																			"value": {
+																				"value": "@item().FileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -539,6 +546,16 @@
 																			"sink": {
 																				"name": "status",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetId",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetId",
+																				"type": "Int64"
 																			}
 																		},
 																		{
