@@ -2594,6 +2594,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -3249,6 +3256,15 @@
 																			"sink": {
 																				"name": "apply_to_doc_date"
 																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
+																			}
 																		}
 																	]
 																}
@@ -3299,6 +3315,13 @@
 																			"name": "LastModifiedDatetime",
 																			"value": {
 																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
 																				"type": "Expression"
 																			}
 																		}
@@ -3950,10 +3973,20 @@
 																		},
 																		{
 																			"source": {
-																				"name": "apply_to_doc_date"
+																				"name": "apply_to_doc_date",
+																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "apply_to_doc_date"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
