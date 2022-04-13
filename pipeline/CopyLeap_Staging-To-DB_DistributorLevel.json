@@ -1906,7 +1906,7 @@
 												},
 												"FileName": {
 													"value": {
-														"value": "@item().name",
+														"value": "@activity('spGetFileID').output.firstRow.FileID",
 														"type": "Expression"
 													},
 													"type": "String"
@@ -1956,7 +1956,7 @@
 													"FileID": {
 														"type": "Int32",
 														"value": {
-															"value": "@item().FileID",
+															"value": "@activity('spGetFileID').output.firstRow.FileID",
 															"type": "Expression"
 														}
 													},
