@@ -5007,6 +5007,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -5395,6 +5402,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -5729,7 +5743,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -5783,6 +5797,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -6117,7 +6138,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
