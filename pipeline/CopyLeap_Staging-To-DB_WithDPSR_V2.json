@@ -257,11 +257,6 @@
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
 																			}
-																		},
-																		{
-																			"source": {
-																				"name": "FileSetId"
-																			}
 																		}
 																	]
 																}
