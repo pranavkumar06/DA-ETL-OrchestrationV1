@@ -982,6 +982,14 @@
 																				"name": "visit_fb_ach",
 																				"type": "String"
 																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
+																			}
 																		}
 																	]
 																}
