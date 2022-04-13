@@ -240,6 +240,16 @@
 																		},
 																		{
 																			"source": {
+																				"name": "FileSetId",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
 																				"name": "Filename",
 																				"type": "String"
 																			},
