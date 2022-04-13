@@ -323,7 +323,7 @@
 																		{
 																			"name": "FileSetId",
 																			"value": {
-																				"value": "@item().FileID",
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
 																				"type": "Expression"
 																			}
 																		}
@@ -478,7 +478,7 @@
 																		{
 																			"name": "FileSetId",
 																			"value": {
-																				"value": "@item().FileID",
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
 																				"type": "Expression"
 																			}
 																		}
