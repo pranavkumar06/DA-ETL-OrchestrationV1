@@ -1937,7 +1937,7 @@
 										"typeProperties": {
 											"source": {
 												"type": "SqlDWSource",
-												"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+												"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry_DistributorLevel]",
 												"storedProcedureParameters": {
 													"CycleID": {
 														"type": "Int64",
