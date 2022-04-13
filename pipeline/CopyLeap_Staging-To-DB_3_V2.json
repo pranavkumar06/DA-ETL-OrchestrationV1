@@ -501,7 +501,8 @@
 																		},
 																		{
 																			"source": {
-																				"name": "FileSetID"
+																				"name": "FileSetID",
+																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "FileSetID"
