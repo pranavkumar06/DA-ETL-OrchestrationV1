@@ -4040,6 +4040,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -4855,6 +4862,15 @@
 																			"sink": {
 																				"name": "tax_location_code",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
