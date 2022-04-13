@@ -1991,6 +1991,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -2536,6 +2543,15 @@
 																			"sink": {
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
@@ -2589,6 +2605,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -3134,6 +3157,15 @@
 																			"sink": {
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
@@ -3187,6 +3219,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -3442,6 +3481,15 @@
 																			"sink": {
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
@@ -3495,6 +3543,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -3751,6 +3806,15 @@
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
 																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
+																			}
 																		}
 																	]
 																}
@@ -3774,7 +3838,7 @@
 													"value": "66",
 													"activities": [
 														{
-															"name": "IHR_Cloud3",
+															"name": "IHR_Cloud_03",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -3803,6 +3867,13 @@
 																				"value": "@addminutes(utcnow(),330)",
 																				"type": "Expression"
 																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
 																		}
 																	],
 																	"storeSettings": {
@@ -4058,6 +4129,15 @@
 																			"sink": {
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetID"
 																			}
 																		}
 																	]
