@@ -66,7 +66,7 @@
 					{
 						"activity": "SpDeleteOldtmpleapdata",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
@@ -335,6 +335,36 @@
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
 						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "CopyLeap_Staging-To-DB_8_V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpDeleteOldtmpleapdata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyLeap_Staging-To-DB_8_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
 					}
 				}
 			}
