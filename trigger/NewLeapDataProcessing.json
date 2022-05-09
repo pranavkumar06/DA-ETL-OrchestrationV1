@@ -1,0 +1,39 @@
+{
+	"name": "NewLeapDataProcessing",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataMovementDaily_V2",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"windowStart": "@adddays(trigger().scheduledTime, -1)",
+					"windowEnd": "@trigger().scheduledTime",
+					"DataProcessDate": "@{formatDateTime(utcNow(),'dd-MMM-yyyy')}",
+					"Container": "cntleap",
+					"Directory": "@{concat('/', formatDateTime(trigger().scheduledTime, 'yyyy'), '/', formatDateTime(trigger().scheduledTime, 'MM'), '/', formatDateTime(trigger().scheduledTime, 'dd'), '/')}"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-09T04:43:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						11
+					]
+				}
+			}
+		}
+	}
+}
