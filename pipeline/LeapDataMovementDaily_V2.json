@@ -7,7 +7,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpDeleteOldtmpleapdata",
+						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -64,7 +64,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpDeleteOldtmpleapdata",
+						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -343,7 +343,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpDeleteOldtmpleapdata",
+						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -366,6 +366,66 @@
 							"type": "Expression"
 						}
 					}
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpDeleteOldtmpleapdata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyS3-To-Staging_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyS3-To-Staging_Cloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud3",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
