@@ -306,7 +306,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_Cloud1",
+						"referenceName": "CopyS3-To-Staging_Cloud1_NoDelete",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
@@ -326,7 +326,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_Cloud2",
+						"referenceName": "CopyS3-To-Staging_Cloud2_NoDelete",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
@@ -346,7 +346,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_Cloud3",
+						"referenceName": "CopyS3-To-Staging_Cloud3_NoDelete",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
