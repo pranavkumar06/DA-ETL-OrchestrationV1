@@ -756,8 +756,11 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_ACRV_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_ACRV_table_V2",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": "@item().temptablename"
+																	}
 																}
 															]
 														}
@@ -1040,8 +1043,11 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_ACRV_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_ACRV_table_V2",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": "@item().temptablename"
+																	}
 																}
 															]
 														}
