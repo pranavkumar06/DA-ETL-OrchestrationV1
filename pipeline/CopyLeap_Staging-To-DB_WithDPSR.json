@@ -7574,7 +7574,7 @@
 															},
 															{
 																"source": {
-																	"name": "cess_rate",
+																	"name": "cgst_rate",
 																	"type": "String"
 																},
 																"sink": {
