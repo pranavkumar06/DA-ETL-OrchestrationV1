@@ -2369,6 +2369,16 @@
 																	"name": "apply_to_doc_date",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "transaction_customer_type",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "transaction_customer_type",
+																	"type": "String"
+																}
 															}
 														]
 													}
