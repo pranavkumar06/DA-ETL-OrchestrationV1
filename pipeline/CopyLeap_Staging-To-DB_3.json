@@ -706,7 +706,7 @@
 															},
 															{
 																"source": {
-																	"name": "status",
+																	"name": "sbd_status",
 																	"type": "String"
 																},
 																"sink": {
@@ -731,6 +731,16 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sbd_status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sbd_status",
 																	"type": "String"
 																}
 															}
@@ -1024,7 +1034,7 @@
 															},
 															{
 																"source": {
-																	"name": "status",
+																	"name": "sbd_status",
 																	"type": "String"
 																},
 																"sink": {
@@ -1049,6 +1059,16 @@
 																},
 																"sink": {
 																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "sbd_status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "sbd_status",
 																	"type": "String"
 																}
 															}
