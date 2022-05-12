@@ -706,7 +706,7 @@
 															},
 															{
 																"source": {
-																	"name": "sbd_status",
+																	"name": "status",
 																	"type": "String"
 																},
 																"sink": {
@@ -1034,7 +1034,7 @@
 															},
 															{
 																"source": {
-																	"name": "sbd_status",
+																	"name": "status",
 																	"type": "String"
 																},
 																"sink": {
