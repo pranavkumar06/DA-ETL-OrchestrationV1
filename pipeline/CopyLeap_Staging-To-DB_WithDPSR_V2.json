@@ -189,12 +189,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -279,8 +284,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_BSBF_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -344,12 +355,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -434,8 +450,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_BSBF_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -499,12 +521,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -589,8 +616,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_BSBF_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -654,12 +687,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -1003,8 +1041,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_CCCR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -1068,12 +1112,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -1417,8 +1466,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_CCCR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -1482,12 +1537,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -1831,8 +1891,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_CCCR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -1896,12 +1962,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -2554,8 +2625,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DPSR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -2619,12 +2696,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -3277,8 +3359,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DPSR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -3342,12 +3430,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -4000,8 +4093,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DPSR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -4065,12 +4164,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -4723,8 +4827,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DPSR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -4788,12 +4898,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -5446,8 +5561,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DPSR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
@@ -5511,12 +5632,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -6169,8 +6295,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_DPSR_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
