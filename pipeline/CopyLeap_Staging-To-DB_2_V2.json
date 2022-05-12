@@ -474,7 +474,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_ACRV_table_V2",
+																	"referenceName": "DS_Destination_table",
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
@@ -769,7 +769,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_ACRV_table_V2",
+																	"referenceName": "DS_Destination_table",
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
@@ -1064,7 +1064,7 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_ACRV_table_V2",
+																	"referenceName": "DS_Destination_table",
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
@@ -3046,12 +3046,17 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
 																		"rejectType": "value",
 																		"useTypeDefault": true
-																	}
+																	},
+																	"disableMetricsCollection": false
 																},
 																"enableStaging": true,
 																"stagingSettings": {
@@ -3376,8 +3381,14 @@
 															],
 															"outputs": [
 																{
-																	"referenceName": "DS_INVVAL_table",
-																	"type": "DatasetReference"
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
 																}
 															]
 														}
