@@ -182,10 +182,6 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
-																	"preCopyScript": {
-																		"value": "TRUNCATE TABLE @{item().temptablename}",
-																		"type": "Expression"
-																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
@@ -517,10 +513,6 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
-																	"preCopyScript": {
-																		"value": "TRUNCATE TABLE @{item().temptablename}",
-																		"type": "Expression"
-																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
@@ -852,10 +844,6 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
-																	"preCopyScript": {
-																		"value": "TRUNCATE TABLE @{item().temptablename}",
-																		"type": "Expression"
-																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
@@ -1187,10 +1175,6 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
-																	"preCopyScript": {
-																		"value": "TRUNCATE TABLE @{item().temptablename}",
-																		"type": "Expression"
-																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
@@ -1452,10 +1436,6 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
-																	"preCopyScript": {
-																		"value": "TRUNCATE TABLE @{item().temptablename}",
-																		"type": "Expression"
-																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
@@ -1717,10 +1697,6 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
-																	"preCopyScript": {
-																		"value": "TRUNCATE TABLE @{item().temptablename}",
-																		"type": "Expression"
-																	},
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
