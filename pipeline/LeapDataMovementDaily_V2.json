@@ -238,7 +238,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "Dev_DataFoundationConnection",
+						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					}
 				}
