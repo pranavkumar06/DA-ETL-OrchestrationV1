@@ -6441,7 +6441,7 @@
 		"parameters": {
 			"SetID": {
 				"type": "int",
-				"defaultValue": 1
+				"defaultValue": 9
 			},
 			"CycleID": {
 				"type": "int"
