@@ -2046,7 +2046,23 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[SpTruncateDistributorLevelTempTables]"
+								"storedProcedureName": "[dbo].[SpTruncateDistributorLevelTempTables]",
+								"storedProcedureParameters": {
+									"DataProcessDate": {
+										"value": {
+											"value": "@utcnow()",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"FileID": {
+										"value": {
+											"value": "@activity('spGetFileID').output.firstRow.FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									}
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "DataFoundationDB",
