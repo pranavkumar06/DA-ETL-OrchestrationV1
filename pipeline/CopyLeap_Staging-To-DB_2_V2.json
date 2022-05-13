@@ -32,7 +32,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DataFoundationConnection",
+						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -113,67 +113,6 @@
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
-									{
-										"name": "SpCycFileUpdate",
-										"type": "SqlServerStoredProcedure",
-										"dependsOn": [
-											{
-												"activity": "IfFileFound",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"storedProcedureName": "[dbo].[SpCycFileEntry]",
-											"storedProcedureParameters": {
-												"CycleID": {
-													"value": {
-														"value": "@pipeline().parameters.CycleID",
-														"type": "Expression"
-													},
-													"type": "Int64"
-												},
-												"DataDate": {
-													"value": {
-														"value": "@formatDateTime(pipeline().parameters.DataDate)",
-														"type": "Expression"
-													},
-													"type": "DateTime"
-												},
-												"FileID": {
-													"value": {
-														"value": "@item().FileID",
-														"type": "Expression"
-													},
-													"type": "Int32"
-												},
-												"FileName": {
-													"value": {
-														"value": "@activity('GetFileList').output.itemName",
-														"type": "Expression"
-													},
-													"type": "String"
-												},
-												"flgProcessType": {
-													"value": "2",
-													"type": "Byte"
-												}
-											}
-										},
-										"linkedServiceName": {
-											"referenceName": "DataFoundationDB",
-											"type": "LinkedServiceReference"
-										}
-									},
 									{
 										"name": "IfFileFound",
 										"type": "Switch",
@@ -4263,7 +4202,73 @@
 												"partitionOption": "None"
 											},
 											"dataset": {
-												"referenceName": "DataFoundationConnection",
+												"referenceName": "DataFoundationConnectionV2",
+												"type": "DatasetReference"
+											}
+										}
+									},
+									{
+										"name": "SpCycFileSetUpdate",
+										"type": "Lookup",
+										"dependsOn": [
+											{
+												"activity": "IfFileFound",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlDWSource",
+												"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+												"storedProcedureParameters": {
+													"CycleID": {
+														"type": "Int64",
+														"value": {
+															"value": "@pipeline().parameters.CycleID",
+															"type": "Expression"
+														}
+													},
+													"DataDate": {
+														"type": "DateTime",
+														"value": {
+															"value": "@formatDateTime(pipeline().parameters.DataDate,'yyyy-MMM-dd')",
+															"type": "Expression"
+														}
+													},
+													"FileID": {
+														"type": "Int32",
+														"value": {
+															"value": "@item().FileID",
+															"type": "Expression"
+														}
+													},
+													"FileName": {
+														"type": "String",
+														"value": {
+															"value": "@activity('GetFileList').output.itemName",
+															"type": "Expression"
+														}
+													},
+													"flgProcessType": {
+														"type": "Byte",
+														"value": "2"
+													}
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "DataFoundationConnectionV2",
 												"type": "DatasetReference"
 											}
 										}
