@@ -2053,7 +2053,7 @@
 											"value": "@utcnow()",
 											"type": "Expression"
 										},
-										"type": "DateTime"
+										"type": "String"
 									},
 									"FileID": {
 										"value": {
