@@ -2,7 +2,7 @@
 	"name": "DS_Destination_table",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "DataFoundationDB",
+			"referenceName": "Dev_DataFoundationDB",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
