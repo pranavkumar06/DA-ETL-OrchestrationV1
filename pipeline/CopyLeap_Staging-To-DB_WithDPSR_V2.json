@@ -32,7 +32,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DataFoundationConnection",
+						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -6426,7 +6426,7 @@
 												"partitionOption": "None"
 											},
 											"dataset": {
-												"referenceName": "DataFoundationConnection",
+												"referenceName": "DataFoundationConnectionV2",
 												"type": "DatasetReference"
 											}
 										}
