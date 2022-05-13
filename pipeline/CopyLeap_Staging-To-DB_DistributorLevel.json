@@ -83,7 +83,7 @@
 									"partitionOption": "None"
 								},
 								"dataset": {
-									"referenceName": "DS_ATTN_table",
+									"referenceName": "DataFoundationConnectionV2",
 									"type": "DatasetReference"
 								}
 							}
@@ -93,7 +93,7 @@
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "SpTruncateDistributorLevelTempTables",
+									"activity": "SpTruncateDistributorLevelTempTables1",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1904,67 +1904,6 @@
 										}
 									},
 									{
-										"name": "SpCycFileUpdate",
-										"type": "SqlServerStoredProcedure",
-										"dependsOn": [
-											{
-												"activity": "IfFileFound",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"storedProcedureName": "[dbo].[SpCycFileEntry_DistributorLevel]",
-											"storedProcedureParameters": {
-												"CycleID": {
-													"value": {
-														"value": "@pipeline().parameters.CycleID",
-														"type": "Expression"
-													},
-													"type": "Int64"
-												},
-												"DataDate": {
-													"value": {
-														"value": "@formatDateTime(pipeline().parameters.DataDate)",
-														"type": "Expression"
-													},
-													"type": "DateTime"
-												},
-												"FileID": {
-													"value": {
-														"value": "@string(activity('spGetFileID').output.firstRow.FileID)",
-														"type": "Expression"
-													},
-													"type": "Int32"
-												},
-												"FileName": {
-													"value": {
-														"value": "@activity('spGetFileID').output.firstRow.FileID",
-														"type": "Expression"
-													},
-													"type": "String"
-												},
-												"flgProcessType": {
-													"value": "2",
-													"type": "Byte"
-												}
-											}
-										},
-										"linkedServiceName": {
-											"referenceName": "DataFoundationDB",
-											"type": "LinkedServiceReference"
-										}
-									},
-									{
 										"name": "SpCycFileSetEntry",
 										"type": "Lookup",
 										"dependsOn": [],
@@ -2018,7 +1957,73 @@
 												"partitionOption": "None"
 											},
 											"dataset": {
-												"referenceName": "DataFoundationConnection",
+												"referenceName": "DataFoundationConnectionV2",
+												"type": "DatasetReference"
+											}
+										}
+									},
+									{
+										"name": "SpCycFileSetUpdate",
+										"type": "Lookup",
+										"dependsOn": [
+											{
+												"activity": "IfFileFound",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlDWSource",
+												"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry_DistributorLevel]",
+												"storedProcedureParameters": {
+													"CycleID": {
+														"type": "Int64",
+														"value": {
+															"value": "@pipeline().parameters.CycleID",
+															"type": "Expression"
+														}
+													},
+													"DataDate": {
+														"type": "DateTime",
+														"value": {
+															"value": "@formatDateTime(pipeline().parameters.DataDate,'yyyy-MMM-dd')",
+															"type": "Expression"
+														}
+													},
+													"FileID": {
+														"type": "Int32",
+														"value": {
+															"value": "@activity('spGetFileID').output.firstRow.FileID",
+															"type": "Expression"
+														}
+													},
+													"FileName": {
+														"type": "String",
+														"value": {
+															"value": "@activity('GetFileList').output.itemName",
+															"type": "Expression"
+														}
+													},
+													"flgProcessType": {
+														"type": "Byte",
+														"value": "2"
+													}
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "DataFoundationConnectionV2",
 												"type": "DatasetReference"
 											}
 										}
@@ -2027,8 +2032,8 @@
 							}
 						},
 						{
-							"name": "SpTruncateDistributorLevelTempTables",
-							"type": "SqlServerStoredProcedure",
+							"name": "SpTruncateDistributorLevelTempTables1",
+							"type": "Lookup",
 							"dependsOn": [
 								{
 									"activity": "spGetFileID",
@@ -2046,27 +2051,32 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[SpTruncateDistributorLevelTempTables]",
-								"storedProcedureParameters": {
-									"DataProcessDate": {
-										"value": {
-											"value": "@utcnow()",
-											"type": "Expression"
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpTruncateDistributorLevelTempTables]",
+									"storedProcedureParameters": {
+										"DataProcessDate": {
+											"type": "String",
+											"value": {
+												"value": "@utcnow()",
+												"type": "Expression"
+											}
 										},
-										"type": "String"
+										"FileID": {
+											"type": "Int32",
+											"value": {
+												"value": "@activity('spGetFileID').output.firstRow.FileID",
+												"type": "Expression"
+											}
+										}
 									},
-									"FileID": {
-										"value": {
-											"value": "@activity('spGetFileID').output.firstRow.FileID",
-											"type": "Expression"
-										},
-										"type": "Int32"
-									}
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnectionV2",
+									"type": "DatasetReference"
 								}
-							},
-							"linkedServiceName": {
-								"referenceName": "DataFoundationDB",
-								"type": "LinkedServiceReference"
 							}
 						}
 					]
