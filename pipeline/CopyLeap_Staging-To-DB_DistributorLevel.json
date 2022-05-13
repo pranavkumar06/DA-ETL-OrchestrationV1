@@ -93,7 +93,7 @@
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "spGetFileID",
+									"activity": "SpTruncateDistributorLevelTempTables",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2048,6 +2048,33 @@
 										}
 									}
 								]
+							}
+						},
+						{
+							"name": "SpTruncateDistributorLevelTempTables",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "spGetFileID",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpTruncateDistributorLevelTempTables]"
+							},
+							"linkedServiceName": {
+								"referenceName": "DataFoundationDB",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
