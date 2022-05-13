@@ -446,7 +446,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
-																			"value": "@item().temptablename",
+																			"value": "@string(activity('spGetFileID').output.firstRow.temptablename)",
 																			"type": "Expression"
 																		}
 																	}
@@ -777,7 +777,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
-																			"value": "@item().temptablename",
+																			"value": "@string(activity('spGetFileID').output.firstRow.temptablename)",
 																			"type": "Expression"
 																		}
 																	}
@@ -1108,7 +1108,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
-																			"value": "@item().temptablename",
+																			"value": "@string(activity('spGetFileID').output.firstRow.temptablename)",
 																			"type": "Expression"
 																		}
 																	}
@@ -1369,7 +1369,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
-																			"value": "@item().temptablename",
+																			"value": "@string(activity('spGetFileID').output.firstRow.temptablename)",
 																			"type": "Expression"
 																		}
 																	}
@@ -1630,7 +1630,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
-																			"value": "@item().temptablename",
+																			"value": "@string(activity('spGetFileID').output.firstRow.temptablename)",
 																			"type": "Expression"
 																		}
 																	}
@@ -1891,7 +1891,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"tablename": {
-																			"value": "@item().temptablename",
+																			"value": "@string(activity('spGetFileID').output.firstRow.temptablename)",
 																			"type": "Expression"
 																		}
 																	}
