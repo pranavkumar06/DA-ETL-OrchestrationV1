@@ -7,7 +7,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_8_V2",
+						"activity": "CenterPoint",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -37,7 +37,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_8_V2",
+						"activity": "CenterPoint",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -127,7 +127,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_4_V2",
+						"activity": "CenterPoint",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -248,7 +248,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_8_V2",
+						"activity": "CenterPoint",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -278,19 +278,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CopyS3-To-Staging_Cloud2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CopyS3-To-Staging_Cloud1",
+						"activity": "CenterPoint",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -403,6 +391,34 @@
 							"type": "Expression"
 						}
 					}
+				}
+			},
+			{
+				"name": "CenterPoint",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "CopyS3-To-Staging_Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "CopyS3-To-Staging_Cloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "CopyS3-To-Staging_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
 				}
 			}
 		],
