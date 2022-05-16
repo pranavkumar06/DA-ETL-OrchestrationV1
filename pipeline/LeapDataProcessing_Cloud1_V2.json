@@ -87,7 +87,7 @@
 												}
 											},
 											{
-												"name": "Cloud1-Set1",
+												"name": "Cloud-Set1",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
@@ -109,7 +109,7 @@
 										"value": "2",
 										"activities": [
 											{
-												"name": "Cloud1-Set1-Done",
+												"name": "Cloud-Set1-Done",
 												"type": "SetVariable",
 												"dependsOn": [],
 												"userProperties": [],
@@ -219,7 +219,7 @@
 												}
 											},
 											{
-												"name": "Cloud1-Set2",
+												"name": "Cloud-Set2",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
@@ -241,7 +241,7 @@
 										"value": "2",
 										"activities": [
 											{
-												"name": "Cloud1-Set2-Done",
+												"name": "Cloud-Set2-Done",
 												"type": "SetVariable",
 												"dependsOn": [],
 												"userProperties": [],
@@ -351,7 +351,7 @@
 												}
 											},
 											{
-												"name": "Cloud1-Set3",
+												"name": "Cloud-Set3",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
@@ -373,7 +373,7 @@
 										"value": "2",
 										"activities": [
 											{
-												"name": "Cloud1-Set3-Done",
+												"name": "Cloud-Set3-Done",
 												"type": "SetVariable",
 												"dependsOn": [],
 												"userProperties": [],
@@ -483,7 +483,7 @@
 												}
 											},
 											{
-												"name": "Cloud1-Set4",
+												"name": "Cloud-Set4",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
@@ -505,12 +505,12 @@
 										"value": "2",
 										"activities": [
 											{
-												"name": "Cloud1-Set3-Done_copy1",
+												"name": "Cloud-Set4-Done",
 												"type": "SetVariable",
 												"dependsOn": [],
 												"userProperties": [],
 												"typeProperties": {
-													"variableName": "Step3",
+													"variableName": "Step4",
 													"value": true
 												}
 											}
@@ -615,7 +615,7 @@
 												}
 											},
 											{
-												"name": "Cloud1-Set5",
+												"name": "Cloud-Set5",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
@@ -637,12 +637,12 @@
 										"value": "2",
 										"activities": [
 											{
-												"name": "Cloud1-Set3-Done_copy1_copy1",
+												"name": "Cloud1-Set5-Done",
 												"type": "SetVariable",
 												"dependsOn": [],
 												"userProperties": [],
 												"typeProperties": {
-													"variableName": "Step3",
+													"variableName": "Step5",
 													"value": true
 												}
 											}
