@@ -93,7 +93,7 @@
 													"source": {
 														"type": "SqlDWSource",
 														"sqlReaderQuery": {
-															"value": "EXEC @{item().sptobecalled}",
+															"value": "EXEC @{item().spname}",
 															"type": "Expression"
 														},
 														"queryTimeout": "02:00:00",
