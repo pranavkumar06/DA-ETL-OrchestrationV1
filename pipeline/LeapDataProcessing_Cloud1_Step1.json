@@ -40,7 +40,8 @@
 					"dataset": {
 						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
