@@ -97,12 +97,10 @@
 		],
 		"parameters": {
 			"CloudInstance": {
-				"type": "string",
-				"defaultValue": "1"
+				"type": "string"
 			},
 			"Step": {
-				"type": "string",
-				"defaultValue": "1"
+				"type": "string"
 			}
 		},
 		"folder": {

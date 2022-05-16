@@ -78,6 +78,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"CloudInstance": {
+				"type": "string",
+				"defaultValue": "1"
+			}
+		},
 		"variables": {
 			"NoOFTotalSets": {
 				"type": "String",
