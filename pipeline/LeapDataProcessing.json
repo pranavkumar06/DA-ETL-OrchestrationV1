@@ -1,5 +1,5 @@
 {
-	"name": "LeapDataProcessing_Cloud1_Step1",
+	"name": "LeapDataProcessing",
 	"properties": {
 		"activities": [
 			{
@@ -61,53 +61,34 @@
 						"value": "@activity('GetFileList-Set1').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
 					"activities": [
 						{
-							"name": "Switch1",
-							"type": "Switch",
+							"name": "Sp Called",
+							"type": "Lookup",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"on": {
-									"value": "@string(item().FileID)",
-									"type": "Expression"
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderQuery": {
+										"value": "EXEC @{item().spname}",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
-								"cases": [
-									{
-										"value": "13",
-										"activities": [
-											{
-												"name": "Sp Called",
-												"type": "Lookup",
-												"dependsOn": [],
-												"policy": {
-													"timeout": "7.00:00:00",
-													"retry": 0,
-													"retryIntervalInSeconds": 30,
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"source": {
-														"type": "SqlDWSource",
-														"sqlReaderQuery": {
-															"value": "EXEC @{item().spname}",
-															"type": "Expression"
-														},
-														"queryTimeout": "02:00:00",
-														"partitionOption": "None"
-													},
-													"dataset": {
-														"referenceName": "DataFoundationConnectionV2",
-														"type": "DatasetReference"
-													}
-												}
-											}
-										]
-									}
-								]
+								"dataset": {
+									"referenceName": "DataFoundationConnectionV2",
+									"type": "DatasetReference"
+								}
 							}
 						}
 					]
