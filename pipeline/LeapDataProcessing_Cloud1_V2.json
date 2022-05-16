@@ -677,20 +677,17 @@
 										"value": "1",
 										"activities": [
 											{
-												"name": "Wait4",
-												"type": "Wait",
-												"dependsOn": [],
-												"userProperties": [],
-												"typeProperties": {
-													"waitTimeInSeconds": 1
-												}
-											},
-											{
 												"name": "Cloud-Set4",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
-														"activity": "Wait4",
+														"activity": "spDataLoadSBDMasterData_Cloud",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													},
+													{
+														"activity": "Lookup1",
 														"dependencyConditions": [
 															"Succeeded"
 														]
@@ -701,6 +698,44 @@
 													"variableName": "Step4",
 													"value": true
 												}
+											},
+											{
+												"name": "spDataLoadSBDMasterData_Cloud",
+												"type": "Lookup",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlDWSource",
+														"sqlReaderStoredProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"dataset": {
+														"referenceName": "DataFoundationConnectionV2",
+														"type": "DatasetReference"
+													}
+												}
+											},
+											{
+												"name": "Lookup1",
+												"type": "Lookup",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": []
 											}
 										]
 									},
