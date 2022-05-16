@@ -1,5 +1,5 @@
 {
-	"name": "LeapDataProcessing_Cloud1",
+	"name": "LeapDataProcessing",
 	"properties": {
 		"activities": [
 			{
@@ -27,7 +27,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "LeapDataProcessing",
+									"referenceName": "LeapDataProcessing-Set",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
@@ -80,8 +80,7 @@
 		],
 		"parameters": {
 			"CloudInstance": {
-				"type": "string",
-				"defaultValue": "1"
+				"type": "string"
 			}
 		},
 		"variables": {

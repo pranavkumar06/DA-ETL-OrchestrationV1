@@ -420,6 +420,75 @@
 				"typeProperties": {
 					"waitTimeInSeconds": 1
 				}
+			},
+			{
+				"name": "LeapDataProcessing-Cloud1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LeapDataProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CloudInstance": "1"
+					}
+				}
+			},
+			{
+				"name": "LeapDataProcessing-Cloud2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LeapDataProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CloudInstance": "2"
+					}
+				}
+			},
+			{
+				"name": "LeapDataProcessing-Cloud3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LeapDataProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CloudInstance": "3"
+					}
+				}
 			}
 		],
 		"parameters": {
