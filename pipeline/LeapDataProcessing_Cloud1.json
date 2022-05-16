@@ -33,7 +33,10 @@
 								"waitOnCompletion": true,
 								"parameters": {
 									"CloudInstance": "1",
-									"Step": "1"
+									"Step": {
+										"value": "@variables('CurrentSetNo')",
+										"type": "Expression"
+									}
 								}
 							}
 						},
