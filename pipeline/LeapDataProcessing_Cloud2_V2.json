@@ -663,7 +663,7 @@
 			},
 			"CloudInstance": {
 				"type": "String",
-				"defaultValue": "1"
+				"defaultValue": "2"
 			},
 			"Step1": {
 				"type": "Boolean",
