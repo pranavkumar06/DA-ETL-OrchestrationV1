@@ -1,106 +1,101 @@
 {
-	"name": "LeapDataProcessing",
+	"name": "LeapDataProcessing_Cloud1",
 	"properties": {
 		"activities": [
 			{
-				"name": "GetFileList-Set1",
-				"type": "Lookup",
+				"name": "Until All Set Done",
+				"type": "Until",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetFiletoProcess]",
-						"storedProcedureParameters": {
-							"CloudInstanceNo": {
-								"type": "Int32",
-								"value": {
-									"value": "@pipeline().parameters.CloudInstance",
-									"type": "Expression"
+					"expression": {
+						"value": "@not(greaterOrEquals(variables('NoOFTotalSets'),variables('CurrentSetNo')))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "LeapDataProcessing-Step1",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Set Completed",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
-							},
-							"StepNo": {
-								"type": "Byte",
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "LeapDataProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CloudInstance": "1",
+									"Step": {
+										"value": "@variables('CurrentSetNo')",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Set Completed Count",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "LeapDataProcessing-Step1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CurrentSetNo",
 								"value": {
-									"value": "@pipeline().parameters.Step",
+									"value": "@string(add(int(variables('PreviousSetNo')),1))",
 									"type": "Expression"
 								}
 							}
 						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "DataFoundationConnectionV2",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
-			},
-			{
-				"name": "For Each File to process",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "GetFileList-Set1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('GetFileList-Set1').output.value",
-						"type": "Expression"
-					},
-					"isSequential": false,
-					"activities": [
 						{
-							"name": "Sp Called",
-							"type": "Lookup",
+							"name": "Set Completed",
+							"type": "SetVariable",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "SqlDWSource",
-									"sqlReaderQuery": {
-										"value": "EXEC @{item().spname}",
-										"type": "Expression"
-									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"dataset": {
-									"referenceName": "DataFoundationConnectionV2",
-									"type": "DatasetReference"
+								"variableName": "PreviousSetNo",
+								"value": {
+									"value": "@variables('CurrentSetNo')",
+									"type": "Expression"
 								}
 							}
 						}
-					]
+					],
+					"timeout": "7.00:00:00"
 				}
 			}
 		],
 		"parameters": {
 			"CloudInstance": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "1"
+			}
+		},
+		"variables": {
+			"NoOFTotalSets": {
+				"type": "String",
+				"defaultValue": "8"
 			},
-			"Step": {
-				"type": "string"
+			"CurrentSetNo": {
+				"type": "String",
+				"defaultValue": "1"
+			},
+			"PreviousSetNo": {
+				"type": "String",
+				"defaultValue": "0"
 			}
 		},
 		"folder": {
