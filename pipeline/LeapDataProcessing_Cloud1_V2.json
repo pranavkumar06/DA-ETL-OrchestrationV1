@@ -78,20 +78,11 @@
 										"value": "1",
 										"activities": [
 											{
-												"name": "Wait1",
-												"type": "Wait",
-												"dependsOn": [],
-												"userProperties": [],
-												"typeProperties": {
-													"waitTimeInSeconds": 1
-												}
-											},
-											{
 												"name": "Cloud-Set1",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
-														"activity": "Wait1",
+														"activity": "spDataLoadLeapLocationMaster_Cloud3",
 														"dependencyConditions": [
 															"Succeeded"
 														]
@@ -101,6 +92,31 @@
 												"typeProperties": {
 													"variableName": "Step1",
 													"value": true
+												}
+											},
+											{
+												"name": "spDataLoadLeapLocationMaster_Cloud3",
+												"type": "Lookup",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlDWSource",
+														"sqlReaderStoredProcedureName": "[dbo].[spDataLoadLeapLocationMaster_Cloud3]",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"dataset": {
+														"referenceName": "DataFoundationConnectionV2",
+														"type": "DatasetReference"
+													}
 												}
 											}
 										]
