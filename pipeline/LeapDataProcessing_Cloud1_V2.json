@@ -226,20 +226,23 @@
 										"value": "1",
 										"activities": [
 											{
-												"name": "Wait1_copy1",
-												"type": "Wait",
-												"dependsOn": [],
-												"userProperties": [],
-												"typeProperties": {
-													"waitTimeInSeconds": 1
-												}
-											},
-											{
 												"name": "Cloud-Set2",
 												"type": "SetVariable",
 												"dependsOn": [
 													{
-														"activity": "Wait1_copy1",
+														"activity": "spDataLoadRawLEAPTAS_DSEM_Cloud1",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													},
+													{
+														"activity": "spDataLoadPLISTData_Cloud1",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													},
+													{
+														"activity": "spDataLoadtmpRawLEAPTAS_RTRM_Cloud1",
 														"dependencyConditions": [
 															"Succeeded"
 														]
@@ -249,6 +252,81 @@
 												"typeProperties": {
 													"variableName": "Step2",
 													"value": true
+												}
+											},
+											{
+												"name": "spDataLoadRawLEAPTAS_DSEM_Cloud1",
+												"type": "Lookup",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlDWSource",
+														"sqlReaderStoredProcedureName": "[dbo].[spDataLoadRawLEAPTAS_DSEM_Cloud1]",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"dataset": {
+														"referenceName": "DataFoundationConnectionV2",
+														"type": "DatasetReference"
+													}
+												}
+											},
+											{
+												"name": "spDataLoadPLISTData_Cloud1",
+												"type": "Lookup",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlDWSource",
+														"sqlReaderStoredProcedureName": "[dbo].[spDataLoadPLISTData_Cloud1]",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"dataset": {
+														"referenceName": "DataFoundationConnectionV2",
+														"type": "DatasetReference"
+													}
+												}
+											},
+											{
+												"name": "spDataLoadtmpRawLEAPTAS_RTRM_Cloud1",
+												"type": "Lookup",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlDWSource",
+														"sqlReaderStoredProcedureName": "[dbo].[spDataLoadtmpRawLEAPTAS_RTRM_Cloud1]",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"dataset": {
+														"referenceName": "DataFoundationConnectionV2",
+														"type": "DatasetReference"
+													}
 												}
 											}
 										]
