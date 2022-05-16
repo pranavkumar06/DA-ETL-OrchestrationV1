@@ -84,8 +84,8 @@
 										}
 									},
 									{
-										"name": "CheckCompleted-Step2",
-										"type": "Lookup",
+										"name": "Cloud1-Set1",
+										"type": "SetVariable",
 										"dependsOn": [
 											{
 												"activity": "Wait1",
@@ -94,43 +94,90 @@
 												]
 											}
 										],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
 										"userProperties": [],
 										"typeProperties": {
-											"source": {
-												"type": "SqlDWSource",
-												"sqlReaderStoredProcedureName": "[dbo].[SpIsStepCompleted]",
-												"storedProcedureParameters": {
-													"CloudInstanceNo": {
-														"type": "Int32",
-														"value": "1"
-													},
-													"StepNo": {
-														"type": "Byte",
-														"value": "2"
-													}
-												},
-												"queryTimeout": "02:00:00",
-												"partitionOption": "None"
-											},
-											"dataset": {
-												"referenceName": "DataFoundationConnectionV2",
-												"type": "DatasetReference"
-											}
+											"variableName": "flgCloud1-Step1",
+											"value": true
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "CheckCompleted-Step2",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "If Step1 Files Recieved",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpIsStepCompleted]",
+									"storedProcedureParameters": {
+										"CloudInstanceNo": {
+											"type": "Int32",
+											"value": "1"
+										},
+										"StepNo": {
+											"type": "Byte",
+											"value": "2"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnectionV2",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "If Step2 Files Recieved",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "CheckCompleted-Step2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(activity('CheckCompleted-Step2').output.firstRow.flgCompleted,1)",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Wait2",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 1
 										}
 									},
 									{
-										"name": "If Condition1_copy1",
-										"type": "IfCondition",
+										"name": "flgCloud1-Step2",
+										"type": "SetVariable",
 										"dependsOn": [
 											{
-												"activity": "CheckCompleted-Step2",
+												"activity": "Wait2",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -138,38 +185,8 @@
 										],
 										"userProperties": [],
 										"typeProperties": {
-											"expression": {
-												"value": "@equals(activity('CheckCompleted-Step1').output.firstRow.flgCompleted,1)",
-												"type": "Expression"
-											},
-											"ifTrueActivities": [
-												{
-													"name": "Wait2",
-													"type": "Wait",
-													"dependsOn": [],
-													"userProperties": [],
-													"typeProperties": {
-														"waitTimeInSeconds": 1
-													}
-												},
-												{
-													"name": "flgProcessingDone_Cloud1_Success",
-													"type": "SetVariable",
-													"dependsOn": [
-														{
-															"activity": "Wait2",
-															"dependencyConditions": [
-																"Succeeded"
-															]
-														}
-													],
-													"userProperties": [],
-													"typeProperties": {
-														"variableName": "flgProcessingDone_Cloud1",
-														"value": true
-													}
-												}
-											]
+											"variableName": "flgCloud1-Step2",
+											"value": true
 										}
 									}
 								]
@@ -206,6 +223,10 @@
 				"defaultValue": "3"
 			},
 			"flgCloud1-Step1": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud1-Step2": {
 				"type": "Boolean",
 				"defaultValue": false
 			}
