@@ -70,7 +70,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"on": {
-									"value": "@string(activity('CheckCompleted-Step1').output.firstRow.FileID)",
+									"value": "@string(activity('CheckCompleted-Step1').output.firstRow.flgCompleted)",
 									"type": "Expression"
 								},
 								"cases": [
@@ -202,7 +202,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"on": {
-									"value": "@string(activity('CheckCompleted-Step2').output.firstRow.FileID)",
+									"value": "@string(activity('CheckCompleted-Step2').output.firstRow.flgCompleted)",
 									"type": "Expression"
 								},
 								"cases": [
@@ -231,8 +231,8 @@
 												],
 												"userProperties": [],
 												"typeProperties": {
-													"variableName": "Step1",
-													"value": "true"
+													"variableName": "Step2",
+													"value": true
 												}
 											}
 										]
@@ -241,13 +241,13 @@
 										"value": "2",
 										"activities": [
 											{
-												"name": "Cloud1-Set1-Done_copy1",
+												"name": "Cloud1-Set2-Done",
 												"type": "SetVariable",
 												"dependsOn": [],
 												"userProperties": [],
 												"typeProperties": {
-													"variableName": "Step1",
-													"value": "true"
+													"variableName": "Step2",
+													"value": true
 												}
 											}
 										]
