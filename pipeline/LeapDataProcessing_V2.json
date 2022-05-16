@@ -14,7 +14,7 @@
 				],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(variables('flgProcessingDone_Cloud1'),1)",
+						"value": "@bool(variables('flgProcessingDone_Cloud1'))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -156,6 +156,23 @@
 										}
 									}
 								]
+							}
+						},
+						{
+							"name": "flgProcessingDone_Cloud1_Success",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "If Condition1_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "flgProcessingDone_Cloud1",
+								"value": "1"
 							}
 						}
 					],
