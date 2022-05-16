@@ -1,5 +1,5 @@
 {
-	"name": "LeapDataProcessing_V2",
+	"name": "LeapDataProcessing_Cloud1_V2",
 	"properties": {
 		"activities": [
 			{
@@ -234,6 +234,18 @@
 				"defaultValue": false
 			},
 			"Step2": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"Step3": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"Step4": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"Step5": {
 				"type": "Boolean",
 				"defaultValue": false
 			}
