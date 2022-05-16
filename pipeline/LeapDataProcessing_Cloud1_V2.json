@@ -57,8 +57,8 @@
 							}
 						},
 						{
-							"name": "If Step1 Files Recieved",
-							"type": "IfCondition",
+							"name": "Processing Check",
+							"type": "Switch",
 							"dependsOn": [
 								{
 									"activity": "CheckCompleted-Step1",
@@ -69,36 +69,56 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"expression": {
-									"value": "@equals(activity('CheckCompleted-Step1').output.firstRow.flgCompleted,1)",
+								"on": {
+									"value": "@string(activity('CheckCompleted-Step1').output.firstRow.FileID)",
 									"type": "Expression"
 								},
-								"ifTrueActivities": [
+								"cases": [
 									{
-										"name": "Wait1",
-										"type": "Wait",
-										"dependsOn": [],
-										"userProperties": [],
-										"typeProperties": {
-											"waitTimeInSeconds": 1
-										}
+										"value": "1",
+										"activities": [
+											{
+												"name": "Wait1",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 1
+												}
+											},
+											{
+												"name": "Cloud1-Set1",
+												"type": "SetVariable",
+												"dependsOn": [
+													{
+														"activity": "Wait1",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "Step1",
+													"value": true
+												}
+											}
+										]
 									},
 									{
-										"name": "Cloud1-Set1",
-										"type": "SetVariable",
-										"dependsOn": [
+										"value": "2",
+										"activities": [
 											{
-												"activity": "Wait1",
-												"dependencyConditions": [
-													"Succeeded"
-												]
+												"name": "Cloud1-Set1-Done",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "Step1",
+													"value": true
+												}
 											}
-										],
-										"userProperties": [],
-										"typeProperties": {
-											"variableName": "Step1",
-											"value": true
-										}
+										]
 									}
 								]
 							}
