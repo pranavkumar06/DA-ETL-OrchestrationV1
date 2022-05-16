@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Cloud 1 Processing",
+				"name": "Cloud 1 Step-1",
 				"type": "Until",
 				"dependsOn": [],
 				"userProperties": [
@@ -102,18 +102,38 @@
 									}
 								]
 							}
-						},
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Cloud 1 Step-2",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Cloud 1 Step-1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [
+					{
+						"name": "CloudInstance",
+						"value": "1"
+					}
+				],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('flgProcessingDone_Cloud1'))",
+						"type": "Expression"
+					},
+					"activities": [
 						{
 							"name": "CheckCompleted-Step2",
 							"type": "Lookup",
-							"dependsOn": [
-								{
-									"activity": "If Step1 Files Recieved",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
