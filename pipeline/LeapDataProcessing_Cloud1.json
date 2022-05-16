@@ -52,7 +52,7 @@
 							"typeProperties": {
 								"variableName": "CurrentSetNo",
 								"value": {
-									"value": "@variables('PreviousSetNo')",
+									"value": "@string(add(int(variables('PreviousSetNo')),1))",
 									"type": "Expression"
 								}
 							}
@@ -82,7 +82,7 @@
 			},
 			"CurrentSetNo": {
 				"type": "String",
-				"defaultValue": "1"
+				"defaultValue": "0"
 			},
 			"PreviousSetNo": {
 				"type": "String",
