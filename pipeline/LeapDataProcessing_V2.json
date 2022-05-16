@@ -151,28 +151,28 @@
 													"typeProperties": {
 														"waitTimeInSeconds": 1
 													}
+												},
+												{
+													"name": "flgProcessingDone_Cloud1_Success",
+													"type": "SetVariable",
+													"dependsOn": [
+														{
+															"activity": "Wait2",
+															"dependencyConditions": [
+																"Succeeded"
+															]
+														}
+													],
+													"userProperties": [],
+													"typeProperties": {
+														"variableName": "flgProcessingDone_Cloud1",
+														"value": "1"
+													}
 												}
 											]
 										}
 									}
 								]
-							}
-						},
-						{
-							"name": "flgProcessingDone_Cloud1_Success",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "If Step1 Files Recieved",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "flgProcessingDone_Cloud1",
-								"value": "1"
 							}
 						}
 					],
