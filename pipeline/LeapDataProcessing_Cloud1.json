@@ -82,11 +82,11 @@
 			},
 			"CurrentSetNo": {
 				"type": "String",
-				"defaultValue": "0"
+				"defaultValue": "1"
 			},
 			"PreviousSetNo": {
 				"type": "String",
-				"defaultValue": "1"
+				"defaultValue": "0"
 			}
 		},
 		"folder": {
