@@ -522,6 +522,138 @@
 					],
 					"timeout": "7.00:00:00"
 				}
+			},
+			{
+				"name": "Cloud 1 Step-5",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Cloud 1 Step-4",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [
+					{
+						"name": "CloudInstance",
+						"value": "1"
+					}
+				],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('Step5'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "CheckCompleted-Step5",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpIsStepCompleted]",
+									"storedProcedureParameters": {
+										"CloudInstanceNo": {
+											"type": "Int32",
+											"value": {
+												"value": "@variables('CloudInstance')",
+												"type": "Expression"
+											}
+										},
+										"StepNo": {
+											"type": "Byte",
+											"value": "5"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnectionV2",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Processing Check_Step5",
+							"type": "Switch",
+							"dependsOn": [
+								{
+									"activity": "CheckCompleted-Step5",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@string(activity('CheckCompleted-Step5').output.firstRow.flgCompleted)",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "1",
+										"activities": [
+											{
+												"name": "Wait5",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 1
+												}
+											},
+											{
+												"name": "Cloud1-Set5",
+												"type": "SetVariable",
+												"dependsOn": [
+													{
+														"activity": "Wait5",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "Step5",
+													"value": true
+												}
+											}
+										]
+									},
+									{
+										"value": "2",
+										"activities": [
+											{
+												"name": "Cloud1-Set3-Done_copy1_copy1",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "Step3",
+													"value": true
+												}
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
 			}
 		],
 		"variables": {
