@@ -86,7 +86,7 @@
 			},
 			"PreviousSetNo": {
 				"type": "String",
-				"defaultValue": "0"
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
