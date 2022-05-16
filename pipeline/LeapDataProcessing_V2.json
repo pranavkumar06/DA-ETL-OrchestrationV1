@@ -166,7 +166,7 @@
 													"userProperties": [],
 													"typeProperties": {
 														"variableName": "flgProcessingDone_Cloud1",
-														"value": "1"
+														"value": true
 													}
 												}
 											]
@@ -183,15 +183,15 @@
 		"variables": {
 			"flgProcessingDone_Cloud1": {
 				"type": "Boolean",
-				"defaultValue": "0"
+				"defaultValue": false
 			},
 			"flgProcessingDone_Cloud2": {
 				"type": "Boolean",
-				"defaultValue": "0"
+				"defaultValue": false
 			},
 			"flgProcessingDone_Cloud3": {
 				"type": "Boolean",
-				"defaultValue": "0"
+				"defaultValue": false
 			},
 			"Cloud1": {
 				"type": "String",
@@ -204,6 +204,10 @@
 			"Cloud3": {
 				"type": "String",
 				"defaultValue": "3"
+			},
+			"flgCloud1-Step1": {
+				"type": "Boolean",
+				"defaultValue": false
 			}
 		},
 		"folder": {
