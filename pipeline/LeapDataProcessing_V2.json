@@ -14,7 +14,7 @@
 				],
 				"typeProperties": {
 					"expression": {
-						"value": "@bool(variables('flgProcessingDone_Cloud1'))",
+						"value": "@bool(variables('Step1'))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -38,7 +38,7 @@
 										"CloudInstanceNo": {
 											"type": "Int32",
 											"value": {
-												"value": "@variables('Cloud1')",
+												"value": "@variables('CloudInstance')",
 												"type": "Expression"
 											}
 										},
@@ -96,7 +96,7 @@
 										],
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "flgCloud1-Step1",
+											"variableName": "Step1",
 											"value": true
 										}
 									}
@@ -126,7 +126,7 @@
 				],
 				"typeProperties": {
 					"expression": {
-						"value": "@bool(variables('flgProcessingDone_Cloud1'))",
+						"value": "@bool(variables('Step2'))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -149,7 +149,10 @@
 									"storedProcedureParameters": {
 										"CloudInstanceNo": {
 											"type": "Int32",
-											"value": "1"
+											"value": {
+												"value": "@variables('CloudInstance')",
+												"type": "Expression"
+											}
 										},
 										"StepNo": {
 											"type": "Byte",
@@ -205,7 +208,7 @@
 										],
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "flgCloud1-Step2",
+											"variableName": "Step2",
 											"value": true
 										}
 									}
@@ -218,35 +221,19 @@
 			}
 		],
 		"variables": {
-			"flgProcessingDone_Cloud1": {
+			"flgProcessingDone": {
 				"type": "Boolean",
 				"defaultValue": false
 			},
-			"flgProcessingDone_Cloud2": {
-				"type": "Boolean",
-				"defaultValue": false
-			},
-			"flgProcessingDone_Cloud3": {
-				"type": "Boolean",
-				"defaultValue": false
-			},
-			"Cloud1": {
+			"CloudInstance": {
 				"type": "String",
 				"defaultValue": "1"
 			},
-			"Cloud2": {
-				"type": "String",
-				"defaultValue": "2"
-			},
-			"Cloud3": {
-				"type": "String",
-				"defaultValue": "3"
-			},
-			"flgCloud1-Step1": {
+			"Step1": {
 				"type": "Boolean",
 				"defaultValue": false
 			},
-			"flgCloud1-Step2": {
+			"Step2": {
 				"type": "Boolean",
 				"defaultValue": false
 			}
