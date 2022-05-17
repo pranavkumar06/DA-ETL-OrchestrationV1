@@ -75,6 +75,26 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Set Completed Count_copy1",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "LeapDataProcessing-Step1",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CurrentSetNo",
+								"value": {
+									"value": "@string(add(int(variables('PreviousSetNo')),1))",
+									"type": "Expression"
+								}
+							}
 						}
 					],
 					"timeout": "7.00:00:00"
