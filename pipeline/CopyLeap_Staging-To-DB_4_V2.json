@@ -9097,6 +9097,63 @@
 												"type": "DatasetReference"
 											}
 										}
+									},
+									{
+										"name": "CopyLeapStaging-To-ADLS-OneFile",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "SpCycFileSetUpdate",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "CopyLeapStaging-To-ADLS-OneFile",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"Directory": "cntleap",
+												"Folder": {
+													"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+													"type": "Expression"
+												},
+												"FileName": {
+													"value": "@activity('GetFileList').output.itemName",
+													"type": "Expression"
+												}
+											}
+										}
+									},
+									{
+										"name": "DeleteStagingOneFile",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "CopyLeapStaging-To-ADLS-OneFile",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "DeleteStagingOneFile",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"FileName": {
+													"value": "@activity('GetFileList').output.itemName",
+													"type": "Expression"
+												}
+											}
+										}
 									}
 								]
 							}
