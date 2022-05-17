@@ -32,7 +32,10 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"CloudInstance": "1",
+									"CloudInstance": {
+										"value": "@pipeline().parameters.CloudInstance",
+										"type": "Expression"
+									},
 									"Step": {
 										"value": "@variables('CurrentSetNo')",
 										"type": "Expression"
