@@ -1,5 +1,5 @@
 {
-	"name": "CopyLeap_Staging-To-DB_2_V2",
+	"name": "CopyLeap_Staging-To-DB_2_V2_Cloud1",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
@@ -18,8 +18,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetFileDetails]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileDetails]",
 						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Cloud",
+									"type": "Expression"
+								}
+							},
 							"DFSetID": {
 								"type": "Int32",
 								"value": {
@@ -70,7 +77,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "LeapStorageSourceDataset_File",
+									"referenceName": "LeapStorageSourceDataset_File_V2_Cloud1",
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
@@ -407,7 +414,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud1",
 																	"type": "DatasetReference"
 																}
 															],
@@ -702,7 +709,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud2",
 																	"type": "DatasetReference"
 																}
 															],
@@ -997,7 +1004,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1320,7 +1327,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud1",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1643,7 +1650,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud2",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1966,7 +1973,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -4373,6 +4380,9 @@
 				"type": "int"
 			},
 			"DataDate": {
+				"type": "string"
+			},
+			"Cloud": {
 				"type": "string"
 			}
 		},
