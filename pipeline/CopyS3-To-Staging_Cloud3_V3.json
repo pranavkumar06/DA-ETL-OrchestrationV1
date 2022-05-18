@@ -140,7 +140,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "LeapStorageSourceDataset_V2",
+									"referenceName": "LeapStorageSourceDataset_V2_Cloud3",
 									"type": "DatasetReference"
 								}
 							]
