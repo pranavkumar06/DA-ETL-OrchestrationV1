@@ -1,0 +1,27 @@
+{
+	"name": "LeapCSV_Staging_V2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "FileConnection"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "CFR_cloud01_2021Apr18.csv",
+				"container": "leaptemp-v2"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
