@@ -4168,7 +4168,7 @@
 										}
 									},
 									{
-										"name": "DeleteStagingOneFile",
+										"name": "DeleteStagingOneFile-Cloud1",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
@@ -4181,7 +4181,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "DeleteStagingOneFile",
+												"referenceName": "DeleteStagingOneFile_Cloud1",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
