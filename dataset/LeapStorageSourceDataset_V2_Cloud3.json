@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "Cloud2",
+				"folderPath": "Cloud3",
 				"container": "leapstaging"
 			}
 		}
