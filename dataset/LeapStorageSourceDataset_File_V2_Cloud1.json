@@ -1,0 +1,31 @@
+{
+	"name": "LeapStorageSourceDataset_File_V2_Cloud1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "Cloud1",
+				"container": "leapstaging"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
