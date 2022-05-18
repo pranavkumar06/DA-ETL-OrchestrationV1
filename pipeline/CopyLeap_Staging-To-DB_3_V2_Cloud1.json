@@ -1557,7 +1557,7 @@
 										}
 									},
 									{
-										"name": "CopyLeapStaging-To-ADLS-OneFile",
+										"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
@@ -1570,7 +1570,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "CopyLeapStaging-To-ADLS-OneFile",
+												"referenceName": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
@@ -1592,7 +1592,7 @@
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
-												"activity": "CopyLeapStaging-To-ADLS-OneFile",
+												"activity": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 												"dependencyConditions": [
 													"Succeeded"
 												]
