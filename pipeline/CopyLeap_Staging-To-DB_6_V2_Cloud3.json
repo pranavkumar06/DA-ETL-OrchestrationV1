@@ -139,10 +139,10 @@
 											},
 											"cases": [
 												{
-													"value": "103",
+													"value": "105",
 													"activities": [
 														{
-															"name": "SCHMPG_cloud01",
+															"name": "SCHMPG_cloud03",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -344,7 +344,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -364,10 +364,10 @@
 													]
 												},
 												{
-													"value": "106",
+													"value": "108",
 													"activities": [
 														{
-															"name": "SCHMTR_Cloud1",
+															"name": "SCHMTR_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -769,7 +769,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -789,10 +789,10 @@
 													]
 												},
 												{
-													"value": "109",
+													"value": "111",
 													"activities": [
 														{
-															"name": "TGTACT_Cloud1",
+															"name": "TGTACT_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -984,7 +984,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1004,10 +1004,10 @@
 													]
 												},
 												{
-													"value": "112",
+													"value": "114",
 													"activities": [
 														{
-															"name": "Supervisordetailed_Cloud1",
+															"name": "Supervisordetailed_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1219,7 +1219,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1239,10 +1239,10 @@
 													]
 												},
 												{
-													"value": "115",
+													"value": "117",
 													"activities": [
 														{
-															"name": "Supervisorsummary_Cloud1",
+															"name": "Supervisorsummary_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1434,7 +1434,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1454,10 +1454,10 @@
 													]
 												},
 												{
-													"value": "118",
+													"value": "120",
 													"activities": [
 														{
-															"name": "Supervisortrade_Cloud1",
+															"name": "Supervisortrade_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1649,7 +1649,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1669,10 +1669,10 @@
 													]
 												},
 												{
-													"value": "121",
+													"value": "123",
 													"activities": [
 														{
-															"name": "SBDMPG_Cloud1",
+															"name": "SBDMPG_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -1814,7 +1814,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
