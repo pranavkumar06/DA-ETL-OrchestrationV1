@@ -1,5 +1,5 @@
 {
-	"name": "CopyLeap_Staging-To-DB_DistributorLevel",
+	"name": "CopyLeap_Staging-To-DB_DistributorLevel_Cloud1",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
@@ -2174,6 +2174,9 @@
 				"type": "string"
 			},
 			"DataDate": {
+				"type": "string"
+			},
+			"Cloud": {
 				"type": "string"
 			}
 		},
