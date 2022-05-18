@@ -858,7 +858,7 @@
 										}
 									},
 									{
-										"name": "CopyLeapStaging-To-ADLS-OneFile",
+										"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud2",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
@@ -893,7 +893,7 @@
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
-												"activity": "CopyLeapStaging-To-ADLS-OneFile",
+												"activity": "CopyLeapStaging-To-ADLS-OneFile-Cloud2",
 												"dependencyConditions": [
 													"Succeeded"
 												]
