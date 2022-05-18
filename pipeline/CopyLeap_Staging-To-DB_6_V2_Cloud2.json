@@ -77,7 +77,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "LeapStorageSourceDataset_File_V2_Cloud1",
+									"referenceName": "LeapStorageSourceDataset_File_V2_Cloud2",
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
@@ -139,10 +139,10 @@
 											},
 											"cases": [
 												{
-													"value": "103",
+													"value": "104",
 													"activities": [
 														{
-															"name": "SCHMPG_cloud01",
+															"name": "SCHMPG_cloud02",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -344,7 +344,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud2",
 																	"type": "DatasetReference"
 																}
 															],
