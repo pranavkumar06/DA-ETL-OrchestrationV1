@@ -4203,6 +4203,9 @@
 			},
 			"DataDate": {
 				"type": "string"
+			},
+			"Cloud": {
+				"type": "string"
 			}
 		},
 		"folder": {
