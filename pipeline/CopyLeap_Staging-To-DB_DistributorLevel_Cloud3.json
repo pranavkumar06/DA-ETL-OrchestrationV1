@@ -18,7 +18,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "LeapStorageSourceDataset_V2_Cloud1",
+						"referenceName": "LeapStorageSourceDataset_V2_Cloud3",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
