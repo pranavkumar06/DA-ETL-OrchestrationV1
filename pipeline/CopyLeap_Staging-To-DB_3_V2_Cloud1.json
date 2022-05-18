@@ -1,5 +1,5 @@
 {
-	"name": "CopyLeap_Staging-To-DB_3_V2",
+	"name": "CopyLeap_Staging-To-DB_3_V2_Cloud1",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
