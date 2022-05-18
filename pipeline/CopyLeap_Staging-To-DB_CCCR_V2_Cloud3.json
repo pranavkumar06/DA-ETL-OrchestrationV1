@@ -688,7 +688,7 @@
 										}
 									},
 									{
-										"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
+										"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud3",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
@@ -701,7 +701,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
+												"referenceName": "CopyLeapStaging-To-ADLS-OneFile-Cloud3",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
@@ -719,11 +719,11 @@
 										}
 									},
 									{
-										"name": "DeleteStagingOneFile-Cloud1",
+										"name": "DeleteStagingOneFile-Cloud3",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
-												"activity": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
+												"activity": "CopyLeapStaging-To-ADLS-OneFile-Cloud3",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -732,7 +732,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "DeleteStagingOneFile_Cloud1",
+												"referenceName": "DeleteStagingOneFile_Cloud3",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
