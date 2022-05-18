@@ -1,5 +1,5 @@
 {
-	"name": "CopyLeap_Staging-To-DB_CCCR_V2",
+	"name": "CopyLeap_Staging-To-DB_CCCR_V2_Cloud1",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
@@ -1628,6 +1628,9 @@
 				"type": "int"
 			},
 			"DataDate": {
+				"type": "string"
+			},
+			"Cloud1": {
 				"type": "string"
 			}
 		},
