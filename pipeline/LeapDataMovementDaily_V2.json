@@ -217,7 +217,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "Wait 5 min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -433,7 +433,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"activity": "Wait 5 minute",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -456,7 +456,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"activity": "Wait 5 minute",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -479,7 +479,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"activity": "Wait 5 minute",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -511,6 +511,61 @@
 					"parameters": {
 						"ScaleVal": "DW100c"
 					}
+				}
+			},
+			{
+				"name": "DW_Scale_V2-200DW",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_CCCR_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DW_Scale_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "DW200c"
+					}
+				}
+			},
+			{
+				"name": "Wait 5 min",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 300
+				}
+			},
+			{
+				"name": "Wait 5 minute",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "DW_Scale_V2-200DW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 300
 				}
 			}
 		],
