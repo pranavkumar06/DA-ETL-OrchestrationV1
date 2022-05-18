@@ -18,8 +18,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetFileDetails]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileDetails]",
 						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Cloud",
+									"type": "Expression"
+								}
+							},
 							"DFSetID": {
 								"type": "Int32",
 								"value": {
@@ -70,7 +77,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "LeapStorageSourceDataset_File",
+									"referenceName": "LeapStorageSourceDataset_File_V2_Cloud1",
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
@@ -533,7 +540,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud1",
 																	"type": "DatasetReference"
 																}
 															],
@@ -954,7 +961,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud2",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1375,7 +1382,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud3",
 																	"type": "DatasetReference"
 																}
 															],
@@ -1523,7 +1530,7 @@
 										}
 									},
 									{
-										"name": "CopyLeapStaging-To-ADLS-OneFile",
+										"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
@@ -1536,7 +1543,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "CopyLeapStaging-To-ADLS-OneFile",
+												"referenceName": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
@@ -1554,11 +1561,11 @@
 										}
 									},
 									{
-										"name": "DeleteStagingOneFile",
+										"name": "DeleteStagingOneFile-Cloud1",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
-												"activity": "CopyLeapStaging-To-ADLS-OneFile",
+												"activity": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -1567,7 +1574,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "DeleteStagingOneFile",
+												"referenceName": "DeleteStagingOneFile_Cloud1",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
@@ -1608,6 +1615,15 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderStoredProcedureName": "[dbo].[SpTruncateCCCRTempTable]",
+						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Cloud",
+									"type": "Expression"
+								}
+							}
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -1630,7 +1646,7 @@
 			"DataDate": {
 				"type": "string"
 			},
-			"Cloud1": {
+			"Cloud": {
 				"type": "string"
 			}
 		},
