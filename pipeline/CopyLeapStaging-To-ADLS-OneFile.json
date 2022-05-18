@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyLeapStaging-To-ADLS-OneFile",
+				"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -36,7 +36,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "LeapStorageSourceDataset_File_V2",
+						"referenceName": "LeapStorageSourceDataset_File_V2_Cloud1",
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": {
