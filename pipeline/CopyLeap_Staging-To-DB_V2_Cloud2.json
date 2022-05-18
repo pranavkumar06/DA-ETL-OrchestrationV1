@@ -871,7 +871,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "CopyLeapStaging-To-ADLS-OneFile",
+												"referenceName": "CopyLeapStaging-To-ADLS-OneFile-Cloud2",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
