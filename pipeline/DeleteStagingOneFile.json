@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "LeapStorageSourceDataset_File",
+						"referenceName": "LeapStorageSourceDataset_File_V2",
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": {
