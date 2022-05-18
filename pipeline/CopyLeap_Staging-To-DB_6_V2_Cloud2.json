@@ -364,10 +364,10 @@
 													]
 												},
 												{
-													"value": "106",
+													"value": "107",
 													"activities": [
 														{
-															"name": "SCHMTR_Cloud1",
+															"name": "SCHMTR_Cloud2",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -769,7 +769,7 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "LeapCSV_Staging",
+																	"referenceName": "LeapCSV_Staging_V2_Cloud2",
 																	"type": "DatasetReference"
 																}
 															],
