@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_8_V2",
+						"referenceName": "CopyLeap_Staging-To-DB_8_V2_Cloud1",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
