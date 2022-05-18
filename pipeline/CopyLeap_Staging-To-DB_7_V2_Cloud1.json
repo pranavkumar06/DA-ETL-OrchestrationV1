@@ -1,5 +1,5 @@
 {
-	"name": "CopyLeap_Staging-To-DB_7_V2",
+	"name": "CopyLeap_Staging-To-DB_7_V2_Cloud1",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
@@ -18,8 +18,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetFileDetails]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileDetails]",
 						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Cloud",
+									"type": "Expression"
+								}
+							},
 							"DFSetID": {
 								"type": "Int32",
 								"value": {
@@ -2507,6 +2514,9 @@
 				"type": "int"
 			},
 			"DataDate": {
+				"type": "string"
+			},
+			"Cloud": {
 				"type": "string"
 			}
 		},
