@@ -18,8 +18,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetFileDetails]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileDetails]",
 						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Cloud",
+									"type": "Expression"
+								}
+							},
 							"DFSetID": {
 								"type": "Int32",
 								"value": {
