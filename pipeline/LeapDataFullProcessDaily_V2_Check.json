@@ -96,7 +96,18 @@
 						"referenceName": "LeapDataLoadingCloud1",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"Cloud": 1,
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -116,7 +127,18 @@
 						"referenceName": "LeapDataLoadingCloud2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"Cloud": 2
+					}
 				}
 			},
 			{
@@ -136,7 +158,18 @@
 						"referenceName": "LeapDataLoadingCloud3",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						},
+						"DataDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"Cloud": 3
+					}
 				}
 			},
 			{
