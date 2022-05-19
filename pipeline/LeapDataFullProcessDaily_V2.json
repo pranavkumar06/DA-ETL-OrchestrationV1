@@ -5,14 +5,7 @@
 			{
 				"name": "CopyLeap_Staging-To-DB_Cloud1_1_V2",
 				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "CenterPoint",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -398,34 +391,6 @@
 							"type": "Expression"
 						}
 					}
-				}
-			},
-			{
-				"name": "CenterPoint",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "CopyS3-To-Staging_Cloud3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CopyS3-To-Staging_Cloud2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CopyS3-To-Staging_Cloud1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
 				}
 			},
 			{
