@@ -5,14 +5,7 @@
 			{
 				"name": "SpCycleStart",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "Wait 5 min",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -38,38 +31,6 @@
 						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					}
-				}
-			},
-			{
-				"name": "DW_Resume_Scale_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW100c"
-					}
-				}
-			},
-			{
-				"name": "Wait 5 min",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
 				}
 			},
 			{
