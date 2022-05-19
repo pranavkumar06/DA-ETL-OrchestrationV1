@@ -918,7 +918,7 @@
 													"type": "Expression"
 												},
 												"FileName": {
-													"value": "@activity('GetFileList').output.itemName",
+													"value": "@item().name",
 													"type": "Expression"
 												}
 											}
@@ -944,7 +944,7 @@
 											"waitOnCompletion": true,
 											"parameters": {
 												"FileName": {
-													"value": "@activity('GetFileList').output.itemName",
+													"value": "@item().name",
 													"type": "Expression"
 												}
 											}
