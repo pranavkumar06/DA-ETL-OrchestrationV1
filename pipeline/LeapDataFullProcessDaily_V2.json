@@ -41,29 +41,6 @@
 				}
 			},
 			{
-				"name": "LeapDataProcessing-Cloud1",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait 5 minute",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CloudInstance": "1"
-					}
-				}
-			},
-			{
 				"name": "LeapDataProcessing-Cloud2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -128,7 +105,26 @@
 			{
 				"name": "DW_Scale_V2-200DW",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LeapDataLoadingCloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "LeapDataLoadingCloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "LeapDataLoadingCloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -231,6 +227,29 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "LeapDataProcessing-Cloud1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait 5 minute",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LeapDataProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CloudInstance": "1"
+					}
 				}
 			}
 		],
