@@ -45,7 +45,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 5 minute",
+						"activity": "DW_Scale_V2-200DW",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -68,7 +68,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 5 minute",
+						"activity": "DW_Scale_V2-200DW",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -154,22 +154,6 @@
 				}
 			},
 			{
-				"name": "Wait 5 minute",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "DW_Scale_V2-200DW",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
-				}
-			},
-			{
 				"name": "LeapDataLoadingCloud1",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -234,7 +218,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 5 minute",
+						"activity": "DW_Scale_V2-200DW",
 						"dependencyConditions": [
 							"Succeeded"
 						]
