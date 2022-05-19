@@ -90,11 +90,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -120,11 +124,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -173,11 +181,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -203,11 +215,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -233,11 +249,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -263,11 +283,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -293,11 +317,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
@@ -323,11 +351,15 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"value": "@pipeline().parameters.CycleID",
 							"type": "Expression"
 						},
 						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
+							"value": "@pipeline().parameters.DataDate",
+							"type": "Expression"
+						},
+						"Cloud": {
+							"value": "@pipeline().parameters.Cloud",
 							"type": "Expression"
 						}
 					}
