@@ -316,6 +316,23 @@
 				}
 			}
 		],
+		"parameters": {
+			"Cloud": {
+				"type": "int"
+			},
+			"DataDate": {
+				"type": "string"
+			},
+			"CycleID": {
+				"type": "string"
+			},
+			"windowStart": {
+				"type": "string"
+			},
+			"windowEnd": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
