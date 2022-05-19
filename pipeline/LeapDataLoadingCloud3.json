@@ -26,7 +26,7 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_1_V2",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_1_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -39,7 +39,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_V2_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_V2_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -64,7 +64,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_1_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_1_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
