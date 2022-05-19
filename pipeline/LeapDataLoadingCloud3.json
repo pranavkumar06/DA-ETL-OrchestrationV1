@@ -162,7 +162,7 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_5_V2",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_5_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -175,7 +175,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_5_V2_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_5_V2_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -196,11 +196,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_6_V2",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_6_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_5_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_5_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -209,7 +209,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_6_V2_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_6_V2_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -230,11 +230,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_7_V2",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_7_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_6_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_6_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -243,7 +243,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_7_V2_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_7_V2_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -264,11 +264,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_DistributorLevel_9",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_DistributorLevel_9",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_8_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_8_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -277,7 +277,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_DistributorLevel_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_DistributorLevel_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -298,11 +298,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_8_V2",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_8_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_7_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_7_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -311,7 +311,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_8_V2_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_8_V2_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -332,11 +332,11 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_Cloud2_CCCR_V2",
+				"name": "CopyLeap_Staging-To-DB_Cloud3_CCCR_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_DistributorLevel_9",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_DistributorLevel_9",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -345,7 +345,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_CCCR_V2_Cloud2",
+						"referenceName": "CopyLeap_Staging-To-DB_CCCR_V2_Cloud3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
