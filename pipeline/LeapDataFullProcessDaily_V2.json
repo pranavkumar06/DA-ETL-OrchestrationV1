@@ -309,23 +309,11 @@
 				}
 			},
 			{
-				"name": "spPopulateSchemeData",
+				"name": "spTAS_DailyDataRefreshSalesData-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "LeapDataProcessing-Cloud3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "LeapDataProcessing-Cloud2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "LeapDataProcessing-Cloud1",
+						"activity": "spMarkDPSRProcessingCompleted",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -339,8 +327,173 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spTAS_DailyDataRefreshSalesData]"
+				},
 				"linkedServiceName": {
-					"referenceName": "TASDatabase",
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spDF_GenerateInvWiseNetSales-DF",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMarkDPSRProcessingCompleted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDF_GenerateInvWiseNetSales]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spAPI_PopulateExtractIDCMP",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMarkDPSRProcessingCompleted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spAPI_PopulateExtractIDCMP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spAS_PopulateDimTables",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMarkDPSRProcessingCompleted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spAS_PopulateDimTables]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spTAS_PopulateSchemeApplied",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMarkDPSRProcessingCompleted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spTAS_PopulateSchemeApplied]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spTAS_PopActiveSBFFrmInv-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMarkDPSRProcessingCompleted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spTAS_PopActiveSBFFrmInv]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spMAINMoveOrderDetails",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMarkDPSRProcessingCompleted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spMAINMoveOrderDetails]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
 			}
