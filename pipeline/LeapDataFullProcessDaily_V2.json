@@ -323,6 +323,40 @@
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "If All Final Table Loaded",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckAllFileProcessStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.CycFileID,1 )",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "FinalDFProcessing",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "FinalDFProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
