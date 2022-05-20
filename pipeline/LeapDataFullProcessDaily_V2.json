@@ -324,7 +324,7 @@
 				}
 			},
 			{
-				"name": "spAPI_PopulateExtractIDCMP",
+				"name": "spAPI_PopulateExtractIDCMP-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -351,7 +351,7 @@
 				}
 			},
 			{
-				"name": "spAS_PopulateDimTables",
+				"name": "spAS_PopulateDimTables-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -378,7 +378,7 @@
 				}
 			},
 			{
-				"name": "spTAS_PopulateSchemeApplied",
+				"name": "spTAS_PopulateSchemeApplied-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -432,7 +432,7 @@
 				}
 			},
 			{
-				"name": "spMAINMoveOrderDetails",
+				"name": "spMAINMoveOrderDetails-TAS",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
