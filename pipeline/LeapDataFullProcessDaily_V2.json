@@ -3,90 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SpCycleStart",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpCycEntry]",
-						"storedProcedureParameters": {
-							"flgInOut": {
-								"type": "Byte",
-								"value": "1"
-							}
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "DataFoundationConnectionV2",
-						"type": "DatasetReference"
-					}
-				}
-			},
-			{
-				"name": "LeapDataProcessing-Cloud2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateSchemeData-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CloudInstance": "2"
-					}
-				}
-			},
-			{
-				"name": "LeapDataProcessing-Cloud3",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateSchemeData-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CloudInstance": "3"
-					}
-				}
-			},
-			{
 				"name": "DW_Resume_Scale_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
@@ -103,174 +19,11 @@
 				}
 			},
 			{
-				"name": "DW_Scale_V2-200DW",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "LeapDataLoadingCloud1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "LeapDataLoadingCloud2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "LeapDataLoadingCloud3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Scaleval": "DW200c"
-					}
-				}
-			},
-			{
-				"name": "LeapDataLoadingCloud1",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataLoadingCloud1",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Cloud": 1,
-						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "LeapDataLoadingCloud2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataLoadingCloud2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-							"type": "Expression"
-						},
-						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"Cloud": 2
-					}
-				}
-			},
-			{
-				"name": "LeapDataLoadingCloud3",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataLoadingCloud3",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-							"type": "Expression"
-						},
-						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"Cloud": 3
-					}
-				}
-			},
-			{
-				"name": "LeapDataProcessing-Cloud1",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateSchemeData-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CloudInstance": "1"
-					}
-				}
-			},
-			{
 				"name": "SpCheckAllFileProcessStatus",
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "LeapDataProcessing-Cloud2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "LeapDataProcessing-Cloud3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "LeapDataProcessing-Cloud1",
+						"activity": "MiddleDFProcessing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -295,33 +48,6 @@
 						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					}
-				}
-			},
-			{
-				"name": "spPopulateSchemeData-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "DW_Scale_V2-200DW",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spPopulateSchemeData]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -356,6 +82,32 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "MiddleDFProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MiddleDFProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
