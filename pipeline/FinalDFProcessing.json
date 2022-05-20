@@ -218,7 +218,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDFTAS_PopulateSBDWorkingData]"
+					"storedProcedureName": "[dbo].[spDFTAS_PopulateSBDWorkingData]",
+					"storedProcedureParameters": {
+						"RptMonthYear": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
