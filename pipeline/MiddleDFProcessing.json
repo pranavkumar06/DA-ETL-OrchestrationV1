@@ -38,7 +38,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpCycleStart",
+						"activity": "LeapDataLoadingCloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -61,7 +61,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpCycleStart",
+						"activity": "LeapDataLoadingCloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -115,7 +115,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "LeapDataProcessing-Cloud2",
+						"activity": "SpCycleStart",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -146,7 +146,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "LeapDataProcessing-Cloud3",
+						"activity": "SpCycleStart",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -206,13 +206,13 @@
 						]
 					},
 					{
-						"activity": "LeapDataProcessing-Cloud3",
+						"activity": "LeapDataLoadingCloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "LeapDataProcessing-Cloud2",
+						"activity": "LeapDataLoadingCloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
