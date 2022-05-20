@@ -64,7 +64,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.CycFileID,1 )",
+						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
