@@ -515,7 +515,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spMainTASCallerListBackUp]"
+					"storedProcedureName": "[dbo].[spMainTASCallerListBackUp]",
+					"storedProcedureParameters": {
+						"DelDateInput": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.CurrDate",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
