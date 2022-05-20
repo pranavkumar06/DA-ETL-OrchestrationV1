@@ -7,7 +7,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Wait 5 min",
+						"activity": "DW_Resume_Scale_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -135,22 +135,6 @@
 					"parameters": {
 						"Scaleval": "DW200c"
 					}
-				}
-			},
-			{
-				"name": "Wait 5 min",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
 				}
 			},
 			{
