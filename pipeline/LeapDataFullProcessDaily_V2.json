@@ -738,7 +738,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spUpdateDailyRetailerTarget]"
+					"storedProcedureName": "[dbo].[spPopulateAllPlannedCalls]"
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
