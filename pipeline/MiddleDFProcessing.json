@@ -235,6 +235,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"flgCloud1LoadingDone": {
 				"type": "Boolean",
