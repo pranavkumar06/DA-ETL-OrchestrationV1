@@ -792,7 +792,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spMainTASCallerListBackUp]"
+					"storedProcedureName": "[dbo].[spRunForFiveStar]"
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
