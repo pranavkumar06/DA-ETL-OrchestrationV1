@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "spGetDFParameterDetail",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -13,14 +13,26 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[spGetDFParameterDetail]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
 			},
 			{
 				"name": "spTAS_DailyDataRefreshSalesData-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -155,7 +167,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -236,7 +248,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -263,7 +275,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -344,7 +356,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -371,7 +383,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -398,7 +410,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
