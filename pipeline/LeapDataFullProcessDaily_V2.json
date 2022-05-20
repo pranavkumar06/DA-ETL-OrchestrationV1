@@ -23,7 +23,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "MiddleDFProcessing",
+						"activity": "Loading Temp and Final Tables",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -85,7 +85,7 @@
 				}
 			},
 			{
-				"name": "MiddleDFProcessing",
+				"name": "Loading Temp and Final Tables",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
