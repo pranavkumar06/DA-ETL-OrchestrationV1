@@ -773,7 +773,7 @@
 				}
 			},
 			{
-				"name": "spRolloverDataLoad-TAS_copy1",
+				"name": "spRunForFiveStar-TAS",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -793,6 +793,60 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spMainTASCallerListBackUp]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spCalculateLSSSchemeAgainstActData-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spRunForFiveStar-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spCalculateLSSSchemeAgainstActData]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spCalculateLuckDrawStore-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spCalculateLSSSchemeAgainstActData-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spCalculateLuckDrawStore]"
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
