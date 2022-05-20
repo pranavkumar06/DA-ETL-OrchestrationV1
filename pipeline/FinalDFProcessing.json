@@ -182,7 +182,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDF_GenerateInvWiseNetSales]"
+					"storedProcedureName": "[dbo].[spDF_GenerateInvWiseNetSales]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
