@@ -115,7 +115,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateSchemeData-TAS",
+						"activity": "LeapDataProcessing-Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -146,7 +146,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateSchemeData-TAS",
+						"activity": "LeapDataProcessing-Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -177,7 +177,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateSchemeData-TAS",
+						"activity": "LeapDataLoadingCloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -235,6 +235,32 @@
 				}
 			}
 		],
+		"variables": {
+			"flgCloud1LoadingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud2LoadingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud3LoadingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud1ProcessingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud2ProcessingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud3ProcessingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
