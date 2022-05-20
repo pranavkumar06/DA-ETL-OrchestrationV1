@@ -335,7 +335,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAS_PopulateFactTables]"
+					"storedProcedureName": "[dbo].[spAS_PopulateFactTables]",
+					"storedProcedureParameters": {
+						"DMinus1Date": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
