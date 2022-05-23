@@ -153,7 +153,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadSBDMTR_Cloud]"
+					"storedProcedureName": "[dbo].[SpDummy]"
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
@@ -180,7 +180,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]"
+					"storedProcedureName": "[dbo].[SpDummy]"
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
