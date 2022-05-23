@@ -23,7 +23,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "spDataLoadSBDMasterData_Cloud",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -131,6 +131,60 @@
 							"type": "Expression"
 						}
 					}
+				}
+			},
+			{
+				"name": "spDataLoadSBDMTR_Cloud",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Loading Temp and Final Tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDataLoadSBDMTR_Cloud]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spDataLoadSBDMasterData_Cloud",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spDataLoadSBDMTR_Cloud",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
