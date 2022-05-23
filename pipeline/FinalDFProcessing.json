@@ -569,7 +569,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spCalculatePlannedCallMeasure]"
+					"storedProcedureName": "[dbo].[spCalculatePlannedCallMeasure]",
+					"storedProcedureParameters": {
+						"ProcessDt": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.CurrDate",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
