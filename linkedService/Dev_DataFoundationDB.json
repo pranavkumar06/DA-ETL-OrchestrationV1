@@ -5,10 +5,10 @@
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=pgdatafoundation.database.windows.net;initial catalog=DataFoundation_Dev",
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=pgdatafoundation.database.windows.net;initial catalog=DataFoundation_Live24May",
 			"servicePrincipalId": "7ec6607e-638a-46bf-9ff0-ea38bacb5ea9",
 			"tenant": "515445df-f272-4c96-aa97-d670cbdeab20",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDA3Qzc4RTlFLUJGOUEtNDNCOS1CRDE3LUVFNDA4REZBRkEyRV8zYmMxYTliYi00NTVhLTQ3OWItYWYyZC00NmU3OGJhMjYxYzIiDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDA3Qzc4RTlFLUJGOUEtNDNCOS1CRDE3LUVFNDA4REZBRkEyRV82NzAyMDRhNi05MTg5LTQzZDctYjQ3My1jZjYwYmVkMjk3YjYiDQp9"
 		}
 	}
 }
