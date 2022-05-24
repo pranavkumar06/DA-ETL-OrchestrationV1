@@ -95,7 +95,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "DW_Scale",
+									"referenceName": "DW_Scale_V2",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
