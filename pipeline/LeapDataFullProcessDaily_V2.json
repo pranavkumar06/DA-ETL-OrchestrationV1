@@ -73,7 +73,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale_300",
+									"activity": "Stored procedure1",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -102,6 +102,33 @@
 								"parameters": {
 									"Scaleval": "DW300c"
 								}
+							}
+						},
+						{
+							"name": "Stored procedure1",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "DW_Scale_300",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[Scale_S5]"
+							},
+							"linkedServiceName": {
+								"referenceName": "TASDatabase_Check",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
