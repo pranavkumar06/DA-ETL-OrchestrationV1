@@ -73,7 +73,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "Stored procedure1",
+									"activity": "Scale 400 DTU",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -105,7 +105,7 @@
 							}
 						},
 						{
-							"name": "Stored procedure1",
+							"name": "Scale 400 DTU",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
@@ -125,6 +125,33 @@
 							"userProperties": [],
 							"typeProperties": {
 								"storedProcedureName": "[dbo].[Scale_S5]"
+							},
+							"linkedServiceName": {
+								"referenceName": "TASDatabase_Check",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Scale 100 DTU",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "FinalDFProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[Scale_S3]"
 							},
 							"linkedServiceName": {
 								"referenceName": "TASDatabase_Check",
