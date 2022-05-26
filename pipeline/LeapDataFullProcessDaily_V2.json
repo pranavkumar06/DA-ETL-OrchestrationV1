@@ -73,7 +73,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "Scale 400 DTU",
+									"activity": "Wait 5 Min",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -107,14 +107,7 @@
 						{
 							"name": "Scale 400 DTU",
 							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "DW_Scale_300",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -156,6 +149,28 @@
 							"linkedServiceName": {
 								"referenceName": "TASDatabase_Check",
 								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Wait 5 Min",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "Scale 400 DTU",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "DW_Scale_300",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 300
 							}
 						}
 					]
