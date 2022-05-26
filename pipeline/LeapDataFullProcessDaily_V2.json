@@ -14,7 +14,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ScaleVal": "DW300c"
+						"ScaleVal": "DW400c"
 					}
 				}
 			},
@@ -100,7 +100,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"Scaleval": "DW300c"
+									"Scaleval": "DW400c"
 								}
 							}
 						},
