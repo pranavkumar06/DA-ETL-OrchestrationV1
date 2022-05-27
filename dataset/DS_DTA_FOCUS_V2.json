@@ -1,0 +1,156 @@
+{
+	"name": "DS_DTA_FOCUS_V2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Dev_DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Month",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Distributor Branch Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SubDistributor Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Seller Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Seller Route",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Seller Sector",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Brand Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Brand Initiative Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Brand Initiative Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Local Subchannel Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NormWiseTarget(%)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DstrbnTarget(%)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Store Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Store Focus Brand Opportunity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Store Focus Brand Hit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Store Gap",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BranchSubDNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BranchSubDNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DSENodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectorId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FileName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedTime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FBID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpFocus_Brand"
+		}
+	}
+}
