@@ -80,29 +80,6 @@
 				}
 			},
 			{
-				"name": "LeapDataProcessing-Cloud1",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "RowCountUpdate_Cloud1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CloudInstance": "1"
-					}
-				}
-			},
-			{
 				"name": "spPopulateSchemeData-TAS",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -519,6 +496,81 @@
 										"type": "Expression"
 									},
 									"Cloud": 3
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "SpGetCloudFileProcessingStatus_Cloud1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "RowCountUpdate_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetFileProcessStatus]",
+						"storedProcedureParameters": {
+							"CloudInstanceNo": {
+								"type": "Int32",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "CheckProcessingCompleted_Cloud1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpGetCloudFileProcessingStatus_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('SpGetCloudFileProcessingStatus_Cloud1').output.firstRow.flgProcessingDone",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "LeapDataProcessing-Cloud1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "LeapDataProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CloudInstance": "1"
 								}
 							}
 						}
