@@ -305,7 +305,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud1').outputfirstRow.flgLoadingDone",
+						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud1').output.firstRow.flgLoadingDone",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
@@ -388,7 +388,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud2').outputfirstRow.flgLoadingDone",
+						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud2').output.firstRow.flgLoadingDone",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
@@ -471,7 +471,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud3').outputfirstRow.flgLoadingDone",
+						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud3').output.firstRow.flgLoadingDone",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
