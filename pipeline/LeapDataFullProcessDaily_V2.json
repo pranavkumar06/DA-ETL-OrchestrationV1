@@ -14,7 +14,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ScaleVal": "DW400c"
+						"ScaleVal": "DW200c"
 					}
 				}
 			},
@@ -89,7 +89,7 @@
 							}
 						},
 						{
-							"name": "DW_Scale_300",
+							"name": "DW_Scale_400",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
@@ -162,7 +162,7 @@
 									]
 								},
 								{
-									"activity": "DW_Scale_300",
+									"activity": "DW_Scale_400",
 									"dependencyConditions": [
 										"Succeeded"
 									]
