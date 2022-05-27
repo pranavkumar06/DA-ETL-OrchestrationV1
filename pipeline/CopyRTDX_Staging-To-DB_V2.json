@@ -656,7 +656,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_DTA_FOCUS",
+														"referenceName": "DS_DTA_FOCUS_V2",
 														"type": "DatasetReference"
 													}
 												]
