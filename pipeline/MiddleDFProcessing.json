@@ -80,99 +80,6 @@
 				}
 			},
 			{
-				"name": "LeapDataLoadingCloud1",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataLoadingCloud1",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Cloud": 1,
-						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "LeapDataLoadingCloud2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataLoadingCloud2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-							"type": "Expression"
-						},
-						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"Cloud": 2
-					}
-				}
-			},
-			{
-				"name": "LeapDataLoadingCloud3",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "LeapDataLoadingCloud3",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"CycleID": {
-							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-							"type": "Expression"
-						},
-						"DataDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"Cloud": 3
-					}
-				}
-			},
-			{
 				"name": "LeapDataProcessing-Cloud1",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -200,19 +107,19 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "LeapDataLoadingCloud1",
+						"activity": "CheckLoadingCompleted_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "LeapDataLoadingCloud2",
+						"activity": "CheckLoadingCompleted_Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "LeapDataLoadingCloud3",
+						"activity": "CheckLoadingCompleted_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -239,7 +146,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "LeapDataLoadingCloud1",
+						"activity": "CheckLoadingCompleted_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -284,7 +191,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "LeapDataLoadingCloud2",
+						"activity": "CheckLoadingCompleted_Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -329,7 +236,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "LeapDataLoadingCloud3",
+						"activity": "CheckLoadingCompleted_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -367,6 +274,255 @@
 						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					}
+				}
+			},
+			{
+				"name": "SpGetCloudFileLoadingStatus_Cloud1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileLoadingStatus]",
+						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "CheckLoadingCompleted_Cloud1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpGetCloudFileLoadingStatus_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud1').outputfirstRow.flgLoadingDone",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "LeapDataLoadingCloud1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "LeapDataLoadingCloud1",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Cloud": 1,
+									"DataDate": {
+										"value": "@pipeline().parameters.DataProcessDate",
+										"type": "Expression"
+									},
+									"CycleID": {
+										"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "SpGetCloudFileLoadingStatus_Cloud2",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileLoadingStatus]",
+						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": "2"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "CheckLoadingCompleted_Cloud2",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpGetCloudFileLoadingStatus_Cloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud2').outputfirstRow.flgLoadingDone",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "LeapDataLoadingCloud2",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "LeapDataLoadingCloud2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CycleID": {
+										"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+										"type": "Expression"
+									},
+									"DataDate": {
+										"value": "@pipeline().parameters.DataProcessDate",
+										"type": "Expression"
+									},
+									"Cloud": 2
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "SpGetCloudFileLoadingStatus_Cloud3",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileLoadingStatus]",
+						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": "3"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "CheckLoadingCompleted_Cloud3",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpGetCloudFileLoadingStatus_Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('SpGetCloudFileLoadingStatus_Cloud3').outputfirstRow.flgLoadingDone",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "LeapDataLoadingCloud3",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "LeapDataLoadingCloud3",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CycleID": {
+										"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+										"type": "Expression"
+									},
+									"DataDate": {
+										"value": "@pipeline().parameters.DataProcessDate",
+										"type": "Expression"
+									},
+									"Cloud": 3
+								}
+							}
+						}
+					]
 				}
 			}
 		],
