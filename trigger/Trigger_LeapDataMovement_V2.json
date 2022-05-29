@@ -1,0 +1,27 @@
+{
+	"name": "Trigger_LeapDataMovement_V2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataFullProcessDaily_V2",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DataProcessDate": "utcnow()"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-29T04:27:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
