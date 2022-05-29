@@ -10,7 +10,7 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataProcessDate": "utcnow()"
+					"DataProcessDate": "@{formatDateTime(utcNow(),'dd-MMM-yyyy')}"
 				}
 			}
 		],
