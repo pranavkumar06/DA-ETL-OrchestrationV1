@@ -95,7 +95,7 @@
 							}
 						},
 						{
-							"name": "DW_Scale_300",
+							"name": "DW_Scale_400",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
@@ -106,7 +106,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"Scaleval": "DW300c"
+									"Scaleval": "DW400c"
 								}
 							}
 						},
@@ -168,7 +168,7 @@
 									]
 								},
 								{
-									"activity": "DW_Scale_300",
+									"activity": "DW_Scale_400",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -177,29 +177,6 @@
 							"userProperties": [],
 							"typeProperties": {
 								"waitTimeInSeconds": 300
-							}
-						},
-						{
-							"name": "DW_Scale_100",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "Scale 100 DTU",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "DW_Scale_V2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Scaleval": "DW100c"
-								}
 							}
 						}
 					]
@@ -232,38 +209,11 @@
 				}
 			},
 			{
-				"name": "spDataLoadSBDMTR_Cloud",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Loading Temp and Final Tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadSBDMTR_Cloud]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spDataLoadSBDMasterData_Cloud",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spDataLoadSBDMTR_Cloud",
+						"activity": "Loading Temp and Final Tables",
 						"dependencyConditions": [
 							"Succeeded"
 						]
