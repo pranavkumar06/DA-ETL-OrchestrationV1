@@ -18,7 +18,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileDetails]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileDetails_CFR]",
 						"storedProcedureParameters": {
 							"CloudInstance": {
 								"type": "Byte",
