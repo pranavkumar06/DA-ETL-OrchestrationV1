@@ -94,7 +94,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Wait 10 min",
+						"activity": "Wait 1 min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -842,7 +842,7 @@
 				}
 			},
 			{
-				"name": "Wait 10 min",
+				"name": "Wait 1 min",
 				"type": "Wait",
 				"dependsOn": [
 					{
@@ -854,7 +854,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 600
+					"waitTimeInSeconds": 60
 				}
 			},
 			{
