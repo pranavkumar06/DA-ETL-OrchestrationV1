@@ -51,7 +51,7 @@
 					"sink": {
 						"type": "SqlDWSink",
 						"preCopyScript": {
-							"value": "TRUNCATE TABLE @{item().temptablename}",
+							"value": "TRUNCATE TABLE tmpRawLEAPTAS_COHGAP_Cloud1",
 							"type": "Expression"
 						},
 						"allowPolyBase": true,
