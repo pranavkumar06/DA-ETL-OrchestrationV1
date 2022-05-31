@@ -1,0 +1,88 @@
+{
+	"name": "CopyS3-To-Staging-V2",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyS3-To-Staging_Cloud1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud1_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud2",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud2_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud3",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud3_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"windowStart": {
+				"type": "string"
+			},
+			"windowEnd": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
