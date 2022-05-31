@@ -452,30 +452,6 @@
 									"Cloud": 3
 								}
 							}
-						},
-						{
-							"name": "LeapDataLoadingCloud3_copy1",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "LeapDataLoadingCloud3",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"CycleID": {
-										"value": "@activity('SpCycleStart').output.firstRow.CycleID",
-										"type": "Expression"
-									},
-									"DataDate": {
-										"value": "@pipeline().parameters.DataProcessDate",
-										"type": "Expression"
-									},
-									"Cloud": 3
-								}
-							}
 						}
 					]
 				}
