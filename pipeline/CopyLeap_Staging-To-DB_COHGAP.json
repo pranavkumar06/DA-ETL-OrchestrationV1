@@ -927,6 +927,50 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "SpLeapDataLoadCOHGAP",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "COHGAP_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "COHGAP_Cloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "COHGAP_Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpLeapDataLoadCOHGAP]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_TASDdatabaseConnection_V2",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"variables": {
