@@ -6,7 +6,14 @@
 				"name": "COHGAP_Cloud1",
 				"description": "Copy a file from the source store to the destination store.",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -38,7 +45,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "@concat('COHGAP_cloud0',variables('Cloud1'), formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+								"value": "@concat('COHGAP_cloud0',variables('Cloud1'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -49,17 +56,9 @@
 						"recursive": false
 					},
 					"sink": {
-						"type": "SqlDWSink",
-						"preCopyScript": {
-							"value": "TRUNCATE TABLE tmpRawLEAPTAS_COHGAP_Cloud1",
-							"type": "Expression"
-						},
-						"allowPolyBase": true,
-						"polyBaseSettings": {
-							"rejectValue": 0,
-							"rejectType": "value",
-							"useTypeDefault": true
-						},
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
 					},
 					"enableStaging": true,
@@ -280,15 +279,7 @@
 								},
 								"sink": {
 									"name": "LastModifiedDatetime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "FileSetID"
-								},
-								"sink": {
-									"name": "FileSetID"
+									"type": "DateTime"
 								}
 							}
 						]
@@ -302,16 +293,36 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_Destination_table",
+						"referenceName": "DS_TASDestination_table",
 						"type": "DatasetReference",
 						"parameters": {
 							"tablename": {
-								"value": "tmpRawLEAPTAS_COHGAP_Cloud1",
+								"value": "tmpRawLEAPTAS_COHGAP",
 								"type": "Expression"
 							}
 						}
 					}
 				]
+			},
+			{
+				"name": "SpTruncateCOHGAPTemptable",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SpTruncateCOHGAPTemptable]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"variables": {
