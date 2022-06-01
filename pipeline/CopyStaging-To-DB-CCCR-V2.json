@@ -43,7 +43,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "filenamecloud1",
+						"activity": "SpCycFileSetEntry",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1393,7 +1393,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "CCCR_Cloud1",
+						"activity": "SpCycFileSetUpdate_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1539,6 +1539,72 @@
 							"flgProcessType": {
 								"type": "Byte",
 								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpCycFileSetUpdate_Cloud1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "CCCR_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"storedProcedureParameters": {
+							"CycleID": {
+								"type": "Int64",
+								"value": {
+									"value": "@pipeline().parameters.CycleID",
+									"type": "Expression"
+								}
+							},
+							"DataDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+									"type": "Expression"
+								}
+							},
+							"FileID": {
+								"type": "Int32",
+								"value": {
+									"value": "@activity('filenamecloud1').output.firstRow.FileID",
+									"type": "Expression"
+								}
+							},
+							"FileName": {
+								"type": "String",
+								"value": {
+									"value": "@activity('filenamecloud1').output.firstRow.name",
+									"type": "Expression"
+								}
+							},
+							"flgProcessType": {
+								"type": "Byte",
+								"value": "2"
 							}
 						},
 						"queryTimeout": "02:00:00",
