@@ -630,7 +630,14 @@
 				"name": "COHGAP_Cloud3",
 				"description": "Copy a file from the source store to the destination store.",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
