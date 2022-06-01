@@ -28,6 +28,10 @@
 						"windowEnd": {
 							"value": "@pipeline().parameters.windowEnd",
 							"type": "Expression"
+						},
+						"filename": {
+							"value": "@activity('filenamecloud1').output.firstRow.name",
+							"type": "Expression"
 						}
 					}
 				}
@@ -58,6 +62,10 @@
 						"windowEnd": {
 							"value": "@pipeline().parameters.windowEnd",
 							"type": "Expression"
+						},
+						"filename": {
+							"value": "@activity('filenamecloud2').output.firstRow.name",
+							"type": "Expression"
 						}
 					}
 				}
@@ -87,6 +95,10 @@
 						},
 						"windowEnd": {
 							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						},
+						"filename": {
+							"value": "@activity('filenamecloud3').output.firstRow.name",
 							"type": "Expression"
 						}
 					}
