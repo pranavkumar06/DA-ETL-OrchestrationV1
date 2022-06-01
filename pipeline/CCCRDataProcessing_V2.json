@@ -56,12 +56,6 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderStoredProcedureName": "[dbo].[SpCheckCCCRMorningProcessingDone]",
-						"storedProcedureParameters": {
-							"CloudInstance": {
-								"type": "Byte",
-								"value": "1"
-							}
-						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -70,8 +64,83 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "When Morning CCCR Processing Done",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckCCCRMorningProcessingDone",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('SpCheckCCCRMorningProcessingDone').output.firstRow.flgMorningProcessingDone\n",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "CopyS3-To-Staging-V2",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyS3-To-Staging-Onefile-V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"windowStart": {
+										"value": "@pipeline().parameters.windowStart",
+										"type": "Expression"
+									},
+									"windowEnd": {
+										"value": "@pipeline().parameters.windowEnd",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "CopyStaging-To-DB-CCCR-V2",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "CopyS3-To-Staging-V2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyStaging-To-DB-CCCR-V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					]
+				}
 			}
 		],
+		"parameters": {
+			"DataDate": {
+				"type": "string"
+			},
+			"windowStart": {
+				"type": "string"
+			},
+			"windowEnd": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
