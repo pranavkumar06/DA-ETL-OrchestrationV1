@@ -1,0 +1,473 @@
+{
+	"name": "CopyStaging-To-DB-Onefile-V2",
+	"properties": {
+		"activities": [
+			{
+				"name": "filenamecloud1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetFilenameList]",
+						"storedProcedureParameters": {
+							"CloudInstance": {
+								"type": "Byte",
+								"value": "1"
+							},
+							"DFSetID": {
+								"type": "Int32",
+								"value": "10"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "CCCR_Cloud1",
+				"description": "Copy a file from the source store to the destination store.",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "filenamecloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "Filename",
+								"value": {
+									"value": "@activity('filenamecloud1').output.firstRow.name",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "FileSetID",
+								"value": {
+									"value": "0",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@activity('filenamecloud1').output.firstRow.name",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						},
+						"recursive": false
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": {
+							"value": "TRUNCATE TABLE @{activity('filenamecloud1').output.firstRow.temptablename}",
+							"type": "Expression"
+						},
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
+					"dataIntegrationUnits": 2,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "branch_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "branch_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "branch_location",
+									"type": "String"
+								},
+								"sink": {
+									"name": "branch_location",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dse_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dse_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dse_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dse_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "route_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "route_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "contact_number_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "contact_number_1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "contact_number_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "contact_number_2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "sub_channel_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "sub_channel_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "start_time",
+									"type": "String"
+								},
+								"sink": {
+									"name": "start_time",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "end_time",
+									"type": "String"
+								},
+								"sink": {
+									"name": "end_time",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "intime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "intime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "order_value",
+									"type": "String"
+								},
+								"sink": {
+									"name": "order_value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "productivity",
+									"type": "String"
+								},
+								"sink": {
+									"name": "productivity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "reason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "reason",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "visit_latitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "visit_latitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "visit_longitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "visit_longitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "deviation_in_meter",
+									"type": "String"
+								},
+								"sink": {
+									"name": "deviation_in_meter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "deviation",
+									"type": "String"
+								},
+								"sink": {
+									"name": "deviation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "reason_for_deviation",
+									"type": "String"
+								},
+								"sink": {
+									"name": "reason_for_deviation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "on_route",
+									"type": "String"
+								},
+								"sink": {
+									"name": "on_route",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "remarks",
+									"type": "String"
+								},
+								"sink": {
+									"name": "remarks",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distance_travelled",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distance_travelled",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "visit_p1m_ach",
+									"type": "String"
+								},
+								"sink": {
+									"name": "visit_p1m_ach",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "visit_p3m_ach",
+									"type": "String"
+								},
+								"sink": {
+									"name": "visit_p3m_ach",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "visit_fb_ach",
+									"type": "String"
+								},
+								"sink": {
+									"name": "visit_fb_ach",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FileSetID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FileSetID"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "LeapCSV_Staging_V2_Cloud1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_Destination_table",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": {
+								"value": "@activity('filenamecloud1').output.firstRow.temptablename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
