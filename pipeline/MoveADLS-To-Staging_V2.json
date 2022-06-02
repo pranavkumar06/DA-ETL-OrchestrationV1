@@ -44,12 +44,12 @@
 				}
 			},
 			{
-				"name": "ForEachFile",
+				"name": "ForEachFile_Cloud1_Files",
 				"description": "Iterate each file, and move them one by one.",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "FilterFiles",
+						"activity": "FilterFiles_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -58,13 +58,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('FilterFiles').output.value",
+						"value": "@activity('FilterFiles_Cloud1').output.value",
 						"type": "Expression"
 					},
 					"batchCount": 20,
 					"activities": [
 						{
-							"name": "CopyAFile",
+							"name": "CopyFile_Cloud1",
 							"description": "Copy a file from the source store to the destination store.",
 							"type": "Copy",
 							"dependsOn": [],
@@ -134,7 +134,7 @@
 				}
 			},
 			{
-				"name": "FilterFiles",
+				"name": "FilterFiles_Cloud1",
 				"description": "Only files will be selected, the source-folders will not be selected.",
 				"type": "Filter",
 				"dependsOn": [
