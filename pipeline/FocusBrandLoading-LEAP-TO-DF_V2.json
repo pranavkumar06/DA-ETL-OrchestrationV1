@@ -36,7 +36,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyRTDX_Staging-To-DB",
+						"referenceName": "CopyRTDX_Staging-To-DB_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
