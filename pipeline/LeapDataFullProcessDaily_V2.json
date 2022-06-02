@@ -254,26 +254,6 @@
 					},
 					"waitOnCompletion": true
 				}
-			},
-			{
-				"name": "CopyLeap_Staging-To-DB_COHGAP",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Loading Temp and Final Tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_COHGAP",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
 			}
 		],
 		"parameters": {
