@@ -95,20 +95,19 @@
 									}
 								},
 								"enableStaging": false,
-								"validateDataConsistency": false,
 								"dataIntegrationUnits": 0
 							},
 							"inputs": [
 								{
-									"referenceName": "ADLSBinaryDataSource_File",
+									"referenceName": "ADLSDataset_Onefile",
 									"type": "DatasetReference",
 									"parameters": {
-										"Container": {
-											"value": "@pipeline().parameters.SourceStore_Location",
+										"folder": {
+											"value": "@pipeline().parameters.DestinationStore_Location",
 											"type": "Expression"
 										},
-										"Directory": {
-											"value": "@pipeline().parameters.SourceStore_Directory",
+										"directory": {
+											"value": "@pipeline().parameters.DestinationStore_Directory",
 											"type": "Expression"
 										},
 										"filename": {
@@ -120,17 +119,9 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "BinaryDataDestination1",
+									"referenceName": "LeapStorageSourceDataset_File_V2_Cloud1",
 									"type": "DatasetReference",
 									"parameters": {
-										"Container": {
-											"value": "@pipeline().parameters.DestinationStore_Location",
-											"type": "Expression"
-										},
-										"Directory": {
-											"value": "@pipeline().parameters.DestinationStore_Directory",
-											"type": "Expression"
-										},
 										"filename": {
 											"value": "@item().name",
 											"type": "Expression"
