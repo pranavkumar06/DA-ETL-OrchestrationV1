@@ -909,16 +909,16 @@
 			},
 			{
 				"name": "SpLeapDataLoadCOHGAP",
-				"type": "Lookup",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "COHGAP_Cloud1",
+						"activity": "COHGAP_Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "COHGAP_Cloud2",
+						"activity": "COHGAP_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -939,16 +939,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpLeapDataLoadCOHGAP]",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "DS_TASDdatabaseConnection_V2",
-						"type": "DatasetReference"
-					}
+					"storedProcedureName": "[dbo].[SpLeapDataLoadCOHGAP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
