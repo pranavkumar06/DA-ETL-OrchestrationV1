@@ -34,45 +34,6 @@
 				}
 			},
 			{
-				"name": "spPopulateSchemeData-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "CheckLoadingCompleted_Cloud1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CheckLoadingCompleted_Cloud2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CheckLoadingCompleted_Cloud3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spPopulateSchemeData]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "RowCountUpdate_Cloud1",
 				"type": "Lookup",
 				"dependsOn": [
