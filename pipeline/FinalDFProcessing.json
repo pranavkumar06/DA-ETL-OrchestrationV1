@@ -740,7 +740,13 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData]"
+					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData]",
+					"storedProcedureParameters": {
+						"IsFullProcessRunning": {
+							"value": "1",
+							"type": "Byte"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
