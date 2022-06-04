@@ -184,6 +184,38 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "DeleteStagingAllFile",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeapStaging-To-ADLS-AllFile-Cloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "CopyLeapStaging-To-ADLS-AllFile-Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "CopyLeapStaging-To-ADLS-AllFile-Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DeleteStagingAllFile",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
