@@ -38,7 +38,7 @@
 							"type": "Lookup",
 							"dependsOn": [
 								{
-									"activity": "Count Completed",
+									"activity": "Cloud1Pipeline",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -102,6 +102,26 @@
 									"value": "@variables('CurrentCountNoofCheck')",
 									"type": "Expression"
 								}
+							}
+						},
+						{
+							"name": "Cloud1Pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Count Completed",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Cloud1Pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					],
