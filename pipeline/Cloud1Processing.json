@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@not(equals(variables('flgFullProcessingPending'), 0))",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Set flgFullProcessingPending",
