@@ -111,33 +111,6 @@
 							}
 						},
 						{
-							"name": "Scale 100 DTU",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "FinalDFProcessing",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[Scale_S3]"
-							},
-							"linkedServiceName": {
-								"referenceName": "TASDatabase_Check",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
 							"name": "Wait 5 Min",
 							"type": "Wait",
 							"dependsOn": [
@@ -173,6 +146,30 @@
 								"waitOnCompletion": true,
 								"parameters": {
 									"Scaleval": "DW200c"
+								}
+							}
+						},
+						{
+							"name": "SQL_Scale S3 50 DTU",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "FinalDFProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "SQL_Scale",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Scaleval": "S6",
+									"tier": "Standard"
 								}
 							}
 						}
@@ -257,7 +254,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale",
+						"activity": "SQL_Scale S6 400 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -309,7 +306,7 @@
 				}
 			},
 			{
-				"name": "SQL_Scale",
+				"name": "SQL_Scale S6 400 DTU",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -337,7 +334,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale",
+						"activity": "SQL_Scale S6 400 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
