@@ -156,6 +156,26 @@
 									"tier": "Standard"
 								}
 							}
+						},
+						{
+							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "DW_Scale_200",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
 						}
 					]
 				}
