@@ -80,7 +80,17 @@
 						"referenceName": "Cloud2Processing",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
