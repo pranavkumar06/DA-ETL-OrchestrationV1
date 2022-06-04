@@ -126,6 +126,10 @@
 									"DataProcessDate": {
 										"value": "@pipeline().parameters.DataProcessDate",
 										"type": "Expression"
+									},
+									"CycleID": {
+										"value": "@pipeline().parameters.CycleID",
+										"type": "Expression"
 									}
 								}
 							}
@@ -137,6 +141,9 @@
 		],
 		"parameters": {
 			"DataProcessDate": {
+				"type": "string"
+			},
+			"CycleID": {
 				"type": "string"
 			}
 		},
