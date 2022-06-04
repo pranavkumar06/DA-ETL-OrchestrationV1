@@ -111,26 +111,6 @@
 							}
 						},
 						{
-							"name": "Scale 400 DTU",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[Scale_S5]"
-							},
-							"linkedServiceName": {
-								"referenceName": "TASDatabase_Check",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
 							"name": "Scale 100 DTU",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
@@ -161,12 +141,6 @@
 							"name": "Wait 5 Min",
 							"type": "Wait",
 							"dependsOn": [
-								{
-									"activity": "Scale 400 DTU",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
 								{
 									"activity": "DW_Scale_400",
 									"dependencyConditions": [
@@ -283,7 +257,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "SQL_Scale",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -356,6 +330,39 @@
 						"Scaleval": "S6",
 						"tier": "Standard"
 					}
+				}
+			},
+			{
+				"name": "spDailyRefreshSchemeData-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SQL_Scale",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData]",
+					"storedProcedureParameters": {
+						"IsFullProcessRunning": {
+							"value": "1",
+							"type": "Byte"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
