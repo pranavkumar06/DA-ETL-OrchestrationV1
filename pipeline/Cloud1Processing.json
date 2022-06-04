@@ -36,7 +36,14 @@
 						{
 							"name": "SpGetCloudFileLoadingStatus_Cloud1",
 							"type": "Lookup",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Count Completed",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -67,7 +74,14 @@
 						{
 							"name": "Set CurrentCountNoofCheck",
 							"type": "SetVariable",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "SpGetCloudFileLoadingStatus_Cloud1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "CurrentCountNoofCheck",
