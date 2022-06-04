@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(variables('flgFullProcessingPending'), 1)",
+						"value": "@equals(variables('flgFullProcessingPending'), '1')",
 						"type": "Expression"
 					},
 					"activities": [
@@ -28,7 +28,7 @@
 							"typeProperties": {
 								"variableName": "flgFullProcessingPending",
 								"value": {
-									"value": "@activity('SpGetCloudFileLoadingStatus_Cloud1').output.firstRow.flgLoadingDone",
+									"value": "@string(activity('SpGetCloudFileLoadingStatus_Cloud1').output.firstRow.flgLoadingDone)",
 									"type": "Expression"
 								}
 							}
