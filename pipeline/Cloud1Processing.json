@@ -73,6 +73,14 @@
 			"flgFullProcessingPending": {
 				"type": "String",
 				"defaultValue": "1"
+			},
+			"MaxNoofCheck": {
+				"type": "String",
+				"defaultValue": "2"
+			},
+			"CurrentCountNoofCheck": {
+				"type": "String",
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
