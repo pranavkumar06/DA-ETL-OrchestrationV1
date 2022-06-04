@@ -1,0 +1,86 @@
+{
+	"name": "APIDeleteOLDFilesinFolder",
+	"properties": {
+		"activities": [
+			{
+				"name": "DataDatetime",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DeleteDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),1,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "DeleteDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataDeleteDate",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),8,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "DeleteAllFilesinFolder",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DataDatetime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DeleteAllFilesinFolder",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Containername": {
+							"value": "apidatacontainer",
+							"type": "Expression"
+						},
+						"Foldername": {
+							"value": "@{concat(formatDateTime(variables('DataDeleteDate'), 'yyyy'), '/', formatDateTime(variables('DataDeleteDate'), 'MM'), '/', formatDateTime(variables('DataDeleteDate'), 'dd'))}",
+							"type": "Expression"
+						},
+						"DataDeleteDate": {
+							"value": "@variables('DataDeleteDate')",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"variables": {
+			"TimeToday": {
+				"type": "String"
+			},
+			"DataDeleteDate": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "API"
+		},
+		"annotations": []
+	}
+}
