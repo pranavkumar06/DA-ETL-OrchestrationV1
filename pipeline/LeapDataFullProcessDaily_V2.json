@@ -317,6 +317,46 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Wait 1 hour",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 3600
+				}
+			},
+			{
+				"name": "SQL_Scale",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait 1 hour",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S6",
+						"tier": "Standard"
+					}
+				}
 			}
 		],
 		"parameters": {
