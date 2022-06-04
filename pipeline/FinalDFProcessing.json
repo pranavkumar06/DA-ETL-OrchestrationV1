@@ -721,45 +721,6 @@
 				}
 			},
 			{
-				"name": "spDailyRefreshSchemeData-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spPopulateSchemeData-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spMasterUpdateFromDF-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData]",
-					"storedProcedureParameters": {
-						"IsFullProcessRunning": {
-							"value": "1",
-							"type": "Byte"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "MasterDataForAPI",
 				"type": "ExecutePipeline",
 				"dependsOn": [
