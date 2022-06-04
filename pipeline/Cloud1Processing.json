@@ -1,0 +1,79 @@
+{
+	"name": "Cloud1Processing",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until Cloud 1 Processing Done",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"activities": [
+						{
+							"name": "Set flgFullProcessingPending",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "SpGetCloudFileLoadingStatus_Cloud1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "flgFullProcessingPending",
+								"value": {
+									"value": "@activity('SpGetCloudFileLoadingStatus_Cloud1').output.firstRow.flgLoadingDone",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "SpGetCloudFileLoadingStatus_Cloud1",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileLoadingStatus]",
+									"storedProcedureParameters": {
+										"CloudInstance": {
+											"type": "Byte",
+											"value": "1"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnectionV2",
+									"type": "DatasetReference"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			}
+		],
+		"variables": {
+			"flgFullProcessingPending": {
+				"type": "String",
+				"defaultValue": "1"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
