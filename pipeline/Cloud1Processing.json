@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('flgFullProcessingPending'), '1'))",
+						"value": "@not(and(equals(variables('flgFullProcessingPending'), '1'),greaterOrEquals(variables('MaxNoofCheck'),variables('CurrentCountNoofCheck'))))\n",
 						"type": "Expression"
 					},
 					"activities": [
