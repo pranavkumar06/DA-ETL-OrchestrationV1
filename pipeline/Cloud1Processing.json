@@ -121,7 +121,13 @@
 									"referenceName": "Cloud1Pipeline",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"DataProcessDate": {
+										"value": "@pipeline().parameters.DataProcessDate",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					],
