@@ -63,6 +63,32 @@
 									"type": "DatasetReference"
 								}
 							}
+						},
+						{
+							"name": "Set CurrentCountNoofCheck",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CurrentCountNoofCheck",
+								"value": {
+									"value": "@string(add(int(variables('PreviousCountNoofCheck')),1))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Count Completed",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "PreviousCountNoofCheck",
+								"value": {
+									"value": "@variables('CurrentCountNoofCheck')",
+									"type": "Expression"
+								}
+							}
 						}
 					],
 					"timeout": "7.00:00:00"
@@ -81,6 +107,10 @@
 			"CurrentCountNoofCheck": {
 				"type": "String",
 				"defaultValue": "1"
+			},
+			"PreviousCountNoofCheck": {
+				"type": "String",
+				"defaultValue": "0"
 			}
 		},
 		"folder": {
