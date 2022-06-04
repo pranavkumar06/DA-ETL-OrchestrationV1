@@ -34,26 +34,6 @@
 				}
 			},
 			{
-				"name": "Cloud1Pipeline",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpCycleStart",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Cloud1Pipeline",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "Cloud2Pipeline",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -88,6 +68,26 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "Cloud3Pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Cloud1Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Cloud1Processing",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
