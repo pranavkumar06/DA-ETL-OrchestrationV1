@@ -40,7 +40,10 @@
 				"inputs": [
 					{
 						"referenceName": "LeapStorageSourceDataset_File_V2_Cloud1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "1"
+						}
 					}
 				],
 				"outputs": [
@@ -98,7 +101,10 @@
 				"inputs": [
 					{
 						"referenceName": "LeapStorageSourceDataset_File_V2_Cloud2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "1"
+						}
 					}
 				],
 				"outputs": [
@@ -156,7 +162,10 @@
 				"inputs": [
 					{
 						"referenceName": "LeapStorageSourceDataset_File_V2_Cloud3",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "1"
+						}
 					}
 				],
 				"outputs": [
