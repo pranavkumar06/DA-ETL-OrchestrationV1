@@ -116,7 +116,7 @@
 			},
 			"MaxNoofCheck": {
 				"type": "String",
-				"defaultValue": "3"
+				"defaultValue": "2"
 			},
 			"CurrentCountNoofCheck": {
 				"type": "String",
