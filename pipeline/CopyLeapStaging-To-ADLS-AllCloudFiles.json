@@ -22,7 +22,7 @@
 							"recursive": true,
 							"wildcardFolderPath": "Cloud1",
 							"wildcardFileName": "*.csv",
-							"deleteFilesAfterCompletion": false
+							"deleteFilesAfterCompletion": true
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
@@ -83,7 +83,7 @@
 							"recursive": true,
 							"wildcardFolderPath": "Cloud2",
 							"wildcardFileName": "*.csv",
-							"deleteFilesAfterCompletion": false
+							"deleteFilesAfterCompletion": true
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
@@ -144,7 +144,7 @@
 							"recursive": true,
 							"wildcardFolderPath": "Cloud3",
 							"wildcardFileName": "*.csv",
-							"deleteFilesAfterCompletion": false
+							"deleteFilesAfterCompletion": true
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
