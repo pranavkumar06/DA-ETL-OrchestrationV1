@@ -199,6 +199,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
