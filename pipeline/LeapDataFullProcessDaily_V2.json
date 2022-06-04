@@ -168,7 +168,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"Scaleval": "S6",
+									"Scaleval": "S3",
 									"tier": "Standard"
 								}
 							}
