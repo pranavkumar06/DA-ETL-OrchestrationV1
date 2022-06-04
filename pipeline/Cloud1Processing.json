@@ -129,6 +129,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"flgFullProcessingPending": {
 				"type": "String",
