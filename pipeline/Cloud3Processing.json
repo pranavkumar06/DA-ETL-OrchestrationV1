@@ -129,6 +129,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			},
+			"CycleID": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"flgFullProcessingPending": {
 				"type": "String",
