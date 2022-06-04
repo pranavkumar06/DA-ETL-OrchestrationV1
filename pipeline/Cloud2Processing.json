@@ -121,7 +121,17 @@
 									"referenceName": "Cloud2Pipeline",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"DataProcessDate": {
+										"value": "@pipeline().parameters.DataProcessDate",
+										"type": "Expression"
+									},
+									"CycleID": {
+										"value": "@pipeline().parameters.CycleID",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					],
