@@ -5,7 +5,14 @@
 			{
 				"name": "RowCountUpdate_Cloud1",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "CheckLoadingCompleted_Cloud1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -121,7 +128,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "CheckLoadingCompleted_Cloud1",
+						"activity": "RowCountUpdate_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
