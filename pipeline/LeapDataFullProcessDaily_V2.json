@@ -297,6 +297,26 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "APIDeleteOLDFilesinFolder",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "APIDeleteOLDFilesinFolder",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
