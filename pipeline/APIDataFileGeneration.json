@@ -3807,40 +3807,6 @@
 						"type": "Expression"
 					}
 				}
-			},
-			{
-				"name": "DeleteAllFilesinFolder",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Copy ProdMaster",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DeleteAllFilesinFolder",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Containername": {
-							"value": "apidatacontainer",
-							"type": "Expression"
-						},
-						"Foldername": {
-							"value": "@{concat(formatDateTime(variables('DataDeleteDate'), 'yyyy'), '/', formatDateTime(variables('DataDeleteDate'), 'MM'), '/', formatDateTime(variables('DataDeleteDate'), 'dd'))}",
-							"type": "Expression"
-						},
-						"DataDeleteDate": {
-							"value": "@variables('DataDeleteDate')",
-							"type": "Expression"
-						}
-					}
-				}
 			}
 		],
 		"variables": {
