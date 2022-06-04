@@ -79,7 +79,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "Wait 5 Min",
+									"activity": "DW_Scale_400",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -108,22 +108,6 @@
 								"parameters": {
 									"Scaleval": "DW400c"
 								}
-							}
-						},
-						{
-							"name": "Wait 5 Min",
-							"type": "Wait",
-							"dependsOn": [
-								{
-									"activity": "DW_Scale_400",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"waitTimeInSeconds": 300
 							}
 						},
 						{
