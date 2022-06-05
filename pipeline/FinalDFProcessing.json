@@ -554,7 +554,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spMainTASCallerListBackUp-TAS",
+						"activity": "spDataLoadRawLeapTAS_DRCP-TAS",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -660,33 +660,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spPopulateAllPlannedCalls]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "spDataLoadRawLeapTAS_DRCP-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spPopulateAllPlannedCalls-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadRawLeapTAS_DRCP]"
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
@@ -963,6 +936,33 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spDataLoadRawLeapTAS_DRCP-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spMainTASCallerListBackUp-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDataLoadRawLeapTAS_DRCP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
 			}
