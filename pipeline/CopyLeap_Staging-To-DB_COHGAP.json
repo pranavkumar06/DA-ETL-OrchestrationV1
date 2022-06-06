@@ -29,7 +29,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "@concat('COHGAP_cloud0',variables('Cloud1'), formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+									"value": "@concat('COHGAP_cloud0',variables('Cloud1'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
 									"type": "Expression"
 								}
 							},
@@ -344,7 +344,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "@concat('COHGAP_cloud0',variables('Cloud2'), formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+									"value": "@concat('COHGAP_cloud0',variables('Cloud2'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
 									"type": "Expression"
 								}
 							},
@@ -639,7 +639,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "@concat('COHGAP_cloud0',variables('Cloud3'), formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+									"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
 									"type": "Expression"
 								}
 							},
