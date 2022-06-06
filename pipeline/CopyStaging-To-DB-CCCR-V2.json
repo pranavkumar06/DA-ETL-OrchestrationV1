@@ -43,7 +43,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpCycFileSetEntry",
+						"activity": "SpCycFileSetEntry_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -505,7 +505,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "filenamecloud2",
+						"activity": "SpCycFileSetEntry_Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -967,7 +967,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "filenamecloud3",
+						"activity": "SpCycFileSetEntry_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1425,7 +1425,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "CCCR_Cloud2",
+						"activity": "SpCycFileSetUpdate_Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1457,7 +1457,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "CCCR_Cloud3",
+						"activity": "SpCycFileSetUpdate_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1485,7 +1485,7 @@
 				}
 			},
 			{
-				"name": "SpCycFileSetEntry",
+				"name": "SpCycFileSetEntry_Cloud1",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -1599,6 +1599,270 @@
 								"type": "String",
 								"value": {
 									"value": "@activity('filenamecloud1').output.firstRow.name",
+									"type": "Expression"
+								}
+							},
+							"flgProcessType": {
+								"type": "Byte",
+								"value": "2"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpCycFileSetEntry_Cloud2",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "filenamecloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"storedProcedureParameters": {
+							"CycleID": {
+								"type": "Int64",
+								"value": {
+									"value": "@pipeline().parameters.CycleID",
+									"type": "Expression"
+								}
+							},
+							"DataDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+									"type": "Expression"
+								}
+							},
+							"FileID": {
+								"type": "Int32",
+								"value": {
+									"value": "@activity('filenamecloud2').output.firstRow.FileID",
+									"type": "Expression"
+								}
+							},
+							"FileName": {
+								"type": "String",
+								"value": {
+									"value": "@activity('filenamecloud2').output.firstRow.name",
+									"type": "Expression"
+								}
+							},
+							"flgProcessType": {
+								"type": "Byte",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpCycFileSetUpdate_Cloud2",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "CCCR_Cloud2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"storedProcedureParameters": {
+							"CycleID": {
+								"type": "Int64",
+								"value": {
+									"value": "@pipeline().parameters.CycleID",
+									"type": "Expression"
+								}
+							},
+							"DataDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+									"type": "Expression"
+								}
+							},
+							"FileID": {
+								"type": "Int32",
+								"value": {
+									"value": "@activity('filenamecloud2').output.firstRow.FileID",
+									"type": "Expression"
+								}
+							},
+							"FileName": {
+								"type": "String",
+								"value": {
+									"value": "@activity('filenamecloud2').output.firstRow.name",
+									"type": "Expression"
+								}
+							},
+							"flgProcessType": {
+								"type": "Byte",
+								"value": "2"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpCycFileSetEntry_Cloud3",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "filenamecloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"storedProcedureParameters": {
+							"CycleID": {
+								"type": "Int64",
+								"value": {
+									"value": "@pipeline().parameters.CycleID",
+									"type": "Expression"
+								}
+							},
+							"DataDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+									"type": "Expression"
+								}
+							},
+							"FileID": {
+								"type": "Int32",
+								"value": {
+									"value": "@activity('filenamecloud3').output.firstRow.FileID",
+									"type": "Expression"
+								}
+							},
+							"FileName": {
+								"type": "String",
+								"value": {
+									"value": "@activity('filenamecloud3').output.firstRow.name",
+									"type": "Expression"
+								}
+							},
+							"flgProcessType": {
+								"type": "Byte",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpCycFileSetUpdate_Cloud3",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "CCCR_Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"storedProcedureParameters": {
+							"CycleID": {
+								"type": "Int64",
+								"value": {
+									"value": "@pipeline().parameters.CycleID",
+									"type": "Expression"
+								}
+							},
+							"DataDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+									"type": "Expression"
+								}
+							},
+							"FileID": {
+								"type": "Int32",
+								"value": {
+									"value": "@activity('filenamecloud3').output.firstRow.FileID",
+									"type": "Expression"
+								}
+							},
+							"FileName": {
+								"type": "String",
+								"value": {
+									"value": "@activity('filenamecloud3').output.firstRow.name",
 									"type": "Expression"
 								}
 							},
