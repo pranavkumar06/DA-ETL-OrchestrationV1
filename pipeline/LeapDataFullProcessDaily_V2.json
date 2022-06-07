@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DW_Resume_Scale_V2",
+				"name": "DW_Resume_Scale DW300_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -192,7 +192,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale DW300_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -285,7 +285,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale DW300_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -305,7 +305,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale DW300_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
