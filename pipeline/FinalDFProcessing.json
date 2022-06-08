@@ -1019,6 +1019,36 @@
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "SQL_Scale S3 200 DTU",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spCalculateLuckDrawStore-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateAllPlannedCalls-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S5",
+						"tier": "Standard"
+					}
+				}
 			}
 		],
 		"folder": {
