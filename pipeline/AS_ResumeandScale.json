@@ -97,7 +97,7 @@
 							}
 						},
 						{
-							"name": "Wait 5 min",
+							"name": "Wait AS Resuming",
 							"type": "Wait",
 							"dependsOn": [
 								{
@@ -176,6 +176,22 @@
 									"type": "MSI",
 									"resource": "https://management.azure.com/"
 								}
+							}
+						},
+						{
+							"name": "Wait_AS_Scaling",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "AS_Scale_S4",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 300
 							}
 						}
 					]
