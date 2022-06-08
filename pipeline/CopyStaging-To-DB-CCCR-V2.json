@@ -78,7 +78,7 @@
 							{
 								"name": "FileSetID",
 								"value": {
-									"value": "0",
+									"value": "@activity('SpCycFileSetEntry_Cloud1').output.firstRow.CycFileID",
 									"type": "Expression"
 								}
 							}
@@ -540,7 +540,7 @@
 							{
 								"name": "FileSetID",
 								"value": {
-									"value": "0",
+									"value": "@activity('SpCycFileSetEntry_Cloud2').output.firstRow.CycFileID",
 									"type": "Expression"
 								}
 							}
@@ -1002,7 +1002,7 @@
 							{
 								"name": "FileSetID",
 								"value": {
-									"value": "0",
+									"value": "@activity('SpCycFileSetEntry_Cloud3').output.firstRow.CycFileID",
 									"type": "Expression"
 								}
 							}
