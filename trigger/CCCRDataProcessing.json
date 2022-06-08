@@ -8,6 +8,11 @@
 				"pipelineReference": {
 					"referenceName": "CCCRDataProcessing_V2",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DataDate": "08-Jun-2022",
+					"windowStart": "07-Jun-2022",
+					"windowEnd": "06-jun-2022"
 				}
 			}
 		],
