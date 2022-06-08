@@ -28,7 +28,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "Set AS State",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -52,7 +52,13 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "Set AS State",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set AS SKU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -76,6 +82,39 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Set AS SKU",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "AS_Status_ActivityAPI",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "SKU",
+					"value": {
+						"value": "@activity('AS_Status_ActivityAPI').output.properties.capacity",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "If Condition2",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "If Condition1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"variables": {
