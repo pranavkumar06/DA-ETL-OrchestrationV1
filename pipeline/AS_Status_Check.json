@@ -1,0 +1,36 @@
+{
+	"name": "AS_Status_Check",
+	"properties": {
+		"activities": [
+			{
+				"name": "AS_Status_ActivityAPI",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 1,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/15354be3-bb86-4045-a1a1-7bf7d9ba1c31/resourceGroups/DBRDashboard/providers/Microsoft.AnalysisServices/servers/dbrdashboard/?api-version=2017-08-01",
+					"method": "GET",
+					"body": {
+						"value": "{\"Dummy\":\"Dummy\"}",
+						"type": "Expression"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.core.windows.net"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Resource Management"
+		},
+		"annotations": []
+	}
+}
