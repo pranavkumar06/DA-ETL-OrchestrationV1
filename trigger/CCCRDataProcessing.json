@@ -10,9 +10,9 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataDate": "08-Jun-2022",
-					"windowStart": "07-Jun-2022",
-					"windowEnd": "06-jun-2022"
+					"DataDate": "@{formatDateTime(utcNow(),'dd-MMM-yyyy')}",
+					"windowStart": "@adddays(trigger().scheduledTime, -1)",
+					"windowEnd": "@trigger().scheduledTime"
 				}
 			}
 		],
