@@ -26,8 +26,36 @@
 						"resource": "https://management.core.windows.net"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "AS_Status_ActivityAPI",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "State",
+					"value": {
+						"value": "@activity('AS_Status_ActivityAPI').output.properties.state",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"State": {
+				"type": "String"
+			},
+			"SKU": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Resource Management"
 		},
