@@ -759,89 +759,11 @@
 				}
 			},
 			{
-				"name": "AS_Resume",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spAS_PopulateFactTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spPopulateFactSBDData",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_Resume",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "AS_Resume",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
-				}
-			},
-			{
-				"name": "AS_Scale_S4",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_Scale_S4",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Wait_AS_Scaling",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "AS_Scale_S4",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
-				}
-			},
-			{
 				"name": "AS_CubeProcess_Sync_Fact",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait_AS_Scaling",
+						"activity": "AS_ResumeandScale",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1060,6 +982,26 @@
 						"Scaleval": "S5",
 						"tier": "Standard"
 					}
+				}
+			},
+			{
+				"name": "AS_ResumeandScale",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactSBDData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_ResumeandScale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
