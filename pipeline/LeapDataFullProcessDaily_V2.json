@@ -134,30 +134,6 @@
 							}
 						},
 						{
-							"name": "SQL_Scale S3 50 DTU",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "FinalDFProcessing",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "SQL_Scale",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Scaleval": "S3",
-									"tier": "Standard"
-								}
-							}
-						},
-						{
 							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
 							"type": "ExecutePipeline",
 							"dependsOn": [
