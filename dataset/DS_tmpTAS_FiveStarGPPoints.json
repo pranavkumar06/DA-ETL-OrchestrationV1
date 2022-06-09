@@ -5,11 +5,6 @@
 			"referenceName": "Dev_DataFoundationDB",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"tablename": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "DF_DBConnection/LEAP Tables"
 		},
