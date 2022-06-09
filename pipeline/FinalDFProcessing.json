@@ -140,7 +140,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spCalculateLSSSchemeAgainstActData-TAS",
+						"activity": "spTAS_UpdateTeleCallingActGPPoints",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1025,6 +1025,112 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spTAS_MapTeleCallingInvDetail]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "FiveStar Data Transfer",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "spCalculateLSSSchemeAgainstActData-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TeleCallingId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TeleCallingId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "GPPoints",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "GPPoints",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "ParameterId",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "ParameterId",
+									"type": "Byte"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_TAS_tmpTeleCallingFiveStarGPPoints",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_tmpTAS_FiveStarGPPoints",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "spTAS_UpdateTeleCallingActGPPoints",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "FiveStar Data Transfer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spTAS_UpdateTeleCallingActGPPoints]"
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
