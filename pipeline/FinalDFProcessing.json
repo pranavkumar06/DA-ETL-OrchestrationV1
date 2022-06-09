@@ -59,7 +59,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spTAS_DailyDataRefreshSalesData-DF",
+						"activity": "spTAS_MapTeleCallingInvDetail-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1002,6 +1002,33 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "spTAS_MapTeleCallingInvDetail-DF",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spTAS_DailyDataRefreshSalesData-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spTAS_MapTeleCallingInvDetail]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
