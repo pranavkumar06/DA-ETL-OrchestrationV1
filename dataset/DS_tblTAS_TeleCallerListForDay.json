@@ -1,5 +1,5 @@
 {
-	"name": "DS_tblTAS_tmpRAWTeleCallerListForDay_V2",
+	"name": "DS_tblTAS_TeleCallerListForDay",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Dev_DataFoundationDB",
@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblTAS_tmpRAWTeleCallerListForDay"
+			"table": "tblTAS_TeleCallerListForDay"
 		}
 	}
 }
