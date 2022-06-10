@@ -1,0 +1,35 @@
+{
+	"name": "DS_tblTAS_tmpRAWTeleCallerListForDay_V2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Dev_DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "TeleCallingId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GPPoints",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "ParameterId",
+				"type": "tinyint",
+				"precision": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblTAS_tmpRAWTeleCallerListForDay"
+		}
+	}
+}
