@@ -378,7 +378,14 @@
 						"type": "SqlDWSink",
 						"allowCopyCommand": true
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -1107,7 +1114,14 @@
 						"type": "SqlDWSink",
 						"allowCopyCommand": true
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -1533,7 +1547,14 @@
 						"type": "SqlDWSink",
 						"allowCopyCommand": true
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -2358,7 +2379,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_tblTAS_tmpRAWTeleCallerListForDay_V2",
+						"referenceName": "DS_tblTAS_TeleCallerListForDay",
 						"type": "DatasetReference"
 					}
 				]
