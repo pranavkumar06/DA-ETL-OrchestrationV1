@@ -655,6 +655,12 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
+						"activity": "spPopulateFactSBDData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
 						"activity": "AS_ResumeandScale",
 						"dependencyConditions": [
 							"Succeeded"
@@ -789,6 +795,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "spTAS_PopulateSBDGaps-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -881,7 +893,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateFactSBDData",
+						"activity": "spAS_PopulateFactTables-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
