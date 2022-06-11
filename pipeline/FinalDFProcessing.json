@@ -1049,7 +1049,7 @@
 				}
 			},
 			{
-				"name": "spTAS_SmartBasketPopulateBaseDetail",
+				"name": "spTAS_SmartBasketPopulateBaseDetail-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
