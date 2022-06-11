@@ -111,34 +111,11 @@
 							}
 						},
 						{
-							"name": "DW_Scale_200",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "FinalDFProcessing",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "DW_Scale_V2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Scaleval": "DW200c"
-								}
-							}
-						},
-						{
 							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale_200",
+									"activity": "FinalDFProcessing",
 									"dependencyConditions": [
 										"Succeeded"
 									]
