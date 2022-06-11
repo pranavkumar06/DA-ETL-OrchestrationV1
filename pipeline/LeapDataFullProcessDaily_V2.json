@@ -2340,26 +2340,6 @@
 							},
 							{
 								"source": {
-									"name": "BranchCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BranchCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "DSECode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "DSECode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "OrderCode",
 									"type": "String"
 								},
