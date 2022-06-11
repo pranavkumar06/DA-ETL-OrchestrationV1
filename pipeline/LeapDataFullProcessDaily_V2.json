@@ -1523,7 +1523,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy Order Detail",
+						"activity": "spTransferDFTeleCallerListForDayData",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2363,6 +2363,33 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "spTransferDFTeleCallerListForDayData",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy Order Detail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spTransferDFTeleCallerListForDayData]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
