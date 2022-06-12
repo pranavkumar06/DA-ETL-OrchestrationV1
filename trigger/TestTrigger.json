@@ -10,7 +10,7 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataProcessDate": "@{convertFromUtc(utcNow(), 'India Standard Time')}"
+					"DataProcessDate": "@{convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy')}"
 				}
 			}
 		],
