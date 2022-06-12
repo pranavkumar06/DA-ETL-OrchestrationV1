@@ -1074,16 +1074,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spTAS_SmartBasketPopulateBaseDetail]",
-					"storedProcedureParameters": {
-						"DMinusOneDate": {
-							"value": {
-								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-								"type": "Expression"
-							},
-							"type": "DateTime"
-						}
-					}
+					"storedProcedureName": "[dbo].[spTAS_SmartBasketPopulateBaseDetail]"
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
