@@ -847,7 +847,7 @@
 				}
 			},
 			{
-				"name": "SQL_Scale S3 200 DTU",
+				"name": "SQL_Scale S4 200 DTU",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
