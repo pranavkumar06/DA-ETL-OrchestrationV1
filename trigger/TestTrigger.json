@@ -10,7 +10,7 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataProcessDate": "@{trigger().scheduledTime}"
+					"DataProcessDate": "@{convertFromUtc(utcnow(), 'Indian Standard Time'))}"
 				}
 			}
 		],
