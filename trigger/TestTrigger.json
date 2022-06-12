@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "Testpipeline1",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DataProcessDate": "@{formatDateTime(trigger().scheduledTime,'dd-MMM-yyyy')}"
 				}
 			}
 		],
