@@ -22,7 +22,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "@item().name",
+									"value": "@concat('CCR_',pipeline().parameters.ProcessDate,'.csv')",
 									"type": "Expression"
 								}
 							},
@@ -315,7 +315,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "@item().name",
+									"value": "@concat('CCRDetail_',pipeline().parameters.ProcessDate,'.csv')",
 									"type": "Expression"
 								}
 							},
