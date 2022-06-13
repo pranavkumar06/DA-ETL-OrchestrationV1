@@ -124,12 +124,14 @@
 								},
 								"sink": {
 									"type": "SqlDWSink",
+									"preCopyScript": "TRUNCATE TABLE tmpRawWinit_CCRMaster",
 									"allowPolyBase": true,
 									"polyBaseSettings": {
 										"rejectValue": 0,
 										"rejectType": "value",
 										"useTypeDefault": true
-									}
+									},
+									"disableMetricsCollection": false
 								},
 								"enableStaging": true,
 								"stagingSettings": {
@@ -415,12 +417,14 @@
 								},
 								"sink": {
 									"type": "SqlDWSink",
+									"preCopyScript": "TRUNCATE TABLE tmpRawWinit_CCRDetail",
 									"allowPolyBase": true,
 									"polyBaseSettings": {
 										"rejectValue": 0,
 										"rejectType": "value",
 										"useTypeDefault": true
-									}
+									},
+									"disableMetricsCollection": false
 								},
 								"enableStaging": true,
 								"stagingSettings": {
