@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblP3MSalesDetail_Test"
+			"table": "tblP3MSalesDetail"
 		}
 	}
 }
