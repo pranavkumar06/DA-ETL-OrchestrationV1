@@ -258,7 +258,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale S7 800 DTU",
+						"activity": "SQL_Scale S7 1600 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -270,7 +270,7 @@
 				}
 			},
 			{
-				"name": "SQL_Scale S7 800 DTU",
+				"name": "SQL_Scale S7 1600 DTU",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -288,7 +288,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"Scaleval": "S7",
+						"Scaleval": "S9",
 						"tier": "Standard"
 					}
 				}
@@ -331,7 +331,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale S7 800 DTU",
+						"activity": "SQL_Scale S7 1600 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2343,7 +2343,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale S7 800 DTU",
+						"activity": "SQL_Scale S7 1600 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
