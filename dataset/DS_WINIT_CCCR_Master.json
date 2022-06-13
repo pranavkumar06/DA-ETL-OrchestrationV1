@@ -5,6 +5,11 @@
 			"referenceName": "dfdatafoundationLink",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "WINIT"
 		},
@@ -13,7 +18,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "CCR_01-Apr-22.csv",
+				"fileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				},
 				"folderPath": "CCCRMaster",
 				"container": "cntwinit"
 			},
