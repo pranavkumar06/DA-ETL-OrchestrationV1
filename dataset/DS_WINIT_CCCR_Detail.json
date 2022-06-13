@@ -1,0 +1,160 @@
+{
+	"name": "DS_WINIT_CCCR_Detail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "WINIT"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				},
+				"folderPath": "CCCRDetail",
+				"container": "cntwinit"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Site",
+				"type": "String"
+			},
+			{
+				"name": "DistributorName",
+				"type": "String"
+			},
+			{
+				"name": "SubDCode",
+				"type": "String"
+			},
+			{
+				"name": "SubDName",
+				"type": "String"
+			},
+			{
+				"name": "BranchCode",
+				"type": "String"
+			},
+			{
+				"name": "SubD Location",
+				"type": "String"
+			},
+			{
+				"name": "DseCode",
+				"type": "String"
+			},
+			{
+				"name": "DseName",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "RouteName",
+				"type": "String"
+			},
+			{
+				"name": "RetailerCode",
+				"type": "String"
+			},
+			{
+				"name": "RetailerName",
+				"type": "String"
+			},
+			{
+				"name": "ContactNumber1",
+				"type": "String"
+			},
+			{
+				"name": "ContactNumber2",
+				"type": "String"
+			},
+			{
+				"name": "ChannelName",
+				"type": "String"
+			},
+			{
+				"name": "SubChannelName",
+				"type": "String"
+			},
+			{
+				"name": "StartTime",
+				"type": "String"
+			},
+			{
+				"name": "EndTime",
+				"type": "String"
+			},
+			{
+				"name": "InTime",
+				"type": "String"
+			},
+			{
+				"name": "OrderValue",
+				"type": "String"
+			},
+			{
+				"name": "Productivity",
+				"type": "String"
+			},
+			{
+				"name": "Reason",
+				"type": "String"
+			},
+			{
+				"name": "SkipReason",
+				"type": "String"
+			},
+			{
+				"name": "VisitLatitude",
+				"type": "String"
+			},
+			{
+				"name": "VisitLongitude",
+				"type": "String"
+			},
+			{
+				"name": "DeviationInMeter",
+				"type": "String"
+			},
+			{
+				"name": "Deviated",
+				"type": "String"
+			},
+			{
+				"name": "ReasonForDeviation",
+				"type": "String"
+			},
+			{
+				"name": "OnRoute",
+				"type": "String"
+			},
+			{
+				"name": "Remarks",
+				"type": "String"
+			},
+			{
+				"name": "IsBilled",
+				"type": "String"
+			}
+		]
+	}
+}
