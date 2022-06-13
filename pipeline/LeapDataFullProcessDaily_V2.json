@@ -136,6 +136,26 @@
 									}
 								}
 							}
+						},
+						{
+							"name": "AR Data Transfer",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "DW_Scale_400",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "AR Data Transfer",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
 						}
 					]
 				}
