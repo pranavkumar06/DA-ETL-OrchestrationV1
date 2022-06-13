@@ -369,9 +369,6 @@
 			}
 		],
 		"parameters": {
-			"Container": {
-				"type": "string"
-			},
 			"ProcessDate": {
 				"type": "string"
 			}
