@@ -22,7 +22,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE tblP3MSalesDetail_Test",
+						"preCopyScript": "TRUNCATE TABLE tblP3MSalesDetail",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
@@ -415,7 +415,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE tblINITSBDStoreWiseGaps_test",
+						"preCopyScript": "TRUNCATE TABLE tblINITSBDStoreWiseGaps",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
@@ -556,7 +556,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE tblSBStoreWiseBaseDetailsActual_test",
+						"preCopyScript": "TRUNCATE TABLE tblSBStoreWiseBaseDetailsActual",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
