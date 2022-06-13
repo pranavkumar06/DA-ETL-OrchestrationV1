@@ -372,9 +372,6 @@
 			"Container": {
 				"type": "string"
 			},
-			"Folder": {
-				"type": "string"
-			},
 			"ProcessDate": {
 				"type": "string"
 			}
