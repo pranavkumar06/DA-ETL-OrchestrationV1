@@ -3,9 +3,9 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetFileList",
-				"description": "Get the list of file",
-				"type": "GetMetadata",
+				"name": "CCCR Master",
+				"description": "Copy a file from the source store to the destination store.",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -16,781 +16,700 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "DS_WINIT_Folder",
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "Filename",
+								"value": {
+									"value": "@item().name",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "Lastmodifieddatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						},
+						"recursive": false
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "TRUNCATE TABLE tmpRawWinit_CCRMaster",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Site",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DistributorCode1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DistributorCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DistributorName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DistributorNameBranchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BranchName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BranchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSECode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DseName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSE Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Subdlocation",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Subdlocation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VisitDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VisitDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StartTime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StartTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EndTime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EndTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledCalls",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ScheduledCalls",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VisitedCalls",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VisitedCalls",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Complaint Calls",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Compliant Call",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductiveCalls",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ProductiveCalls",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesValue",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SalesValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AvgCallTime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AvgCallTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Lastmodifieddatetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_WINIT_CCCR_Master",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder": "CCCRMaster"
+							"Filename": {
+								"value": "@concat('CCR_',pipeline().parameters.ProcessDate,'.csv')",
+								"type": "Expression"
+							}
 						}
-					},
-					"fieldList": [
-						"childItems",
-						"lastModified",
-						"itemName"
-					],
-					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"recursive": true
-					},
-					"formatSettings": {
-						"type": "BinaryReadSettings"
 					}
-				}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_WINITCCCR_table",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
-				"name": "FilterFiles",
-				"description": "Only files will be selected, the source-folders will not be selected.",
-				"type": "Filter",
+				"name": "CCCR Detail",
+				"description": "Copy a file from the source store to the destination store.",
+				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetFileList",
+						"activity": "CCCR Master",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@activity('GetFileList').output.childItems",
-						"type": "Expression"
-					},
-					"condition": {
-						"value": "@startswith(item().name,'CCR')",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "ForEachFile",
-				"description": "Iterate each file, and move them one by one.",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "FilterFiles",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('FilterFiles').output.value",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "CCCR Master",
-							"description": "Copy a file from the source store to the destination store.",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"additionalColumns": [
-										{
-											"name": "Filename",
-											"value": {
-												"value": "@item().name",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "Lastmodifieddatetime",
-											"value": {
-												"value": "@addminutes(utcnow(),330)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									},
-									"recursive": false
-								},
-								"sink": {
-									"type": "SqlDWSink",
-									"preCopyScript": "TRUNCATE TABLE tmpRawWinit_CCRMaster",
-									"allowPolyBase": true,
-									"polyBaseSettings": {
-										"rejectValue": 0,
-										"rejectType": "value",
-										"useTypeDefault": true
-									},
-									"disableMetricsCollection": false
-								},
-								"enableStaging": true,
-								"stagingSettings": {
-									"linkedServiceName": {
-										"referenceName": "DFPolybaseStagingStorageLink",
-										"type": "LinkedServiceReference"
-									},
-									"path": "polybasestaging"
-								},
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "Site",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Site",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DistributorCode1",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DistributorCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DistributorName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DistributorNameBranchCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "BranchName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "BranchName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SubDCode",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SubDCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SubDName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SubDName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DSECode",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DSECode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DseName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DSE Name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Subdlocation",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Subdlocation",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "VisitDate",
-												"type": "String"
-											},
-											"sink": {
-												"name": "VisitDate",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "StartTime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "StartTime",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "EndTime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "EndTime",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ScheduledCalls",
-												"type": "String"
-											},
-											"sink": {
-												"name": "ScheduledCalls",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "VisitedCalls",
-												"type": "String"
-											},
-											"sink": {
-												"name": "VisitedCalls",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Complaint Calls",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Compliant Call",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ProductiveCalls",
-												"type": "String"
-											},
-											"sink": {
-												"name": "ProductiveCalls",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SalesValue",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SalesValue",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "AvgCallTime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "AvgCallTime",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Filename",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Filename",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Lastmodifieddatetime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "LastModifiedDatetime",
-												"type": "String"
-											}
-										}
-									]
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "Filename",
+								"value": {
+									"value": "@item().name",
+									"type": "Expression"
 								}
 							},
-							"inputs": [
-								{
-									"referenceName": "DS_WINIT_CCCR_Master",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+							{
+								"name": "Lastmodifieddatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_WINITCCCR_table",
-									"type": "DatasetReference"
-								}
-							]
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
 						},
-						{
-							"name": "CCCR Detail",
-							"description": "Copy a file from the source store to the destination store.",
-							"type": "Copy",
-							"dependsOn": [
-								{
-									"activity": "CCCR Master",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						},
+						"recursive": false
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "TRUNCATE TABLE tmpRawWinit_CCRDetail",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
 								"source": {
-									"type": "DelimitedTextSource",
-									"additionalColumns": [
-										{
-											"name": "Filename",
-											"value": {
-												"value": "@item().name",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "Lastmodifieddatetime",
-											"value": {
-												"value": "@addminutes(utcnow(),330)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									},
-									"recursive": false
+									"name": "Site",
+									"type": "String"
 								},
 								"sink": {
-									"type": "SqlDWSink",
-									"preCopyScript": "TRUNCATE TABLE tmpRawWinit_CCRDetail",
-									"allowPolyBase": true,
-									"polyBaseSettings": {
-										"rejectValue": 0,
-										"rejectType": "value",
-										"useTypeDefault": true
-									},
-									"disableMetricsCollection": false
-								},
-								"enableStaging": true,
-								"stagingSettings": {
-									"linkedServiceName": {
-										"referenceName": "DFPolybaseStagingStorageLink",
-										"type": "LinkedServiceReference"
-									},
-									"path": "polybasestaging"
-								},
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "Site",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Site",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DistributorName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DistributorName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SubDCode",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SubDCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SubDName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SubDName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "BranchCode",
-												"type": "String"
-											},
-											"sink": {
-												"name": "BranchCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SubD Location",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SubD Location",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DseCode",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DseCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DseName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DseName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Date",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Date",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "RouteName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "RouteName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "RetailerCode",
-												"type": "String"
-											},
-											"sink": {
-												"name": "RetailerCode",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "RetailerName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "RetailerName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ContactNumber1",
-												"type": "String"
-											},
-											"sink": {
-												"name": "ContactNumber1",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ContactNumber2",
-												"type": "String"
-											},
-											"sink": {
-												"name": "ContactNumber2",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ChannelName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "ChannelName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SubChannelName",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SubChannelName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "StartTime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "StartTime",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "EndTime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "EndTime",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "InTime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "InTime",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "OrderValue",
-												"type": "String"
-											},
-											"sink": {
-												"name": "OrderValue",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Productivity",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Productivity",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Reason",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Reason",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "SkipReason",
-												"type": "String"
-											},
-											"sink": {
-												"name": "SkipReason",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "VisitLatitude",
-												"type": "String"
-											},
-											"sink": {
-												"name": "VisitLatitude",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "VisitLongitude",
-												"type": "String"
-											},
-											"sink": {
-												"name": "VisitLongitude",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "DeviationInMeter",
-												"type": "String"
-											},
-											"sink": {
-												"name": "DeviationInMeter",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Deviated",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Deviated",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "ReasonForDeviation",
-												"type": "String"
-											},
-											"sink": {
-												"name": "ReasonForDeviation",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "OnRoute",
-												"type": "String"
-											},
-											"sink": {
-												"name": "OnRoute",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Remarks",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Remarks",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "IsBilled",
-												"type": "String"
-											},
-											"sink": {
-												"name": "IsBilled",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Filename",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Filename",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Lastmodifieddatetime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "LastModifiedDatetime",
-												"type": "String"
-											}
-										}
-									]
+									"name": "Site",
+									"type": "String"
 								}
 							},
-							"inputs": [
-								{
-									"referenceName": "DS_WINIT_CCCR_Detail",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+							{
+								"source": {
+									"name": "DistributorName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DistributorName",
+									"type": "String"
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_WINITCCCR_table_Detail",
-									"type": "DatasetReference"
+							},
+							{
+								"source": {
+									"name": "SubDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDCode",
+									"type": "String"
 								}
-							]
+							},
+							{
+								"source": {
+									"name": "SubDName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BranchCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BranchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubD Location",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubD Location",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DseCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DseCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DseName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DseName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RouteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RetailerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RetailerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RetailerName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RetailerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ContactNumber1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ContactNumber1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ContactNumber2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ContactNumber2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ChannelName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ChannelName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubChannelName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubChannelName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StartTime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StartTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EndTime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EndTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "InTime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "InTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderValue",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Productivity",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Productivity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Reason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Reason",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SkipReason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SkipReason",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VisitLatitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VisitLatitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VisitLongitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VisitLongitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DeviationInMeter",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DeviationInMeter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Deviated",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Deviated",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ReasonForDeviation",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ReasonForDeviation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OnRoute",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OnRoute",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Remarks",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Remarks",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "IsBilled",
+									"type": "String"
+								},
+								"sink": {
+									"name": "IsBilled",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Lastmodifieddatetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_WINIT_CCCR_Detail",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filename": {
+								"value": "@concat('CCRDetail_',pipeline().parameters.ProcessDate,'.csv')",
+								"type": "Expression"
+							}
 						}
-					]
-				}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_WINITCCCR_table_Detail",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"parameters": {
