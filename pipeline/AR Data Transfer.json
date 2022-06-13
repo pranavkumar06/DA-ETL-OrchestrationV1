@@ -59,72 +59,60 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "BranchNodeId",
+									"name": "BranchSubdNodeId",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "BranchNodeId",
+									"name": "BranchSubdNodeId",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "BranchNodeType",
+									"name": "BranchSubdNodeType",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "BranchNodeType",
+									"name": "BranchSubdNodeType",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "DSECode",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "DSECode",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreId",
+									"name": "Storeid",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "StoreId",
+									"name": "Storeid",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "PrdNodeId",
+									"name": "DSENodeid",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "PrdNodeId",
+									"name": "DSENodeid",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "PrdNodeType",
+									"name": "DSENodeType",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "PrdNodeType",
+									"name": "DSENodeType",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -155,242 +143,134 @@
 							},
 							{
 								"source": {
-									"name": "Qty",
+									"name": "InvID",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "Qty",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "NetValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "NetValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "GrossAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "GrossAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "TaxAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "TaxAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "RETAILING",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "RETAILING",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "UPC",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "UPC",
+									"name": "InvID",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "RetQty",
+									"name": "aging_days",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "RetQty",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "RetNetValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "RetNetValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "RetGrossAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "RetGrossAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "RetTaxAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "RetTaxAmt",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "RetRETAILING",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								},
-								"sink": {
-									"name": "RetRETAILING",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "InvQty",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "InvQty",
+									"name": "aging_days",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "InvNetValue",
+									"name": "net_amount",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								},
 								"sink": {
-									"name": "InvNetValue",
+									"name": "net_amount",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								}
 							},
 							{
 								"source": {
-									"name": "InvGrossAmt",
+									"name": "paid_amount",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								},
 								"sink": {
-									"name": "InvGrossAmt",
+									"name": "paid_amount",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								}
 							},
 							{
 								"source": {
-									"name": "InvTaxAmt",
+									"name": "balance_amount",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								},
 								"sink": {
-									"name": "InvTaxAmt",
+									"name": "balance_amount",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								}
 							},
 							{
 								"source": {
-									"name": "InvRETAILING",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
+									"name": "FileSetId",
+									"type": "Int64",
+									"physicalType": "bigint"
 								},
 								"sink": {
-									"name": "InvRETAILING",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
+									"name": "FileSetId",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeStampIns",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TimeStampIns",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "ArDate",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "ArDate",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "ChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SubChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SubChannelId",
+									"type": "Int32",
+									"physicalType": "int"
 								}
 							}
 						],
@@ -403,13 +283,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_DW_tblLeapP3MSalesDetailByOrder",
+						"referenceName": "DS_DW_tblARData_Current",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_TAS_tblP3MSalesDetail_Test",
+						"referenceName": "DS_TAS_tblLeapARData",
 						"type": "DatasetReference"
 					}
 				]
