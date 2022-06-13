@@ -1,0 +1,35 @@
+{
+	"name": "DS_TAS_tblSBStoreWiseBaseDetailsActual_test",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TASDatabase_Check",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "TAS_DBConnection"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TeleCallingId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GPPoints",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "ParameterId",
+				"type": "tinyint",
+				"precision": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblSBStoreWiseBaseDetailsActual_test"
+		}
+	}
+}
