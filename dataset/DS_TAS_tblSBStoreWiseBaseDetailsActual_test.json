@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblSBStoreWiseBaseDetailsActual_test"
+			"table": "tblSBStoreWiseBaseDetailsActual"
 		}
 	}
 }
