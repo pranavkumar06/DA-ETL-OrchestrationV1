@@ -22,7 +22,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DS_DF_NC_RouteCalendar_SUBD",
+						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
