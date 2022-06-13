@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblINITSBDStoreWiseGaps_test"
+			"table": "tblINITSBDStoreWiseGaps"
 		}
 	}
 }
