@@ -748,16 +748,6 @@
 							},
 							{
 								"source": {
-									"name": "strSchemeBenefit",
-									"type": "String"
-								},
-								"sink": {
-									"name": "strSchemeBenefit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "OrderInitTag",
 									"type": "String"
 								},
@@ -1324,32 +1314,12 @@
 							},
 							{
 								"source": {
-									"name": "strSchemeSource",
-									"type": "String"
-								},
-								"sink": {
-									"name": "strSchemeSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "flgRateChange",
 									"type": "Boolean"
 								},
 								"sink": {
 									"name": "flgRateChange",
 									"type": "Boolean"
-								}
-							},
-							{
-								"source": {
-									"name": "strBatchPrice",
-									"type": "String"
-								},
-								"sink": {
-									"name": "strBatchPrice",
-									"type": "String"
 								}
 							},
 							{
