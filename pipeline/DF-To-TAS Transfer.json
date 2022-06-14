@@ -723,98 +723,42 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "StoreId",
+									"name": "storeid",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "StoreId",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "SBFNodeId",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "SBFNodeId",
+									"name": "storeid",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "NoOfTimesSold",
+									"name": "#OfInv",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "NoOfTimesSold",
+									"name": "#OfInv",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "SalesValue",
+									"name": "NetValue",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 18
+									"scale": 2,
+									"precision": 38
 								},
 								"sink": {
-									"name": "SalesValue",
+									"name": "NetValue",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "RetValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 18
-								},
-								"sink": {
-									"name": "RetValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "NetSalesValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 18
-								},
-								"sink": {
-									"name": "NetSalesValue",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "LastInvDate",
-									"type": "DateTime",
-									"physicalType": "date"
-								},
-								"sink": {
-									"name": "LastInvDate",
-									"type": "DateTime",
-									"physicalType": "date"
+									"scale": 2,
+									"precision": 38
 								}
 							}
 						],
