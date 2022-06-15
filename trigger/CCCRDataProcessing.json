@@ -10,7 +10,7 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataDate": "@{formatDateTime(utcNow(),'dd-MMM-yyyy')}",
+					"DataDate": "@formatDateTime(utcNow(),'dd-MMM-yyyy')",
 					"windowStart": "@adddays(trigger().scheduledTime, -1)",
 					"windowEnd": "@trigger().scheduledTime"
 				}
