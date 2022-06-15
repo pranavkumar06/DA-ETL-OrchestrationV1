@@ -23,13 +23,13 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "spDataLoadSBDMasterData_Cloud",
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"activity": "If SBD File Process",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -184,33 +184,6 @@
 							"type": "Expression"
 						}
 					}
-				}
-			},
-			{
-				"name": "spDataLoadSBDMasterData_Cloud",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Loading Temp and Final Tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -2376,6 +2349,79 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "If SBD File Process",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckSBDFileProcessStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('SpCheckSBDFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "spDataLoadSBDMasterData_Cloud",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]"
+							},
+							"linkedServiceName": {
+								"referenceName": "Dev_DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "SpCheckSBDFileProcessStatus",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Loading Temp and Final Tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCheckSBDFileProcessStatus]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
 				}
 			}
 		],
