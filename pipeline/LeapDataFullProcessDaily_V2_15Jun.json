@@ -3,22 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DW_Resume_Scale DW300_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW300c"
-					}
-				}
-			},
-			{
 				"name": "SpCheckAllFileProcessStatus",
 				"type": "Lookup",
 				"dependsOn": [
@@ -163,14 +147,7 @@
 			{
 				"name": "Loading Temp and Final Tables",
 				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale DW300_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
