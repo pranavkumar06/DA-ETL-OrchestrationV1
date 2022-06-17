@@ -1812,7 +1812,18 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "transaction_customer_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "transaction_customer_type",
+																				"type": "String"
 																			}
 																		}
 																	]
