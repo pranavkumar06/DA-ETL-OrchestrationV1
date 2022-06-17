@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "CFR_cloud01_2021Apr18.csv",
+				"fileName": "IHR_cloud01_2022Jun17.csv",
 				"folderPath": "Cloud1",
 				"container": "leapstaging"
 			},
