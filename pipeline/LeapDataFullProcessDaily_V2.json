@@ -1317,6 +1317,16 @@
 							},
 							{
 								"source": {
+									"name": "strBatchPrice",
+									"type": "String"
+								},
+								"sink": {
+									"name": "strBatchPrice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"name": "ProductRateBeforeTax",
 									"type": "Decimal"
 								},
