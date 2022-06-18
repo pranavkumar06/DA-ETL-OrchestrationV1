@@ -10,7 +10,7 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataProcessDate": "@{formatDateTime(utcNow(),'dd-MMM-yyyy')}",
+					"DataProcessDate": "@{convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy')}",
 					"Container": "cntleap",
 					"Directory": "@{concat('/', formatDateTime(trigger().scheduledTime, 'yyyy'), '/', formatDateTime(trigger().scheduledTime, 'MM'), '/', formatDateTime(trigger().scheduledTime, 'dd'), '/')}"
 				}
