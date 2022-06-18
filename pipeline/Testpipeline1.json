@@ -14,6 +14,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "FolderDate",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "TimeToday",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FolderDate",
+					"value": {
+						"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -23,6 +43,9 @@
 		},
 		"variables": {
 			"TimeToday": {
+				"type": "String"
+			},
+			"FolderDate": {
 				"type": "String"
 			}
 		},
