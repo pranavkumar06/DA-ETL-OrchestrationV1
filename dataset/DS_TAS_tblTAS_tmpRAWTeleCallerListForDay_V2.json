@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblTAS_tmpRAWTeleCallerListForDay"
+			"table": "tblTeleCallerListForDay_Transfer"
 		}
 	}
 }
