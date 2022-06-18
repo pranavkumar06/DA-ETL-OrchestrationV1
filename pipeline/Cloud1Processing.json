@@ -150,7 +150,18 @@
 								"expression": {
 									"value": "@equals(variables('flgFullProcessingPending'),'1')",
 									"type": "Expression"
-								}
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Wait 10 min",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 600
+										}
+									}
+								]
 							}
 						}
 					],
