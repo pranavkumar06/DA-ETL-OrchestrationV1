@@ -2267,6 +2267,36 @@
 									"name": "flgCCRRoleOver",
 									"type": "Byte"
 								}
+							},
+							{
+								"source": {
+									"name": "TCNodeID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TCNodeId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TCNodeType",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TCNodeType",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderCode",
+									"type": "String"
+								}
 							}
 						]
 					}
