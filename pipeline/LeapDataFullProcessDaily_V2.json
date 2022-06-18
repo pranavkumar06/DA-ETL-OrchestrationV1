@@ -1444,14 +1444,7 @@
 			{
 				"name": "spMoveOrderTeleCallingDataInHistory",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Copy tblTAS_tmpRAWTeleCallerListForDay",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1473,7 +1466,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "spTransferDFTeleCallerListForDayData",
+						"activity": "Copy Order Detail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2266,36 +2259,6 @@
 								"sink": {
 									"name": "flgCCRRoleOver",
 									"type": "Byte"
-								}
-							},
-							{
-								"source": {
-									"name": "TCNodeId",
-									"type": "Int32"
-								},
-								"sink": {
-									"name": "TCNodeId",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "TCNodeType",
-									"type": "Int32"
-								},
-								"sink": {
-									"name": "TCNodeType",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "OrderCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "OrderCode",
-									"type": "String"
 								}
 							}
 						]
