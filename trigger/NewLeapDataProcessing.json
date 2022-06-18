@@ -12,7 +12,7 @@
 				"parameters": {
 					"DataProcessDate": "@{convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy')}",
 					"Container": "cntleap",
-					"Directory": "@{concat('/', formatDateTime(trigger().scheduledTime, 'yyyy'), '/', formatDateTime(trigger().scheduledTime, 'MM'), '/', formatDateTime(trigger().scheduledTime, 'dd'), '/')}"
+					"Directory": "@{concat('/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'yyyy'), '/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'MM'), '/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'dd'), '/')}"
 				}
 			}
 		],
