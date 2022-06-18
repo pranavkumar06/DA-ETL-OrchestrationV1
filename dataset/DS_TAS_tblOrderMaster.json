@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblOrderMaster"
+			"table": "tblOrderMaster_Transfer"
 		}
 	}
 }
