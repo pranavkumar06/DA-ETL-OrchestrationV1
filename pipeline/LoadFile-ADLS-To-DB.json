@@ -22,7 +22,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "/2021/09/07/",
+								"value": "/2022/01/01/",
 								"type": "Expression"
 							},
 							"directory": "cntleap"
