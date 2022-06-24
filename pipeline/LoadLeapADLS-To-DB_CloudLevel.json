@@ -70,7 +70,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"folder": {
-											"value": "@concat('/', formatDateTime(convertFromUtc(item().DataDate, 'India Standard Time'), 'yyyy'), '/', formatDateTime(convertFromUtc(item().DataDate, 'India Standard Time'), 'MM'), '/', formatDateTime(convertFromUtc(item().DataDate, 'India Standard Time'), 'dd'), '/')",
+											"value": "@concat('/', formatDateTime(item().DataDate, 'yyyy'), '/', formatDateTime(item().DataDate, 'MM'), '/', formatDateTime(item().DataDate,'dd'), '/')",
 											"type": "Expression"
 										},
 										"directory": "cntleap",
@@ -395,7 +395,7 @@
 																	"parameters": {
 																		"Container": "cntleap",
 																		"Directory": {
-																			"value": "@concat('/', formatDateTime(convertFromUtc(item().DataDate, 'India Standard Time'), 'yyyy'), '/', formatDateTime(convertFromUtc(item().DataDate, 'India Standard Time'), 'MM'), '/', formatDateTime(convertFromUtc(item().DataDate, 'India Standard Time'), 'dd'), '/')",
+																			"value": "@concat('/', formatDateTime(item().DataDate, 'yyyy'), '/', formatDateTime(item().DataDate, 'MM'), '/', formatDateTime(item().DataDate,'dd'), '/')",
 																			"type": "Expression"
 																		},
 																		"Filename": {
