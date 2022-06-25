@@ -382,7 +382,8 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "FileSetId",
+																				"type": "Int64"
 																			}
 																		}
 																	]
