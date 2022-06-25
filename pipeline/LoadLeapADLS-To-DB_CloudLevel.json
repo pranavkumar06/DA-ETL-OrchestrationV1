@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetFileDetails",
+				"name": "GetFileDetails-Cloud1",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -35,11 +35,11 @@
 				}
 			},
 			{
-				"name": "ForEachFileTobeimported",
+				"name": "Checkfiles-Cloud1",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "GetFileDetails",
+						"activity": "GetFileDetails-Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -53,7 +53,7 @@
 					},
 					"activities": [
 						{
-							"name": "GetFileList",
+							"name": "GetFileList-Cloud1",
 							"type": "GetMetadata",
 							"dependsOn": [],
 							"policy": {
@@ -96,11 +96,11 @@
 							}
 						},
 						{
-							"name": "If File Exists",
+							"name": "If File Exists-Cloud1",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "GetFileList",
+									"activity": "GetFileList-Cloud1",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -114,7 +114,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "IfFileFound",
+										"name": "IfFileFound-Cloud1",
 										"type": "Switch",
 										"dependsOn": [],
 										"userProperties": [],
