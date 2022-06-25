@@ -2,7 +2,7 @@
 	"name": "ADLSCSVDataSource_File",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "dfdatafoundationLink",
+			"referenceName": "LinkedService_PnGADLS",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -23,7 +23,7 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
+				"type": "AzureBlobFSLocation",
 				"fileName": {
 					"value": "@dataset().Filename",
 					"type": "Expression"
@@ -32,7 +32,7 @@
 					"value": "@dataset().Directory",
 					"type": "Expression"
 				},
-				"container": {
+				"fileSystem": {
 					"value": "@dataset().Container",
 					"type": "Expression"
 				}
