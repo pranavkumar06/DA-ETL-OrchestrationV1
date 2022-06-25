@@ -170,7 +170,7 @@
 																		"type": "AzureBlobFSReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
-																			"value": "@activity('GetFileList').output.itemName",
+																			"value": "@activity('GetFileList-Cloud1').output.itemName",
 																			"type": "Expression"
 																		},
 																		"enablePartitionDiscovery": false
