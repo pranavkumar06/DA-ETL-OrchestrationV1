@@ -875,7 +875,7 @@
 															]
 														},
 														{
-															"name": "spDataLoad_OrderSalesStatus_Cloud1_temp_copy1",
+															"name": "spDataLoad_OrderSalesStatus_Cloud2_temp",
 															"type": "SqlServerStoredProcedure",
 															"dependsOn": [
 																{
@@ -894,7 +894,7 @@
 															},
 															"userProperties": [],
 															"typeProperties": {
-																"storedProcedureName": "[dbo].[spDataLoad_OrderSalesStatus_Cloud1_temp]"
+																"storedProcedureName": "[dbo].[spDataLoad_OrderSalesStatus_Cloud2_temp]"
 															},
 															"linkedServiceName": {
 																"referenceName": "Dev_DataFoundationDB",
