@@ -51,6 +51,7 @@
 						"value": "@activity('GetFileDetails-Cloud1').output.value\n",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "GetFileList-Cloud1",
@@ -88,6 +89,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -506,6 +508,7 @@
 						"value": "@activity('GetFileDetails-Cloud2').output.value\n",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "GetFileList-Cloud2",
@@ -543,6 +546,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -961,6 +965,7 @@
 						"value": "@activity('GetFileDetails-Cloud3').output.value\n",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "GetFileList-Cloud3",
@@ -998,6 +1003,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
