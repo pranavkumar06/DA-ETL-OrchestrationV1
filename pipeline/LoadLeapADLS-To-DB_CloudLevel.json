@@ -147,7 +147,7 @@
 																		{
 																			"name": "Filename",
 																			"value": {
-																				"value": "@activity('GetFileList').output.itemName",
+																				"value": "@activity('GetFileList-Cloud1').output.itemName",
 																				"type": "Expression"
 																			}
 																		},
@@ -602,7 +602,7 @@
 																		{
 																			"name": "Filename",
 																			"value": {
-																				"value": "@activity('GetFileList').output.itemName",
+																				"value": "@activity('GetFileList-Cloud2').output.itemName",
 																				"type": "Expression"
 																			}
 																		},
@@ -625,7 +625,7 @@
 																		"type": "AzureBlobFSReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
-																			"value": "@activity('GetFileList').output.itemName",
+																			"value": "@activity('GetFileList-Cloud2').output.itemName",
 																			"type": "Expression"
 																		},
 																		"enablePartitionDiscovery": false
@@ -1057,7 +1057,7 @@
 																		{
 																			"name": "Filename",
 																			"value": {
-																				"value": "@activity('GetFileList').output.itemName",
+																				"value": "@activity('GetFileList-Cloud3').output.itemName",
 																				"type": "Expression"
 																			}
 																		},
@@ -1080,7 +1080,7 @@
 																		"type": "AzureBlobFSReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
-																			"value": "@activity('GetFileList').output.itemName",
+																			"value": "@activity('GetFileList-Cloud3').output.itemName",
 																			"type": "Expression"
 																		},
 																		"enablePartitionDiscovery": false
