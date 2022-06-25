@@ -56,7 +56,14 @@
 						{
 							"name": "GetFileList-Cloud1",
 							"type": "GetMetadata",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "SpFileImportLog_Start",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -454,6 +461,87 @@
 										}
 									}
 								]
+							}
+						},
+						{
+							"name": "SpFileImportLog_Start",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpFileImportLog]",
+								"storedProcedureParameters": {
+									"CloudInstance": {
+										"value": "1",
+										"type": "Byte"
+									},
+									"DataDate": {
+										"value": {
+											"value": "@item().DataDate",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"flgStartStop": {
+										"value": "1",
+										"type": "Byte"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "Dev_DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "SpFileImportLog_End",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "If File Exists-Cloud1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpFileImportLog]",
+								"storedProcedureParameters": {
+									"CloudInstance": {
+										"value": "1",
+										"type": "Byte"
+									},
+									"DataDate": {
+										"value": {
+											"value": "@item().DataDate",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"flgStartStop": {
+										"value": "2",
+										"type": "Byte"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "Dev_DataFoundationDB",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
