@@ -167,7 +167,7 @@
 																		}
 																	],
 																	"storeSettings": {
-																		"type": "AzureBlobStorageReadSettings",
+																		"type": "AzureBlobFSReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
 																			"value": "@activity('GetFileList').output.itemName",
