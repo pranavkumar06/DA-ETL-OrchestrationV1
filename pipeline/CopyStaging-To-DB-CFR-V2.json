@@ -145,7 +145,7 @@
 													{
 														"name": "FileSetID",
 														"value": {
-															"value": "@item().CycFileID",
+															"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
 															"type": "Expression"
 														}
 													}
