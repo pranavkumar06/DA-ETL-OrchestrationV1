@@ -480,7 +480,7 @@
 													"DataDate": {
 														"type": "DateTime",
 														"value": {
-															"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+															"value": "@formatDateTime(item().DataDate,'yyyy-MMM-dd')",
 															"type": "Expression"
 														}
 													},
@@ -546,7 +546,7 @@
 													"DataDate": {
 														"type": "DateTime",
 														"value": {
-															"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+															"value": "@formatDateTime(item().DataDate,'yyyy-MMM-dd')",
 															"type": "Expression"
 														}
 													},
