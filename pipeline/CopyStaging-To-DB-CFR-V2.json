@@ -28,354 +28,8 @@
 				}
 			},
 			{
-				"name": "CFR Data Copy",
-				"description": "Copy a file from the source store to the destination store.",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "SpCycFileSetEntry",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"name": "Filename",
-								"value": {
-									"value": "@activity('Getfilenames').output.firstRow.name",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "LastModifiedDatetime",
-								"value": {
-									"value": "@addminutes(utcnow(),330)",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "FileSetID",
-								"value": {
-									"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
-									"type": "Expression"
-								}
-							}
-						],
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						},
-						"recursive": false
-					},
-					"sink": {
-						"type": "SqlDWSink",
-						"allowPolyBase": true,
-						"polyBaseSettings": {
-							"rejectValue": 0,
-							"rejectType": "value",
-							"useTypeDefault": true
-						},
-						"disableMetricsCollection": false
-					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "DFPolybaseStagingStorageLink",
-							"type": "LinkedServiceReference"
-						},
-						"path": "polybasestaging"
-					},
-					"dataIntegrationUnits": 2,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "DistributorCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "DistributorCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "DistributorName",
-									"type": "String"
-								},
-								"sink": {
-									"name": "DistributorName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Site",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Site",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "BranchCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BranchCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SubDCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SubDCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SubDName",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SubDName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ChannelCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "ChannelCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ChannelName",
-									"type": "String"
-								},
-								"sink": {
-									"name": "ChannelName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Category",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Category",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Brandform",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Brandform",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SubBF",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SubBF",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "mLinker2",
-									"type": "String"
-								},
-								"sink": {
-									"name": "mLinker2",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Ordered",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Ordered",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Date",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Date",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ActualOrdered",
-									"type": "String"
-								},
-								"sink": {
-									"name": "ActualOrdered",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SBD",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SBD",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Supply_CFROnTime",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Supply_CFROnTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "UnservedDemand_CFROnTime",
-									"type": "String"
-								},
-								"sink": {
-									"name": "UnservedDemand_CFROnTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "CFROnTime",
-									"type": "String"
-								},
-								"sink": {
-									"name": "CFROnTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Supply_CFR",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Supply_CFR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "UnservedDemand_CFR",
-									"type": "String"
-								},
-								"sink": {
-									"name": "UnservedDemand_CFR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "CFR",
-									"type": "String"
-								},
-								"sink": {
-									"name": "CFR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Filename",
-									"type": "String"
-								},
-								"sink": {
-									"name": "FileName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "FileSetID",
-									"type": "String"
-								},
-								"sink": {
-									"name": "FileSetID",
-									"type": "Int64"
-								}
-							}
-						]
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "WinITCSV_Staging",
-						"type": "DatasetReference",
-						"parameters": {
-							"Filename": {
-								"value": "@activity('Getfilenames').output.firstRow.name",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_Destination_table",
-						"type": "DatasetReference",
-						"parameters": {
-							"tablename": {
-								"value": "@activity('Getfilenames').output.firstRow.temptablename",
-								"type": "Expression"
-							}
-						}
-					}
-				]
-			},
-			{
-				"name": "SpCycFileSetEntry",
-				"type": "Lookup",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "Getfilenames",
@@ -384,125 +38,600 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpCycCFRFileEntry]",
-						"storedProcedureParameters": {
-							"CycleID": {
-								"type": "Int64",
-								"value": {
-									"value": "@pipeline().parameters.CycleID",
-									"type": "Expression"
-								}
+					"items": {
+						"value": "@activity('Getfilenames').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "GetFileList",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
 							},
-							"DataDate": {
-								"type": "DateTime",
-								"value": {
-									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
-									"type": "Expression"
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "DS_WINIT_StorageSourceDataset_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"exists",
+									"itemName",
+									"lastModified",
+									"itemType"
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
 								}
-							},
-							"FileID": {
-								"type": "Int32",
-								"value": {
-									"value": "@activity('Getfilenames').output.firstRow.FileID",
-									"type": "Expression"
-								}
-							},
-							"FileName": {
-								"type": "String",
-								"value": {
-									"value": "@activity('Getfilenames').output.firstRow.name",
-									"type": "Expression"
-								}
-							},
-							"flgProcessType": {
-								"type": "Byte",
-								"value": "1"
 							}
 						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "DataFoundationConnectionV2",
-						"type": "DatasetReference"
-					}
-				}
-			},
-			{
-				"name": "SpCycFileSetUpdate",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "CFR Data Copy",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpCycCFRFileEntry]",
-						"storedProcedureParameters": {
-							"CycleID": {
-								"type": "Int64",
-								"value": {
-									"value": "@pipeline().parameters.CycleID",
-									"type": "Expression"
+						{
+							"name": "If File Exists",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "GetFileList",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
-							},
-							"DataDate": {
-								"type": "DateTime",
-								"value": {
-									"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@activity('GetFileList').output.exists",
 									"type": "Expression"
-								}
-							},
-							"FileID": {
-								"type": "Int32",
-								"value": {
-									"value": "@activity('Getfilenames').output.firstRow.FileID",
-									"type": "Expression"
-								}
-							},
-							"FileName": {
-								"type": "String",
-								"value": {
-									"value": "@activity('Getfilenames').output.firstRow.name",
-									"type": "Expression"
-								}
-							},
-							"flgProcessType": {
-								"type": "Byte",
-								"value": "2"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "CFR Data Copy",
+										"description": "Copy a file from the source store to the destination store.",
+										"type": "Copy",
+										"dependsOn": [
+											{
+												"activity": "SpCycFileSetEntry",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"additionalColumns": [
+													{
+														"name": "Filename",
+														"value": {
+															"value": "@activity('Getfilenames').output.firstRow.name",
+															"type": "Expression"
+														}
+													},
+													{
+														"name": "LastModifiedDatetime",
+														"value": {
+															"value": "@addminutes(utcnow(),330)",
+															"type": "Expression"
+														}
+													},
+													{
+														"name": "FileSetID",
+														"value": {
+															"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+															"type": "Expression"
+														}
+													}
+												],
+												"storeSettings": {
+													"type": "AzureBlobStorageReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												},
+												"recursive": false
+											},
+											"sink": {
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												},
+												"disableMetricsCollection": false
+											},
+											"enableStaging": true,
+											"stagingSettings": {
+												"linkedServiceName": {
+													"referenceName": "DFPolybaseStagingStorageLink",
+													"type": "LinkedServiceReference"
+												},
+												"path": "polybasestaging"
+											},
+											"dataIntegrationUnits": 2,
+											"translator": {
+												"type": "TabularTranslator",
+												"mappings": [
+													{
+														"source": {
+															"name": "DistributorCode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "DistributorCode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "DistributorName",
+															"type": "String"
+														},
+														"sink": {
+															"name": "DistributorName",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Site",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Site",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "BranchCode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "BranchCode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SubDCode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SubDCode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SubDName",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SubDName",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "ChannelCode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ChannelCode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "ChannelName",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ChannelName",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Category",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Category",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Brandform",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Brandform",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SubBF",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SubBF",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "mLinker2",
+															"type": "String"
+														},
+														"sink": {
+															"name": "mLinker2",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Ordered",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Ordered",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Date",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Date",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "ActualOrdered",
+															"type": "String"
+														},
+														"sink": {
+															"name": "ActualOrdered",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SBD",
+															"type": "String"
+														},
+														"sink": {
+															"name": "SBD",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Supply_CFROnTime",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Supply_CFROnTime",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "UnservedDemand_CFROnTime",
+															"type": "String"
+														},
+														"sink": {
+															"name": "UnservedDemand_CFROnTime",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "CFROnTime",
+															"type": "String"
+														},
+														"sink": {
+															"name": "CFROnTime",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Supply_CFR",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Supply_CFR",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "UnservedDemand_CFR",
+															"type": "String"
+														},
+														"sink": {
+															"name": "UnservedDemand_CFR",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "CFR",
+															"type": "String"
+														},
+														"sink": {
+															"name": "CFR",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Filename",
+															"type": "String"
+														},
+														"sink": {
+															"name": "FileName",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "FileSetID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "FileSetID",
+															"type": "Int64"
+														}
+													}
+												]
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "WinITCSV_Staging",
+												"type": "DatasetReference",
+												"parameters": {
+													"Filename": {
+														"value": "@activity('Getfilenames').output.firstRow.name",
+														"type": "Expression"
+													}
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "DS_Destination_table",
+												"type": "DatasetReference",
+												"parameters": {
+													"tablename": {
+														"value": "@activity('Getfilenames').output.firstRow.temptablename",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									},
+									{
+										"name": "SpCycFileSetEntry",
+										"type": "Lookup",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlDWSource",
+												"sqlReaderStoredProcedureName": "[dbo].[SpCycCFRFileEntry]",
+												"storedProcedureParameters": {
+													"CycleID": {
+														"type": "Int64",
+														"value": {
+															"value": "@pipeline().parameters.CycleID",
+															"type": "Expression"
+														}
+													},
+													"DataDate": {
+														"type": "DateTime",
+														"value": {
+															"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+															"type": "Expression"
+														}
+													},
+													"FileID": {
+														"type": "Int32",
+														"value": {
+															"value": "@activity('Getfilenames').output.firstRow.FileID",
+															"type": "Expression"
+														}
+													},
+													"FileName": {
+														"type": "String",
+														"value": {
+															"value": "@activity('Getfilenames').output.firstRow.name",
+															"type": "Expression"
+														}
+													},
+													"flgProcessType": {
+														"type": "Byte",
+														"value": "1"
+													}
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "DataFoundationConnectionV2",
+												"type": "DatasetReference"
+											}
+										}
+									},
+									{
+										"name": "SpCycFileSetUpdate",
+										"type": "Lookup",
+										"dependsOn": [
+											{
+												"activity": "CFR Data Copy",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlDWSource",
+												"sqlReaderStoredProcedureName": "[dbo].[SpCycCFRFileEntry]",
+												"storedProcedureParameters": {
+													"CycleID": {
+														"type": "Int64",
+														"value": {
+															"value": "@pipeline().parameters.CycleID",
+															"type": "Expression"
+														}
+													},
+													"DataDate": {
+														"type": "DateTime",
+														"value": {
+															"value": "@formatDateTime(pipeline().parameters.DataProcessDate,'yyyy-MMM-dd')",
+															"type": "Expression"
+														}
+													},
+													"FileID": {
+														"type": "Int32",
+														"value": {
+															"value": "@activity('Getfilenames').output.firstRow.FileID",
+															"type": "Expression"
+														}
+													},
+													"FileName": {
+														"type": "String",
+														"value": {
+															"value": "@activity('Getfilenames').output.firstRow.name",
+															"type": "Expression"
+														}
+													},
+													"flgProcessType": {
+														"type": "Byte",
+														"value": "2"
+													}
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "DataFoundationConnectionV2",
+												"type": "DatasetReference"
+											}
+										}
+									},
+									{
+										"name": "spDataLoadCFRData_winIT",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "SpCycFileSetUpdate",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[spDataLoadCFRData_winIT]"
+										},
+										"linkedServiceName": {
+											"referenceName": "Dev_DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
+									},
+									{
+										"name": "CopyWINITStaging-To-ADLS",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "spDataLoadCFRData_winIT",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "CopyWINITStaging-To-ADLS-CFR",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"Directory": "cntwinit",
+												"Folder": {
+													"value": "CFR",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
 							}
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "DataFoundationConnectionV2",
-						"type": "DatasetReference"
-					}
+						}
+					]
 				}
 			}
 		],
