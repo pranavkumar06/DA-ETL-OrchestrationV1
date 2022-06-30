@@ -34,7 +34,7 @@
 				}
 			},
 			{
-				"name": "CopyStaging-To-DB-CCCR-V2",
+				"name": "CopyStaging-To-DB-CFR-V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyStaging-To-DB-CCCR-V2",
+						"referenceName": "CopyStaging-To-DB-CFR-V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -68,7 +68,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "CopyStaging-To-DB-CCCR-V2",
+						"activity": "CopyStaging-To-DB-CFR-V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
