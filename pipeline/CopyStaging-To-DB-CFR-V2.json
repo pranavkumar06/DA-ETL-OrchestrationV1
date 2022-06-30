@@ -395,7 +395,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycCFRFileEntry]",
 						"storedProcedureParameters": {
 							"CycleID": {
 								"type": "Int64",
@@ -461,7 +461,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpCycFileEntry]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycCFRFileEntry]",
 						"storedProcedureParameters": {
 							"CycleID": {
 								"type": "Int64",
