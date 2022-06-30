@@ -131,7 +131,7 @@
 													{
 														"name": "Filename",
 														"value": {
-															"value": "@activity('Getfilenames').output.firstRow.name",
+															"value": "@item().name",
 															"type": "Expression"
 														}
 													},
@@ -145,7 +145,7 @@
 													{
 														"name": "FileSetID",
 														"value": {
-															"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+															"value": "@item().CycFileID",
 															"type": "Expression"
 														}
 													}
@@ -435,7 +435,7 @@
 												"type": "DatasetReference",
 												"parameters": {
 													"Filename": {
-														"value": "@activity('Getfilenames').output.firstRow.name",
+														"value": "@item().name",
 														"type": "Expression"
 													}
 												}
@@ -488,14 +488,14 @@
 													"FileID": {
 														"type": "Int32",
 														"value": {
-															"value": "@activity('Getfilenames').output.firstRow.FileID",
+															"value": "@item().FileID",
 															"type": "Expression"
 														}
 													},
 													"FileName": {
 														"type": "String",
 														"value": {
-															"value": "@activity('Getfilenames').output.firstRow.name",
+															"value": "@item().name",
 															"type": "Expression"
 														}
 													},
@@ -554,14 +554,14 @@
 													"FileID": {
 														"type": "Int32",
 														"value": {
-															"value": "@activity('Getfilenames').output.firstRow.FileID",
+															"value": "@item().FileID",
 															"type": "Expression"
 														}
 													},
 													"FileName": {
 														"type": "String",
 														"value": {
-															"value": "@activity('Getfilenames').output.firstRow.name",
+															"value": "@item().name",
 															"type": "Expression"
 														}
 													},
