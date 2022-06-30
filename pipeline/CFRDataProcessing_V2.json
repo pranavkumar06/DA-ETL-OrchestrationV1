@@ -1,0 +1,213 @@
+{
+	"name": "CFRDataProcessing_V2",
+	"properties": {
+		"activities": [
+			{
+				"name": "SpCycleStart",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycEntry]",
+						"storedProcedureParameters": {
+							"flgInOut": {
+								"type": "Byte",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpCheckCCCRMorningProcessingDone",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCheckCCCRMorningProcessingDone]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "When Morning CCCR Processing Done",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckCCCRMorningProcessingDone",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('SpCheckCCCRMorningProcessingDone').output.firstRow.flgMorningProcessingDone\n",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "CopyS3-To-Staging-V2",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyS3-To-Staging-Onefile-V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"windowStart": {
+										"value": "@pipeline().parameters.windowStart",
+										"type": "Expression"
+									},
+									"windowEnd": {
+										"value": "@pipeline().parameters.windowEnd",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "CopyStaging-To-DB-CCCR-V2",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "CopyS3-To-Staging-V2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyStaging-To-DB-CCCR-V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CycleID": {
+										"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+										"type": "Expression"
+									},
+									"DataProcessDate": {
+										"value": "@pipeline().parameters.DataDate",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "spProcessDayZeroDataProcessing",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "CopyStaging-To-DB-CCCR-V2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[spProcessDayZeroDataProcessing]"
+							},
+							"linkedServiceName": {
+								"referenceName": "TASDatabase_Check",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "spProcessDayZeroDataProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Directory": "cntleap",
+									"Folder": {
+										"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DataDate": {
+				"type": "string"
+			},
+			"windowStart": {
+				"type": "string"
+			},
+			"windowEnd": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
