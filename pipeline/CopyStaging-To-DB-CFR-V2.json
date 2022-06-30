@@ -624,6 +624,10 @@
 												"Folder": {
 													"value": "CFR",
 													"type": "Expression"
+												},
+												"FileName": {
+													"value": "@item().name",
+													"type": "Expression"
 												}
 											}
 										}
