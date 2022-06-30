@@ -575,38 +575,11 @@
 										}
 									},
 									{
-										"name": "spDataLoadCFRData_winIT",
-										"type": "SqlServerStoredProcedure",
-										"dependsOn": [
-											{
-												"activity": "SpCycFileSetUpdate",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"storedProcedureName": "[dbo].[spDataLoadCFRData_winIT]"
-										},
-										"linkedServiceName": {
-											"referenceName": "Dev_DataFoundationDB",
-											"type": "LinkedServiceReference"
-										}
-									},
-									{
 										"name": "CopyWINITStaging-To-ADLS",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
-												"activity": "spDataLoadCFRData_winIT",
+												"activity": "SpCycFileSetUpdate",
 												"dependencyConditions": [
 													"Succeeded"
 												]
