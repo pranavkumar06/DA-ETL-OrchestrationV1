@@ -1,0 +1,31 @@
+{
+	"name": "DS_WINIT_StorageSourceDataset_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "CFR",
+				"container": "cntwinit"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
