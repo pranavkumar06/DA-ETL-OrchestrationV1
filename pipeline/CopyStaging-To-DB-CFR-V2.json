@@ -447,7 +447,7 @@
 												"type": "DatasetReference",
 												"parameters": {
 													"tablename": {
-														"value": "@activity('Getfilenames').output.firstRow.temptablename",
+														"value": "@item().temptablename",
 														"type": "Expression"
 													}
 												}
