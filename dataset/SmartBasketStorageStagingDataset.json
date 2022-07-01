@@ -1,0 +1,21 @@
+{
+	"name": "SmartBasketStorageStagingDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "StagingSource"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "smartbasketstaging"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
