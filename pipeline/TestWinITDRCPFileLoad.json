@@ -1,0 +1,219 @@
+{
+	"name": "TestWinITDRCPFileLoad",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CustomerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SiteName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SiteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StoreCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StoreName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SubDName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BranchName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BranchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SellerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SellerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ChannelCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ChannelCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerType",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteNo",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RouteNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfVisit",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DayOfVisit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DistributorCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DistributorCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DistributorName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DistributorName",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_WINIT_DRCP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_tmpRawWinIT_DRCP_New",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Other Pipelines"
+		},
+		"annotations": []
+	}
+}

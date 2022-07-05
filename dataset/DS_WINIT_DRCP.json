@@ -1,0 +1,89 @@
+{
+	"name": "DS_WINIT_DRCP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "JulyDrcp.csv",
+				"folderPath": "DRCP",
+				"container": "cntwinit"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CustomerCode",
+				"type": "String"
+			},
+			{
+				"name": "CustomerName",
+				"type": "String"
+			},
+			{
+				"name": "SiteName",
+				"type": "String"
+			},
+			{
+				"name": "StoreCode",
+				"type": "String"
+			},
+			{
+				"name": "StoreName",
+				"type": "String"
+			},
+			{
+				"name": "SubDCode",
+				"type": "String"
+			},
+			{
+				"name": "SubDName",
+				"type": "String"
+			},
+			{
+				"name": "BranchName",
+				"type": "String"
+			},
+			{
+				"name": "SellerCode",
+				"type": "String"
+			},
+			{
+				"name": "SellerName",
+				"type": "String"
+			},
+			{
+				"name": "ChannelCode",
+				"type": "String"
+			},
+			{
+				"name": "CustomerType",
+				"type": "String"
+			},
+			{
+				"name": "RouteNo",
+				"type": "String"
+			},
+			{
+				"name": "DayOfVisit",
+				"type": "String"
+			},
+			{
+				"name": "DistributorCode",
+				"type": "String"
+			},
+			{
+				"name": "DistributorName",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,100 @@
+{
+	"name": "DS_DF_tmpRawWinIT_DRCP_New",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "CustomerCode",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerName",
+				"type": "varchar"
+			},
+			{
+				"name": "SiteName",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreName",
+				"type": "varchar"
+			},
+			{
+				"name": "SubDCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SubDName",
+				"type": "varchar"
+			},
+			{
+				"name": "BranchName",
+				"type": "varchar"
+			},
+			{
+				"name": "SellerCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SellerName",
+				"type": "varchar"
+			},
+			{
+				"name": "ChannelCode",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerType",
+				"type": "varchar"
+			},
+			{
+				"name": "RouteNo",
+				"type": "varchar"
+			},
+			{
+				"name": "DayOfVisit",
+				"type": "varchar"
+			},
+			{
+				"name": "DistributorCode",
+				"type": "varchar"
+			},
+			{
+				"name": "DistributorName",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawWinIT_DRCP_New"
+		}
+	}
+}
