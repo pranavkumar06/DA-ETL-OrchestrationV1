@@ -28,7 +28,9 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true
+						"preCopyScript": "TRUNCATE TABLE tmpRawWinIT_DRCP_New",
+						"allowCopyCommand": true,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": true,
 					"stagingSettings": {
