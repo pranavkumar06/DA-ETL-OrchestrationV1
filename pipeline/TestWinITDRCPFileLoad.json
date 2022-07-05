@@ -173,7 +173,7 @@
 							},
 							{
 								"source": {
-									"name": "DayOfVisit",
+									"name": "Date",
 									"type": "String"
 								},
 								"sink": {
@@ -182,6 +182,10 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Year",
+									"type": "String"
+								},
 								"sink": {
 									"name": "YearOfVisit",
 									"type": "String"
@@ -205,30 +209,6 @@
 								"sink": {
 									"name": "DistributorName",
 									"type": "String"
-								}
-							},
-							{
-								"sink": {
-									"name": "FileSetId",
-									"type": "Int64"
-								}
-							},
-							{
-								"sink": {
-									"name": "Filename",
-									"type": "String"
-								}
-							},
-							{
-								"sink": {
-									"name": "LastModifiedDatetime",
-									"type": "String"
-								}
-							},
-							{
-								"sink": {
-									"name": "TimeStampIns",
-									"type": "DateTime"
 								}
 							}
 						]
