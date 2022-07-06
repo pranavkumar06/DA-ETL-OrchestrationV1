@@ -79,7 +79,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale_400",
+									"activity": "Wait1 Second",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -92,22 +92,6 @@
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true
-							}
-						},
-						{
-							"name": "DW_Scale_400",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "DW_Scale_V2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Scaleval": "DW400c"
-								}
 							}
 						},
 						{
@@ -142,7 +126,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale_400",
+									"activity": "Wait1 Second",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -155,6 +139,15 @@
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "Wait1 Second",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
 							}
 						}
 					]
