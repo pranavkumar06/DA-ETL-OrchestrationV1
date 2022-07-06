@@ -168,7 +168,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "spProcessDayZeroDataProcessing",
+									"activity": "CopyLeapStaging-To-CCCRStorage",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -188,6 +188,26 @@
 										"type": "Expression"
 									}
 								}
+							}
+						},
+						{
+							"name": "CopyLeapStaging-To-CCCRStorage",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "spProcessDayZeroDataProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyLeapStaging-To-CCRStorage",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					]
