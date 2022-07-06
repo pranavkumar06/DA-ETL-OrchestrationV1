@@ -841,7 +841,7 @@
 				}
 			},
 			{
-				"name": "SQL_Scale S4 200 DTU",
+				"name": "SQL_Scale S5 400 DTU",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -883,7 +883,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"Scaleval": "S4",
+						"Scaleval": "S5",
 						"tier": "Standard"
 					}
 				}
