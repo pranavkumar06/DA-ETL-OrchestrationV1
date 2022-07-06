@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "spRunForFiveStar-TAS",
-				"type": "SqlServerStoredProcedure",
+				"name": "FiveStar Data Transfer",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,12 +15,71 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spRunForFiveStar]"
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TeleCallingId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TeleCallingId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "GPPoints",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "GPPoints",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "ParameterId",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "ParameterId",
+									"type": "Byte"
+								}
+							}
+						]
+					}
 				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
+				"inputs": [
+					{
+						"referenceName": "DS_TAS_tmpTeleCallingFiveStarGPPoints",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_tmpTAS_FiveStarGPPoints",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
