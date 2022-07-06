@@ -1,0 +1,29 @@
+{
+	"name": "DS_CCRStorage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"directory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "OtherDataSet"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "cccrstorage"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
