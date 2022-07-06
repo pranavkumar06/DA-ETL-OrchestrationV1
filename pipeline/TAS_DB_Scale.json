@@ -1,0 +1,28 @@
+{
+	"name": "TAS_DB_Scale",
+	"properties": {
+		"activities": [
+			{
+				"name": "SQL_Scale S3 100 DTU",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S3",
+						"tier": "Standard"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
