@@ -661,13 +661,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateFactSBDData",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "AS_ResumeandScale",
+						"activity": "DW_Resume_Scale DW200_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1106,6 +1100,35 @@
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "DW_Resume_Scale DW200_V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AS_ResumeandScale",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactSBDData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DW_Resume_Scale_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ScaleVal": "DW200c"
+					}
 				}
 			}
 		],
