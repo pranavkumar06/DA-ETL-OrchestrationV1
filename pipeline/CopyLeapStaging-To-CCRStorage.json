@@ -156,14 +156,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"Directory": {
-				"type": "string"
-			},
-			"Folder": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
