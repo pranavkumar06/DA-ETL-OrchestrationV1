@@ -10,11 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "JulyDrcp-2.csv",
+				"fileName": "JulyDrcpNew.csv",
 				"folderPath": "DRCP",
 				"container": "cntwinit"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
