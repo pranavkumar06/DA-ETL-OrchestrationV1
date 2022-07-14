@@ -851,12 +851,6 @@
 						]
 					},
 					{
-						"activity": "spPopulateAllPlannedCalls-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "spTAS_PopActiveSBFFrmInv-TAS",
 						"dependencyConditions": [
 							"Succeeded"
@@ -870,6 +864,12 @@
 					},
 					{
 						"activity": "spTAS_PopulateStoreSchemeDistributionCount-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spUpdateInvDetailInCallerListForDay-TAS",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1206,6 +1206,33 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spUpdateInvDetailInCallerListForDay-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spPopulateAllPlannedCalls-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spUpdateInvDetailInCallerListForDay]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
 			}
