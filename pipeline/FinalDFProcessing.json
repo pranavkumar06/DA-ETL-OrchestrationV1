@@ -560,26 +560,6 @@
 				}
 			},
 			{
-				"name": "AS_Scale_S2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "AS_CubeProcess_Sync_Fact",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_Scale_S2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "spPopulateFactSBDData",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
