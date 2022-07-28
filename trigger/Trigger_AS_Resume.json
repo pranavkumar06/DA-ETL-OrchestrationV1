@@ -2,7 +2,7 @@
 	"name": "Trigger_AS_Resume",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -23,7 +23,7 @@
 						30
 					],
 					"hours": [
-						8
+						4
 					]
 				}
 			}
