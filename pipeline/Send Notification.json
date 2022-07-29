@@ -30,15 +30,15 @@
 		"parameters": {
 			"EmailTo": {
 				"type": "string",
-				"defaultValue": "No Email Set"
+				"defaultValue": "Avinash@Astix.in,Alok@Astix.in"
 			},
 			"Subject": {
 				"type": "string",
-				"defaultValue": "No Subject Set"
+				"defaultValue": "LEAP File Processing Error"
 			},
 			"ErrorMessage": {
 				"type": "string",
-				"defaultValue": "No Message Set"
+				"defaultValue": "All Files not Processed"
 			}
 		},
 		"annotations": [],
