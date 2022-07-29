@@ -204,7 +204,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 20 Min",
+						"activity": "Wait 5 Min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -240,7 +240,7 @@
 				}
 			},
 			{
-				"name": "Wait 20 Min",
+				"name": "Wait 5 Min",
 				"type": "Wait",
 				"dependsOn": [
 					{
@@ -252,7 +252,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 1200
+					"waitTimeInSeconds": 300
 				}
 			},
 			{
@@ -284,7 +284,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Wait 20 Min",
+						"activity": "Wait 5 Min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
