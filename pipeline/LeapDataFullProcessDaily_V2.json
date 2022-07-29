@@ -73,6 +73,21 @@
 						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Send Notification",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "FinalDFProcessing",
