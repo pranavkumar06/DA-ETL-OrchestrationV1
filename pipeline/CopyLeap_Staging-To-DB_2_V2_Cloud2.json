@@ -392,6 +392,16 @@
 																		},
 																		{
 																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
 																				"name": "channel_type_name",
 																				"type": "String"
 																			},
@@ -402,11 +412,12 @@
 																		},
 																		{
 																			"source": {
-																				"name": "FileSetID",
+																				"name": "next_visit_date",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "Next_Visit_Date",
+																				"type": "String"
 																			}
 																		}
 																	]
