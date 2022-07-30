@@ -1460,7 +1460,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "DateTime"
+																				"type": "String"
 																			}
 																		},
 																		{
@@ -1469,7 +1469,18 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "ean_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "ean_code",
+																				"type": "String"
 																			}
 																		}
 																	]
