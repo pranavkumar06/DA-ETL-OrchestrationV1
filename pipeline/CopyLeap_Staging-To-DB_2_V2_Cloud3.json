@@ -281,12 +281,20 @@
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "doc_reference_number",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "sales_invoice_no",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "document_date",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "sales_invoice_date",
 																				"type": "String"
