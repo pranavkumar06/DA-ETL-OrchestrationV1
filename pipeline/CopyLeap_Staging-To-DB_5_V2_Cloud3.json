@@ -827,31 +827,42 @@
 																		},
 																		{
 																			"source": {
-																				"name": "Filename",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "Filename",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "LastModifiedDatetime",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "LastModifiedDatetime",
-																				"type": "DateTime"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "FileSetID",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distance_travelled",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Distance_travelled",
+																				"type": "String"
 																			}
 																		}
 																	]
