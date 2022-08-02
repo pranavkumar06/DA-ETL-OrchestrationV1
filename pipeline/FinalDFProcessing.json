@@ -923,6 +923,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "RetailerFlagUpdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -1015,6 +1021,26 @@
 							"type": "Expression"
 						}
 					}
+				}
+			},
+			{
+				"name": "RetailerFlagUpdate",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spTAS_MapTeleCallingInvDetail-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "RetailerFlagUpdate",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
