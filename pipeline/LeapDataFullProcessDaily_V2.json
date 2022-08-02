@@ -164,6 +164,26 @@
 							"typeProperties": {
 								"waitTimeInSeconds": 1
 							}
+						},
+						{
+							"name": "Maximus Rurban Split",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Wait1 Second",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Maximus Rurban Split",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
 						}
 					]
 				}
