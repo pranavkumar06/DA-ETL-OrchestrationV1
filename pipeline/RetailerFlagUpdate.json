@@ -3,109 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "tbltmpGTMModel",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "spPopulateStoreListWithTownType",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "SqlDWSink",
-						"preCopyScript": "TRUNCATE TABLE tbltmpGTMModel",
-						"allowCopyCommand": true,
-						"disableMetricsCollection": false
-					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "PolybaseLink",
-							"type": "LinkedServiceReference"
-						},
-						"path": "polybasestaging"
-					},
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "BranchCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BranchCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "StoreCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Frequency",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Frequency",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreId",
-									"type": "Int32"
-								},
-								"sink": {
-									"name": "StoreId",
-									"type": "Int32"
-								}
-							}
-						]
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_TAS_tbltmpGTMModel",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_tbltmpGTMModel",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "tbltmpRurbanSplit",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "tbltmpTASSellerType",
+						"activity": "spPopulateStoreListWithTownType",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -208,7 +110,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "tbltmpRurbanSplit",
+						"activity": "DF-spPopulateTASSellerType",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -251,124 +153,6 @@
 				}
 			},
 			{
-				"name": "tbltmpTASSellerType",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "tbltmpGTMModel",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "SqlDWSink",
-						"preCopyScript": "TRUNCATE TABLE tbltmpTASSellerType",
-						"allowCopyCommand": true,
-						"disableMetricsCollection": false
-					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "PolybaseLink",
-							"type": "LinkedServiceReference"
-						},
-						"path": "polybasestaging"
-					},
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "BranchCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BranchCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SUBDCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SUBDCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "StoreCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "InvCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "InvCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "InvDate",
-									"type": "DateTime"
-								},
-								"sink": {
-									"name": "InvDate",
-									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
-									"name": "SellerType",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SellerType",
-									"type": "String"
-								}
-							}
-						]
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_TAS_tbltmpTASSellerType",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_tbltmpTASSellerType",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "spUpdateTASSellerType",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -389,6 +173,33 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spUpdateTASSellerType]"
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "DF-spPopulateTASSellerType",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "tbltmpRurbanSplit",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateTASSellerType]"
 				},
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
