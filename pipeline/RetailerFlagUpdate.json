@@ -3,109 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "tbltmpRurbanSplit",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "spPopulateStoreListWithTownType",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "SqlDWSink",
-						"preCopyScript": "TRUNCATE TABLE tbltmpRurbanSplit",
-						"allowPolyBase": true,
-						"polyBaseSettings": {
-							"rejectValue": 0,
-							"rejectType": "value",
-							"useTypeDefault": true
-						},
-						"disableMetricsCollection": false
-					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "PolybaseLink",
-							"type": "LinkedServiceReference"
-						},
-						"path": "polybasestaging"
-					},
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "BranchCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BranchCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SubDCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SubDCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "StoreCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "flgTownType",
-									"type": "Byte"
-								},
-								"sink": {
-									"name": "flgTownType",
-									"type": "Byte"
-								}
-							}
-						]
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_Maximus_tbltmpRurbanSplit",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_tbltmpRurbanSplit",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "spUpdateRetailerflags",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -129,26 +26,6 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "spPopulateStoreListWithTownType",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spPopulateStoreListWithTownType]"
-				},
-				"linkedServiceName": {
-					"referenceName": "MaximusDBLink",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -182,14 +59,7 @@
 			{
 				"name": "DF-spPopulateTASSellerType",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "tbltmpRurbanSplit",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
