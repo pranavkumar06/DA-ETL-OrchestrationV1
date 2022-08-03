@@ -1,0 +1,161 @@
+{
+	"name": "LeapDataFullProcessDaily_V2_03Aug2022",
+	"properties": {
+		"activities": [
+			{
+				"name": "SpCheckAllFileProcessStatus",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCheckAllFileProcessStatus]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "If All Final Table Loaded",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckAllFileProcessStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Send Notification",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "FinalDFProcessing",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Wait1 Second",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "FinalDFProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "FinalDFProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Directory": "cntleap",
+									"Folder": {
+										"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "AR Data Transfer",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Wait1 Second",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "AR Data Transfer",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "Wait1 Second",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			},
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-12-13T19:05:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
