@@ -1214,6 +1214,13 @@
 										},
 										"type": "DateTime"
 									},
+									"FileID": {
+										"value": {
+											"value": "@item().FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									},
 									"flgStartStop": {
 										"value": "1",
 										"type": "Byte"
@@ -1257,6 +1264,13 @@
 											"type": "Expression"
 										},
 										"type": "DateTime"
+									},
+									"FileID": {
+										"value": {
+											"value": "@item().FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
 									},
 									"flgStartStop": {
 										"value": "2",
@@ -2484,6 +2498,13 @@
 										},
 										"type": "DateTime"
 									},
+									"FileID": {
+										"value": {
+											"value": "@item().FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									},
 									"flgStartStop": {
 										"value": "1",
 										"type": "Byte"
@@ -2523,10 +2544,17 @@
 									},
 									"DataDate": {
 										"value": {
-											"value": "@item().DataDate",
+											"value": "@Item().DataDate",
 											"type": "Expression"
 										},
 										"type": "DateTime"
+									},
+									"FileID": {
+										"value": {
+											"value": "@item().FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
 									},
 									"flgStartStop": {
 										"value": "2",
@@ -3754,6 +3782,13 @@
 										},
 										"type": "DateTime"
 									},
+									"FileID": {
+										"value": {
+											"value": "@item().FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									},
 									"flgStartStop": {
 										"value": "1",
 										"type": "Byte"
@@ -3797,6 +3832,13 @@
 											"type": "Expression"
 										},
 										"type": "DateTime"
+									},
+									"FileID": {
+										"value": {
+											"value": "@item().FileID",
+											"type": "Expression"
+										},
+										"type": "Int32"
 									},
 									"flgStartStop": {
 										"value": "2",
