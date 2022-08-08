@@ -3813,7 +3813,7 @@
 				}
 			},
 			{
-				"name": "Stored procedure1",
+				"name": "spDataLoadSBDMasterData_Cloud",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
