@@ -3886,7 +3886,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]"
+					"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud_Grv]"
 				},
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
