@@ -17,6 +17,22 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "Filename",
+								"value": {
+									"value": "@pipeline().parameters.Filename",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -49,37 +65,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "CustomerCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "BranchName",
-									"type": "String"
-								},
-								"sink": {
-									"name": "CustomerName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "StoreCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "StoreName",
-									"type": "String"
-								},
-								"sink": {
-									"name": "StoreName",
+									"name": "BranchCode",
 									"type": "String"
 								}
 							},
@@ -100,36 +86,6 @@
 								},
 								"sink": {
 									"name": "SubDName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SellerCode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SellerCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SellerName",
-									"type": "String"
-								},
-								"sink": {
-									"name": "SellerName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "RouteNumber",
-									"type": "String"
-								},
-								"sink": {
-									"name": "RouteNo",
 									"type": "String"
 								}
 							},
@@ -139,7 +95,117 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "DateOfVisit",
+									"name": "VisitDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RouteCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RouteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RetailerCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RetailerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RetailerName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RetailerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Channel",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Channel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustTypeName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustTypeName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSECode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DSEName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSEName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STLCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STLCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
 									"type": "String"
 								}
 							}
@@ -151,7 +217,10 @@
 						"referenceName": "DS_WINIT_DRCP",
 						"type": "DatasetReference",
 						"parameters": {
-							"Filename": "july"
+							"Filename": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -163,6 +232,11 @@
 				]
 			}
 		],
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Other Pipelines"
 		},
