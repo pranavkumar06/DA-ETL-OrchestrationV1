@@ -226,7 +226,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_DF_tmpRawWinIT_DRCP_New",
+						"referenceName": "DS_DF_tmpRawWinIT_DRCP",
 						"type": "DatasetReference"
 					}
 				]

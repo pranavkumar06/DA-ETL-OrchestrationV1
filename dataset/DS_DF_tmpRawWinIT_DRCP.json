@@ -1,5 +1,5 @@
 {
-	"name": "DS_DF_tmpRawWinIT_DRCP_New",
+	"name": "DS_DF_tmpRawWinIT_DRCP",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataFoundationDB",
