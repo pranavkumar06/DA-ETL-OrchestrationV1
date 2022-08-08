@@ -44,8 +44,13 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"preCopyScript": "TRUNCATE TABLE tmpRawWinIT_DRCP_New",
-						"allowCopyCommand": true,
+						"preCopyScript": "TRUNCATE TABLE tmpRawWinIT_DRCP",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
 						"disableMetricsCollection": false
 					},
 					"enableStaging": true,
