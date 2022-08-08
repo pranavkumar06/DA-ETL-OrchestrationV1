@@ -94,7 +94,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tmpRawWinIT_DRCP_New"
+			"table": "tmpRawWINIT_DRCP"
 		}
 	}
 }
