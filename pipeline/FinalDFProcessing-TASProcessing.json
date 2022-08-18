@@ -219,6 +219,33 @@
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "spPopulateOrderTelecallerList_FutureDate-TAS",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spUpdateInvDetailInCallerListForDay-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateOrderTelecallerList_FutureDate]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
