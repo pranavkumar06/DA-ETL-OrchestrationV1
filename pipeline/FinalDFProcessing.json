@@ -901,24 +901,6 @@
 						]
 					},
 					{
-						"activity": "spTAS_SmartBasketPopulateBaseDetail-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spSubdHawkeyePopuldateData",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spSniDbrPopulateTables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "spAPI_PopulateAPIBaseTables-DF",
 						"dependencyConditions": [
 							"Succeeded"
@@ -934,6 +916,24 @@
 						"activity": "FinalDFProcessing-TASProcessing",
 						"dependencyConditions": [
 							"Succeeded"
+						]
+					},
+					{
+						"activity": "spTAS_SmartBasketPopulateBaseDetail-DF",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "spSubdHawkeyePopuldateData",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "spSniDbrPopulateTables",
+						"dependencyConditions": [
+							"Completed"
 						]
 					}
 				],
