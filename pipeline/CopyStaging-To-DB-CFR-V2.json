@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetWINIT_CFRFileDetails_Onetime]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetWINIT_CFRFileDetails_Daily]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
