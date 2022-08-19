@@ -636,6 +636,33 @@
 											"referenceName": "Dev_DataFoundationDB",
 											"type": "LinkedServiceReference"
 										}
+									},
+									{
+										"name": "DeleteStagingOneFile",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "CopyWINITStaging-To-ADLS",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "DeleteStagingOneFileWINIT",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"FileName": {
+													"value": "@activity('GetFileList').output.itemName",
+													"type": "Expression"
+												},
+												"Folder": "CFR"
+											}
+										}
 									}
 								]
 							}

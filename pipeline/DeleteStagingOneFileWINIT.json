@@ -38,6 +38,9 @@
 		"parameters": {
 			"FileName": {
 				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
 			}
 		},
 		"folder": {
