@@ -42,7 +42,8 @@
 							"filename": {
 								"value": "@pipeline().parameters.FileName",
 								"type": "Expression"
-							}
+							},
+							"folder": "CFR"
 						}
 					}
 				],
