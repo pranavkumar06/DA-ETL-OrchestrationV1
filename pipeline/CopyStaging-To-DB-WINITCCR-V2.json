@@ -188,222 +188,188 @@
 												"type": "TabularTranslator",
 												"mappings": [
 													{
-														"source": {
-															"name": "DistributorCode",
-															"type": "String"
-														},
-														"sink": {
-															"name": "DistributorCode",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "DistributorName",
-															"type": "String"
-														},
-														"sink": {
-															"name": "DistributorName",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Site",
-															"type": "String"
-														},
 														"sink": {
 															"name": "Site",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "BranchCode",
-															"type": "String"
-														},
 														"sink": {
-															"name": "BranchCode",
+															"name": "DistributorName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "SubDCode",
-															"type": "String"
-														},
 														"sink": {
 															"name": "SubDCode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "SubDName",
-															"type": "String"
-														},
 														"sink": {
 															"name": "SubDName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "ChannelCode",
-															"type": "String"
-														},
 														"sink": {
-															"name": "ChannelCode",
+															"name": "BranchCode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "ChannelName",
-															"type": "String"
-														},
 														"sink": {
-															"name": "ChannelName",
+															"name": "SubD Location",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "Category",
-															"type": "String"
-														},
 														"sink": {
-															"name": "Category",
+															"name": "DseCode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "Brandform",
-															"type": "String"
-														},
 														"sink": {
-															"name": "Brandform",
+															"name": "DseName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "SubBF",
-															"type": "String"
-														},
-														"sink": {
-															"name": "SubBF",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "mLinker2",
-															"type": "String"
-														},
-														"sink": {
-															"name": "mLinker2",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Ordered",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Ordered",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Date",
-															"type": "String"
-														},
 														"sink": {
 															"name": "Date",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "ActualOrdered",
-															"type": "String"
-														},
 														"sink": {
-															"name": "ActualOrdered",
+															"name": "RouteName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "SBD",
-															"type": "String"
-														},
 														"sink": {
-															"name": "SBD",
+															"name": "RetailerCode",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "Supply_CFROnTime",
-															"type": "String"
-														},
 														"sink": {
-															"name": "Supply_CFROnTime",
+															"name": "RetailerName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "UnservedDemand_CFROnTime",
-															"type": "String"
-														},
 														"sink": {
-															"name": "UnservedDemand_CFROnTime",
+															"name": "ContactNumber1",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "CFROnTime",
-															"type": "String"
-														},
 														"sink": {
-															"name": "CFROnTime",
+															"name": "ContactNumber2",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "Supply_CFR",
-															"type": "String"
-														},
 														"sink": {
-															"name": "Supply_CFR",
+															"name": "ChannelName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "UnservedDemand_CFR",
-															"type": "String"
-														},
 														"sink": {
-															"name": "UnservedDemand_CFR",
+															"name": "SubChannelName",
 															"type": "String"
 														}
 													},
 													{
-														"source": {
-															"name": "CFR",
-															"type": "String"
-														},
 														"sink": {
-															"name": "CFR",
+															"name": "StartTime",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "EndTime",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "InTime",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "OrderValue",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "Productivity",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "Reason",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "SkipReason",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "VisitLatitude",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "VisitLongitude",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "DeviationInMeter",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "Deviated",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "ReasonForDeviation",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "OnRoute",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "Remarks",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "IsBilled",
 															"type": "String"
 														}
 													},
@@ -413,7 +379,17 @@
 															"type": "String"
 														},
 														"sink": {
-															"name": "FileName",
+															"name": "Filename",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "LastModifiedDatetime",
+															"type": "String"
+														},
+														"sink": {
+															"name": "LastModifiedDatetime",
 															"type": "String"
 														}
 													},
@@ -423,8 +399,20 @@
 															"type": "String"
 														},
 														"sink": {
-															"name": "FileSetID",
+															"name": "FileSetId",
 															"type": "Int64"
+														}
+													},
+													{
+														"sink": {
+															"name": "extra1",
+															"type": "String"
+														}
+													},
+													{
+														"sink": {
+															"name": "extra2",
+															"type": "String"
 														}
 													}
 												]
@@ -432,7 +420,7 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "WinITCSV_Staging",
+												"referenceName": "WinITCSV_Staging_pipe",
 												"type": "DatasetReference",
 												"parameters": {
 													"Filename": {

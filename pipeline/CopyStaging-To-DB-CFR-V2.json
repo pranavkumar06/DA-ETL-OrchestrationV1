@@ -437,7 +437,8 @@
 													"Filename": {
 														"value": "@item().name",
 														"type": "Expression"
-													}
+													},
+													"Folder": "CFR"
 												}
 											}
 										],
