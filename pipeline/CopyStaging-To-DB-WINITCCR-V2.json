@@ -106,7 +106,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "CFR Data Copy",
+										"name": "CCR Data Copy",
 										"description": "Copy a file from the source store to the destination store.",
 										"type": "Copy",
 										"dependsOn": [
@@ -438,7 +438,8 @@
 													"Filename": {
 														"value": "@item().name",
 														"type": "Expression"
-													}
+													},
+													"Folder": "CCCRDetail"
 												}
 											}
 										],
@@ -519,7 +520,7 @@
 										"type": "Lookup",
 										"dependsOn": [
 											{
-												"activity": "CFR Data Copy",
+												"activity": "CCR Data Copy",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -601,7 +602,7 @@
 											"parameters": {
 												"Directory": "cntwinit",
 												"Folder": {
-													"value": "CFR",
+													"value": "CCCRDetail",
 													"type": "Expression"
 												},
 												"FileName": {
@@ -631,7 +632,7 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"storedProcedureName": "[dbo].[spDataLoadCFRData_winIT]"
+											"storedProcedureName": "[dbo].[spDataLoadRawLEAPTAS_CCCR_SubD]"
 										},
 										"linkedServiceName": {
 											"referenceName": "Dev_DataFoundationDB",
@@ -661,7 +662,7 @@
 													"value": "@activity('GetFileList').output.itemName",
 													"type": "Expression"
 												},
-												"Folder": "CFR"
+												"Folder": "CCCRDetail"
 											}
 										}
 									}
