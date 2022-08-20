@@ -676,9 +676,6 @@
 		"parameters": {
 			"CycleID": {
 				"type": "string"
-			},
-			"DataProcessDate": {
-				"type": "string"
 			}
 		},
 		"folder": {
