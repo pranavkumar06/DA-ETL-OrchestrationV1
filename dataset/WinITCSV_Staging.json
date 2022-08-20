@@ -8,6 +8,10 @@
 		"parameters": {
 			"Filename": {
 				"type": "string"
+			},
+			"Folder": {
+				"type": "string",
+				"defaultValue": "CFR"
 			}
 		},
 		"folder": {
@@ -22,7 +26,10 @@
 					"value": "@dataset().Filename",
 					"type": "Expression"
 				},
-				"folderPath": "CFR",
+				"folderPath": {
+					"value": "@dataset().Folder",
+					"type": "Expression"
+				},
 				"container": "cntwinit"
 			},
 			"columnDelimiter": ",",
