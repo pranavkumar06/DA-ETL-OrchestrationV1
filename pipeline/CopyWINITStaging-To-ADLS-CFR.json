@@ -43,7 +43,10 @@
 								"value": "@pipeline().parameters.FileName",
 								"type": "Expression"
 							},
-							"folder": "CFR"
+							"folder": {
+								"value": "@pipeline().parameters.Folder",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -70,7 +73,8 @@
 				"type": "string"
 			},
 			"Folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "CFR"
 			},
 			"FileName": {
 				"type": "string"
