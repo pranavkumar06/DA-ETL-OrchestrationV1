@@ -188,186 +188,310 @@
 												"type": "TabularTranslator",
 												"mappings": [
 													{
+														"source": {
+															"name": "Site",
+															"type": "String"
+														},
 														"sink": {
 															"name": "Site",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "DistributorName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "DistributorName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "SubDCode",
+															"type": "String"
+														},
 														"sink": {
 															"name": "SubDCode",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "SubDName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "SubDName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "BranchCode",
+															"type": "String"
+														},
 														"sink": {
 															"name": "BranchCode",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "SubD Location",
+															"type": "String"
+														},
 														"sink": {
 															"name": "SubD Location",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "DseCode",
+															"type": "String"
+														},
 														"sink": {
 															"name": "DseCode",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "DseName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "DseName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "Date",
+															"type": "String"
+														},
 														"sink": {
 															"name": "Date",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "RouteName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "RouteName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "RetailerCode",
+															"type": "String"
+														},
 														"sink": {
 															"name": "RetailerCode",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "RetailerName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "RetailerName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "ContactNumber1",
+															"type": "String"
+														},
 														"sink": {
 															"name": "ContactNumber1",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "ContactNumber2",
+															"type": "String"
+														},
 														"sink": {
 															"name": "ContactNumber2",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "ChannelName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "ChannelName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "SubChannelName",
+															"type": "String"
+														},
 														"sink": {
 															"name": "SubChannelName",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "StartTime",
+															"type": "String"
+														},
 														"sink": {
 															"name": "StartTime",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "EndTime",
+															"type": "String"
+														},
 														"sink": {
 															"name": "EndTime",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "InTime",
+															"type": "String"
+														},
 														"sink": {
 															"name": "InTime",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "OrderValue",
+															"type": "String"
+														},
 														"sink": {
 															"name": "OrderValue",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "Productivity",
+															"type": "String"
+														},
 														"sink": {
 															"name": "Productivity",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "Reason",
+															"type": "String"
+														},
 														"sink": {
 															"name": "Reason",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "SkipReason",
+															"type": "String"
+														},
 														"sink": {
 															"name": "SkipReason",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "VisitLatitude",
+															"type": "String"
+														},
 														"sink": {
 															"name": "VisitLatitude",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "VisitLongitude",
+															"type": "String"
+														},
 														"sink": {
 															"name": "VisitLongitude",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "DeviationInMeter",
+															"type": "String"
+														},
 														"sink": {
 															"name": "DeviationInMeter",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "Deviated",
+															"type": "String"
+														},
 														"sink": {
 															"name": "Deviated",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "ReasonForDeviation",
+															"type": "String"
+														},
 														"sink": {
 															"name": "ReasonForDeviation",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "OnRoute",
+															"type": "String"
+														},
 														"sink": {
 															"name": "OnRoute",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "Remarks",
+															"type": "String"
+														},
 														"sink": {
 															"name": "Remarks",
 															"type": "String"
 														}
 													},
 													{
+														"source": {
+															"name": "IsBilled",
+															"type": "String"
+														},
 														"sink": {
 															"name": "IsBilled",
 															"type": "String"
@@ -401,18 +525,6 @@
 														"sink": {
 															"name": "FileSetId",
 															"type": "Int64"
-														}
-													},
-													{
-														"sink": {
-															"name": "extra1",
-															"type": "String"
-														}
-													},
-													{
-														"sink": {
-															"name": "extra2",
-															"type": "String"
 														}
 													}
 												]
