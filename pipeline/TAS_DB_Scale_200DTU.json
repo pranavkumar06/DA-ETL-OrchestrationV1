@@ -1,0 +1,28 @@
+{
+	"name": "TAS_DB_Scale_200DTU",
+	"properties": {
+		"activities": [
+			{
+				"name": "SQL_Scale S4 200 DTU",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S4",
+						"tier": "Standard"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
