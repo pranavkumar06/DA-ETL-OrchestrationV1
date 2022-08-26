@@ -261,7 +261,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"EmailTo": "avinash@astix.in,ashwani@astix.in,alok@astix.in",
+									"EmailTo": "avinash@astix.in,alok@astix.in,phegade.md@pg.com",
 									"Subject": "Cube Fact Processing Successful",
 									"ErrorMessage": "DataFoundation Cube Fact Processing Success"
 								}
