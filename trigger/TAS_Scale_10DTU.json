@@ -2,7 +2,7 @@
 	"name": "TAS_Scale_10DTU",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
