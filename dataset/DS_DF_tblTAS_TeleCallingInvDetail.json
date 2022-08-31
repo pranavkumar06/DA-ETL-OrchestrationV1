@@ -1,5 +1,5 @@
 {
-	"name": "DS_tblTAS_TeleCallingInvDetail",
+	"name": "DS_DF_tblTAS_TeleCallingInvDetail",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Dev_DataFoundationDB",
