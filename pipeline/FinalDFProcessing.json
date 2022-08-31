@@ -1121,6 +1121,26 @@
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "TransferInvDetails",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spTAS_MapTeleCallingInvDetail-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TransferInvDetails",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
