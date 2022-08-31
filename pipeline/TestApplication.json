@@ -27,14 +27,7 @@
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "DFPolybaseStagingStorageLink",
-							"type": "LinkedServiceReference"
-						},
-						"path": "polybasestaging"
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
