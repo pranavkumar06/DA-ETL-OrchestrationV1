@@ -1,0 +1,733 @@
+{
+	"name": "TestApplication",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Order master",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE tblTeleCallingInvDetail_NEW",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						},
+						"path": "polybasestaging"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "OrderID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "OrderID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VisitID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "VisitID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "OrderDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesPersonID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SalesPersonID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesPersonType",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "SalesPersonType",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteNodeId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "RouteNodeId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "RouteNodeType",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "RouteNodeType",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalDeliveryBy",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TotalDeliveryBy",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "Remarks",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Remarks",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TotLineOrderVal",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotLineOrderVal",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TotLineLevelDisc",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotLineLevelDisc",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TotOrderVal",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotOrderVal",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TotDiscVal",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotDiscVal",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TotOrderValWDisc",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotOrderValWDisc",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TotTaxVal",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotTaxVal",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "NetOrderValue",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NetOrderValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerPONo",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerPONo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerPODate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CustomerPODate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "flgInvoiceOnDelivery",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgInvoiceOnDelivery",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "flgCollectionOnDelivery",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgCollectionOnDelivery",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "FreightRuleID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "FreightRuleID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "CollectionRuleID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "CollectionRuleID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "DlvryRuleID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "DlvryRuleID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "InvRuleID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "InvRuleID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "InsRuleID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "InsRuleID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxRuleID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "TaxRuleID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderStatusID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "OrderStatusID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderSourceID",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "OrderSourceID",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "flgOrderClosed",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgOrderClosed",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "LoginIDIns",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "LoginIDIns",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TimestampIns",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimestampIns",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "LoginIDUpd",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "LoginIDUpd",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TimestampUpd",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimestampUpd",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "FYID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "FYID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderConfirmationDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "OrderConfirmationDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderCompletionDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "OrderCompletionDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderInitTag",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderInitTag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderSeqNo",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "OrderSeqNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesNodeId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SalesNodeId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesNodeType",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SalesNodeType",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ActAddDisc",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ActAddDisc",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderLogId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "OrderLogId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "flgOffline",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgOffline",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "OrdPrcsId",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "OrdPrcsId",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "flgInvoicePrinted",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgInvoicePrinted",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "ReasonId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ReasonId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ReasonText",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ReasonText",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderPDAID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderPDAID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TotOtherCharges",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotOtherCharges",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TeleCallingId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TeleCallingId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "BranchSubdNodeId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "BranchSubdNodeId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "BranchSubdNodeType",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "BranchSubdNodeType",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CycleId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CycleId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "flgSent",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "flgSent",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "flgOrderSource",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgOrderSource",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "TotMRPValue",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TotMRPValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "GPValue",
+									"type": "Int16"
+								},
+								"sink": {
+									"name": "GPValue",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"name": "FocBndAlrAch",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "FocBndAlrAch",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "FocBndNowAch",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "FocBndNowAch",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "FocBndSBFOrd",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "FocBndSBFOrd",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "FocBndSBFQtyOrd",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "FocBndSBFQtyOrd",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "FocBndSBFValueOrd",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "FocBndSBFValueOrd",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SBDSBFOrd",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SBDSBFOrd",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SBDTotalGap",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SBDTotalGap",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "GPValueSupplied",
+									"type": "Int16"
+								},
+								"sink": {
+									"name": "GPValueSupplied",
+									"type": "Int16"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_DF_tblTAS_TeleCallingInvDetail",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_TAS_tblTeleCallingInvDetail_NEW",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
