@@ -22,7 +22,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE tblTeleCallingInvDetail_NEW",
+						"preCopyScript": "TRUNCATE TABLE tblTeleCallingInvDetail",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
