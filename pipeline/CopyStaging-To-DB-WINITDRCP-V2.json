@@ -106,7 +106,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "CCR Data Copy",
+										"name": "DRCP Data Copy",
 										"description": "Copy a file from the source store to the destination store.",
 										"type": "Copy",
 										"dependsOn": [
@@ -189,21 +189,11 @@
 												"mappings": [
 													{
 														"source": {
-															"name": "Site",
+															"name": "BranchCode",
 															"type": "String"
 														},
 														"sink": {
-															"name": "Site",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "DistributorName",
-															"type": "String"
-														},
-														"sink": {
-															"name": "DistributorName",
+															"name": "BranchCode",
 															"type": "String"
 														}
 													},
@@ -229,51 +219,21 @@
 													},
 													{
 														"source": {
-															"name": "BranchCode",
+															"name": "VisitDate",
 															"type": "String"
 														},
 														"sink": {
-															"name": "BranchCode",
+															"name": "VisitDate",
 															"type": "String"
 														}
 													},
 													{
 														"source": {
-															"name": "SubD Location",
+															"name": "RouteCode",
 															"type": "String"
 														},
 														"sink": {
-															"name": "SubD Location",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "DseCode",
-															"type": "String"
-														},
-														"sink": {
-															"name": "DseCode",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "DseName",
-															"type": "String"
-														},
-														"sink": {
-															"name": "DseName",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Date",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Date",
+															"name": "RouteCode",
 															"type": "String"
 														}
 													},
@@ -309,191 +269,51 @@
 													},
 													{
 														"source": {
-															"name": "ContactNumber1",
+															"name": "Channel",
 															"type": "String"
 														},
 														"sink": {
-															"name": "ContactNumber1",
+															"name": "Channel",
 															"type": "String"
 														}
 													},
 													{
 														"source": {
-															"name": "ContactNumber2",
+															"name": "CustTypeName",
 															"type": "String"
 														},
 														"sink": {
-															"name": "ContactNumber2",
+															"name": "CustTypeName",
 															"type": "String"
 														}
 													},
 													{
 														"source": {
-															"name": "ChannelName",
+															"name": "DSECode",
 															"type": "String"
 														},
 														"sink": {
-															"name": "ChannelName",
+															"name": "DSECode",
 															"type": "String"
 														}
 													},
 													{
 														"source": {
-															"name": "SubChannelName",
+															"name": "DSEName",
 															"type": "String"
 														},
 														"sink": {
-															"name": "SubChannelName",
+															"name": "DSEName",
 															"type": "String"
 														}
 													},
 													{
 														"source": {
-															"name": "StartTime",
+															"name": "STLCode",
 															"type": "String"
 														},
 														"sink": {
-															"name": "StartTime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "EndTime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "EndTime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "InTime",
-															"type": "String"
-														},
-														"sink": {
-															"name": "InTime",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "OrderValue",
-															"type": "String"
-														},
-														"sink": {
-															"name": "OrderValue",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Productivity",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Productivity",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Reason",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Reason",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "SkipReason",
-															"type": "String"
-														},
-														"sink": {
-															"name": "SkipReason",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "VisitLatitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "VisitLatitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "VisitLongitude",
-															"type": "String"
-														},
-														"sink": {
-															"name": "VisitLongitude",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "DeviationInMeter",
-															"type": "String"
-														},
-														"sink": {
-															"name": "DeviationInMeter",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Deviated",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Deviated",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "ReasonForDeviation",
-															"type": "String"
-														},
-														"sink": {
-															"name": "ReasonForDeviation",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "OnRoute",
-															"type": "String"
-														},
-														"sink": {
-															"name": "OnRoute",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "Remarks",
-															"type": "String"
-														},
-														"sink": {
-															"name": "Remarks",
-															"type": "String"
-														}
-													},
-													{
-														"source": {
-															"name": "IsBilled",
-															"type": "String"
-														},
-														"sink": {
-															"name": "IsBilled",
+															"name": "STLCode",
 															"type": "String"
 														}
 													},
@@ -503,7 +323,7 @@
 															"type": "String"
 														},
 														"sink": {
-															"name": "Filename",
+															"name": "FileName",
 															"type": "String"
 														}
 													},
@@ -539,7 +359,7 @@
 														"value": "@item().name",
 														"type": "Expression"
 													},
-													"Folder": "CCCRDetail"
+													"Folder": "DRCP"
 												}
 											}
 										],
@@ -620,7 +440,7 @@
 										"type": "Lookup",
 										"dependsOn": [
 											{
-												"activity": "CCR Data Copy",
+												"activity": "DRCP Data Copy",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -678,91 +498,6 @@
 											"dataset": {
 												"referenceName": "DataFoundationConnectionV2",
 												"type": "DatasetReference"
-											}
-										}
-									},
-									{
-										"name": "CopyWINITStaging-To-ADLS",
-										"type": "ExecutePipeline",
-										"dependsOn": [
-											{
-												"activity": "spDataLoadRawLEAPTAS_CCCR_SubD",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"userProperties": [],
-										"typeProperties": {
-											"pipeline": {
-												"referenceName": "CopyWINITStaging-To-ADLS-CFR",
-												"type": "PipelineReference"
-											},
-											"waitOnCompletion": true,
-											"parameters": {
-												"Directory": "cntwinit",
-												"Folder": {
-													"value": "CCCRDetail",
-													"type": "Expression"
-												},
-												"FileName": {
-													"value": "@item().name",
-													"type": "Expression"
-												}
-											}
-										}
-									},
-									{
-										"name": "spDataLoadRawLEAPTAS_CCCR_SubD",
-										"type": "SqlServerStoredProcedure",
-										"dependsOn": [
-											{
-												"activity": "SpCycFileSetUpdate",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"policy": {
-											"timeout": "7.00:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"storedProcedureName": "[dbo].[spDataLoadRawLEAPTAS_CCCR_SubD]"
-										},
-										"linkedServiceName": {
-											"referenceName": "Dev_DataFoundationDB",
-											"type": "LinkedServiceReference"
-										}
-									},
-									{
-										"name": "DeleteStagingOneFile",
-										"type": "ExecutePipeline",
-										"dependsOn": [
-											{
-												"activity": "CopyWINITStaging-To-ADLS",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"userProperties": [],
-										"typeProperties": {
-											"pipeline": {
-												"referenceName": "DeleteStagingOneFileWINIT",
-												"type": "PipelineReference"
-											},
-											"waitOnCompletion": true,
-											"parameters": {
-												"FileName": {
-													"value": "@activity('GetFileList').output.itemName",
-													"type": "Expression"
-												},
-												"Folder": "CCCRDetail"
 											}
 										}
 									}
