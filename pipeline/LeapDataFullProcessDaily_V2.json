@@ -3,29 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DW_Resume_Scale DW400_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW400c"
-					}
-				}
-			},
-			{
 				"name": "SpCheckAllFileProcessStatus",
 				"type": "Lookup",
 				"dependsOn": [
@@ -160,7 +137,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale DW400_V2",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -226,7 +203,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale DW400_V2",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -262,7 +239,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale DW400_V2",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
