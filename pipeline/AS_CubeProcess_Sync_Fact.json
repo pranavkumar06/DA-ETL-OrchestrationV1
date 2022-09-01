@@ -63,6 +63,7 @@
 						"value": "{\"Type\":\"Full\",\"CommitMode\":\"transactional\",\"MaxParallelism\":2,\"RetryCount\":2,\"Objects\":[{\"database\":\"PG_DMS\",\"table\":\"tblFactCFR\",\"partition\":\"PartitionCurrentQuarter_FactCFRData\"},{\"database\":\"PG_DMS\",\"table\":\"tblFactCOS\",\"partition\":\"PartitionCurrentQuarter_FactCOSData\"}]}",
 						"type": "Expression"
 					},
+					"httpRequestTimeout": "00:05:00",
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://*.asazure.windows.net"
