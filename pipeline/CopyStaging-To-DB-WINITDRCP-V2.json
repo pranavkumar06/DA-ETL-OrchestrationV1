@@ -68,7 +68,7 @@
 											"value": "@item().name",
 											"type": "Expression"
 										},
-										"folder": "CCCRDetail"
+										"folder": "DRCP"
 									}
 								},
 								"fieldList": [
