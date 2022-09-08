@@ -33,8 +33,6 @@
 				"container": "cntwinit"
 			},
 			"columnDelimiter": "|",
-			"compressionCodec": "gzip",
-			"compressionLevel": "Optimal",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
