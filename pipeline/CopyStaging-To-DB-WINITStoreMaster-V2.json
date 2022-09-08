@@ -550,6 +550,64 @@
 												"type": "DatasetReference"
 											}
 										}
+									},
+									{
+										"name": "CopyWINITStaging-To-ADLS",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "SpCycFileSetUpdate",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "CopyWINITStaging-To-ADLS-CFR",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"Directory": "cntwinit",
+												"Folder": {
+													"value": "StoreMaster",
+													"type": "Expression"
+												},
+												"FileName": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
+										}
+									},
+									{
+										"name": "DeleteStagingOneFile",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "CopyWINITStaging-To-ADLS",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "DeleteStagingOneFileWINIT",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"FileName": {
+													"value": "@activity('GetFileList').output.itemName",
+													"type": "Expression"
+												},
+												"Folder": "StoreMaster"
+											}
+										}
 									}
 								]
 							}
