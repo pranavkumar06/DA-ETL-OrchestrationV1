@@ -140,7 +140,13 @@
 						"referenceName": "CopyStaging-To-DB-CFR-V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -160,7 +166,13 @@
 						"referenceName": "CopyStaging-To-DB-WINITCCR-V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
