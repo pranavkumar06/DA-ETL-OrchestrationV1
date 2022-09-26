@@ -402,7 +402,7 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "WinITCSV_Staging_gzip",
+												"referenceName": "WinITCSV_Staging_pipe",
 												"type": "DatasetReference",
 												"parameters": {
 													"Filename": {
