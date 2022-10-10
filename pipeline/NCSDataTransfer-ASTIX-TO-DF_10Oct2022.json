@@ -1,0 +1,118 @@
+{
+	"name": "NCSDataTransfer-ASTIX-TO-DF_10Oct2022",
+	"properties": {
+		"activities": [
+			{
+				"name": "WhenReadyToImport",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpDFGetDataLoadStatus]",
+						"storedProcedureParameters": {
+							"Date": {
+								"type": "DateTime",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							"flgDayorNight": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.ProcessingType",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_NC_SUBD",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "WhenReadyToImport",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('WhenReadyToImport').output.firstRow.flgReadyLoad",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "CopyNCS_ASTIX_To_DF",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "SpDeleteNCSTmpTable",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyNCS_ASTIX_To_DF",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "SpDeleteNCSTmpTable",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpDeleteNCSTmpTable]"
+							},
+							"linkedServiceName": {
+								"referenceName": "DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ProcessingType": {
+				"type": "int"
+			}
+		},
+		"folder": {
+			"name": "NCS"
+		},
+		"annotations": []
+	}
+}
