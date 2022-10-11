@@ -1,0 +1,61 @@
+{
+	"name": "WINIT Daily Processing",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyStaging-To-DB-WINITDRCP-V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyStaging-To-DB-WINITStoreMaster-V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyStaging-To-DB-WINITDRCP-V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@pipeline().parameters.CycleID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyStaging-To-DB-WINITStoreMaster-V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyStaging-To-DB-WINITStoreMaster-V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"CycleID": {
+							"value": "@pipeline().parameters.CycleID",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"CycleID": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "WINIT Pipelines"
+		},
+		"annotations": []
+	}
+}
