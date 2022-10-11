@@ -1,0 +1,32 @@
+{
+	"name": "WINTIT Processing",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "WINIT Daily Processing",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-10-11T10:29:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						6
+					]
+				}
+			}
+		}
+	}
+}
