@@ -74,7 +74,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "FinalDFProcessing",
+									"referenceName": "FinalDFProcessing_14Oct2022",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true
