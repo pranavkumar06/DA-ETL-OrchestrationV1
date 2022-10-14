@@ -2798,7 +2798,18 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "stn_accepted_date",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "stn_accepted_date",
+																				"type": "String"
 																			}
 																		}
 																	]
