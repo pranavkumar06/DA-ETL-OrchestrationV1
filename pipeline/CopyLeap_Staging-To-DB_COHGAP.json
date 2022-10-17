@@ -973,7 +973,7 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"preCopyScript": "TRUNCATE TABLE tmpLeapDataLoadCOHGAP",
+						"preCopyScript": "TRUNCATE TABLE tblCOHGap_ExternalUse",
 						"allowCopyCommand": true,
 						"disableMetricsCollection": false
 					},
