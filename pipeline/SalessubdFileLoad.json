@@ -32,14 +32,20 @@
 						"allowCopyCommand": true,
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						}
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 1
+									"name": "SUBDCODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "SUBDCODE",
@@ -48,8 +54,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 2
+									"name": "DSECODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "DSECODE",
@@ -58,8 +64,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 3
+									"name": "CUSTCODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "CUSTCODE",
@@ -68,8 +74,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 4
+									"name": "INVNO",
+									"type": "String"
 								},
 								"sink": {
 									"name": "INVNO",
@@ -78,8 +84,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 5
+									"name": "INVDATE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "INVDATE",
@@ -88,8 +94,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 6
+									"name": "SKUCCODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "SKUCCODE",
@@ -98,8 +104,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 7
+									"name": "SKUDCODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "SKUDCODE",
@@ -108,8 +114,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 8
+									"name": "SKUEANCODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "SKUEANCODE",
@@ -118,8 +124,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 9
+									"name": "BATCHCODE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "BATCHCODE",
@@ -128,8 +134,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 10
+									"name": "QTY",
+									"type": "String"
 								},
 								"sink": {
 									"name": "QTY",
@@ -138,8 +144,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 11
+									"name": "GROSSAMOUNT",
+									"type": "String"
 								},
 								"sink": {
 									"name": "GROSSAMOUNT",
@@ -148,8 +154,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 12
+									"name": "TAXAMOUNT",
+									"type": "String"
 								},
 								"sink": {
 									"name": "TAXAMOUNT",
@@ -158,8 +164,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 13
+									"name": "INITDISC",
+									"type": "String"
 								},
 								"sink": {
 									"name": "INITDISC",
@@ -168,8 +174,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 14
+									"name": "LINEDISC",
+									"type": "String"
 								},
 								"sink": {
 									"name": "LINEDISC",
@@ -178,8 +184,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 15
+									"name": "NETAMOUNT",
+									"type": "String"
 								},
 								"sink": {
 									"name": "NETAMOUNT",
@@ -188,8 +194,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 16
+									"name": "INVREF",
+									"type": "String"
 								},
 								"sink": {
 									"name": "INVREF",
@@ -198,8 +204,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 17
+									"name": "SELECTEDDATE",
+									"type": "String"
 								},
 								"sink": {
 									"name": "SELECTEDDATE",
@@ -208,8 +214,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 18
+									"name": "TimeStamp",
+									"type": "String"
 								},
 								"sink": {
 									"name": "TimeStamp",
@@ -218,8 +224,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 19
+									"name": "UPC",
+									"type": "String"
 								},
 								"sink": {
 									"name": "UPC",
@@ -228,8 +234,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 20
+									"name": "RETAILING",
+									"type": "String"
 								},
 								"sink": {
 									"name": "RETAILING",
