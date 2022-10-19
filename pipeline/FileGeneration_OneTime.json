@@ -5,7 +5,14 @@
 			{
 				"name": "Lookup All Distributor",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DataDatetime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -287,6 +294,19 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "DataDatetime",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),1,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
