@@ -279,7 +279,7 @@
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@{concat('AMA Distributor Coverage Compliance GPS data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'_',item().DistributorCode,'.csv')}",
+											"value": "@{concat('AMA Distributor Coverage Compliance GPS data','_',\nformatDateTime(variables('TimeToday'), 'dd'),formatDateTime(variables('TimeToday'), 'MM'),formatDateTime(variables('TimeToday'), 'yyyy'),'_',item().DistributorName,'.csv')}",
 											"type": "Expression"
 										}
 									}
