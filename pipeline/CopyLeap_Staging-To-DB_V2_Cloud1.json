@@ -2213,7 +2213,8 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "promo_pass_on_amt"
+																				"name": "promo_pass_on_amt",
+																				"type": "String"
 																			}
 																		}
 																	]
