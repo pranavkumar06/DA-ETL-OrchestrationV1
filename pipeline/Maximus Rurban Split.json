@@ -88,6 +88,96 @@
 									"name": "flgTownType",
 									"type": "Byte"
 								}
+							},
+							{
+								"source": {
+									"name": "flgActive",
+									"type": "Byte"
+								},
+								"sink": {
+									"name": "flgActive",
+									"type": "Byte"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_VillageId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CV_VillageId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_VillageCode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CV_VillageCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_VillageName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CV_VillageName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_VillageLvl",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CV_VillageLvl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_Population",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CV_Population",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_SubDistrict",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CV_SubDistrict",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_District",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CV_District",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CV_State",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CV_State",
+									"type": "String"
+								}
 							}
 						]
 					}
