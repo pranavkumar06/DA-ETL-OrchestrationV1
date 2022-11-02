@@ -297,6 +297,18 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "RetailerFlagUpdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -327,12 +339,6 @@
 					},
 					{
 						"activity": "spTAS_MapTeleCallingInvDetail-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1047,6 +1053,12 @@
 				"dependsOn": [
 					{
 						"activity": "spTAS_MapTeleCallingInvDetail-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
