@@ -1,0 +1,97 @@
+{
+	"name": "DS_SubD_tmpRawLEAPTAS_SBDMTR_HistoryData_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataFoundationDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DF_DBConnection/LEAP Tables"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "branch_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dse_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "retailer_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sales_invoice_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sales_invoice_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "aging_days",
+				"type": "nvarchar"
+			},
+			{
+				"name": "net_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "paid_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "balance_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "credit_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "channel_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FileName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "FileSetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "channel_type_name",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tmpRawLEAPTAS_SBDMTR_HistoryData"
+		}
+	}
+}
