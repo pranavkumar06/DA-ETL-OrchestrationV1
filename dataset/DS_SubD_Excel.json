@@ -1,0 +1,45 @@
+{
+	"name": "DS_SubD_Excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "SubD Data Load"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				},
+				"folderPath": "SBD",
+				"container": "smartbasketcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "SBD Name",
+				"type": "String"
+			},
+			{
+				"name": "Distributor Code",
+				"type": "String"
+			},
+			{
+				"name": "Branch Code",
+				"type": "String"
+			}
+		]
+	}
+}
