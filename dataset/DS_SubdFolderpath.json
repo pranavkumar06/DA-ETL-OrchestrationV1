@@ -9,9 +9,6 @@
 			"Folder": {
 				"type": "string"
 			},
-			"Filename": {
-				"type": "string"
-			},
 			"Container": {
 				"type": "string"
 			}
