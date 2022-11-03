@@ -12,55 +12,7 @@
 		"type": "AzureSqlDWTable",
 		"schema": [
 			{
-				"name": "branch_code",
-				"type": "nvarchar"
-			},
-			{
-				"name": "branch_location",
-				"type": "nvarchar"
-			},
-			{
-				"name": "dse_code",
-				"type": "nvarchar"
-			},
-			{
-				"name": "dse_name",
-				"type": "nvarchar"
-			},
-			{
-				"name": "retailer_code",
-				"type": "nvarchar"
-			},
-			{
-				"name": "retailer_name",
-				"type": "nvarchar"
-			},
-			{
-				"name": "sales_invoice_no",
-				"type": "nvarchar"
-			},
-			{
-				"name": "sales_invoice_date",
-				"type": "nvarchar"
-			},
-			{
-				"name": "aging_days",
-				"type": "nvarchar"
-			},
-			{
-				"name": "net_amount",
-				"type": "nvarchar"
-			},
-			{
-				"name": "paid_amount",
-				"type": "nvarchar"
-			},
-			{
-				"name": "balance_amount",
-				"type": "nvarchar"
-			},
-			{
-				"name": "credit_amount",
+				"name": "sbd_name",
 				"type": "nvarchar"
 			},
 			{
@@ -72,12 +24,37 @@
 				"type": "nvarchar"
 			},
 			{
-				"name": "FileName",
+				"name": "group_code",
 				"type": "nvarchar"
 			},
 			{
-				"name": "LastModifiedDatetime",
-				"type": "varchar"
+				"name": "sbf_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sbf_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "moq",
+				"type": "nvarchar"
+			},
+			{
+				"name": "effective_from",
+				"type": "nvarchar"
+			},
+			{
+				"name": "effective_to",
+				"type": "nvarchar"
+			},
+			{
+				"name": "is_base",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RptMonthYear",
+				"type": "int",
+				"precision": 10
 			},
 			{
 				"name": "FileSetId",
@@ -85,8 +62,18 @@
 				"precision": 19
 			},
 			{
-				"name": "channel_type_name",
-				"type": "nvarchar"
+				"name": "Filename",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDatetime",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
 			}
 		],
 		"typeProperties": {
