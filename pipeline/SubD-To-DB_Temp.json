@@ -59,197 +59,220 @@
 					},
 					"activities": [
 						{
-							"name": "Copy Smart Basket Data",
-							"description": "Copy a file from the source store to the destination store.",
-							"type": "Copy",
+							"name": "If Condition1",
+							"type": "IfCondition",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"additionalColumns": [
-										{
-											"name": "Filename",
-											"value": {
-												"value": "@item().name",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "LastModifiedDatetime",
-											"value": {
-												"value": "@addminutes(utcnow(),330)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"wildcardFileName": {
-											"value": "@item().name",
-											"type": "Expression"
-										},
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									},
-									"recursive": false
+								"expression": {
+									"value": "@contains(string(item().name),'MST')",
+									"type": "Expression"
 								},
-								"sink": {
-									"type": "SqlDWSink",
-									"allowPolyBase": true,
-									"polyBaseSettings": {
-										"rejectValue": 0,
-										"rejectType": "value",
-										"useTypeDefault": true
+								"ifTrueActivities": [
+									{
+										"name": "Copy SubD MST Data",
+										"description": "Copy a file from the source store to the destination store.",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "ExcelSource",
+												"additionalColumns": [
+													{
+														"name": "Filename",
+														"value": {
+															"value": "@item().name",
+															"type": "Expression"
+														}
+													},
+													{
+														"name": "LastModifiedDatetime",
+														"value": {
+															"value": "@addminutes(utcnow(),330)",
+															"type": "Expression"
+														}
+													}
+												],
+												"storeSettings": {
+													"type": "AzureBlobStorageReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"recursive": false
+											},
+											"sink": {
+												"type": "SqlDWSink",
+												"allowPolyBase": true,
+												"polyBaseSettings": {
+													"rejectValue": 0,
+													"rejectType": "value",
+													"useTypeDefault": true
+												}
+											},
+											"enableStaging": true,
+											"stagingSettings": {
+												"linkedServiceName": {
+													"referenceName": "DFPolybaseStagingStorageLink",
+													"type": "LinkedServiceReference"
+												},
+												"path": "polybasestaging"
+											},
+											"dataIntegrationUnits": 2,
+											"translator": {
+												"type": "TabularTranslator",
+												"mappings": [
+													{
+														"source": {
+															"name": "SBD Name",
+															"type": "String"
+														},
+														"sink": {
+															"name": "sbd_name",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Channel Code",
+															"type": "String"
+														},
+														"sink": {
+															"name": "channel_code",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Channel Name",
+															"type": "String"
+														},
+														"sink": {
+															"name": "channel_name",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Group Code",
+															"type": "String"
+														},
+														"sink": {
+															"name": "group_code",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SBF Code",
+															"type": "String"
+														},
+														"sink": {
+															"name": "sbf_code",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "SBF Name",
+															"type": "String"
+														},
+														"sink": {
+															"name": "sbf_name",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "MOQ",
+															"type": "String"
+														},
+														"sink": {
+															"name": "moq",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Effective From",
+															"type": "String"
+														},
+														"sink": {
+															"name": "effective_from",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Effective To",
+															"type": "String"
+														},
+														"sink": {
+															"name": "effective_to",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Is Base",
+															"type": "String"
+														},
+														"sink": {
+															"name": "is_base",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Filename",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Filename",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "LastModifiedDatetime",
+															"type": "String"
+														},
+														"sink": {
+															"name": "LastModifiedDatetime",
+															"type": "String"
+														}
+													}
+												]
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "DS_SubD_Excel",
+												"type": "DatasetReference",
+												"parameters": {
+													"Filename": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "DS_SubD_tmpRawLEAPTAS_SBDMTR_HistoryData_table",
+												"type": "DatasetReference"
+											}
+										]
 									}
-								},
-								"enableStaging": true,
-								"stagingSettings": {
-									"linkedServiceName": {
-										"referenceName": "DFPolybaseStagingStorageLink",
-										"type": "LinkedServiceReference"
-									},
-									"path": "polybasestaging"
-								},
-								"dataIntegrationUnits": 2,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "Branch_Code",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Branch_Code",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Customer_Key",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Customer_Key",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Effective_Month",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Effective_Month",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Product_Key",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Product_Key",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Reco_Qty",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Reco_Qty",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Product_Type",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Product_Type",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Reco_Strategy",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Reco_Strategy",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "New_RecoIdx",
-												"type": "String"
-											},
-											"sink": {
-												"name": "New_RecoIdx",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Target_Points",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Target_Points",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Filename",
-												"type": "String"
-											},
-											"sink": {
-												"name": "FileName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "LastModifiedDatetime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "LastModifiedDatetime",
-												"type": "String"
-											}
-										}
-									]
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "SmartBasketCSV_Staging",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_SmartBasket_table",
-									"type": "DatasetReference"
-								}
-							]
+								]
+							}
 						}
 					]
 				}
