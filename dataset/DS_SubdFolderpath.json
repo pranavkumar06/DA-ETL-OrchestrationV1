@@ -1,0 +1,42 @@
+{
+	"name": "DS_SubdFolderpath",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFLeapTempStorageLink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Folder": {
+				"type": "string"
+			},
+			"Filename": {
+				"type": "string"
+			},
+			"Container": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "SubD Data Load"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Folder",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().Container",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
