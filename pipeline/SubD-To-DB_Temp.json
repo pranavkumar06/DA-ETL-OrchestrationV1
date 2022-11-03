@@ -110,12 +110,7 @@
 											},
 											"sink": {
 												"type": "SqlDWSink",
-												"allowPolyBase": true,
-												"polyBaseSettings": {
-													"rejectValue": 0,
-													"rejectType": "value",
-													"useTypeDefault": true
-												}
+												"allowCopyCommand": true
 											},
 											"enableStaging": true,
 											"stagingSettings": {
@@ -196,7 +191,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DS_SubD_tmpRawLEAPTAS_SBDMPG_HistoryData_table",
+												"referenceName": "DS_SubD_ttmpRawLEAPTAS_SBDMPG_HistoryData_table",
 												"type": "DatasetReference"
 											}
 										]
