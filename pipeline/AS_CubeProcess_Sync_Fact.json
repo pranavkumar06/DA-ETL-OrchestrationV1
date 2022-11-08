@@ -5,14 +5,7 @@
 			{
 				"name": "AS_CubeProcess_ActivityAPI",
 				"type": "WebActivity",
-				"dependsOn": [
-					{
-						"activity": "Wait 5 min",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 1,
@@ -298,35 +291,6 @@
 							}
 						}
 					]
-				}
-			},
-			{
-				"name": "AS_Scale_S8",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_Scale_S8",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Wait 5 min",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "AS_Scale_S8",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 300
 				}
 			},
 			{
