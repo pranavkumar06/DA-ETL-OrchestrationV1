@@ -78,7 +78,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "Wait1 Second",
+									"activity": "FinalDFProcessing",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -107,6 +107,26 @@
 							"userProperties": [],
 							"typeProperties": {
 								"waitTimeInSeconds": 1
+							}
+						},
+						{
+							"name": "FinalDFProcessing",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Wait1 Second",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "FinalDFProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					]
