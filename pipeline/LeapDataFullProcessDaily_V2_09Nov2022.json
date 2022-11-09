@@ -133,30 +133,11 @@
 				}
 			},
 			{
-				"name": "Loading Temp and Final Tables",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "MiddleDFProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataProcessDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "FocusBrandLoading-LEAP-TO-DF",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -217,7 +198,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -242,6 +223,15 @@
 						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
 					}
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
 				}
 			}
 		],
