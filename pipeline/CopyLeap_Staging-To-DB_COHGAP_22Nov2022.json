@@ -1,0 +1,663 @@
+{
+	"name": "CopyLeap_Staging-To-DB_COHGAP_22Nov2022",
+	"properties": {
+		"activities": [
+			{
+				"name": "COHGAP_Cloud3",
+				"description": "Copy a file from the source store to the destination store.",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "Filename",
+								"value": {
+									"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						},
+						"recursive": false
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "coh_date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_type_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_type_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "sector_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "sector_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "seller_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "seller_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "seller_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "seller_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "coh_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "target",
+									"type": "String"
+								},
+								"sink": {
+									"name": "target",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "achievement",
+									"type": "String"
+								},
+								"sink": {
+									"name": "achievement",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "achievement_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "achievement_status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "calculation_rule",
+									"type": "String"
+								},
+								"sink": {
+									"name": "calculation_rule",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "coh_detail",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_detail",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "withsale",
+									"type": "String"
+								},
+								"sink": {
+									"name": "withsale",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nosale",
+									"type": "String"
+								},
+								"sink": {
+									"name": "nosale",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distributor_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distributor_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distributor_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distributor_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "LeapCSV_Staging_V2_Cloud3",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_TASDestination_table",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": {
+								"value": "tmpRawLEAPTAS_COHGAP",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "SpLeapDataLoadCOHGAP",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "COHGAP_Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SpLeapDataLoadCOHGAP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transfer COH from TAS to DF",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "SpLeapDataLoadCOHGAP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "TRUNCATE TABLE tblCOHGap_ExternalUse",
+						"allowCopyCommand": true,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "coh_date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_type_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_type_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "sector_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "sector_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "seller_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "seller_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "seller_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "seller_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "coh_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "target",
+									"type": "String"
+								},
+								"sink": {
+									"name": "target",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "achievement",
+									"type": "String"
+								},
+								"sink": {
+									"name": "achievement",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "achievement_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "achievement_status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "calculation_rule",
+									"type": "String"
+								},
+								"sink": {
+									"name": "calculation_rule",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distributor_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distributor_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distributor_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distributor_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FileSetId",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "FileSetId",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeStampIns",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimeStampIns",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "FBId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "FBId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "DSENodeID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "DSENodeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "DSENodeType",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "DSENodeType",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SlabTypeID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SlabTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SectorId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SectorId",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_TASDestination_table",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "tmpRawLEAPTAS_COHGAP"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DW_Destination_table",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "tblCOHGap_ExternalUse"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"Cloud1": {
+				"type": "String",
+				"defaultValue": "1"
+			},
+			"Cloud2": {
+				"type": "String",
+				"defaultValue": "2"
+			},
+			"Cloud3": {
+				"type": "String",
+				"defaultValue": "3"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
