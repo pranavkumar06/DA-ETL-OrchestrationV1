@@ -2,7 +2,7 @@
 	"name": "Trigger_DW_Resume_Scale",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
