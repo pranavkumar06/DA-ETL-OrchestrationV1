@@ -1,5 +1,5 @@
 {
-	"name": "LoadLeapADLS-To-DB_Salesstatus",
+	"name": "LoadLeapADLS-To-DB_Salesstatus_Seq",
 	"properties": {
 		"activities": [
 			{
