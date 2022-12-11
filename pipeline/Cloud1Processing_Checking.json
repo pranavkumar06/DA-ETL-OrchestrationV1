@@ -185,7 +185,7 @@
 				"defaultValue": "0"
 			},
 			"checkvalue": {
-				"type": "Boolean",
+				"type": "String",
 				"defaultValue": "0"
 			}
 		},
