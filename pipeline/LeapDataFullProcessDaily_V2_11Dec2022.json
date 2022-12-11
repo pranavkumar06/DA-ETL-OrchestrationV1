@@ -1,0 +1,282 @@
+{
+	"name": "LeapDataFullProcessDaily_V2_11Dec2022",
+	"properties": {
+		"activities": [
+			{
+				"name": "SpCheckAllFileProcessStatus",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "FocusBrandLoading-LEAP-TO-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "If SBD File Process",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCheckAllFileProcessStatus]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "If All Final Table Loaded",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckAllFileProcessStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Send Notification",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "FinalDFProcessing",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Wait1 Second",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "FinalDFProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "FinalDFProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Directory": "cntleap",
+									"Folder": {
+										"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Wait1 Second",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Loading Temp and Final Tables",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MiddleDFProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "FocusBrandLoading-LEAP-TO-DF",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Loading Temp and Final Tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "FocusBrandLoading-LEAP-TO-DF_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "If SBD File Process",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpCheckSBDFileProcessStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('SpCheckSBDFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "spDataLoadSBDMasterData_Cloud",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[spDataLoadSBDMasterData_Cloud]"
+							},
+							"linkedServiceName": {
+								"referenceName": "Dev_DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "SpCheckSBDFileProcessStatus",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Loading Temp and Final Tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCheckSBDFileProcessStatus]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			},
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-12-13T19:05:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
