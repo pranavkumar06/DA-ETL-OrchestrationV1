@@ -96,7 +96,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Set variable1",
+									"activity": "Set variable2",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -149,7 +149,27 @@
 							"typeProperties": {
 								"variableName": "checkvalue",
 								"value": {
-									"value": "@string(or(not(equals(variables('flgFullProcessingPending'), '1')),\nnot(greaterOrEquals(variables('MaxNoofCheck'),variables('CurrentCountNoofCheck')))))\n",
+									"value": "variables('MaxNoofCheck')\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "checkvalue1",
+								"value": {
+									"value": "variables('CurrentCountNoofCheck')",
 									"type": "Expression"
 								}
 							}
@@ -185,6 +205,10 @@
 				"defaultValue": "0"
 			},
 			"checkvalue": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"checkvalue1": {
 				"type": "String",
 				"defaultValue": "0"
 			}
