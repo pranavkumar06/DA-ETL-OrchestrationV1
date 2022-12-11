@@ -169,7 +169,7 @@
 							"typeProperties": {
 								"variableName": "checkvalue1",
 								"value": {
-									"value": "@string(not(equals(variables('flgFullProcessingPending'), '1')))",
+									"value": "@string(or(not(equals(variables('flgFullProcessingPending'), '1')),\nnot(greaterOrEquals(variables('MaxNoofCheck'),variables('CurrentCountNoofCheck')))))\n",
 									"type": "Expression"
 								}
 							}
