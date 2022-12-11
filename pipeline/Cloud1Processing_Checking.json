@@ -149,7 +149,7 @@
 							"typeProperties": {
 								"variableName": "checkvalue",
 								"value": {
-									"value": "variables('MaxNoofCheck')\n",
+									"value": "@variables('MaxNoofCheck')\n",
 									"type": "Expression"
 								}
 							}
@@ -169,7 +169,7 @@
 							"typeProperties": {
 								"variableName": "checkvalue1",
 								"value": {
-									"value": "variables('CurrentCountNoofCheck')",
+									"value": "@variables('CurrentCountNoofCheck')",
 									"type": "Expression"
 								}
 							}
