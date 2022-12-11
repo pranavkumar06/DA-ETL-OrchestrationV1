@@ -94,7 +94,14 @@
 						{
 							"name": "Count Completed",
 							"type": "SetVariable",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "PreviousCountNoofCheck",
@@ -133,6 +140,19 @@
 									}
 								]
 							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "checkvalue",
+								"value": {
+									"value": "@string(or(not(equals(variables('flgFullProcessingPending'), '1')),\nnot(greaterOrEquals(variables('MaxNoofCheck'),variables('CurrentCountNoofCheck')))))\n",
+									"type": "Expression"
+								}
+							}
 						}
 					],
 					"timeout": "7.00:00:00"
@@ -162,6 +182,10 @@
 			},
 			"PreviousCountNoofCheck": {
 				"type": "String",
+				"defaultValue": "0"
+			},
+			"checkvalue": {
+				"type": "Boolean",
 				"defaultValue": "0"
 			}
 		},
