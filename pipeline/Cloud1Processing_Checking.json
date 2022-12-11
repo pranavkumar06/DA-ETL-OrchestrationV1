@@ -144,12 +144,19 @@
 						{
 							"name": "Set variable1",
 							"type": "SetVariable",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "If Condition1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "checkvalue",
 								"value": {
-									"value": "@string(not(greaterOrEquals(variables('MaxNoofCheck'),variables('CurrentCountNoofCheck'))))",
+									"value": "@string(or(not(equals(variables('flgFullProcessingPending'), '1')),\nnot(greaterOrEquals(variables('MaxNoofCheck'),variables('CurrentCountNoofCheck')))))\n",
 									"type": "Expression"
 								}
 							}
@@ -157,14 +164,7 @@
 						{
 							"name": "Set variable2",
 							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "Set variable1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "checkvalue1",
