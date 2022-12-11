@@ -55,7 +55,7 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlDWSource",
-									"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileLoadingStatus]",
+									"sqlReaderStoredProcedureName": "[dbo].[SpGetCloudFileLoadingStatus_Check]",
 									"storedProcedureParameters": {
 										"CloudInstance": {
 											"type": "Byte",
