@@ -4517,7 +4517,7 @@
 													"value": "57",
 													"activities": [
 														{
-															"name": "DPSR_MDAY_Cloud2_copy1",
+															"name": "DPSR_MDAY_Cloud3",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -4536,7 +4536,7 @@
 																		{
 																			"name": "Filename",
 																			"value": {
-																				"value": "@activity('GetFileList-Cloud2').output.itemName",
+																				"value": "@activity('GetFileList-Cloud3').output.itemName",
 																				"type": "Expression"
 																			}
 																		},
@@ -4559,7 +4559,7 @@
 																		"type": "AzureBlobFSReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
-																			"value": "@activity('GetFileList-Cloud2').output.itemName",
+																			"value": "@activity('GetFileList-Cloud3').output.itemName",
 																			"type": "Expression"
 																		},
 																		"enablePartitionDiscovery": false
