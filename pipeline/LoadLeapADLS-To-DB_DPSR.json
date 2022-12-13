@@ -2756,7 +2756,7 @@
 													"value": "56",
 													"activities": [
 														{
-															"name": "DPSR_MDAY_Cloud1_copy1",
+															"name": "DPSR_MDAY_Cloud2",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
