@@ -39,14 +39,7 @@
 			{
 				"name": "CopyLeap_Staging-To-DB_Cloud3_2_V2",
 				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_1_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -75,7 +68,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_2_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_1_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -109,7 +102,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_3_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_2_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -143,7 +136,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_4_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_3_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -177,7 +170,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_5_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_4_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -211,7 +204,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_6_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_5_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -249,6 +242,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_7_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -279,7 +278,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_7_V2",
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_6_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
