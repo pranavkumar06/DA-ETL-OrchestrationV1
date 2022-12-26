@@ -39,7 +39,14 @@
 			{
 				"name": "CopyLeap_Staging-To-DB_Cloud3_2_V2",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "CopyS3-To-Staging_Cloud3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
