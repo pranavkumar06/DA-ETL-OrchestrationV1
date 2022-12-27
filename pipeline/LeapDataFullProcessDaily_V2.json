@@ -3386,6 +3386,26 @@
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "PurdDataFileGeneration_Temp",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Loading Temp and Final Tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PurdDataFileGeneration_Temp",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
