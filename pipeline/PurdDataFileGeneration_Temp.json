@@ -1,0 +1,176 @@
+{
+	"name": "PurdDataFileGeneration_Temp",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy PURD Cloud1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "DataDatetime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 1,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select 'Cloud01' AS Cloud,branch_Code, grn_date,COUNT(*) NoOfRecords\nFROM tmpRawLeapTAS_PURD_cloud1\nWHERE branch_Code NOT LIKE 'T%'\nGROUP BY branch_Code, grn_date\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Cloud",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Cloud",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "branch_Code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "branch_Code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "grn_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "grn_date",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NoOfRecords",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "NoOfRecords",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_ProdMaster",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "LeapAPIFileDataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"directory": "purddatacontainer",
+							"FolderPath": {
+								"value": "@{concat(formatDateTime(variables('TimeToday'), 'yyyy'), '/', formatDateTime(variables('TimeToday'), 'MM'), '/', formatDateTime(variables('TimeToday'), 'dd'))}",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "@{concat('PURD_Cloud1','.csv')}",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "DataDatetime",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DeleteDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TimeToday",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),1,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "DeleteDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataDeleteDate",
+					"value": {
+						"value": "@formatDateTime(subtractFromTime(convertTimeZone(utcnow(),'UTC','India Standard Time'),8,'Day'),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"TimeToday": {
+				"type": "String"
+			},
+			"DataDeleteDate": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "API"
+		},
+		"annotations": []
+	}
+}
