@@ -75,7 +75,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_2_V2",
+						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -177,7 +177,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud3_4_V2",
+						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -252,6 +252,18 @@
 					},
 					{
 						"activity": "CopyLeap_Staging-To-DB_Cloud3_5_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_2_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_Cloud3_4_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
