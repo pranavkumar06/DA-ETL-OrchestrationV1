@@ -3406,6 +3406,31 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Purchase History Send Notification",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "PurdDataFileGeneration_Temp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "trivedi.dt.1@pg.com,maiti.am@pg.com,vishalbhai.jagdishbhai.bhimda@gds.ey.com,umesh.gupta1@gds.ey.com",
+						"Subject": "Purchase History File generation notification",
+						"ErrorMessage": "Daily Purchase history file is generated."
+					}
+				}
 			}
 		],
 		"parameters": {
