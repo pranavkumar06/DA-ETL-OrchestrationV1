@@ -310,13 +310,109 @@
 				}
 			},
 			{
-				"name": "Scale 10 DTU",
+				"name": "Scale 10 DTU Step1",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
 						"activity": "MX-spImportForNewStores",
 						"dependencyConditions": [
 							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale_Maximus",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S0",
+						"tier": "Standard"
+					}
+				}
+			},
+			{
+				"name": "Scale 10 DTU Step2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "MX-spPopulateStoreListWithTownType",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale_Maximus",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S0",
+						"tier": "Standard"
+					}
+				}
+			},
+			{
+				"name": "Scale 10 DTU Step3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "tbltmpRurbanSplit",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale_Maximus",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S0",
+						"tier": "Standard"
+					}
+				}
+			},
+			{
+				"name": "Scale 10 DTU Step4",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DF-spUpdateRurbanSplitInStoreMaster",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale_Maximus",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S0",
+						"tier": "Standard"
+					}
+				}
+			},
+			{
+				"name": "Scale 10 DTU Success",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DF-spUpdateRurbanSplitInStoreMaster",
+						"dependencyConditions": [
+							"Succeeded"
 						]
 					}
 				],
