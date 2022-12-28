@@ -3431,6 +3431,30 @@
 						"ErrorMessage": "Daily Purchase history file is generated."
 					}
 				}
+			},
+			{
+				"name": "SQL_Scale_Maximus",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale_Maximus",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S3",
+						"tier": "Standard"
+					}
+				}
 			}
 		],
 		"parameters": {
