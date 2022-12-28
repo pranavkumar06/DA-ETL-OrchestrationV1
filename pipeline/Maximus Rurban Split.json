@@ -225,7 +225,14 @@
 			{
 				"name": "MX-spImportForNewStores",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait 30 min",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -267,6 +274,39 @@
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SQL_Scale_Maximus",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL_Scale_Maximus",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Scaleval": "S6",
+						"tier": "Standard"
+					}
+				}
+			},
+			{
+				"name": "Wait 30 min",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "SQL_Scale_Maximus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1800
 				}
 			}
 		],
