@@ -2454,38 +2454,11 @@
 				}
 			},
 			{
-				"name": "spPopulateOrderTelecallerList_FutureDate-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spPopulateOrderTelecallerListTransferTables-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spPopulateOrderTelecallerList_FutureDate]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "tblTeleCallerListForDay_FutureDate Transfer TAS To DF",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "spPopulateOrderTelecallerList_FutureDate-TAS",
+						"activity": "spPopulateOrderTelecallerListTransferTables-TAS",
 						"dependencyConditions": [
 							"Succeeded"
 						]
