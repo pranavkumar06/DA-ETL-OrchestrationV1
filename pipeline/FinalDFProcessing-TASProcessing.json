@@ -219,6 +219,33 @@
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "spPopulateFutureF1Calls",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spDataLoadRawLeapTAS_DRCP-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFutureF1Calls]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
