@@ -3428,6 +3428,15 @@
 						"tier": "Standard"
 					}
 				}
+			},
+			{
+				"name": "Wait 20 Min",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1200
+				}
 			}
 		],
 		"parameters": {
