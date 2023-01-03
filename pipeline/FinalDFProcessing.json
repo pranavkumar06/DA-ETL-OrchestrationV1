@@ -309,6 +309,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "WINIT Daily Processing",
+						"dependencyConditions": [
+							"Completed"
+						]
 					}
 				],
 				"policy": {
@@ -1181,6 +1187,26 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "DCC",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "WINIT Daily Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spGetDFParameterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "WINIT Daily Processing",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
