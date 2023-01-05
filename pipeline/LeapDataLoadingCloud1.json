@@ -7,7 +7,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -41,7 +41,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -75,7 +75,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -109,13 +109,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud1_3_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -183,7 +177,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -319,7 +313,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -353,7 +347,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1_copy1_copy1",
+						"activity": "CopyS3-To-Staging_Cloud1_part3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -406,7 +400,7 @@
 				}
 			},
 			{
-				"name": "CopyS3-To-Staging_Cloud1_copy1",
+				"name": "CopyS3-To-Staging_Cloud1_part2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -436,7 +430,7 @@
 				}
 			},
 			{
-				"name": "CopyS3-To-Staging_Cloud1_copy1_copy1",
+				"name": "CopyS3-To-Staging_Cloud1_part3",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
