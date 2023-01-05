@@ -143,7 +143,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1",
+						"activity": "CopyS3-To-Staging_Cloud1_part3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -211,7 +211,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyS3-To-Staging_Cloud1",
+						"activity": "CopyS3-To-Staging_Cloud1_part3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
