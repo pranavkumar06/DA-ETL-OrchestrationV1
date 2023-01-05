@@ -245,19 +245,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_5_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "CopyLeap_Staging-To-DB_Cloud2_8_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "CopyLeap_Staging-To-DB_Cloud2_7_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
