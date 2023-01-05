@@ -15,7 +15,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"ScaleVal": "DW200c",
-						"flgcalled": 0
+						"flgcalled": 1
 					}
 				}
 			}
