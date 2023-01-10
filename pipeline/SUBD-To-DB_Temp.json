@@ -1,5 +1,5 @@
 {
-	"name": "SubD-To-DB_Temp",
+	"name": "SUBD-To-DB_Temp",
 	"properties": {
 		"description": "Copy file data from Staging to DB",
 		"activities": [
