@@ -92,14 +92,7 @@
 									"storeSettings": {
 										"type": "AmazonS3ReadSettings",
 										"recursive": true,
-										"modifiedDatetimeStart": {
-											"value": "@pipeline().parameters.windowStart",
-											"type": "Expression"
-										},
-										"modifiedDatetimeEnd": {
-											"value": "@pipeline().parameters.windowEnd",
-											"type": "Expression"
-										}
+										"deleteFilesAfterCompletion": false
 									},
 									"formatSettings": {
 										"type": "BinaryReadSettings"
