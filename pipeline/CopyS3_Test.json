@@ -149,14 +149,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"windowStart": {
-				"type": "string"
-			},
-			"windowEnd": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "Leap Data Pipeline"
 		},
