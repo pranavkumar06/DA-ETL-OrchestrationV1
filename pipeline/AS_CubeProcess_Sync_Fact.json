@@ -292,6 +292,26 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "AS_ResumeandScale_S8",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "If Condition1_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_ResumeandScale_S8",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"variables": {
