@@ -149,7 +149,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('SKU'),'S9'))",
+						"value": "@not(equals(variables('SKU'),'S8'))",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
