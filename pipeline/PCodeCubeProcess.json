@@ -1,0 +1,45 @@
+{
+	"name": "PCodeCubeProcess",
+	"properties": {
+		"activities": [
+			{
+				"name": "spAS_PopulateFactTables-DF",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spAS_PopulateFactTables_PCode]",
+					"storedProcedureParameters": {
+						"DMinus1Date": {
+							"value": {
+								"value": "@variables('DMinus1Date')",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"variables": {
+			"DMinus1Date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
