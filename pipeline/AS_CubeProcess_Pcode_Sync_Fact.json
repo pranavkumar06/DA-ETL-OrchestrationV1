@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "AS_CubeProcess_ActivityAPI",
+				"name": "AS_CubeProcess_Pcode_ActivityAPI",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DMS/refreshes",
+						"value": "https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DA_Olap_PCodeLvl/refreshes",
 						"type": "Expression"
 					},
 					"method": "POST",
@@ -36,7 +36,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "AS_CubeProcess_ActivityAPI",
+						"activity": "AS_CubeProcess_Pcode_ActivityAPI",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -52,7 +52,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DMS/refreshes",
+						"value": "https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DA_Olap_PCodeLvl/refreshes",
 						"type": "Expression"
 					},
 					"method": "GET",
@@ -162,7 +162,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"url": {
-									"value": "@concat('https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DMS/refreshes/',variables('RefreshId'))",
+									"value": "@concat('https://aspaaseastus2.asazure.windows.net/servers/dbrdashboard/models/PG_DA_Olap_PCodeLvl/refreshes/',variables('RefreshId'))",
 									"type": "Expression"
 								},
 								"method": "GET",
