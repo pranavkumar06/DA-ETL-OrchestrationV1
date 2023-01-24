@@ -32,7 +32,7 @@
 				}
 			},
 			{
-				"name": "AS_CubeProcess_Sync_Fact",
+				"name": "AS_CubeProcess_PCode_Sync_Fact",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
