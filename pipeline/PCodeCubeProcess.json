@@ -30,6 +30,26 @@
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "AS_CubeProcess_Sync_Fact",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spAS_PopulateFactTables-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"variables": {
