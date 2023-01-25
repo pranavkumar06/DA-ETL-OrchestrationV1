@@ -19,7 +19,13 @@
 						"referenceName": "PCodeCubeProcess",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"DMinus1Date": {
+							"value": "@pipeline().parameters.DMinus1Date",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
