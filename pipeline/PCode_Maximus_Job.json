@@ -52,6 +52,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"DMinus1Date": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"DMinus1Date": {
 				"type": "String"
