@@ -52,6 +52,11 @@
 				}
 			}
 		],
+		"variables": {
+			"DMinus1Date": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
