@@ -19,7 +19,7 @@
 					"storedProcedureParameters": {
 						"DMinus1Date": {
 							"value": {
-								"value": "@variables('DMinus1Date')",
+								"value": "@pipeline().parameters.DMinus1Date",
 								"type": "Expression"
 							},
 							"type": "DateTime"
