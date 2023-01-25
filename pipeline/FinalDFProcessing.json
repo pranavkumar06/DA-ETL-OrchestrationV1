@@ -1210,7 +1210,13 @@
 						"referenceName": "PCode_Maximus_Job",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"DMinus1Date": {
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
