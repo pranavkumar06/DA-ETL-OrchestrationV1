@@ -1298,6 +1298,281 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "COHPOINT_Cloud1",
+				"description": "Copy a file from the source store to the destination store.",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Transfer COH from TAS to DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "Filename",
+								"value": {
+									"value": "@concat('COHPOINT_cloud0',variables('Cloud1'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@concat('COHPOINT_cloud0',variables('Cloud1'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						},
+						"recursive": false
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "branch_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "branch_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "branch_location",
+									"type": "String"
+								},
+								"sink": {
+									"name": "branch_location",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dse_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dse_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dse_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dse_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "sector",
+									"type": "String"
+								},
+								"sink": {
+									"name": "sector",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "channel_type_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "channel_type_code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "coh_month",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_month",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "coh_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "coh_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fb_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "fb_type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "norm_wise_target",
+									"type": "String"
+								},
+								"sink": {
+									"name": "norm_wise_target",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "retailer_count",
+									"type": "String"
+								},
+								"sink": {
+									"name": "retailer_count",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "target_retailer_count",
+									"type": "String"
+								},
+								"sink": {
+									"name": "target_retailer_count",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "qualified_retailer_count",
+									"type": "String"
+								},
+								"sink": {
+									"name": "qualified_retailer_count",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distribution_target",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distribution_target",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "distribution_actual_percentage",
+									"type": "String"
+								},
+								"sink": {
+									"name": "distribution_actual_percentage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "LeapCSV_Staging_V2_Cloud1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_TASDestination_table",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": {
+								"value": "tmpRawLEAPTAS_COHPOINT",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"variables": {
