@@ -1305,7 +1305,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable_copy1",
+						"activity": "SpTruncateCOHPOINTTemptable",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1580,7 +1580,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable_copy1",
+						"activity": "SpTruncateCOHPOINTTemptable",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1855,7 +1855,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable_copy1",
+						"activity": "SpTruncateCOHPOINTTemptable",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2125,7 +2125,7 @@
 				]
 			},
 			{
-				"name": "SpTruncateCOHGAPTemptable_copy1",
+				"name": "SpTruncateCOHPOINTTemptable",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -2144,7 +2144,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpTruncateCOHGAPTemptable]"
+					"storedProcedureName": "[dbo].[SpTruncateCOHPOINTTemptable]"
 				},
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
