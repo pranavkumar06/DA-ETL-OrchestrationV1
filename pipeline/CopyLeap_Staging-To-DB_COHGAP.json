@@ -107,7 +107,7 @@
 							},
 							{
 								"source": {
-									"name": "channel_name",
+									"name": "channel",
 									"type": "String"
 								},
 								"sink": {
@@ -127,7 +127,7 @@
 							},
 							{
 								"source": {
-									"name": "sector_name",
+									"name": "sector",
 									"type": "String"
 								},
 								"sink": {
@@ -137,7 +137,7 @@
 							},
 							{
 								"source": {
-									"name": "seller_code",
+									"name": "dse_code",
 									"type": "String"
 								},
 								"sink": {
@@ -147,7 +147,7 @@
 							},
 							{
 								"source": {
-									"name": "seller_name",
+									"name": "dse_name",
 									"type": "String"
 								},
 								"sink": {
@@ -197,7 +197,7 @@
 							},
 							{
 								"source": {
-									"name": "calculation_rule",
+									"name": "coh_type",
 									"type": "String"
 								},
 								"sink": {
@@ -237,7 +237,7 @@
 							},
 							{
 								"source": {
-									"name": "distributor_code",
+									"name": "branch_code",
 									"type": "String"
 								},
 								"sink": {
@@ -247,7 +247,7 @@
 							},
 							{
 								"source": {
-									"name": "distributor_name",
+									"name": "branch_location",
 									"type": "String"
 								},
 								"sink": {
@@ -273,6 +273,16 @@
 								"sink": {
 									"name": "LastModifiedDatetime",
 									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "fb_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "fb_type",
+									"type": "String"
 								}
 							}
 						]
