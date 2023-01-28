@@ -1305,7 +1305,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Transfer COH from TAS to DF",
+						"activity": "SpTruncateCOHGAPTemptable_copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1580,7 +1580,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Transfer COH from TAS to DF",
+						"activity": "SpTruncateCOHGAPTemptable_copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1855,7 +1855,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Transfer COH from TAS to DF",
+						"activity": "SpTruncateCOHGAPTemptable_copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2123,6 +2123,33 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "SpTruncateCOHGAPTemptable_copy1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Transfer COH from TAS to DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SpTruncateCOHGAPTemptable]"
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"variables": {
