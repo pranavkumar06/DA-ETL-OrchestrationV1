@@ -8561,6 +8561,16 @@
 																	"name": "transaction_customer_type",
 																	"type": "String"
 																}
+															},
+															{
+																"source": {
+																	"name": "promo_pass_on_amt",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "promo_pass_on_amt",
+																	"type": "String"
+																}
 															}
 														]
 													}
@@ -8573,8 +8583,11 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DS_DPSR_table",
-														"type": "DatasetReference"
+														"referenceName": "DS_Destination_table",
+														"type": "DatasetReference",
+														"parameters": {
+															"tablename": "tmpRawLEAPTAS_DPSR_MDAY_Cloud2"
+														}
 													}
 												]
 											}
