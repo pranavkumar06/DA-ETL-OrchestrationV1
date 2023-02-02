@@ -9323,6 +9323,272 @@
 												]
 											}
 										]
+									},
+									{
+										"value": "79",
+										"activities": [
+											{
+												"name": "SalesStatus_Cloud1",
+												"description": "Copy a file from the source store to the destination store.",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"additionalColumns": [
+															{
+																"name": "Filename",
+																"value": {
+																	"value": "@item().name",
+																	"type": "Expression"
+																}
+															},
+															{
+																"name": "LastModifiedDatetime",
+																"value": {
+																	"value": "@addminutes(utcnow(),330)",
+																	"type": "Expression"
+																}
+															}
+														],
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"wildcardFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															},
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														},
+														"recursive": false
+													},
+													"sink": {
+														"type": "SqlDWSink",
+														"preCopyScript": {
+															"value": "TRUNCATE TABLE @{item().temptablename}",
+															"type": "Expression"
+														},
+														"allowPolyBase": true,
+														"polyBaseSettings": {
+															"rejectValue": 0,
+															"rejectType": "value",
+															"useTypeDefault": true
+														},
+														"disableMetricsCollection": false
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "DFPolybaseStagingStorageLink",
+															"type": "LinkedServiceReference"
+														},
+														"path": "polybasestaging"
+													},
+													"dataIntegrationUnits": 2,
+													"translator": {
+														"type": "TabularTranslator",
+														"mappings": [
+															{
+																"source": {
+																	"name": "branch_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "branch_location",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "branch_location",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "dse_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "dse_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "so_no",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "so_no",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "so_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "so_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "expected_delivery_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "expected_delivery_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_no",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_no",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_date",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_date",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_amount",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_amount",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "invoice_status",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "invoice_status",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "retailer_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "retailer_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_code",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_code",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "channel_name",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "channel_name",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "Filename",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "FileName",
+																	"type": "String"
+																}
+															},
+															{
+																"source": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																},
+																"sink": {
+																	"name": "LastModifiedDatetime",
+																	"type": "String"
+																}
+															}
+														]
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "LeapCSV_Staging",
+														"type": "DatasetReference"
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_Destination_table",
+														"type": "DatasetReference",
+														"parameters": {
+															"tablename": "tmpRawLEAPTAS_SalesStatus_Cloud1"
+														}
+													}
+												]
+											}
+										]
 									}
 								]
 							}
