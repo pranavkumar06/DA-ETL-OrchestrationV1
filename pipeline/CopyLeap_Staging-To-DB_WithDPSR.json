@@ -2172,7 +2172,7 @@
 															},
 															{
 																"source": {
-																	"name": "sgst_amount",
+																	"name": "sgst_rate",
 																	"type": "String"
 																},
 																"sink": {
@@ -2182,7 +2182,7 @@
 															},
 															{
 																"source": {
-																	"name": "igst_amount",
+																	"name": "igst_rate",
 																	"type": "String"
 																},
 																"sink": {
@@ -2192,7 +2192,7 @@
 															},
 															{
 																"source": {
-																	"name": "cess_amount",
+																	"name": "cess_rate",
 																	"type": "String"
 																},
 																"sink": {
