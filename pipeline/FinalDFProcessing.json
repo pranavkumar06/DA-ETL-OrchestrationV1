@@ -376,42 +376,6 @@
 				}
 			},
 			{
-				"name": "spAPI_PopulateAPIBaseTables-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spAS_PopulateFactTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAPI_PopulateAPIBaseTables]",
-					"storedProcedureParameters": {
-						"DMinusOneDate": {
-							"value": {
-								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-								"type": "Expression"
-							},
-							"type": "DateTime"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateSchemeApplied-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -861,33 +825,6 @@
 				}
 			},
 			{
-				"name": "spTAS_SmartBasketPopulateBaseDetail-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spAS_PopulateFactTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spTAS_SmartBasketPopulateBaseDetail]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateStoreSchemeDistributionCount-TAS",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -931,12 +868,6 @@
 						]
 					},
 					{
-						"activity": "spAPI_PopulateAPIBaseTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "RetailerFlagUpdate",
 						"dependencyConditions": [
 							"Succeeded"
@@ -949,21 +880,9 @@
 						]
 					},
 					{
-						"activity": "spTAS_SmartBasketPopulateBaseDetail-DF",
+						"activity": "DCC_Processing",
 						"dependencyConditions": [
-							"Completed"
-						]
-					},
-					{
-						"activity": "spSubdHawkeyePopuldateData",
-						"dependencyConditions": [
-							"Completed"
-						]
-					},
-					{
-						"activity": "spSniDbrPopulateTables",
-						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
@@ -978,60 +897,6 @@
 						"ScaleVal": "DW200c",
 						"flgcalled": 0
 					}
-				}
-			},
-			{
-				"name": "spSubdHawkeyePopuldateData",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spAS_PopulateFactTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spSubdHawkeyePopuldateData]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "spSniDbrPopulateTables",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spAS_PopulateFactTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spSniDbrPopulateTables]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -1309,6 +1174,26 @@
 						"ScaleVal": "DW200c",
 						"flgcalled": 1
 					}
+				}
+			},
+			{
+				"name": "DCC_Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spAS_PopulateFactTables-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DCC_Processing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
