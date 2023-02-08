@@ -3,32 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "PCodeCubeProcess",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "PCodeCubeProcess",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DMinus1Date": {
-							"value": "@pipeline().parameters.DMinus1Date",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "Maximus Rurban Split",
 				"type": "ExecutePipeline",
 				"dependsOn": [

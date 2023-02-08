@@ -1264,6 +1264,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "AS_CubeProcess_Sync_Fact",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
