@@ -70,7 +70,7 @@
 								"source": {
 									"type": "SqlDWSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM tmpAPIExtractDayPSRRawBranch WHERE DistCode='@{item().DistributorCode}'",
+										"value": "SELECT * FROM tmpAPIExtractDayPSRRawBranch_Nov WHERE DistCode='@{item().DistributorCode}'",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -533,7 +533,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DS_tmpAPIExtractDayPSRRawBranch_table",
+									"referenceName": "DS_tmpAPIExtractDayPSRRawBranch_Nov",
 									"type": "DatasetReference"
 								}
 							],
