@@ -544,11 +544,11 @@
 									"parameters": {
 										"directory": "apidatacontainer",
 										"FolderPath": {
-											"value": "@{concat('2022', '/Nov')}",
+											"value": "@{concat('2022', '/Temp')}",
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@{concat('DayPSRRawBranch','_Nov_2022','_',item().DistributorCode,'.csv')}",
+											"value": "@{concat('DayPSRRawBranch','_',item().DistributorCode,'.csv')}",
 											"type": "Expression"
 										}
 									}
