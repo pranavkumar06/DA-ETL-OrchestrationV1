@@ -2,7 +2,7 @@
 	"name": "Trigger_DW_Resume",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
