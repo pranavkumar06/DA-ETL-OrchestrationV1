@@ -2,7 +2,7 @@
 	"name": "Hawkeye_ScaleDown",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
