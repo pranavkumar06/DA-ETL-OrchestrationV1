@@ -1276,6 +1276,16 @@
 									"name": "SectorId",
 									"type": "Int32"
 								}
+							},
+							{
+								"source": {
+									"name": "fb_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "fb_Type",
+									"type": "String"
+								}
 							}
 						]
 					}
