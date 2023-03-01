@@ -21,7 +21,7 @@
 						"storedProcedureParameters": {
 							"CloudInstance": {
 								"type": "Byte",
-								"value": "3"
+								"value": "1"
 							}
 						},
 						"queryTimeout": "02:00:00",
@@ -134,7 +134,7 @@
 											},
 											"cases": [
 												{
-													"value": "9",
+													"value": "7",
 													"activities": [
 														{
 															"name": "DPSR_MOR_Cloud1",
@@ -887,7 +887,7 @@
 													]
 												},
 												{
-													"value": "57",
+													"value": "55",
 													"activities": [
 														{
 															"name": "DPSR_MDAY_Cloud1",
@@ -1661,7 +1661,7 @@
 								"storedProcedureName": "[dbo].[SpFileImportLog]",
 								"storedProcedureParameters": {
 									"CloudInstance": {
-										"value": "3",
+										"value": "1",
 										"type": "Byte"
 									},
 									"DataDate": {
@@ -1712,7 +1712,7 @@
 								"storedProcedureName": "[dbo].[SpFileImportLog]",
 								"storedProcedureParameters": {
 									"CloudInstance": {
-										"value": "3",
+										"value": "1",
 										"type": "Byte"
 									},
 									"DataDate": {
