@@ -3330,7 +3330,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"ScaleVal": "DW500c",
-						"flgcalled": 0
+						"flgcalled": 1
 					}
 				}
 			},
