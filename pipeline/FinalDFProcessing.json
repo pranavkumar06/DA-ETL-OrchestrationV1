@@ -1115,7 +1115,7 @@
 						]
 					},
 					{
-						"activity": "DW_Resume_Scale DW200_V2",
+						"activity": "AS_CubeProcess_PCode_Sync_Fact",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1125,6 +1125,68 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "FinalScale_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "spAS_PopulateFactTables-DF_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale DW200_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spAS_PopulateFactTables_PCode]",
+					"storedProcedureParameters": {
+						"DMinus1Date": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "AS_CubeProcess_PCode_Sync_Fact",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spAS_PopulateFactTables-DF_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "AS_CubeProcess_Sync_Fact",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
