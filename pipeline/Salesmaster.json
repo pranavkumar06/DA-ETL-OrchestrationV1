@@ -24,10 +24,21 @@
 					"sink": {
 						"type": "SqlDWSink",
 						"preCopyScript": "TRUNCATE TABLE tmp_tblSalesDetail_DelIfSeen",
-						"allowCopyCommand": true,
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "DFPolybaseStagingStorageLink",
+							"type": "LinkedServiceReference"
+						}
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
