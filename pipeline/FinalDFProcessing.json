@@ -1019,7 +1019,7 @@
 					{
 						"activity": "PCode_Maximus_Job",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
