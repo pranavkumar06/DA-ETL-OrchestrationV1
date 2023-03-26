@@ -1,0 +1,341 @@
+{
+	"name": "DFDatafoundation_Anuj_salesdetail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DFDatafoundation_Anuj",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "InvDetId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "InvId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SKUNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SKUNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CmpNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CmpNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CatNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CatNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BFNodeid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BFNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBFNodeType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Line_Gross_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Discount_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Taxable_Scheme_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_CGST_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_SGST_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_IGST_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_CESS_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Net_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Tax_on_Discount_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Tax_on_Scheme_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Tax_on_RLP_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Retailing_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_Gross_in_SLP_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "mraccId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "po_no",
+				"type": "varchar"
+			},
+			{
+				"name": "dsenodeid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dsenodetype",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Line_msu_Val",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "reason",
+				"type": "varchar"
+			},
+			{
+				"name": "srn_refno",
+				"type": "varchar"
+			},
+			{
+				"name": "ordermode",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_CGST_taxrate",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "Line_SGST_taxrate",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "Line_IGST_taxrate",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "Line_CESS_taxrate",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "tc_name",
+				"type": "varchar"
+			},
+			{
+				"name": "OrderSourceId",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "FileSetIdIns",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TimeStampIns",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "batch",
+				"type": "varchar"
+			},
+			{
+				"name": "upc",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Line_tcs_amount_Val",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "remarks",
+				"type": "varchar"
+			},
+			{
+				"name": "tcs_rate",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 4
+			},
+			{
+				"name": "branch_gst_no",
+				"type": "varchar"
+			},
+			{
+				"name": "dl_no",
+				"type": "varchar"
+			},
+			{
+				"name": "dl_expiry_date",
+				"type": "varchar"
+			},
+			{
+				"name": "irn_no",
+				"type": "varchar"
+			},
+			{
+				"name": "Rptmonthyear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectorId",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "MRP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TrnTypeId",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "apply_to_doc_date",
+				"type": "date"
+			},
+			{
+				"name": "mracc_code",
+				"type": "varchar"
+			},
+			{
+				"name": "mracc_desc",
+				"type": "varchar"
+			},
+			{
+				"name": "promo_pass_on_amt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Line_msu_Val_Calculated",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 12
+			},
+			{
+				"name": "OrgQuantity",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblSalesDetail"
+		}
+	}
+}
