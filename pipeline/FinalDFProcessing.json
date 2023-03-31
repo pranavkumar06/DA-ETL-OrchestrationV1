@@ -334,42 +334,6 @@
 				}
 			},
 			{
-				"name": "spAS_PopulateFactTables-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale DW200_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAS_PopulateFactTables]",
-					"storedProcedureParameters": {
-						"DMinus1Date": {
-							"value": {
-								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-								"type": "Expression"
-							},
-							"type": "DateTime"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateSchemeApplied-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -522,26 +486,6 @@
 				}
 			},
 			{
-				"name": "AS_CubeProcess_Sync_Fact",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spAS_PopulateFactTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Sync_Fact",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "spPopulateFactSBDData",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -663,7 +607,19 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
+						"activity": "DCC_Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactSBDData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "FinalDFProcessing-TASProcessing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -849,12 +805,6 @@
 				"name": "DW_Resume_Scale DW200_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
-					{
-						"activity": "AS_ResumeandScale_S9",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
 					{
 						"activity": "spPopulateFactSBDData",
 						"dependencyConditions": [
@@ -1107,12 +1057,6 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
-					},
-					{
-						"activity": "AS_CubeProcess_Sync_Fact",
-						"dependencyConditions": [
-							"Succeeded"
-						]
 					}
 				],
 				"userProperties": [],
@@ -1178,6 +1122,12 @@
 				"dependsOn": [
 					{
 						"activity": "DW_Resume_Scale DW200_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "AS_ResumeandScale_S9",
 						"dependencyConditions": [
 							"Succeeded"
 						]
