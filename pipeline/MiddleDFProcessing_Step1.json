@@ -64,7 +64,7 @@
 				}
 			},
 			{
-				"name": "Cloud2Processing",
+				"name": "Cloud2Processing_Step1",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -77,7 +77,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Cloud2Processing",
+						"referenceName": "Cloud2Processing_Step1",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
