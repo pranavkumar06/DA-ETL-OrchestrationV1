@@ -1,0 +1,37 @@
+{
+	"name": "LeapDataLoading_Step1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataFullProcessDaily_Step1",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DataProcessDate": "02-Apr-2023",
+					"Container": "cntleap",
+					"Directory": "2023/03/01"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-04-01T18:42:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						45
+					],
+					"hours": [
+						1
+					]
+				}
+			}
+		}
+	}
+}
