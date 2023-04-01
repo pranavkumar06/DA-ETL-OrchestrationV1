@@ -1,0 +1,163 @@
+{
+	"name": "MiddleDFProcessing_Step1",
+	"properties": {
+		"activities": [
+			{
+				"name": "SpCycleStart",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCycEntry]",
+						"storedProcedureParameters": {
+							"flgInOut": {
+								"type": "Byte",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Cloud1Processing_Step1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Cloud1Processing_Step1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Cloud2Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Cloud2Processing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Cloud3Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpCycleStart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Cloud3Processing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"CycleID": {
+							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"flgCloud1LoadingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud2LoadingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud3LoadingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud1ProcessingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud2ProcessingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgCloud3ProcessingDone": {
+				"type": "Boolean",
+				"defaultValue": false
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
