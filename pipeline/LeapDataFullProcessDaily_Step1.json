@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Loading Temp and Final Tables",
+				"name": "Loading Temp and Final Tables_Step1",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "MiddleDFProcessing",
+						"referenceName": "MiddleDFProcessing_Step1",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
