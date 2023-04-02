@@ -127,6 +127,9 @@
 		"parameters": {
 			"DataProcessDate": {
 				"type": "string"
+			},
+			"Step": {
+				"type": "string"
 			}
 		},
 		"variables": {
