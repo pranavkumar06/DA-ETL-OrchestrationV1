@@ -1,0 +1,36 @@
+{
+	"name": "LeapDataMormningProcessing",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LeapDataMorningProcessing_V2",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DataProcessDate": "02-apr-2023",
+					"Step": "2"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-04-02T12:09:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						5
+					]
+				}
+			}
+		}
+	}
+}
