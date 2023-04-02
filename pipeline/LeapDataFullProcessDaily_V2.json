@@ -3456,6 +3456,9 @@
 			},
 			"Directory": {
 				"type": "string"
+			},
+			"Step": {
+				"type": "string"
 			}
 		},
 		"folder": {
