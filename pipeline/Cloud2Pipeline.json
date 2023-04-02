@@ -157,6 +157,13 @@
 							"CloudInstanceNo": {
 								"type": "Int32",
 								"value": "2"
+							},
+							"Step": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Step",
+									"type": "Expression"
+								}
 							}
 						},
 						"queryTimeout": "02:00:00",
