@@ -10,9 +10,9 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"DataProcessDate": "02-Apr-2023",
+					"DataProcessDate": "@{convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy')}",
 					"Container": "cntleap",
-					"Directory": "2023/04/02"
+					"Directory": "@{concat('/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'yyyy'), '/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'MM'), '/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'dd'), '/')}"
 				}
 			}
 		],
