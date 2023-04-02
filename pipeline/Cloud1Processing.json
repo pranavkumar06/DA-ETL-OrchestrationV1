@@ -60,6 +60,13 @@
 										"CloudInstance": {
 											"type": "Byte",
 											"value": "1"
+										},
+										"Step": {
+											"type": "Byte",
+											"value": {
+												"value": "@pipeline().parameters.Step",
+												"type": "Expression"
+											}
 										}
 									},
 									"queryTimeout": "02:00:00",
