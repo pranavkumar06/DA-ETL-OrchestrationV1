@@ -175,6 +175,9 @@
 			},
 			"CycleID": {
 				"type": "string"
+			},
+			"Step": {
+				"type": "string"
 			}
 		},
 		"variables": {
