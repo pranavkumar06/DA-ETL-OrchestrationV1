@@ -60,6 +60,13 @@
 										"CloudInstance": {
 											"type": "Byte",
 											"value": "3"
+										},
+										"Step": {
+											"type": "Byte",
+											"value": {
+												"value": "@pipeline().parameters.Step",
+												"type": "Expression"
+											}
 										}
 									},
 									"queryTimeout": "02:00:00",
@@ -129,6 +136,10 @@
 									},
 									"CycleID": {
 										"value": "@pipeline().parameters.CycleID",
+										"type": "Expression"
+									},
+									"Step": {
+										"value": "@pipeline().parameters.Step",
 										"type": "Expression"
 									}
 								}
