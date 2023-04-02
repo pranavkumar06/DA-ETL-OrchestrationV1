@@ -127,6 +127,10 @@
 						"CycleID": {
 							"value": "@activity('SpCycleStart').output.firstRow.CycleID",
 							"type": "Expression"
+						},
+						"Step": {
+							"value": "@pipeline().parameters.Step",
+							"type": "Expression"
 						}
 					}
 				}
