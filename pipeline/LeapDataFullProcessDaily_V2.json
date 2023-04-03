@@ -103,33 +103,6 @@
 							}
 						},
 						{
-							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "FinalDFProcessing",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Directory": "cntleap",
-									"Folder": {
-										"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
-										"type": "Expression"
-									}
-								}
-							}
-						},
-						{
 							"name": "Wait1 Second",
 							"type": "Wait",
 							"dependsOn": [],
