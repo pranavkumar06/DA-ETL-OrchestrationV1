@@ -2260,26 +2260,6 @@
 				]
 			},
 			{
-				"name": "DF-To-TAS Transfer",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SQL_Scale S7 1600 DTU",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DF-To-TAS Transfer",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "If SBD File Process",
 				"type": "IfCondition",
 				"dependsOn": [

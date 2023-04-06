@@ -1141,6 +1141,26 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "DF-To-TAS Transfer",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spTAS_PopulateSBDGaps-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DF-To-TAS Transfer",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
