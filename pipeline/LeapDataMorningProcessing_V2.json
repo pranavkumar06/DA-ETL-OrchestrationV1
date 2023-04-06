@@ -22,7 +22,7 @@
 							"Step": {
 								"type": "Byte",
 								"value": {
-									"value": "@pipeline().parameters.Step",
+									"value": "1",
 									"type": "Expression"
 								}
 							}
