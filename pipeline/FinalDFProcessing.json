@@ -741,7 +741,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"ScaleVal": "DW300c",
-						"flgcalled": 1
+						"flgcalled": 0
 					}
 				}
 			},
