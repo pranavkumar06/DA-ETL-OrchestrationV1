@@ -3,34 +3,45 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "MiddleDFProcessing",
-				"type": "ExecutePipeline",
+				"name": "SpCheckAllFileProcessStatus",
+				"type": "Lookup",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"pipeline": {
-						"referenceName": "MiddleDFProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataProcessDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpCheckAllFileProcessStatus]",
+						"storedProcedureParameters": {
+							"Step": {
+								"type": "Byte",
+								"value": {
+									"value": "@pipeline().parameters.Step",
+									"type": "Expression"
+								}
+							}
 						},
-						"Step": {
-							"value": "@pipeline().parameters.Step",
-							"type": "Expression"
-						}
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
 					}
 				}
 			},
 			{
-				"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
-				"type": "ExecutePipeline",
+				"name": "If All Final Table Loaded",
+				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "MiddleDFProcessing",
+						"activity": "SpCheckAllFileProcessStatus",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -38,18 +49,77 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
-						"type": "PipelineReference"
+					"expression": {
+						"value": "@equals(activity('SpCheckAllFileProcessStatus').output.firstRow.flgProcessingDone,1 )",
+						"type": "Expression"
 					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Directory": "cntleap",
-						"Folder": {
-							"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
-							"type": "Expression"
+					"ifFalseActivities": [
+						{
+							"name": "Send Notification",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
 						}
-					}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "MiddleDFProcessing",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "MiddleDFProcessing",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"DataProcessDate": {
+										"value": "@pipeline().parameters.DataProcessDate",
+										"type": "Expression"
+									},
+									"Step": {
+										"value": "@pipeline().parameters.Step",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "MiddleDFProcessing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Directory": "cntleap",
+									"Folder": {
+										"value": "@concat('/', formatDateTime(pipeline().TriggerTime, 'yyyy'), '/', formatDateTime(pipeline().TriggerTime, 'MM'), '/', formatDateTime(pipeline().TriggerTime, 'dd'), '/')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
 				}
 			}
 		],
