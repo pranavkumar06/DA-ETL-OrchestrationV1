@@ -144,7 +144,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('status'),'inProgress'))",
+						"value": "@equals(variables('status'),'succeeded')",
 						"type": "Expression"
 					},
 					"activities": [
