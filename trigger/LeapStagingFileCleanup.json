@@ -1,0 +1,36 @@
+{
+	"name": "LeapStagingFileCleanup",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyLeapStaging-To-ADLS-AllCloudFiles",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Directory": "cntleap",
+					"Folder": "09/04/2023"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-04-09T06:06:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						23
+					]
+				}
+			}
+		}
+	}
+}
