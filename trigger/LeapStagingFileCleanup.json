@@ -11,7 +11,7 @@
 				},
 				"parameters": {
 					"Directory": "cntleap",
-					"Folder": "09/04/2023"
+					"Folder": "@{concat('/', formatDateTime(trigger().scheduledTime, 'yyyy'), '/', formatDateTime(trigger().scheduledTime, 'MM'), '/', formatDateTime(trigger().scheduledTime, 'dd'), '/')}"
 				}
 			}
 		],
