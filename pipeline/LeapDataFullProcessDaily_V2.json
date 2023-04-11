@@ -209,7 +209,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale S7 1600 DTU",
+						"activity": "SQL_Scale S7 800 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -221,7 +221,7 @@
 				}
 			},
 			{
-				"name": "SQL_Scale S7 1600 DTU",
+				"name": "SQL_Scale S7 800 DTU",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -239,7 +239,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"Scaleval": "S9",
+						"Scaleval": "S7",
 						"tier": "Standard"
 					}
 				}
@@ -2337,7 +2337,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale S7 1600 DTU",
+						"activity": "SQL_Scale S7 800 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
