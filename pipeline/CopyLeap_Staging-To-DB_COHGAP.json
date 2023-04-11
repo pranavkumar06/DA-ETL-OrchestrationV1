@@ -2254,10 +2254,12 @@
 		],
 		"parameters": {
 			"windowStart": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "09-Apr-2022"
 			},
 			"windowEnd": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "10-Apr-2022"
 			}
 		},
 		"variables": {
