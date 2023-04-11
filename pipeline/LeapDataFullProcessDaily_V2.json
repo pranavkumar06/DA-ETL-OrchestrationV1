@@ -169,7 +169,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 5 Min",
+						"activity": "Wait 60 Min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -3486,6 +3486,22 @@
 						"Subject": "API Process Success",
 						"ErrorMessage": "API process and files generated successful"
 					}
+				}
+			},
+			{
+				"name": "Wait 60 Min",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Wait 5 Min",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 3600
 				}
 			}
 		],
