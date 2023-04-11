@@ -3295,7 +3295,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ScaleVal": "DW400c",
+						"ScaleVal": "DW300c",
 						"flgcalled": 1
 					}
 				}
