@@ -407,7 +407,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spPopulateFactSBDData]",
+					"storedProcedureName": "[dbo].[spPopulateFactSBDData_PCode]",
 					"storedProcedureParameters": {
 						"RptMonthYear": {
 							"value": {
