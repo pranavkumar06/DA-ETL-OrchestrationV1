@@ -8,7 +8,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable",
+						"activity": "CopyS3-To-Staging_Cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -333,7 +333,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable",
+						"activity": "CopyS3-To-Staging_Cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -638,7 +638,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable",
+						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2160,8 +2160,106 @@
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud1_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud2_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud3_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
+		"parameters": {
+			"windowStart": {
+				"type": "string"
+			},
+			"windowEnd": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"Cloud1": {
 				"type": "String",
