@@ -909,7 +909,13 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "AS_CubeProcess_PCode_Sync_Fact",
+						"activity": "AS_ResumeandScale_S9",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "DW_Resume_Scale DW200_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1010,35 +1016,6 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "AS_CubeProcess_PCode_Sync_Fact",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale DW200_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "AS_ResumeandScale_S9",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 0
-					}
 				}
 			},
 			{
