@@ -1035,7 +1035,10 @@
 						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 0
+					}
 				}
 			},
 			{
