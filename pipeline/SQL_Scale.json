@@ -36,6 +36,10 @@
 			"tier": {
 				"type": "string",
 				"defaultValue": "Standard"
+			},
+			"flgcalled": {
+				"type": "string",
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
