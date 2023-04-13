@@ -418,7 +418,7 @@
 																		},
 																		{
 																			"source": {
-																				"name": "status",
+																				"name": "sbd_status",
 																				"type": "String"
 																			},
 																			"sink": {
@@ -452,7 +452,38 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileSetID"
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "sbd_status",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sbd_status",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "zib",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Zib",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "first_sale_day",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "first_sale_day",
+																				"type": "String"
 																			}
 																		}
 																	]
