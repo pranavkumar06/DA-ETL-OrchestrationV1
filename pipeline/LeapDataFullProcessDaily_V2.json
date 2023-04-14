@@ -225,9 +225,9 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "DW_Resume_Scale_V2",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
