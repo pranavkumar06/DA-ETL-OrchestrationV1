@@ -501,7 +501,7 @@
 					"parameters": {
 						"Scaleval": "S6",
 						"tier": "Standard",
-						"flgcalled": "0"
+						"flgcalled": 0
 					}
 				}
 			},
@@ -906,32 +906,6 @@
 				}
 			},
 			{
-				"name": "PCode_Maximus_Job",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "AS_CubeProcess_PCode_Sync_Fact",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "PCode_Maximus_Job",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DMinus1Date": {
-							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "DCC_Processing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -946,26 +920,6 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "DCC_Processing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "FinalScale_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "PCode_Maximus_Job",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "FinalScale_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
@@ -1034,17 +988,17 @@
 				}
 			},
 			{
-				"name": "AS_CubeProcess_PCode_Sync_Fact",
+				"name": "FinalCubeProcessing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "AS_ResumeandScale_S9",
+						"activity": "DW_Resume_Scale DW200_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "DW_Resume_Scale DW200_V2",
+						"activity": "AS_ResumeandScale_S9",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1053,10 +1007,16 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact",
+						"referenceName": "FinalCubeProcessing",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"DMinusOneDate": {
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
