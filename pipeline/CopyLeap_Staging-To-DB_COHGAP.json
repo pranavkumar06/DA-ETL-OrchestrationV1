@@ -10,7 +10,7 @@
 					{
 						"activity": "CopyS3-To-Staging_Cloud1",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -335,7 +335,7 @@
 					{
 						"activity": "CopyS3-To-Staging_Cloud2",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -640,7 +640,7 @@
 					{
 						"activity": "CopyS3-To-Staging_Cloud3",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
