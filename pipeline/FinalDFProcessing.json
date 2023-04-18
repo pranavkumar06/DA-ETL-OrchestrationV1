@@ -845,7 +845,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spGetDFParameterDetail",
+						"activity": "SQL_Scale S6 1600 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
