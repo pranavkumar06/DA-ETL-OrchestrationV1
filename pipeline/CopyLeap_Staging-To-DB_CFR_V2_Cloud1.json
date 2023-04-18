@@ -62,6 +62,7 @@
 						"value": "@activity('GetFileList-Set1').output.value\r\n",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "GetFileList",
