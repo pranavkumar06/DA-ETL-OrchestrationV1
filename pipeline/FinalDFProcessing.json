@@ -1079,7 +1079,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 45 min",
+						"activity": "Wait 90 min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1147,7 +1147,7 @@
 				}
 			},
 			{
-				"name": "Wait 45 min",
+				"name": "Wait 90 min",
 				"type": "Wait",
 				"dependsOn": [
 					{
@@ -1159,7 +1159,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 2700
+					"waitTimeInSeconds": 5400
 				}
 			}
 		],
