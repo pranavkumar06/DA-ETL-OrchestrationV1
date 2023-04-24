@@ -2268,24 +2268,40 @@
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "cgst_amount",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "cgsttax",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "sgst_amount",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "sgsttax",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "igst_amount",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "igsttax",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "cess_amount",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "cesstax",
 																				"type": "String"
@@ -2422,12 +2438,20 @@
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "distributor_gst_no",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "dist_gstinno",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "retailer_gst_no",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "ret_gstinno",
 																				"type": "String"
@@ -2454,24 +2478,40 @@
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "cgst_rate",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "cgsttax_rate",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "sgst_rate",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "sgsttax_rate",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "igst_rate",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "igsttax_rate",
 																				"type": "String"
 																			}
 																		},
 																		{
+																			"source": {
+																				"name": "cess_rate",
+																				"type": "String"
+																			},
 																			"sink": {
 																				"name": "cesstax_rate",
 																				"type": "String"
@@ -2538,126 +2578,6 @@
 																			}
 																		},
 																		{
-																			"sink": {
-																				"name": "BranchNodeId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "BranchNodeType",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "StoreId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "CmpNodeId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "CmpNodeType",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "CatNodeId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "CatNodeType",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "BrandNodeId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "BrandNodeType",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "SBFNodeId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "SBFNodeType",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "PrdNodeId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "PrdNodeType",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "InvId",
-																				"type": "Int64"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "ChannelId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "SubChannelId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "dsenodeid",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "dsenodetype",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "mraccid",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "SRNId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
 																			"source": {
 																				"name": "Filename",
 																				"type": "String"
@@ -2675,12 +2595,6 @@
 																			"sink": {
 																				"name": "LastModifiedDatetime",
 																				"type": "String"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "TimeStampIns",
-																				"type": "DateTime"
 																			}
 																		},
 																		{
@@ -2774,30 +2688,6 @@
 																			}
 																		},
 																		{
-																			"sink": {
-																				"name": "TrnTypeId",
-																				"type": "Byte"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "ReasonId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "MRP",
-																				"type": "Decimal"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "SectorId",
-																				"type": "Int32"
-																			}
-																		},
-																		{
 																			"source": {
 																				"name": "apply_to_doc_date",
 																				"type": "String"
@@ -2825,24 +2715,6 @@
 																			"sink": {
 																				"name": "promo_pass_on_amt",
 																				"type": "String"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "Line_msu_Val_Calculated",
-																				"type": "Decimal"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "Calculated_Qty",
-																				"type": "Int32"
-																			}
-																		},
-																		{
-																			"sink": {
-																				"name": "QtyCases",
-																				"type": "Decimal"
 																			}
 																		}
 																	]
