@@ -116,7 +116,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Tmp_NC_SALES_SUBD"
+			"table": "tmpSubDSalesForDA"
 		}
 	}
 }
