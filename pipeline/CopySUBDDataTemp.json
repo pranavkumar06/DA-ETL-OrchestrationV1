@@ -220,6 +220,16 @@
 							},
 							{
 								"source": {
+									"name": "TimeStamp",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimeStamp",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
 									"name": "UPC",
 									"type": "Int32"
 								},
@@ -236,15 +246,6 @@
 								"sink": {
 									"name": "RETAILING",
 									"type": "Decimal"
-								}
-							},
-							{
-								"source": {
-									"name": "LastModifiedDatetime"
-								},
-								"sink": {
-									"name": "LastModifiedDatetime",
-									"type": "String"
 								}
 							}
 						]
