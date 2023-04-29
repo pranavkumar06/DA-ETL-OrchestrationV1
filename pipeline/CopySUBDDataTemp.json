@@ -1,0 +1,272 @@
+{
+	"name": "CopySUBDDataTemp",
+	"properties": {
+		"activities": [
+			{
+				"name": "NC_Sales_SUBD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"additionalColumns": [
+							{
+								"name": "LastModifiedDatetime",
+								"value": {
+									"value": "@addminutes(utcnow(),330)",
+									"type": "Expression"
+								}
+							}
+						],
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "PolybaseLink",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SUBDCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBDCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DSECODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSECODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INVNO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INVNO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INVDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "INVDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SKUCCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SKUCCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SKUDCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SKUDCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SKUEANCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SKUEANCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BATCHCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BATCHCODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QTY",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "QTY",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "GROSSAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "GROSSAMOUNT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TAXAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TAXAMOUNT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "INITDISC",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "INITDISC",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "LINEDISC",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LINEDISC",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "NETAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NETAMOUNT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "INVREF",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INVREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SELECTEDDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "UPC",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "UPC",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "RETAILING",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "RETAILING",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDatetime"
+								},
+								"sink": {
+									"name": "LastModifiedDatetime",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_NC_Sales_SUBD_Temp",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_DF_NC_Sales_SUBD_Temp",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "NCS"
+		},
+		"annotations": []
+	}
+}
