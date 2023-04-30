@@ -652,7 +652,7 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "TeleCallingId",
+									"name": "TelecallingID",
 									"type": "Int32"
 								}
 							},
@@ -662,7 +662,7 @@
 									"type": "Byte"
 								},
 								"sink": {
-									"name": "GPPoints",
+									"name": "GPPOints",
 									"type": "Byte"
 								}
 							},
@@ -672,7 +672,7 @@
 									"type": "Byte"
 								},
 								"sink": {
-									"name": "ParameterId",
+									"name": "Parameterid",
 									"type": "Byte"
 								}
 							}
