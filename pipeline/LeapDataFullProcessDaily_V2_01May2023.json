@@ -5,14 +5,7 @@
 			{
 				"name": "SpCheckAllFileProcessStatus",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "Loading Temp and Final Tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -106,29 +99,6 @@
 							}
 						}
 					]
-				}
-			},
-			{
-				"name": "Loading Temp and Final Tables",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "MiddleDFProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataProcessDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"Step": {
-							"value": "@pipeline().parameters.Step",
-							"type": "Expression"
-						}
-					}
 				}
 			}
 		],
