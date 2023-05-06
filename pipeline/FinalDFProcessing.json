@@ -573,10 +573,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "AS_ResumeandScale",
+						"referenceName": "AS_Scaling",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 0
+					}
 				}
 			},
 			{
