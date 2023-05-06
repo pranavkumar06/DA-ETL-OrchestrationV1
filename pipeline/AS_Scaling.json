@@ -215,7 +215,15 @@
 		"parameters": {
 			"flgcalled": {
 				"type": "int",
-				"defaultValue": 0
+				"defaultValue": 1
+			}
+		},
+		"variables": {
+			"State": {
+				"type": "String"
+			},
+			"SKU": {
+				"type": "String"
 			}
 		},
 		"folder": {
