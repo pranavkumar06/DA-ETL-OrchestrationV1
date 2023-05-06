@@ -36,14 +36,6 @@
 				"defaultValue": 1
 			}
 		},
-		"variables": {
-			"State": {
-				"type": "String"
-			},
-			"SKU": {
-				"type": "String"
-			}
-		},
 		"folder": {
 			"name": "Resource Management"
 		},
