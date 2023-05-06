@@ -3,26 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "FinalScale_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "If Condition1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "FinalScale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "If Condition1",
 				"type": "IfCondition",
 				"dependsOn": [],
@@ -70,6 +50,26 @@
 										"type": "Expression"
 									}
 								}
+							}
+						},
+						{
+							"name": "FinalScale_V2",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "PCode_Maximus_Job",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "FinalScale_V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					]
