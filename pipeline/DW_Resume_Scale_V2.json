@@ -62,7 +62,7 @@
 			},
 			"flgcalled": {
 				"type": "int",
-				"defaultValue": 1
+				"defaultValue": 0
 			}
 		},
 		"folder": {
