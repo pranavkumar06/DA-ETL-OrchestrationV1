@@ -351,6 +351,22 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderStoredProcedureName": "[dbo].[SpGetCubeDetails]",
+						"storedProcedureParameters": {
+							"CurrentDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@pipeline().parameters.processdate",
+									"type": "Expression"
+								}
+							},
+							"TypeID": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.TypeID",
+									"type": "Expression"
+								}
+							}
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -365,6 +381,13 @@
 			"flgcalled": {
 				"type": "int",
 				"defaultValue": 1
+			},
+			"TypeID": {
+				"type": "int",
+				"defaultValue": 1
+			},
+			"processdate": {
+				"type": "string"
 			}
 		},
 		"variables": {
