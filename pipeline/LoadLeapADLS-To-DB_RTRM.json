@@ -3788,11 +3788,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "town_class",
+																				"name": "state",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "town_class",
+																				"name": "state",
 																				"type": "String"
 																			}
 																		},
@@ -3813,16 +3813,6 @@
 																			},
 																			"sink": {
 																				"name": "dse_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "class_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "class_code",
 																				"type": "String"
 																			}
 																		},
@@ -3868,66 +3858,6 @@
 																		},
 																		{
 																			"source": {
-																				"name": "mr_account_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mr_account_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mr_account_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mr_account_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "default_warehouse_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "default_warehouse_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "default_warehouse",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "default_warehouse",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "restricted_orderswap_status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "restricted_orderswap_status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "lattitude",
 																				"type": "String"
 																			},
@@ -3943,16 +3873,6 @@
 																			},
 																			"sink": {
 																				"name": "longitude",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_radius",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_radius",
 																				"type": "String"
 																			}
 																		},
@@ -5842,11 +5762,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "town_class",
+																				"name": "state",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "town_class",
+																				"name": "state",
 																				"type": "String"
 																			}
 																		},
@@ -5867,16 +5787,6 @@
 																			},
 																			"sink": {
 																				"name": "dse_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "class_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "class_code",
 																				"type": "String"
 																			}
 																		},
@@ -5922,66 +5832,6 @@
 																		},
 																		{
 																			"source": {
-																				"name": "mr_account_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mr_account_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mr_account_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mr_account_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "default_warehouse_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "default_warehouse_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "default_warehouse",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "default_warehouse",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "restricted_orderswap_status",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "restricted_orderswap_status",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "lattitude",
 																				"type": "String"
 																			},
@@ -5997,16 +5847,6 @@
 																			},
 																			"sink": {
 																				"name": "longitude",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_radius",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_radius",
 																				"type": "String"
 																			}
 																		},
