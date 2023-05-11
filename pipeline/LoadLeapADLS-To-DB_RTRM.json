@@ -1719,131 +1719,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "address_1",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "address_1",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "address_2",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "address_2",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pin_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pin_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "area_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "area_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "area",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "area",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "town_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "town_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "town",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "town",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "town_class",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "town_class",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "city",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "city",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "state",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "state",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mobile_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mobile_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phone_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phone_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "contact_person",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "contact_person",
 																				"type": "String"
 																			}
 																		},
@@ -1869,41 +1749,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "frequency",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "frequency",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "distance",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "distance",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "class_code",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "class_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "class",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "class",
 																				"type": "String"
 																			}
 																		},
@@ -1964,116 +1814,6 @@
 																			},
 																			"sink": {
 																				"name": "mr_account_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "invoice_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "invoice_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "certificate_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "certificate_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "gst_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "gst_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pan_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pan_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "email",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "email",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dob",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dob",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "doa",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "doa",
 																				"type": "String"
 																			}
 																		},
@@ -2174,66 +1914,6 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phonenumber1_verified",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phonenumber1_verified",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phonenumber2_verified",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phonenumber2_verified",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_upi_id",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_upi_id",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "is_government",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "is_government",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_auto_adjustment_restriction",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_auto_adjustment_restriction",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "transaction_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "transaction_type",
 																				"type": "String"
 																			}
 																		}
@@ -4188,131 +3868,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "address_1",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "address_1",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "address_2",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "address_2",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pin_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pin_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "area_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "area_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "area",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "area",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "town_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "town_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "town",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "town",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "town_class",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "town_class",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "city",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "city",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "state",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "state",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mobile_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mobile_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phone_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phone_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "contact_person",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "contact_person",
 																				"type": "String"
 																			}
 																		},
@@ -4338,41 +3898,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "frequency",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "frequency",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "distance",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "distance",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "class_code",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "class_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "class",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "class",
 																				"type": "String"
 																			}
 																		},
@@ -4433,116 +3963,6 @@
 																			},
 																			"sink": {
 																				"name": "mr_account_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "invoice_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "invoice_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "certificate_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "certificate_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "gst_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "gst_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pan_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pan_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "email",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "email",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dob",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dob",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "doa",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "doa",
 																				"type": "String"
 																			}
 																		},
@@ -4643,66 +4063,6 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phonenumber1_verified",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phonenumber1_verified",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phonenumber2_verified",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phonenumber2_verified",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_upi_id",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_upi_id",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "is_government",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "is_government",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_auto_adjustment_restriction",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_auto_adjustment_restriction",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "transaction_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "transaction_type",
 																				"type": "String"
 																			}
 																		}
@@ -6562,131 +5922,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "address_1",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "address_1",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "address_2",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "address_2",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pin_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pin_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "area_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "area_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "area",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "area",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "town_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "town_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "town",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "town",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "town_class",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "town_class",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "city",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "city",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "state",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "state",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "mobile_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "mobile_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phone_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phone_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "contact_person",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "contact_person",
 																				"type": "String"
 																			}
 																		},
@@ -6712,41 +5952,11 @@
 																		},
 																		{
 																			"source": {
-																				"name": "frequency",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "frequency",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "distance",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "distance",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "class_code",
 																				"type": "String"
 																			},
 																			"sink": {
 																				"name": "class_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "class",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "class",
 																				"type": "String"
 																			}
 																		},
@@ -6807,116 +6017,6 @@
 																			},
 																			"sink": {
 																				"name": "mr_account_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_period",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_period",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "invoice_limit",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "invoice_limit",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "certificate_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "certificate_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "gst_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "gst_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "pan_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "pan_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_number",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "email",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "email",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dob",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dob",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "doa",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "doa",
 																				"type": "String"
 																			}
 																		},
@@ -7017,66 +6117,6 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phonenumber1_verified",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phonenumber1_verified",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "phonenumber2_verified",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "phonenumber2_verified",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_upi_id",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_upi_id",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "is_government",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "is_government",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "credit_note_auto_adjustment_restriction",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "credit_note_auto_adjustment_restriction",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "transaction_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "transaction_type",
 																				"type": "String"
 																			}
 																		}
