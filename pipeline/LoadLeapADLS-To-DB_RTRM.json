@@ -2124,6 +2124,179 @@
 															]
 														}
 													]
+												},
+												{
+													"value": "121",
+													"activities": [
+														{
+															"name": "SBDMPG_Cloud1",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@activity('GetFileList-Cloud1').output.itemName",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "0",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobFSReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@activity('GetFileList-Cloud1').output.itemName",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	},
+																	"disableMetricsCollection": false
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sbd_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "distributor_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "ADLSCSVDataSource_File",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"Container": "cntleap",
+																		"Directory": {
+																			"value": "@concat('/', formatDateTime(item().DataDate, 'yyyy'), '/', formatDateTime(item().DataDate, 'MM'), '/', formatDateTime(item().DataDate,'dd'), '/')",
+																			"type": "Expression"
+																		},
+																		"Filename": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		}
+																	}
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
+																}
+															]
+														}
+													]
 												}
 											]
 										}
