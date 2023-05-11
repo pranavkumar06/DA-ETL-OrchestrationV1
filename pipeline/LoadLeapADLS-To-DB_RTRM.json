@@ -1962,61 +1962,11 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "branch_code",
+																				"name": "sbd_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "branch_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "branch_location",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "branch_location",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailer_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "stl_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "stl_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dse_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dse_name",
+																				"name": "sbd_name",
 																				"type": "String"
 																			}
 																		},
@@ -2036,57 +1986,77 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "channel",
+																				"name": "channel_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "type_code",
+																				"name": "group_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "subchannel_code",
+																				"name": "group_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "type_name",
+																				"name": "sbf_code",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "subchannel",
+																				"name": "sbf_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "lattitude",
+																				"name": "sbf_name",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "lattitude",
+																				"name": "sbf_name",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "longitude",
+																				"name": "moq",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "longitude",
+																				"name": "moq",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "Filename",
+																				"name": "effective_from",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileName",
+																				"name": "effective_from",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "effective_to",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "effective_to",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "is_base",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "is_base",
 																				"type": "String"
 																			}
 																		},
@@ -2102,31 +2072,21 @@
 																		},
 																		{
 																			"source": {
-																				"name": "LastModifiedDatetime",
+																				"name": "Filename",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "LastModifiedDatetime",
+																				"name": "Filename",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "retailer_type",
+																				"name": "LastModifiedDatetime",
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "retailer_type",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "store_type",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "store_type",
+																				"name": "LastModifiedDatetime",
 																				"type": "String"
 																			}
 																		}
