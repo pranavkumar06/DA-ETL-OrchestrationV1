@@ -1719,16 +1719,6 @@
 																		},
 																		{
 																			"source": {
-																				"name": "state",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "state",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "stl_name",
 																				"type": "String"
 																			},
@@ -1759,7 +1749,7 @@
 																		},
 																		{
 																			"source": {
-																				"name": "channel",
+																				"name": "channel_name",
 																				"type": "String"
 																			},
 																			"sink": {
@@ -1769,7 +1759,7 @@
 																		},
 																		{
 																			"source": {
-																				"name": "subchannel_code",
+																				"name": "type_code",
 																				"type": "String"
 																			},
 																			"sink": {
@@ -1779,7 +1769,7 @@
 																		},
 																		{
 																			"source": {
-																				"name": "subchannel",
+																				"name": "type_name",
 																				"type": "String"
 																			},
 																			"sink": {
@@ -1834,6 +1824,26 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_type",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "store_type",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "store_type",
 																				"type": "String"
 																			}
 																		}
