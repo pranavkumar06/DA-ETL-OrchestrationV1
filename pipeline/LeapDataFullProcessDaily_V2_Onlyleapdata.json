@@ -1,0 +1,86 @@
+{
+	"name": "LeapDataFullProcessDaily_V2_Onlyleapdata",
+	"properties": {
+		"activities": [
+			{
+				"name": "Loading Temp and Final Tables",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MiddleDFProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataProcessDate": {
+							"value": "@pipeline().parameters.DataProcessDate",
+							"type": "Expression"
+						},
+						"Step": {
+							"value": "@pipeline().parameters.Step",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "APIDeleteOLDFilesinFolder",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "APIDeleteOLDFilesinFolder",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"parameters": {
+			"DataProcessDate": {
+				"type": "string"
+			},
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			},
+			"Step": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-12-13T19:05:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
