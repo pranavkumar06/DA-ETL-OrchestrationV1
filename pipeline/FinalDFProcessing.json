@@ -98,12 +98,6 @@
 						]
 					},
 					{
-						"activity": "spTAS_PopulateSBDGaps-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "DF-To-TAS Transfer",
 						"dependencyConditions": [
 							"Succeeded"
