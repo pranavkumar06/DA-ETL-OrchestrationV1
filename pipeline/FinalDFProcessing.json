@@ -515,12 +515,6 @@
 						]
 					},
 					{
-						"activity": "spTAS_PopulateSBDGaps-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "CopyLeap_Staging-To-DB_COHGAP",
 						"dependencyConditions": [
 							"Succeeded"
@@ -528,6 +522,12 @@
 					},
 					{
 						"activity": "DailyRefeshSchemePipeline_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "DF-To-TAS Transfer",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -615,6 +615,12 @@
 				"dependsOn": [
 					{
 						"activity": "spCalculateLSSSchemeAgainstActData-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "DF-To-TAS Transfer",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1149,7 +1155,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
+						"activity": "spTAS_PopulateSBDGaps-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
