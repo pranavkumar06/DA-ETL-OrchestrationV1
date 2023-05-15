@@ -521,13 +521,13 @@
 						]
 					},
 					{
-						"activity": "DailyRefeshSchemePipeline_V2",
+						"activity": "DF-To-TAS Transfer",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "DF-To-TAS Transfer",
+						"activity": "spDailyRefreshSchemeData_Index",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1131,26 +1131,6 @@
 				}
 			},
 			{
-				"name": "DailyRefeshSchemePipeline_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spGetDFParameterDetail",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DailyRefeshSchemePipeline_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "DF-To-TAS Transfer",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -1168,6 +1148,39 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "spDailyRefreshSchemeData_Index",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SQL_Scale S6 1600 DTU",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData_Index]",
+					"storedProcedureParameters": {
+						"IsFullProcessRunning": {
+							"value": "1",
+							"type": "Byte"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "TASDatabase_Check",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
