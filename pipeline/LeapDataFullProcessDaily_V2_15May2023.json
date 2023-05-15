@@ -115,41 +115,11 @@
 				}
 			},
 			{
-				"name": "Loading Temp and Final Tables",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "MiddleDFProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataProcessDate": {
-							"value": "@pipeline().parameters.DataProcessDate",
-							"type": "Expression"
-						},
-						"Step": {
-							"value": "@pipeline().parameters.Step",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "FocusBrandLoading-LEAP-TO-DF",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -162,51 +132,6 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "APIDeleteOLDFilesinFolder",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "APIDeleteOLDFilesinFolder",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "SQL_Scale S7 800 DTU",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "SQL_Scale",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Scaleval": "S7",
-						"tier": "Standard",
-						"flgcalled": 0
-					}
 				}
 			},
 			{
@@ -2270,7 +2195,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Loading Temp and Final Tables",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2302,7 +2227,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SQL_Scale S7 800 DTU",
+						"activity": "Wait1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -3239,191 +3164,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"waitTimeInSeconds": 1
-				}
-			},
-			{
-				"name": "DW_Resume_Scale_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW400c",
-						"flgcalled": 1
-					}
-				}
-			},
-			{
-				"name": "PurdDataFileGeneration_Temp",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Loading Temp and Final Tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "PurdDataFileGeneration_Temp",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Purchase History Send Notification",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "PurdDataFileGeneration_Temp",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Send Notification",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"EmailTo": "trivedi.dt.1@pg.com,maiti.am@pg.com,vishalbhai.jagdishbhai.bhimda@gds.ey.com,umesh.gupta1@gds.ey.com",
-						"Subject": "Purchase History File generation notification",
-						"ErrorMessage": "Daily Purchase history file is generated."
-					}
-				}
-			},
-			{
-				"name": "SQL_Scale_Maximus",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "SQL_Scale_Maximus",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Scaleval": "S3",
-						"tier": "Standard"
-					}
-				}
-			},
-			{
-				"name": "spAPI_PopulateExtractIDCMP-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Purchase History Send Notification",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAPI_PopulateExtractIDCMP]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "MasterDataForAPI",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spAPI_PopulateExtractIDCMP-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "MasterDataForAPI",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "APIDataFileGeneration",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "MasterDataForAPI",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "APIDataFileGeneration",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Send Success Notification",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "APIDataFileGeneration",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Send Notification",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"EmailTo": "Avinash@astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com,varun@astix.in,helpdesk@astix.in,trivedi.dt.1@pg.com",
-						"Subject": "API Process Success",
-						"ErrorMessage": "API process and files generated successful"
-					}
 				}
 			}
 		],
