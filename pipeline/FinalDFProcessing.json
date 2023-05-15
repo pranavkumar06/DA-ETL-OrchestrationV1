@@ -98,7 +98,7 @@
 						]
 					},
 					{
-						"activity": "DF-To-TAS Transfer",
+						"activity": "spTAS_PopulateSBDGaps-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -515,19 +515,7 @@
 						]
 					},
 					{
-						"activity": "CopyLeap_Staging-To-DB_COHGAP",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spDailyRefreshSchemeData_Index",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "DF-To-TAS Transfer",
+						"activity": "spTAS_PopulateSBDGaps-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1031,26 +1019,6 @@
 				}
 			},
 			{
-				"name": "DF-To-TAS Transfer",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spTAS_PopulateSBDGaps-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DF-To-TAS Transfer",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
 				"name": "FinalCubeProcessing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -1084,53 +1052,6 @@
 				}
 			},
 			{
-				"name": "CopyLeap_Staging-To-DB_COHGAP",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Wait 90 min",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyLeap_Staging-To-DB_COHGAP",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "spDailyRefreshSchemeData_Index",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "SQL_Scale S6 1600 DTU",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData_Index]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "SQL_Scale S6 1600 DTU",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -1153,22 +1074,6 @@
 						"tier": "Standard",
 						"flgcalled": 1
 					}
-				}
-			},
-			{
-				"name": "Wait 90 min",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "SQL_Scale S6 1600 DTU",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 5400
 				}
 			}
 		],
