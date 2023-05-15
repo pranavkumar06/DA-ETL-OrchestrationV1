@@ -102,6 +102,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "DF-To-TAS Transfer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -521,12 +527,6 @@
 						]
 					},
 					{
-						"activity": "DF-To-TAS Transfer",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
 						"activity": "spDailyRefreshSchemeData_Index",
 						"dependencyConditions": [
 							"Succeeded"
@@ -615,12 +615,6 @@
 				"dependsOn": [
 					{
 						"activity": "spCalculateLSSSchemeAgainstActData-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "DF-To-TAS Transfer",
 						"dependencyConditions": [
 							"Succeeded"
 						]
