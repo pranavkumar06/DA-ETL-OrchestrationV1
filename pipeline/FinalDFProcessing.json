@@ -525,6 +525,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "DailyRefeshSchemePipeline_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -1113,6 +1119,46 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "CopyLeap_Staging-To-DB_COHGAP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DailyRefeshSchemePipeline_V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spGetDFParameterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DailyRefeshSchemePipeline_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DF-To-TAS Transfer",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DF-To-TAS Transfer",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
