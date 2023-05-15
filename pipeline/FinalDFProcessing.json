@@ -519,6 +519,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "CopyLeap_Staging-To-DB_COHGAP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -1090,6 +1096,26 @@
 				"userProperties": [],
 				"typeProperties": {
 					"waitTimeInSeconds": 7200
+				}
+			},
+			{
+				"name": "CopyLeap_Staging-To-DB_COHGAP",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait 120 min",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyLeap_Staging-To-DB_COHGAP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
