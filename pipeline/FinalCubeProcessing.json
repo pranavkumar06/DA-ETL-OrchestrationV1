@@ -27,37 +27,11 @@
 							}
 						},
 						{
-							"name": "PCode_Maximus_Job",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "AS_CubeProcess_PCode_Sync_Fact",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "PCode_Maximus_Job",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"DMinus1Date": {
-										"value": "@pipeline().parameters.DMinusOneDate",
-										"type": "Expression"
-									}
-								}
-							}
-						},
-						{
 							"name": "FinalScale_V2",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "PCode_Maximus_Job",
+									"activity": "AS_CubeProcess_PCode_Sync_Fact",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -73,6 +47,32 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "PCode_Maximus_Job",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "If Condition1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PCode_Maximus_Job",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DMinus1Date": {
+							"value": "@pipeline().parameters.DMinusOneDate",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
