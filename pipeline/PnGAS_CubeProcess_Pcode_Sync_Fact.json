@@ -195,8 +195,18 @@
 								},
 								"httpRequestTimeout": "00:05:00",
 								"authentication": {
-									"type": "MSI",
-									"resource": "https://*.asazure.windows.net"
+									"type": "ServicePrincipal",
+									"userTenant": "3596192b-fdf5-4e2c-a6fa-acb706c963d8",
+									"username": "f7765ce7-c577-412f-bc1c-1eb2cea07f85",
+									"resource": "https://*.asazure.windows.net",
+									"password": {
+										"type": "AzureKeyVaultSecret",
+										"store": {
+											"referenceName": "PnGAzureKeyVault",
+											"type": "LinkedServiceReference"
+										},
+										"secretName": "PnGASCubeProcessPrinciple"
+									}
 								}
 							}
 						},
