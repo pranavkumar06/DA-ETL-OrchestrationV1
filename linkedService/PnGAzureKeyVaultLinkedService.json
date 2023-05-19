@@ -1,0 +1,10 @@
+{
+	"name": "PnGAzureKeyVaultLinkedService",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://PnGAzureKeyVault.vault.azure.net/"
+		}
+	}
+}
