@@ -1,0 +1,27 @@
+{
+	"name": "DRCPFileSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DRCP_JAN_C02.csv",
+				"container": "leaptemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	}
+}
