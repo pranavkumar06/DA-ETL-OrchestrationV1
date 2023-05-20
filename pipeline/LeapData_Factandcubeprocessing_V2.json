@@ -42,7 +42,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"flgcalled": 1,
-						"TypeID": 1,
+						"TypeID": 14,
 						"processdate": {
 							"value": "@utcnow()",
 							"type": "Expression"
