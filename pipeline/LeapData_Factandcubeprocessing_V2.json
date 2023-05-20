@@ -543,7 +543,7 @@
 				}
 			},
 			{
-				"name": "SBD_CubeProcessing",
+				"name": "SBDStoreLvl_CubeProcessing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -562,7 +562,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"flgcalled": 1,
-						"TypeID": 9,
+						"TypeID": 10,
 						"processdate": {
 							"value": "@utcnow()",
 							"type": "Expression"
@@ -851,6 +851,34 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SBDDataCubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactSBDData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 9,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
