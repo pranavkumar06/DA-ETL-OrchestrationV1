@@ -459,7 +459,7 @@
 				}
 			},
 			{
-				"name": "CFR_CubeProcessing",
+				"name": "FocusBrand_CubeProcessing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -478,7 +478,63 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"flgcalled": 1,
+						"TypeID": 7,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CFR_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactCFRData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
 						"TypeID": 5,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Inventory_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactInventoryData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 8,
 						"processdate": {
 							"value": "@utcnow()",
 							"type": "Expression"
