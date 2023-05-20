@@ -429,6 +429,34 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Target_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactTargetData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 11,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
