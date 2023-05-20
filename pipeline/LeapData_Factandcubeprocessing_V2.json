@@ -73,7 +73,10 @@
 					"storedProcedureName": "[dbo].[spPopulateFactCOSData_PCode]",
 					"storedProcedureParameters": {
 						"RptMonthYear": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
 							"type": "Int32"
 						}
 					}
