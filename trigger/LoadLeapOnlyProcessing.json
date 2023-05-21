@@ -2,7 +2,7 @@
 	"name": "LoadLeapOnlyProcessing",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
