@@ -3,42 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "spGetCubeDetails",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpGetCubeDetails]",
-					"storedProcedureParameters": {
-						"CurrentDate": {
-							"value": {
-								"value": "@pipeline().parameters.processdate",
-								"type": "Expression"
-							},
-							"type": "DateTime"
-						},
-						"TypeID": {
-							"value": {
-								"value": "@pipeline().parameters.TypeID",
-								"type": "Expression"
-							},
-							"type": "Int32"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "AS_CubeProcess_Pcode_ActivityAPI",
 				"type": "WebActivity",
 				"dependsOn": [
@@ -64,7 +28,7 @@
 					},
 					"method": "POST",
 					"body": {
-						"value": "@activity('spGetCubeDetails').output.Cubedetails",
+						"value": "@activity('spGetCubeDetails').output.firstRow.Cubedetails",
 						"type": "Expression"
 					},
 					"httpRequestTimeout": "00:05:00",
@@ -334,6 +298,47 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "spGetCubeDetails",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCubeDetails]",
+						"storedProcedureParameters": {
+							"CurrentDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@pipeline().parameters.processdate",
+									"type": "Expression"
+								}
+							},
+							"TypeID": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.TypeID",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
 				}
 			}
 		],
