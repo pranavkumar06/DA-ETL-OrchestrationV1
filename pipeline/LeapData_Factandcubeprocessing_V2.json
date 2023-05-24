@@ -547,7 +547,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spDFTAS_PopulateSBDWorkingData_Child_PCode",
+						"activity": "spPopulateFactSBDData_PCode",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -667,7 +667,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spPopulateFactCoverageData_PCode",
+						"activity": "spUpdateFactCoverageForTASCalls_PCode",
 						"dependencyConditions": [
 							"Succeeded"
 						]
