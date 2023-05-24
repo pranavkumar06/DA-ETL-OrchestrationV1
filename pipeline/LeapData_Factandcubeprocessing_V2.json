@@ -880,6 +880,34 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "CoverageStoreLvl_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spUpdateFactCoverageForTASCalls_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 3,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
