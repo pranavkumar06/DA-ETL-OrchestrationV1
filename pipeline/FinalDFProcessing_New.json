@@ -274,51 +274,6 @@
 				}
 			},
 			{
-				"name": "spAS_PopulateDimTables-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spGetDFParameterDetail",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "RetailerFlagUpdate",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "WINIT Daily Processing",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAS_PopulateDimTables]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateSchemeApplied-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -556,12 +511,6 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
-					},
-					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
 					}
 				],
 				"userProperties": [],
@@ -750,48 +699,6 @@
 				}
 			},
 			{
-				"name": "DW_Resume_Scale DW200_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactSBDData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "RetailerFlagUpdate",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "FinalDFProcessing-TASProcessing",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW300c",
-						"flgcalled": 0
-					}
-				}
-			},
-			{
 				"name": "FinalDFProcessing-TASProcessing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -967,7 +874,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
+						"activity": "LeapData_Factandcubeprocessing_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -983,59 +890,17 @@
 				}
 			},
 			{
-				"name": "spAS_PopulateFactTables-DF_PCode",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spTAS_MapTeleCallingInvDetail-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spAS_PopulateDimTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAS_PopulateFactTables_PCode]",
-					"storedProcedureParameters": {
-						"DMinus1Date": {
-							"value": {
-								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-								"type": "Expression"
-							},
-							"type": "DateTime"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "FinalCubeProcessing",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale DW200_V2",
+						"activity": "AS_ResumeandScale_S9",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "AS_ResumeandScale_S9",
+						"activity": "LeapData_Factandcubeprocessing_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1228,11 +1093,35 @@
 				}
 			},
 			{
-				"name": "Focusbrandcubeprocessing",
+				"name": "LeapData_Factandcubeprocessing_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CopyLeap_Staging-To-DB_COHGAP",
+						"activity": "WINIT Daily Processing",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "spGetDFParameterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "RetailerFlagUpdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spTAS_MapTeleCallingInvDetail-DF",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1241,16 +1130,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Focusbrandcubeprocessing",
+						"referenceName": "LeapData_Factandcubeprocessing_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"RptMonthYear": {
-							"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
-							"type": "Expression"
-						}
-					}
+					"waitOnCompletion": true
 				}
 			}
 		],
