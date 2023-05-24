@@ -64,7 +64,7 @@
 					},
 					"method": "POST",
 					"body": {
-						"value": "@activity('spGetCubeDetails').output.cubedetails",
+						"value": "@activity('spGetCubeDetails').output.Cubedetails",
 						"type": "Expression"
 					},
 					"httpRequestTimeout": "00:05:00",
