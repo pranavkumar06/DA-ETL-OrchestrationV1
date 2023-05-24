@@ -1244,7 +1244,13 @@
 						"referenceName": "Focusbrandcubeprocessing",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"RptMonthYear": {
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
