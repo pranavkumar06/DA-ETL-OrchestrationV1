@@ -1133,7 +1133,39 @@
 						"referenceName": "LeapData_Factandcubeprocessing_V2",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"RptMonthYear": {
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Focusbrandcubeprocessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CopyLeap_Staging-To-DB_COHGAP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Focusbrandcubeprocessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"RptMonthYear": {
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
