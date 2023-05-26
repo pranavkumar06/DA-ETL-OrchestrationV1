@@ -23,39 +23,11 @@
 				}
 			},
 			{
-				"name": "Cube Dimension Processing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SprefreshMaximusphase",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 14,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "spPopulateFactCOSData_PCode",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -91,7 +63,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -127,7 +99,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -163,7 +135,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -199,7 +171,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -235,7 +207,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -271,7 +243,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Cube Dimension Processing",
+						"activity": "SprefreshMaximusphase",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -300,202 +272,6 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "COS_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactCOSData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 6,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "Sales_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactSalesData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 1,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "Target_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactTargetData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 11,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "CFR_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactCFRData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 5,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "Inventory_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactInventoryData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 8,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "AR_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactARData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 4,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "Order_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactOrderData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 12,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
 				}
 			},
 			{
@@ -532,34 +308,6 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "Coverage_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spUpdateFactCoverageForTASCalls_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 2,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
 				}
 			},
 			{
@@ -659,62 +407,6 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "StoreDistribution_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spPopulateFactStoreDistribution_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 13,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
-				"name": "CoverageStoreLvl_CubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spUpdateFactCoverageForTASCalls_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"flgcalled": 1,
-						"TypeID": 3,
-						"processdate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
-					}
 				}
 			}
 		],
