@@ -27,7 +27,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -63,7 +63,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -99,7 +99,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -135,7 +135,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -171,7 +171,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -207,7 +207,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -243,7 +243,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SprefreshMaximusphase",
+						"activity": "Cube Dimension Processing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -407,6 +407,34 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Cube Dimension Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SprefreshMaximusphase",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 14,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
