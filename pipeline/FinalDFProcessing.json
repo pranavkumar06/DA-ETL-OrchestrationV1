@@ -274,51 +274,6 @@
 				}
 			},
 			{
-				"name": "spAS_PopulateDimTables-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spGetDFParameterDetail",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "RetailerFlagUpdate",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "WINIT Daily Processing",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAS_PopulateDimTables]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateSchemeApplied-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -556,12 +511,6 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
-					},
-					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
 					}
 				],
 				"userProperties": [],
@@ -772,7 +721,7 @@
 						]
 					},
 					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
+						"activity": "LeapData_Factforcubeprocessing_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -967,7 +916,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spAS_PopulateFactTables-DF_PCode",
+						"activity": "LeapData_Factforcubeprocessing_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -980,48 +929,6 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "spAS_PopulateFactTables-DF_PCode",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spTAS_MapTeleCallingInvDetail-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spAS_PopulateDimTables-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spAS_PopulateFactTables_PCode]",
-					"storedProcedureParameters": {
-						"DMinus1Date": {
-							"value": {
-								"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-								"type": "Expression"
-							},
-							"type": "DateTime"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -1169,6 +1076,56 @@
 				"linkedServiceName": {
 					"referenceName": "TASDatabase_Check",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "LeapData_Factforcubeprocessing_V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spTAS_MapTeleCallingInvDetail-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "WINIT Daily Processing",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "RetailerFlagUpdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spGetDFParameterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateTASFutureDateInRouteCalendar-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LeapData_Factforcubeprocessing_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"RptMonthYear": {
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
