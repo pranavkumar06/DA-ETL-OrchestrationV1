@@ -1130,7 +1130,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "LeapData_Factandcubeprocessing_V2",
+						"referenceName": "LeapData_Factforcubeprocessing_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
