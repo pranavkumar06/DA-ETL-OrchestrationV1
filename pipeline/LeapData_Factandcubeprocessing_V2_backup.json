@@ -1,0 +1,731 @@
+{
+	"name": "LeapData_Factandcubeprocessing_V2_backup",
+	"properties": {
+		"activities": [
+			{
+				"name": "SprefreshMaximusphase",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spRefreshMaximusPhase]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Cube Dimension Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SprefreshMaximusphase",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 14,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "spPopulateFactCOSData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactCOSData_PCode]",
+					"storedProcedureParameters": {
+						"RptMonthYear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactSalesData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactSalesData_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactTargetData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactTargetData_PCode]",
+					"storedProcedureParameters": {
+						"RptMonthYear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactCFRData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactCFRData_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactInventoryData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactInventoryData_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactARData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactARData_PCode]",
+					"storedProcedureParameters": {
+						"RptMonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactOrderData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Cube Dimension Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactOrderData_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "COS_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactCOSData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 6,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Sales_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactSalesData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 1,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Target_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactTargetData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 11,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CFR_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactCFRData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 5,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Inventory_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactInventoryData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 8,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "AR_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactARData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 4,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Order_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactOrderData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 12,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "spPopulateFactCoverageData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactSalesData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactCoverageData_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Coverage_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spUpdateFactCoverageForTASCalls_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 2,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "spUpdateActualInvDetail",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactCoverageData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spUpdateActualInvDetail]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spUpdateFactCoverageForTASCalls_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spUpdateActualInvDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spUpdateFactCoverageForTASCalls_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spPopulateFactStoreDistribution_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spUpdateFactCoverageForTASCalls_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactStoreDistribution_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "StoreDistribution_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactStoreDistribution_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 13,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CoverageStoreLvl_CubeProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spUpdateFactCoverageForTASCalls_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1,
+						"TypeID": 3,
+						"processdate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"RptMonthYear": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
