@@ -1,0 +1,7 @@
+{
+	"name": "AstixServerHosting",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "An integration Server is hosted on 248 Server "
+	}
+}
