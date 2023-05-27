@@ -418,6 +418,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "AS_ResumeandScale_S9",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -462,6 +468,29 @@
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "AS_ResumeandScale_S9",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "SprefreshMaximusphase",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AS_Scaling",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"flgcalled": 1
+					}
 				}
 			}
 		],
