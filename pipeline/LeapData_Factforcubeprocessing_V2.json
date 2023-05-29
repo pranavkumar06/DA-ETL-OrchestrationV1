@@ -414,7 +414,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "AS_ResumeandScale_S9",
+						"activity": "AS_ResumeandScale_S8",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -465,7 +465,7 @@
 				}
 			},
 			{
-				"name": "AS_ResumeandScale_S9",
+				"name": "AS_ResumeandScale_S8",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
