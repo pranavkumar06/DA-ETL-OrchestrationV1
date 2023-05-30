@@ -28,7 +28,7 @@
 					},
 					"method": "POST",
 					"body": {
-						"value": "@activity('spGetCubeDetails').output.firstRow.Cubedetails",
+						"value": "@json(activity('spGetCubeDetails').output.firstRow.Cubedetails)",
 						"type": "Expression"
 					},
 					"httpRequestTimeout": "00:05:00",
