@@ -82,7 +82,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "GetRefreshId",
+						"activity": "ReSet Array VarOuter",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -279,6 +279,26 @@
 					"dataset": {
 						"referenceName": "DataFoundationConnectionV2",
 						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ReSet Array VarOuter",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetRefreshId",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ArrayVar",
+					"value": {
+						"value": "@json(string(''))",
+						"type": "Expression"
 					}
 				}
 			}
