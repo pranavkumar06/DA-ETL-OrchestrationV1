@@ -20,10 +20,18 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "AS_CubeProcess_Pcode_Sync_Fact",
+									"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"flgcalled": 1,
+									"TypeID": 0,
+									"processdate": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
+								}
 							}
 						},
 						{
