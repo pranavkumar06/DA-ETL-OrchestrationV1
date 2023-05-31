@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "https://indiarbala-logic-01.azurewebsites.net.rproxy.goskope.com:443/api/india-rtdxtest/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=gB8-38FnypWUkF-CJc_fUyEjNoWUeNEog4Cr3ZnuJ98",
+						"value": "https://indiarbala-logic-01.azurewebsites.net.rproxy.goskope.com:443/api/india-rtdx/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=DWzWyQKQ7B2PMPI--PYwzgGVhvuOSG3Tft5QlRAjp4s",
 						"type": "Expression"
 					},
 					"connectVia": {
