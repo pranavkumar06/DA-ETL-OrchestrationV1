@@ -24,7 +24,9 @@
 						"type": "IntegrationRuntimeReference"
 					},
 					"method": "POST",
-					"body": "\"hello world\"",
+					"body": {
+						"TypeID": "14"
+					},
 					"httpRequestTimeout": "00:05:00",
 					"authentication": {
 						"type": "ServicePrincipal",
