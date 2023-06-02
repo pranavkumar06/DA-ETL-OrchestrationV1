@@ -1,0 +1,24 @@
+{
+	"name": "LeapDataFocusBrnadProcessing_V2",
+	"properties": {
+		"activities": [
+			{
+				"name": "FocusBrandLoading-LEAP-TO-DF",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "FocusBrandLoading-LEAP-TO-DF_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
