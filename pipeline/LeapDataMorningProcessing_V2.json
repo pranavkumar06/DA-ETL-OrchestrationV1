@@ -94,6 +94,74 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "spPopulateFactCFRData_PCode",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spGetDFParameterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spPopulateFactCFRData_PCode]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "spGetDFParameterDetail",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "If All Final Table Loaded",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[spGetDFParameterDetail]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnectionV2",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"parameters": {
