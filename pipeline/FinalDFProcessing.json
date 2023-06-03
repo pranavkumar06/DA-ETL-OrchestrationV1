@@ -242,7 +242,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
+					"referenceName": "PremiumDatafoundationconnection",
 					"type": "LinkedServiceReference"
 				}
 			},
