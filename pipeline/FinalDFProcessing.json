@@ -1068,7 +1068,7 @@
 					"storedProcedureName": "[dbo].[spDailyRefreshSchemeData_Index]",
 					"storedProcedureParameters": {
 						"IsFullProcessRunning": {
-							"value": "1",
+							"value": "0",
 							"type": "Byte"
 						}
 					}
