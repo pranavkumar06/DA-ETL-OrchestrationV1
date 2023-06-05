@@ -532,7 +532,7 @@
 							},
 							{
 								"source": {
-									"name": "achievement_status",
+									"name": "induvid_achievement_status",
 									"type": "String"
 								},
 								"sink": {
@@ -627,6 +627,26 @@
 								},
 								"sink": {
 									"name": "fb_type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "comp_achievement_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "comp_achievement_status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "full_achievement_date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "full_achievement_date",
 									"type": "String"
 								}
 							}
