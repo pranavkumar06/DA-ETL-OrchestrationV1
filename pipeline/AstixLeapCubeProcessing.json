@@ -48,7 +48,14 @@
 						{
 							"name": "AS_CubeProcess_PCode_Sync_Fact",
 							"type": "ExecutePipeline",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "SpGetCubeProcessStatusUpd_Start",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
@@ -64,6 +71,73 @@
 										"type": "Expression"
 									}
 								}
+							}
+						},
+						{
+							"name": "SpGetCubeProcessStatusUpd_End",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "AS_CubeProcess_PCode_Sync_Fact",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpGetCubeProcessStatusUpd]",
+								"storedProcedureParameters": {
+									"flgEnd": {
+										"value": "1",
+										"type": "Byte"
+									},
+									"flgStart": {
+										"value": "1",
+										"type": "Byte"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "Dev_DataFoundationDB",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "SpGetCubeProcessStatusUpd_Start",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SpGetCubeProcessStatusUpd]",
+								"storedProcedureParameters": {
+									"flgEnd": {
+										"value": "0",
+										"type": "Byte"
+									},
+									"flgStart": {
+										"value": "1",
+										"type": "Byte"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "Dev_DataFoundationDB",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
