@@ -46,16 +46,24 @@
 					},
 					"ifTrueActivities": [
 						{
-							"name": "FinalCubeProcessing",
+							"name": "AS_CubeProcess_PCode_Sync_Fact",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "FinalCubeProcessing",
+									"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"flgcalled": 1,
+									"TypeID": 0,
+									"processdate": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
