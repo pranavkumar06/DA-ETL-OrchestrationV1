@@ -22,7 +22,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "@item().name",
+									"value": "TAS_PSR_C01_May_2022_1.csv",
 									"type": "Expression"
 								}
 							},
