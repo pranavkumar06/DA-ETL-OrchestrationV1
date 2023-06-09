@@ -521,7 +521,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"flgcalled": 0
+						"flgcalled": 1
 					}
 				}
 			},
