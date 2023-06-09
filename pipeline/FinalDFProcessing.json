@@ -721,7 +721,7 @@
 						]
 					},
 					{
-						"activity": "LeapData_Factforcubeprocessing_V2",
+						"activity": "spDataHubDataPopulation",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -735,8 +735,8 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ScaleVal": "DW300c",
-						"flgcalled": 0
+						"ScaleVal": "DW200c",
+						"flgcalled": 1
 					}
 				}
 			},
