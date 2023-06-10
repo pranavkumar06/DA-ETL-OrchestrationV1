@@ -916,7 +916,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "spDataHubDataPopulation",
+						"activity": "DW_Resume_Scale DW200_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
