@@ -4008,16 +4008,6 @@
 																		},
 																		{
 																			"source": {
-																				"name": "product_batch_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "batch_number",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "mrp",
 																				"type": "String"
 																			},
