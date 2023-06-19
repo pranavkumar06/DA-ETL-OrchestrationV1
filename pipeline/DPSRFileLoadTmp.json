@@ -22,7 +22,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "TAS_PSR_C01_Dec_2022.csv",
+									"value": "TAS_PSR_C01_May_2022.csv",
 									"type": "Expression"
 								}
 							},
@@ -38,7 +38,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "TAS_PSR_C01_Dec_2022.csv",
+								"value": "TAS_PSR_C01_May_2022.csv",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
