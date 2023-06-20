@@ -704,7 +704,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "LeapCSV_Staging",
+						"referenceName": "LeapCSV_Staging_Linefeed",
 						"type": "DatasetReference"
 					}
 				],
