@@ -750,7 +750,7 @@
 													"value": "151",
 													"activities": [
 														{
-															"name": "DPSR_MDAY_Cloud1",
+															"name": "ERSales",
 															"description": "Copy a file from the source store to the destination store.",
 															"type": "Copy",
 															"dependsOn": [],
@@ -769,7 +769,7 @@
 																		{
 																			"name": "Filename",
 																			"value": {
-																				"value": "@activity('GetFileList-Cloud1').output.itemName",
+																				"value": "@activity('GetFileList').output.itemName",
 																				"type": "Expression"
 																			}
 																		},
@@ -792,7 +792,7 @@
 																		"type": "AzureBlobFSReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
-																			"value": "@activity('GetFileList-Cloud1').output.itemName",
+																			"value": "@activity('GetFileList').output.itemName",
 																			"type": "Expression"
 																		},
 																		"enablePartitionDiscovery": false
@@ -826,512 +826,322 @@
 																	"mappings": [
 																		{
 																			"source": {
-																				"name": "document_no",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 1
 																			},
 																			"sink": {
-																				"name": "document_no",
+																				"name": "srce_sys_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "apply_to_doc",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 2
 																			},
 																			"sink": {
-																				"name": "apply_to_doc",
+																				"name": "fact_type_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "document_date",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 3
 																			},
 																			"sink": {
-																				"name": "document_date",
+																				"name": "sbmsn_type_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "transaction_type",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 4
 																			},
 																			"sink": {
-																				"name": "transaction_type",
+																				"name": "due_perd",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "subbrandform_name",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 5
 																			},
 																			"sink": {
-																				"name": "subbrandform_name",
+																				"name": "time_perd_type_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "prod_name",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 6
 																			},
 																			"sink": {
-																				"name": "prod_name",
+																				"name": "day_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "customer_name",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 7
 																			},
 																			"sink": {
-																				"name": "customer_name",
+																				"name": "derived_isis_cust_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "customer_code",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 8
 																			},
 																			"sink": {
-																				"name": "customer_code",
+																				"name": "prod_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "channel_description",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 9
 																			},
 																			"sink": {
-																				"name": "channel_description",
+																				"name": "geo_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "dse",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 10
 																			},
 																			"sink": {
-																				"name": "dse",
+																				"name": "org_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "pcode",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 11
 																			},
 																			"sink": {
-																				"name": "pcode",
+																				"name": "subd",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "customer_type",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 12
 																			},
 																			"sink": {
-																				"name": "customer_type",
+																				"name": "proft_ctr_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "hsn_code",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 13
 																			},
 																			"sink": {
-																				"name": "hsn_code",
+																				"name": "scndr_ship_flag",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "category",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 14
 																			},
 																			"sink": {
-																				"name": "category",
+																				"name": "trade_chanl_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
+																				"type": "String",
+																				"ordinal": 15
+																			},
+																			"sink": {
+																				"name": "iso_crncy_code_char",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"type": "String",
+																				"ordinal": 16
+																			},
+																			"sink": {
+																				"name": "mm_hybrid_id",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"type": "String",
+																				"ordinal": 17
+																			},
+																			"sink": {
+																				"name": "func_id",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"type": "String",
+																				"ordinal": 18
+																			},
+																			"sink": {
+																				"name": "captl_id",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"type": "String",
+																				"ordinal": 19
+																			},
+																			"sink": {
+																				"name": "measr_id",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"type": "String",
+																				"ordinal": 20
+																			},
+																			"sink": {
 																				"name": "brand",
 																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"type": "String",
+																				"ordinal": 21
 																			},
 																			"sink": {
-																				"name": "brand",
+																				"name": "genrc_dmnsn_1_type_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "brandform",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 22
 																			},
 																			"sink": {
-																				"name": "brandform",
+																				"name": "branch",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "quantity",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 23
 																			},
 																			"sink": {
-																				"name": "quantity",
+																				"name": "genrc_dmnsn_2_type_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "gross_value",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 24
 																			},
 																			"sink": {
-																				"name": "gross_value",
+																				"name": "genrc_dmnsn_2_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "discount",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 25
 																			},
 																			"sink": {
-																				"name": "discount",
+																				"name": "genrc_dmnsn_3_type_id",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "taxable_scheme",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 26
 																			},
 																			"sink": {
-																				"name": "taxable_scheme",
+																				"name": "store",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "cgst_amount",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 27
 																			},
 																			"sink": {
-																				"name": "cgsttax",
+																				"name": "fact_qlty_code",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "sgst_amount",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 28
 																			},
 																			"sink": {
-																				"name": "sgsttax",
+																				"name": "niv_flag",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "igst_amount",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 29
 																			},
 																			"sink": {
-																				"name": "igsttax",
+																				"name": "niv_total",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "cess_amount",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 30
 																			},
 																			"sink": {
-																				"name": "cesstax",
+																				"name": "attr_val_2",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "mracc_code",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 31
 																			},
 																			"sink": {
-																				"name": "mracc_code",
+																				"name": "su",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "mracc_desc",
-																				"type": "String"
+																				"type": "String",
+																				"ordinal": 32
 																			},
 																			"sink": {
-																				"name": "mracc_desc",
+																				"name": "giv",
 																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "vendor",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "vendor",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "net_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "net_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tax_on_discount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tax_on_discount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tax_on_scheme",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tax_on_scheme",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tax_in_rlp",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tax_in_rlp",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailing",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "retailing",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "gross_in_slp",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "gross_in_slp",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "po_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "po_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dse_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dse_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "msu",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "msu",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "reason",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "reason",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "distributor_gst_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dist_gstinno",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "retailer_gst_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "ret_gstinno",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "srn_ref_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "srn_ref_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "composite",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "composite",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "cgst_rate",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "cgsttax_rate",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "sgst_rate",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "sgsttax_rate",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "igst_rate",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "igsttax_rate",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "cess_rate",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "cesstax_rate",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "branch_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "branch_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "branch_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "branch_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "order_mode",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "order_mode",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tc_code",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tc_code",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tc_name",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tc_name",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "FileSetID",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "FileSetId",
-																				"type": "Int64"
 																			}
 																		},
 																		{
@@ -1340,7 +1150,7 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "Filename",
+																				"name": "FileName",
 																				"type": "String"
 																			}
 																		},
@@ -1351,97 +1161,7 @@
 																			},
 																			"sink": {
 																				"name": "LastModifiedDatetime",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "batch",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "batch",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "upc",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "upc",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tcs_amount",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tcs_amount",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "remarks",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "remarks",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "tcs_rate",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "tcs_rate",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "branch_gst_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "branch_gst_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_no",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "dl_expiry_date",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "irn_no",
-																				"type": "String"
-																			},
-																			"sink": {
-																				"name": "irn_no",
-																				"type": "String"
+																				"type": "DateTime"
 																			}
 																		}
 																	]
@@ -1449,14 +1169,11 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "ADLSCSVDataSource_File",
+																	"referenceName": "ADLSCSVDataSource_File_withoutGzip",
 																	"type": "DatasetReference",
 																	"parameters": {
-																		"Container": "cntleap",
-																		"Directory": {
-																			"value": "@concat('/', formatDateTime(item().DataDate, 'yyyy'), '/', formatDateTime(item().DataDate, 'MM'), '/', formatDateTime(item().DataDate,'dd'), '/')",
-																			"type": "Expression"
-																		},
+																		"Container": "cntelasticrun",
+																		"Directory": "Sales",
 																		"Filename": {
 																			"value": "@item().name",
 																			"type": "Expression"
