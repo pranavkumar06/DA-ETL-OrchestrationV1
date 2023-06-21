@@ -48,7 +48,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "GetFileList-Cloud1",
+							"name": "GetFileList",
 							"type": "GetMetadata",
 							"dependsOn": [
 								{
@@ -68,19 +68,8 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "ADLSDataset_Onefile",
-									"type": "DatasetReference",
-									"parameters": {
-										"folder": {
-											"value": "@concat('/', formatDateTime(item().DataDate, 'yyyy'), '/', formatDateTime(item().DataDate, 'MM'), '/', formatDateTime(item().DataDate,'dd'), '/')",
-											"type": "Expression"
-										},
-										"directory": "cntleap",
-										"filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "ERStorageSourceDataset_File",
+									"type": "DatasetReference"
 								},
 								"fieldList": [
 									"exists",
@@ -90,7 +79,6 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -99,11 +87,11 @@
 							}
 						},
 						{
-							"name": "If File Exists-Cloud1",
+							"name": "If File Exists",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "GetFileList-Cloud1",
+									"activity": "GetFileList",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -112,7 +100,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@activity('GetFileList-Cloud1').output.exists",
+									"value": "@activity('GetFileList').output.exists",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -2053,11 +2041,11 @@
 							}
 						},
 						{
-							"name": "SpFileImportLog_End",
+							"name": "SpERFileImportLog_End",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
-									"activity": "If File Exists-Cloud1",
+									"activity": "If File Exists",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2072,12 +2060,8 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[SpFileImportLog]",
+								"storedProcedureName": "[dbo].[SpERFileImportLog]",
 								"storedProcedureParameters": {
-									"CloudInstance": {
-										"value": "1",
-										"type": "Byte"
-									},
 									"DataDate": {
 										"value": {
 											"value": "@item().DataDate",
