@@ -250,7 +250,10 @@
 				"inputs": [
 					{
 						"referenceName": "DRCPFileSource",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Filename": "DRCP_May23_C01.csv"
+						}
 					}
 				],
 				"outputs": [
