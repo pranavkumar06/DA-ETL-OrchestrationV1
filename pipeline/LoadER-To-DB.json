@@ -686,16 +686,6 @@
 																		},
 																		{
 																			"source": {
-																				"type": "String",
-																				"ordinal": 48
-																			},
-																			"sink": {
-																				"name": "extra_field_20",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
 																				"name": "Filename",
 																				"type": "String"
 																			},
