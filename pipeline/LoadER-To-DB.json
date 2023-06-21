@@ -69,7 +69,18 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "ERStorageSourceDataset_File",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
+										"folder": {
+											"value": "@item().Folder",
+											"type": "Expression"
+										},
+										"directory": "cntelasticrun"
+									}
 								},
 								"fieldList": [
 									"exists",
