@@ -1226,6 +1226,49 @@
 																	}
 																}
 															]
+														},
+														{
+															"name": "spLoadErSalesFileManual",
+															"type": "SqlServerStoredProcedure",
+															"dependsOn": [
+																{
+																	"activity": "ERSales",
+																	"dependencyConditions": [
+																		"Succeeded"
+																	]
+																}
+															],
+															"policy": {
+																"timeout": "0.12:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"storedProcedureName": "[dbo].[spLoadErSalesFileManual]",
+																"storedProcedureParameters": {
+																	"Date": {
+																		"value": {
+																			"value": "@item().DataDate",
+																			"type": "Expression"
+																		},
+																		"type": "DateTime"
+																	},
+																	"FileName": {
+																		"value": {
+																			"value": "@item().name",
+																			"type": "Expression"
+																		},
+																		"type": "String"
+																	}
+																}
+															},
+															"linkedServiceName": {
+																"referenceName": "DataFoundationDB",
+																"type": "LinkedServiceReference"
+															}
 														}
 													]
 												}
