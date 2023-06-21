@@ -21,7 +21,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "DRCP_May23_C01.csv",
+									"value": "DRCP_May23_C02.csv",
 									"type": "Expression"
 								}
 							}
@@ -252,7 +252,7 @@
 						"referenceName": "DRCPFileSource",
 						"type": "DatasetReference",
 						"parameters": {
-							"Filename": "DRCP_May23_C01.csv"
+							"Filename": "DRCP_May23_C02.csv"
 						}
 					}
 				],
