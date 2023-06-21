@@ -50,14 +50,7 @@
 						{
 							"name": "GetFileList",
 							"type": "GetMetadata",
-							"dependsOn": [
-								{
-									"activity": "SpERFileImportLog_Start",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -118,7 +111,14 @@
 									{
 										"name": "IfFileFound",
 										"type": "Switch",
-										"dependsOn": [],
+										"dependsOn": [
+											{
+												"activity": "SpERFileImportLog_Start",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
 										"userProperties": [],
 										"typeProperties": {
 											"on": {
@@ -1198,95 +1198,95 @@
 												}
 											]
 										}
+									},
+									{
+										"name": "SpERFileImportLog_Start",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[SpERFileImportLog]",
+											"storedProcedureParameters": {
+												"DataDate": {
+													"value": {
+														"value": "@item().DataDate",
+														"type": "Expression"
+													},
+													"type": "DateTime"
+												},
+												"FileID": {
+													"value": {
+														"value": "@item().FileID",
+														"type": "Expression"
+													},
+													"type": "Int32"
+												},
+												"flgStartStop": {
+													"value": "1",
+													"type": "Byte"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "Dev_DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
+									},
+									{
+										"name": "SpERFileImportLog_End",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "IfFileFound",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[SpERFileImportLog]",
+											"storedProcedureParameters": {
+												"DataDate": {
+													"value": {
+														"value": "@item().DataDate",
+														"type": "Expression"
+													},
+													"type": "DateTime"
+												},
+												"FileID": {
+													"value": {
+														"value": "@item().FileID",
+														"type": "Expression"
+													},
+													"type": "Int32"
+												},
+												"flgStartStop": {
+													"value": "2",
+													"type": "Byte"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "Dev_DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
 									}
 								]
-							}
-						},
-						{
-							"name": "SpERFileImportLog_Start",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[SpERFileImportLog]",
-								"storedProcedureParameters": {
-									"DataDate": {
-										"value": {
-											"value": "@item().DataDate",
-											"type": "Expression"
-										},
-										"type": "DateTime"
-									},
-									"FileID": {
-										"value": {
-											"value": "@item().FileID",
-											"type": "Expression"
-										},
-										"type": "Int32"
-									},
-									"flgStartStop": {
-										"value": "1",
-										"type": "Byte"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "Dev_DataFoundationDB",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
-							"name": "SpERFileImportLog_End",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "If File Exists",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[SpERFileImportLog]",
-								"storedProcedureParameters": {
-									"DataDate": {
-										"value": {
-											"value": "@item().DataDate",
-											"type": "Expression"
-										},
-										"type": "DateTime"
-									},
-									"FileID": {
-										"value": {
-											"value": "@item().FileID",
-											"type": "Expression"
-										},
-										"type": "Int32"
-									},
-									"flgStartStop": {
-										"value": "2",
-										"type": "Byte"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "Dev_DataFoundationDB",
-								"type": "LinkedServiceReference"
 							}
 						}
 					]
