@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "DRCP_JAN_C03.csv",
+				"fileName": "DRCP_May23_C01.csv",
 				"container": "leaptemp"
 			},
 			"columnDelimiter": "|",
