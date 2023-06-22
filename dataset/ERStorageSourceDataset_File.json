@@ -29,11 +29,11 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().directory",
+					"value": "@dataset().folder",
 					"type": "Expression"
 				},
 				"container": {
-					"value": "@dataset().folder",
+					"value": "@dataset().directory",
 					"type": "Expression"
 				}
 			}
