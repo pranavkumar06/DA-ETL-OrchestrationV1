@@ -68,10 +68,6 @@
 											"value": "@item().name",
 											"type": "Expression"
 										},
-										"folder": {
-											"value": "@item().Folder",
-											"type": "Expression"
-										},
 										"directory": "cntelasticrun"
 									}
 								},
@@ -82,7 +78,7 @@
 									"itemType"
 								],
 								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
+									"type": "AzureBlobStorageReadSettings",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -169,7 +165,7 @@
 																		}
 																	],
 																	"storeSettings": {
-																		"type": "AzureBlobFSReadSettings",
+																		"type": "AzureBlobStorageReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
 																			"value": "@activity('GetFileList').output.itemName",
@@ -709,11 +705,10 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "ADLSCSVDataSource_File_withoutGzip",
+																	"referenceName": "CSVDataSource_File_withoutGzip",
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"Container": "cntelasticrun",
-																		"Directory": "StoreMaster",
 																		"Filename": {
 																			"value": "@item().name",
 																			"type": "Expression"
@@ -822,7 +817,7 @@
 																		}
 																	],
 																	"storeSettings": {
-																		"type": "AzureBlobFSReadSettings",
+																		"type": "AzureBlobStorageReadSettings",
 																		"recursive": true,
 																		"wildcardFileName": {
 																			"value": "@activity('GetFileList').output.itemName",
@@ -1202,11 +1197,10 @@
 															},
 															"inputs": [
 																{
-																	"referenceName": "ADLSCSVDataSource_File_withoutGzip",
+																	"referenceName": "CSVDataSource_File_withoutGzip",
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"Container": "cntelasticrun",
-																		"Directory": "Sales",
 																		"Filename": {
 																			"value": "@item().name",
 																			"type": "Expression"
