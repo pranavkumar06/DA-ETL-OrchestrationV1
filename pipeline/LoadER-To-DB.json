@@ -1359,6 +1359,34 @@
 											"referenceName": "Dev_DataFoundationDB",
 											"type": "LinkedServiceReference"
 										}
+									},
+									{
+										"name": "CopyERStaging-To-ADLS-OneFile",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "SpERFileImportLog_End",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "CopyERStaging-To-ADLS-OneFile",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"Directory": "cntelasticrun",
+												"Folder": " ",
+												"FileName": {
+													"value": "@activity('GetFileList').output.itemName",
+													"type": "Expression"
+												}
+											}
+										}
 									}
 								]
 							}
