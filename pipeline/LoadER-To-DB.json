@@ -79,6 +79,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -709,6 +710,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"Container": "cntelasticrun",
+																		"Directory": " ",
 																		"Filename": {
 																			"value": "@item().name",
 																			"type": "Expression"
@@ -1201,6 +1203,7 @@
 																	"type": "DatasetReference",
 																	"parameters": {
 																		"Container": "cntelasticrun",
+																		"Directory": " ",
 																		"Filename": {
 																			"value": "@item().name",
 																			"type": "Expression"
