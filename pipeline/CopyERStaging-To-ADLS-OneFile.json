@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyLeapStaging-To-ADLS-OneFile-Cloud1",
+				"name": "CopyERStaging-To-ADLS-OneFile",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
