@@ -68,6 +68,7 @@
 											"value": "@item().name",
 											"type": "Expression"
 										},
+										"folder": " ",
 										"directory": "cntelasticrun"
 									}
 								},
