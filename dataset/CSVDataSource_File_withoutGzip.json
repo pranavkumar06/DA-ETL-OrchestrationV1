@@ -10,7 +10,8 @@
 				"type": "string"
 			},
 			"Directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": null
 			},
 			"Filename": {
 				"type": "string"
