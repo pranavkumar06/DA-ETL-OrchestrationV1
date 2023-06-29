@@ -1194,6 +1194,16 @@
 																				"name": "LastModifiedDatetime",
 																				"type": "DateTime"
 																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
 																		}
 																	]
 																}
