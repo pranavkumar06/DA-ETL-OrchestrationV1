@@ -3284,7 +3284,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"EmailTo": "trivedi.dt.1@pg.com,maiti.am@pg.com,vishalbhai.jagdishbhai.bhimda@gds.ey.com,umesh.gupta1@gds.ey.com",
+						"EmailTo": "trivedi.dt.1@pg.com,maiti.am@pg.com",
 						"Subject": "Purchase History File generation notification",
 						"ErrorMessage": "Daily Purchase history file is generated."
 					}
