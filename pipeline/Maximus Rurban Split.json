@@ -178,6 +178,16 @@
 									"name": "CV_State",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"name": "PowerVillage",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PowerVillage",
+									"type": "String"
+								}
 							}
 						]
 					}
