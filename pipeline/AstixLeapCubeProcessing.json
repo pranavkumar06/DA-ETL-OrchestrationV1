@@ -179,6 +179,31 @@
 								},
 								"waitOnCompletion": true
 							}
+						},
+						{
+							"name": "Send Notification",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "SpGetCubeProcessStatusUpd_End",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Send Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": "Avinash@Astix.in,Alok@astix.in,Gaurav@astix.in,Varun@astix.in,Anuj@astix.in",
+									"Subject": "Astix Cube Process Successfully",
+									"ErrorMessage": "Astix Cube Process Successfully"
+								}
+							}
 						}
 					]
 				}
