@@ -199,7 +199,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"EmailTo": "Avinash@Astix.in,Alok@astix.in,Gaurav@astix.in,Varun@astix.in,Anuj@astix.in",
+									"EmailTo": "Avinash@Astix.in,Alok@astix.in,Gaurav@astix.in,Varun@astix.in,Anuj@astix.in,rtdxhelpdesk@Astix.in",
 									"Subject": "Astix Cube Process Successfully",
 									"ErrorMessage": "Astix Cube Process Successfully"
 								}
