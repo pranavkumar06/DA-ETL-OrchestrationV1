@@ -204,6 +204,30 @@
 									"ErrorMessage": "Astix Cube Process Successfully"
 								}
 							}
+						},
+						{
+							"name": "DW_Resume_Scale_V2",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Send Notification",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Resume_Scale_V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ScaleVal": "DW200c",
+									"flgcalled": 1
+								}
+							}
 						}
 					]
 				}
