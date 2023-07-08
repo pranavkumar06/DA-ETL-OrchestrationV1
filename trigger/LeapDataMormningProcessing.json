@@ -20,7 +20,7 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2023-04-02T12:09:00",
+				"startTime": "2023-07-07T12:09:00",
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
