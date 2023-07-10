@@ -1403,6 +1403,15 @@
 				}
 			}
 		],
+		"parameters": {
+			"Directory": {
+				"type": "string",
+				"defaultValue": "cntelasticrun"
+			},
+			"Folder": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
