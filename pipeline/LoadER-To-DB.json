@@ -182,6 +182,7 @@
 																},
 																"sink": {
 																	"type": "SqlDWSink",
+																	"preCopyScript": "TRUNCATE TABLE [@{item().temptablename}]",
 																	"allowPolyBase": true,
 																	"polyBaseSettings": {
 																		"rejectValue": 0,
