@@ -778,6 +778,34 @@
 																"referenceName": "DataFoundationDB",
 																"type": "LinkedServiceReference"
 															}
+														},
+														{
+															"name": "CopyERStaging-To-ADLS-OneFile",
+															"type": "ExecutePipeline",
+															"dependsOn": [
+																{
+																	"activity": "spLoadErSMFileManual",
+																	"dependencyConditions": [
+																		"Succeeded"
+																	]
+																}
+															],
+															"userProperties": [],
+															"typeProperties": {
+																"pipeline": {
+																	"referenceName": "CopyERStaging-To-ADLS-OneFile",
+																	"type": "PipelineReference"
+																},
+																"waitOnCompletion": true,
+																"parameters": {
+																	"Directory": "cntelasticrun",
+																	"Folder": "StoreMaster",
+																	"FileName": {
+																		"value": "@activity('GetFileList').output.itemName",
+																		"type": "Expression"
+																	}
+																}
+															}
 														}
 													]
 												},
@@ -1275,6 +1303,34 @@
 																"referenceName": "DataFoundationDB",
 																"type": "LinkedServiceReference"
 															}
+														},
+														{
+															"name": "CopyERStaging-To-ADLS-OneFile_copy1",
+															"type": "ExecutePipeline",
+															"dependsOn": [
+																{
+																	"activity": "spLoadErSalesFileManual",
+																	"dependencyConditions": [
+																		"Succeeded"
+																	]
+																}
+															],
+															"userProperties": [],
+															"typeProperties": {
+																"pipeline": {
+																	"referenceName": "CopyERStaging-To-ADLS-OneFile",
+																	"type": "PipelineReference"
+																},
+																"waitOnCompletion": true,
+																"parameters": {
+																	"Directory": "cntelasticrun",
+																	"Folder": "Sales",
+																	"FileName": {
+																		"value": "@activity('GetFileList').output.itemName",
+																		"type": "Expression"
+																	}
+																}
+															}
 														}
 													]
 												}
@@ -1367,34 +1423,6 @@
 											"referenceName": "Dev_DataFoundationDB",
 											"type": "LinkedServiceReference"
 										}
-									},
-									{
-										"name": "CopyERStaging-To-ADLS-OneFile",
-										"type": "ExecutePipeline",
-										"dependsOn": [
-											{
-												"activity": "SpERFileImportLog_End",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"userProperties": [],
-										"typeProperties": {
-											"pipeline": {
-												"referenceName": "CopyERStaging-To-ADLS-OneFile",
-												"type": "PipelineReference"
-											},
-											"waitOnCompletion": true,
-											"parameters": {
-												"Directory": "cntelasticrun",
-												"Folder": " ",
-												"FileName": {
-													"value": "@activity('GetFileList').output.itemName",
-													"type": "Expression"
-												}
-											}
-										}
 									}
 								]
 							}
@@ -1403,16 +1431,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Directory": {
-				"type": "string",
-				"defaultValue": "cntelasticrun"
-			},
-			"Folder": {
-				"type": "string",
-				"defaultValue": " "
-			}
-		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
