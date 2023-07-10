@@ -1,0 +1,49 @@
+{
+	"name": "DeleteERStagingOneFile",
+	"properties": {
+		"activities": [
+			{
+				"name": "Delete ER One File",
+				"type": "Delete",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ERStorageSourceDataset_File",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@pipeline().parameters.FileName",
+								"type": "Expression"
+							},
+							"folder": " ",
+							"directory": "cntelasticrun"
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
