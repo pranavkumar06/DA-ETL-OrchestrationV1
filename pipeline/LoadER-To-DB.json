@@ -1409,7 +1409,8 @@
 				"defaultValue": "cntelasticrun"
 			},
 			"Folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": " "
 			}
 		},
 		"folder": {
