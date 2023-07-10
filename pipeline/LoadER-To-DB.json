@@ -806,6 +806,32 @@
 																	}
 																}
 															}
+														},
+														{
+															"name": "DeleteERStagingOneFile_StoreMaster",
+															"type": "ExecutePipeline",
+															"dependsOn": [
+																{
+																	"activity": "CopyERStaging-To-ADLS-OneFile",
+																	"dependencyConditions": [
+																		"Succeeded"
+																	]
+																}
+															],
+															"userProperties": [],
+															"typeProperties": {
+																"pipeline": {
+																	"referenceName": "DeleteERStagingOneFile",
+																	"type": "PipelineReference"
+																},
+																"waitOnCompletion": true,
+																"parameters": {
+																	"FileName": {
+																		"value": "@activity('GetFileList').output.itemName",
+																		"type": "Expression"
+																	}
+																}
+															}
 														}
 													]
 												},
@@ -1325,6 +1351,32 @@
 																"parameters": {
 																	"Directory": "cntelasticrun",
 																	"Folder": "Sales",
+																	"FileName": {
+																		"value": "@activity('GetFileList').output.itemName",
+																		"type": "Expression"
+																	}
+																}
+															}
+														},
+														{
+															"name": "DeleteERStagingOneFile_Sales",
+															"type": "ExecutePipeline",
+															"dependsOn": [
+																{
+																	"activity": "CopyERStaging-To-ADLS-OneFile_copy1",
+																	"dependencyConditions": [
+																		"Succeeded"
+																	]
+																}
+															],
+															"userProperties": [],
+															"typeProperties": {
+																"pipeline": {
+																	"referenceName": "DeleteERStagingOneFile",
+																	"type": "PipelineReference"
+																},
+																"waitOnCompletion": true,
+																"parameters": {
 																	"FileName": {
 																		"value": "@activity('GetFileList').output.itemName",
 																		"type": "Expression"
