@@ -942,13 +942,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale DW200_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "AS_ResumeandScale_S9",
+						"activity": "LeapData_Factforcubeprocessing_V2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -966,7 +960,7 @@
 							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
 							"type": "Expression"
 						},
-						"flgcalled": 0
+						"flgcalled": 1
 					}
 				}
 			},
