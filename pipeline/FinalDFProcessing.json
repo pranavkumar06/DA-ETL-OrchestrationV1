@@ -511,6 +511,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "LeapData_Factforcubeprocessing_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -716,12 +722,6 @@
 					},
 					{
 						"activity": "FinalDFProcessing-TASProcessing",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spDataHubDataPopulation",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -942,7 +942,13 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "LeapData_Factforcubeprocessing_V2",
+						"activity": "DW_Resume_Scale DW200_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "AS_ResumeandScale_S9",
 						"dependencyConditions": [
 							"Succeeded"
 						]
