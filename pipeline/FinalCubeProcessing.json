@@ -16,7 +16,14 @@
 						{
 							"name": "AS_CubeProcess_PCode_Sync_Fact",
 							"type": "ExecutePipeline",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "AS_ResumeandScale_S8",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
@@ -49,6 +56,39 @@
 							"typeProperties": {
 								"pipeline": {
 									"referenceName": "FinalScale_V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "AS_ResumeandScale_S8",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "AS_ResumeandScale_S8",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "AS_ResumeandScale_S4",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "FinalScale_V2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "AS_ResumeandScale_S4",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true
