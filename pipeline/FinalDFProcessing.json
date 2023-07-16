@@ -966,7 +966,7 @@
 							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
 							"type": "Expression"
 						},
-						"flgcalled": 0
+						"flgcalled": 1
 					}
 				}
 			},
