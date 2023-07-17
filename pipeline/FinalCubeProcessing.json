@@ -3,106 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@equals(pipeline().parameters.flgcalled,1)",
-						"type": "Expression"
-					},
-					"ifTrueActivities": [
-						{
-							"name": "AS_CubeProcess_PCode_Sync_Fact",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "AS_ResumeandScale_S8",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"flgcalled": 1,
-									"TypeID": 0,
-									"processdate": {
-										"value": "@utcnow()",
-										"type": "Expression"
-									}
-								}
-							}
-						},
-						{
-							"name": "FinalScale_V2",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "AS_CubeProcess_PCode_Sync_Fact",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "FinalScale_V2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true
-							}
-						},
-						{
-							"name": "AS_ResumeandScale_S8",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "AS_ResumeandScale_S8",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true
-							}
-						},
-						{
-							"name": "AS_ResumeandScale_S4",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "FinalScale_V2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "AS_ResumeandScale_S4",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true
-							}
-						}
-					]
-				}
-			},
-			{
 				"name": "PCode_Maximus_Job",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "If Condition1",
+						"activity": "Until1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -122,6 +27,167 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('flgProcessingCompleted'),'True')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "If Condition1",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@and(equals(pipeline().parameters.flgcalled,1),equals(variables('flgProcessingCompleted'),'false'))",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "AS_CubeProcess_PCode_Sync_Fact",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "AS_ResumeandScale_S8",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"flgcalled": 1,
+												"TypeID": 0,
+												"processdate": {
+													"value": "@utcnow()",
+													"type": "Expression"
+												}
+											}
+										}
+									},
+									{
+										"name": "FinalScale_V2",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "AS_CubeProcess_PCode_Sync_Fact",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "FinalScale_V2",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true
+										}
+									},
+									{
+										"name": "AS_ResumeandScale_S8",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "AS_ResumeandScale_S8",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true
+										}
+									},
+									{
+										"name": "AS_ResumeandScale_S4",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "FinalScale_V2",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "AS_ResumeandScale_S4",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "If Condition2",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "If Condition1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(pipeline().parameters.flgcalled,0)",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "flgProcessingCompleted",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgProcessingCompleted",
+											"value": "True"
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "If Condition2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 300
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
 			}
 		],
 		"parameters": {
@@ -131,6 +197,12 @@
 			"flgcalled": {
 				"type": "int",
 				"defaultValue": 1
+			}
+		},
+		"variables": {
+			"flgProcessingCompleted": {
+				"type": "String",
+				"defaultValue": "false"
 			}
 		},
 		"folder": {
