@@ -102,11 +102,42 @@
 					},
 					"activities": [
 						{
-							"name": "AS_CubeProcess_PCode_Sync_Fact",
-							"type": "ExecutePipeline",
+							"name": "SpGetAstixCubeProcessStatus",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpGetAstixCubeProcessStatus]",
+									"storedProcedureParameters": {
+										"TypeID": {
+											"type": "Int32",
+											"value": "4"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnection",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "If Condition1",
+							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "AS_ResumeandScale_S8",
+									"activity": "SpGetAstixCubeProcessStatus",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -114,32 +145,93 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"pipeline": {
-									"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
-									"type": "PipelineReference"
+								"expression": {
+									"value": "@equals(activity('SpGetAstixCubeProcessStatus').output.firstRow.cubereadytoprocess,1 )",
+									"type": "Expression"
 								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"flgcalled": 1,
-									"TypeID": 4,
-									"processdate": {
-										"value": "@utcnow()",
-										"type": "Expression"
+								"ifTrueActivities": [
+									{
+										"name": "AS_CubeProcess_PCode_Sync_Fact",
+										"type": "ExecutePipeline",
+										"dependsOn": [
+											{
+												"activity": "AS_ResumeandScale_S8",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "AS_CubeProcess_Pcode_Sync_Fact_V2",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"flgcalled": 1,
+												"TypeID": 4,
+												"processdate": {
+													"value": "@utcnow()",
+													"type": "Expression"
+												}
+											}
+										}
+									},
+									{
+										"name": "AS_ResumeandScale_S8",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "AS_ResumeandScale_S8",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true
+										}
+									},
+									{
+										"name": "flgCanProcessStart",
+										"type": "SetVariable",
+										"dependsOn": [
+											{
+												"activity": "AS_CubeProcess_PCode_Sync_Fact",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgCanProcessStart",
+											"value": {
+												"value": "@bool(1)",
+												"type": "Expression"
+											}
+										}
 									}
-								}
+								]
 							}
 						},
 						{
-							"name": "AS_ResumeandScale_S8",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "If Condition1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
-								"pipeline": {
-									"referenceName": "AS_ResumeandScale_S8",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true
+								"waitTimeInSeconds": 300
 							}
 						}
 					],
