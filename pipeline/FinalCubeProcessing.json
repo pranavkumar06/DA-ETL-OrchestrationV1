@@ -130,6 +130,30 @@
 											},
 											"waitOnCompletion": true
 										}
+									},
+									{
+										"name": "flgProcessingCompleted_copy1",
+										"type": "SetVariable",
+										"dependsOn": [
+											{
+												"activity": "AS_ResumeandScale_S4",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgProcessingCompleted",
+											"value": {
+												"value": "True",
+												"type": "Expression"
+											}
+										}
 									}
 								]
 							}
