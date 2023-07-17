@@ -35,7 +35,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(variables('flgProcessingCompleted'),'True')",
+						"value": "@variables('flgProcessingCompleted')",
 						"type": "Expression"
 					},
 					"activities": [
@@ -46,7 +46,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@and(equals(pipeline().parameters.flgcalled,1),equals(variables('flgProcessingCompleted'),'false'))",
+									"value": "@and(equals(pipeline().parameters.flgcalled,1),not(variables('flgProcessingCompleted')))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -163,7 +163,10 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "flgProcessingCompleted",
-											"value": "True"
+											"value": {
+												"value": "True",
+												"type": "Expression"
+											}
 										}
 									}
 								]
@@ -201,8 +204,8 @@
 		},
 		"variables": {
 			"flgProcessingCompleted": {
-				"type": "String",
-				"defaultValue": "false"
+				"type": "Boolean",
+				"defaultValue": false
 			}
 		},
 		"folder": {
