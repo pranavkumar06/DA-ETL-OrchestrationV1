@@ -266,7 +266,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "flgProcessingCompleted",
+										"name": "flgCanProcessStart-1",
 										"type": "SetVariable",
 										"dependsOn": [],
 										"policy": {
@@ -277,7 +277,7 @@
 										"typeProperties": {
 											"variableName": "flgCanProcessStart",
 											"value": {
-												"value": "True",
+												"value": "@bool(1)",
 												"type": "Expression"
 											}
 										}
