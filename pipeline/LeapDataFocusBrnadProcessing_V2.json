@@ -97,7 +97,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@variables('flgCanProcessStart')",
+						"value": "@bool(variables('flgCanProcessStart'))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -181,7 +181,14 @@
 									{
 										"name": "AS_ResumeandScale_S8",
 										"type": "ExecutePipeline",
-										"dependsOn": [],
+										"dependsOn": [
+											{
+												"activity": "SpAstixCubeProcessStatusUpd_Start",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
@@ -196,7 +203,7 @@
 										"type": "SetVariable",
 										"dependsOn": [
 											{
-												"activity": "AS_CubeProcess_PCode_Sync_Fact",
+												"activity": "SpAstixCubeProcessStatusUpd_End",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -213,6 +220,81 @@
 												"value": "@bool(1)",
 												"type": "Expression"
 											}
+										}
+									},
+									{
+										"name": "SpAstixCubeProcessStatusUpd_Start",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[SpAstixCubeProcessStatusUpd]",
+											"storedProcedureParameters": {
+												"flgEnd": {
+													"value": "0",
+													"type": "Byte"
+												},
+												"flgStart": {
+													"value": "1",
+													"type": "Byte"
+												},
+												"TypeID": {
+													"value": "4",
+													"type": "Int32"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
+									},
+									{
+										"name": "SpAstixCubeProcessStatusUpd_End",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "AS_CubeProcess_PCode_Sync_Fact",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[SpAstixCubeProcessStatusUpd]",
+											"storedProcedureParameters": {
+												"flgEnd": {
+													"value": "1",
+													"type": "Byte"
+												},
+												"flgStart": {
+													"value": "1",
+													"type": "Byte"
+												},
+												"TypeID": {
+													"value": "4",
+													"type": "Int32"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
 										}
 									}
 								]
