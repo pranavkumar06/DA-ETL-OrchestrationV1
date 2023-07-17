@@ -35,18 +35,25 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@variables('flgProcessingCompleted')",
+						"value": "@bool(variables('flgCanProcessStart'))",
 						"type": "Expression"
 					},
 					"activities": [
 						{
 							"name": "If Condition1",
 							"type": "IfCondition",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "SpGetAstixCubeProcessStatus",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@and(equals(pipeline().parameters.flgcalled,1),not(variables('flgProcessingCompleted')))",
+									"value": "@and(equals(pipeline().parameters.flgcalled,1),equals(activity('SpGetAstixCubeProcessStatus').output.firstRow.cubereadytoprocess,1 ))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -186,7 +193,7 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "flgProcessingCompleted",
+											"variableName": "flgCanProcessStart",
 											"value": {
 												"value": "True",
 												"type": "Expression"
@@ -211,6 +218,37 @@
 							"typeProperties": {
 								"waitTimeInSeconds": 300
 							}
+						},
+						{
+							"name": "SpGetAstixCubeProcessStatus",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpGetAstixCubeProcessStatus]",
+									"storedProcedureParameters": {
+										"TypeID": {
+											"type": "Int32",
+											"value": "0"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnection",
+									"type": "DatasetReference"
+								}
+							}
 						}
 					],
 					"timeout": "0.12:00:00"
@@ -227,7 +265,7 @@
 			}
 		},
 		"variables": {
-			"flgProcessingCompleted": {
+			"flgCanProcessStart": {
 				"type": "Boolean",
 				"defaultValue": false
 			}
