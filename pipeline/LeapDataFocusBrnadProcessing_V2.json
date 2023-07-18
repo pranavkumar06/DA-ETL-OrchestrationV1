@@ -319,6 +319,26 @@
 					],
 					"timeout": "0.12:00:00"
 				}
+			},
+			{
+				"name": "DWScaleafterProcessing_V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Until1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DWScaleafterProcessing_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"variables": {
