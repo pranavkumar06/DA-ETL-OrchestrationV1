@@ -61,6 +61,26 @@
 									"flgcalled": 1
 								}
 							}
+						},
+						{
+							"name": "AS_ResumeandScale_S4",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "DW_Resume_Scale_V2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "AS_ResumeandScale_S4",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
 						}
 					]
 				}
