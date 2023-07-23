@@ -155,7 +155,7 @@
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
-												"activity": "AS_ResumeandScale_S8",
+												"activity": "AS_ResumeandScale_S4",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -179,7 +179,7 @@
 										}
 									},
 									{
-										"name": "AS_ResumeandScale_S8",
+										"name": "AS_ResumeandScale_S4",
 										"type": "ExecutePipeline",
 										"dependsOn": [
 											{
@@ -192,7 +192,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "AS_ResumeandScale_S8",
+												"referenceName": "AS_ResumeandScale_S4",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true
