@@ -367,42 +367,6 @@
 				}
 			},
 			{
-				"name": "spPopulateFactSBDData_PCode",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spDFTAS_PopulateSBDWorkingData-DF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spPopulateFactSBDData_PCode]",
-					"storedProcedureParameters": {
-						"RptMonthYear": {
-							"value": {
-								"value": "@activity('spGetDFParameterDetail').output.firstRow.SBDRptMonthYear",
-								"type": "Expression"
-							},
-							"type": "Int32"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateStoreDSEWiseSales-DF",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -500,12 +464,6 @@
 				"name": "AS_ResumeandScale_S9",
 				"type": "ExecutePipeline",
 				"dependsOn": [
-					{
-						"activity": "spPopulateFactSBDData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
 					{
 						"activity": "FinalDFProcessing-TASProcessing",
 						"dependencyConditions": [
@@ -708,12 +666,6 @@
 				"name": "DW_Resume_Scale DW200_V2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
-					{
-						"activity": "spPopulateFactSBDData_PCode",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
 					{
 						"activity": "RetailerFlagUpdate",
 						"dependencyConditions": [
