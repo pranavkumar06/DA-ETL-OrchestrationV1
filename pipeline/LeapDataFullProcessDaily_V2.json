@@ -2225,6 +2225,8 @@
 						{
 							"name": "spDataLoadSBDMasterData_Cloud",
 							"type": "SqlServerStoredProcedure",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
