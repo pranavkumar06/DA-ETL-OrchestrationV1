@@ -309,39 +309,6 @@
 					},
 					"waitOnCompletion": true
 				}
-			},
-			{
-				"name": "FinalCubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale DW200_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "spGetDFParameterDetail",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "FinalCubeProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DMinusOneDate": {
-							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-							"type": "Expression"
-						},
-						"flgcalled": 1
-					}
-				}
 			}
 		],
 		"folder": {
