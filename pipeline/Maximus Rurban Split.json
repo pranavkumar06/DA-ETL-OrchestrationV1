@@ -188,6 +188,16 @@
 									"name": "PowerVillage",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"name": "ABCD_Classification",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ABCD_Classification",
+									"type": "String"
+								}
 							}
 						]
 					}
