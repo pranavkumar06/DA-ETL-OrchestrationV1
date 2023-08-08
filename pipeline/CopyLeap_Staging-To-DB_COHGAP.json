@@ -2337,358 +2337,6 @@
 					},
 					"activities": [
 						{
-							"name": "COHGAP_Cloud3",
-							"description": "Copy a file from the source store to the destination store.",
-							"type": "Copy",
-							"dependsOn": [
-								{
-									"activity": "CopyS3-To-Staging_Cloud3",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"additionalColumns": [
-										{
-											"name": "Filename",
-											"value": {
-												"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "LastModifiedDatetime",
-											"value": {
-												"value": "@addminutes(utcnow(),330)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"wildcardFileName": {
-											"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
-											"type": "Expression"
-										},
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									},
-									"recursive": false
-								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
-									"disableMetricsCollection": false
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "coh_date",
-												"type": "String"
-											},
-											"sink": {
-												"name": "coh_date",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "retailer_code",
-												"type": "String"
-											},
-											"sink": {
-												"name": "retailer_code",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "retailer_name",
-												"type": "String"
-											},
-											"sink": {
-												"name": "retailer_name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "channel_code",
-												"type": "String"
-											},
-											"sink": {
-												"name": "channel_code",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "channel",
-												"type": "String"
-											},
-											"sink": {
-												"name": "channel_name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "channel_type_code",
-												"type": "String"
-											},
-											"sink": {
-												"name": "channel_type_code",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "sector",
-												"type": "String"
-											},
-											"sink": {
-												"name": "sector_name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "dse_code",
-												"type": "String"
-											},
-											"sink": {
-												"name": "seller_code",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "dse_name",
-												"type": "String"
-											},
-											"sink": {
-												"name": "seller_name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "coh_name",
-												"type": "String"
-											},
-											"sink": {
-												"name": "coh_name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "target",
-												"type": "String"
-											},
-											"sink": {
-												"name": "target",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "achievement",
-												"type": "String"
-											},
-											"sink": {
-												"name": "achievement",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "induvid_achievement_status",
-												"type": "String"
-											},
-											"sink": {
-												"name": "achievement_status",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "coh_type",
-												"type": "String"
-											},
-											"sink": {
-												"name": "calculation_rule",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "coh_detail",
-												"type": "String"
-											},
-											"sink": {
-												"name": "coh_detail",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "withsale",
-												"type": "String"
-											},
-											"sink": {
-												"name": "withsale",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "nosale",
-												"type": "String"
-											},
-											"sink": {
-												"name": "nosale",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "branch_code",
-												"type": "String"
-											},
-											"sink": {
-												"name": "distributor_code",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "branch_location",
-												"type": "String"
-											},
-											"sink": {
-												"name": "distributor_name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "Filename",
-												"type": "String"
-											},
-											"sink": {
-												"name": "Filename",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "LastModifiedDatetime",
-												"type": "String"
-											},
-											"sink": {
-												"name": "LastModifiedDatetime",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"name": "fb_type",
-												"type": "String"
-											},
-											"sink": {
-												"name": "fb_type",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "comp_achievement_status",
-												"type": "String"
-											},
-											"sink": {
-												"name": "comp_achievement_status",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"name": "full_achievement_date",
-												"type": "String"
-											},
-											"sink": {
-												"name": "full_achievement_date",
-												"type": "String"
-											}
-										}
-									]
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "LeapCSV_Staging_V2_Cloud3",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_TASDestination_table",
-									"type": "DatasetReference",
-									"parameters": {
-										"tablename": {
-											"value": "tmpRawLEAPTAS_COHGAP",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						},
-						{
-							"name": "CopyS3-To-Staging_Cloud3",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "CopyS3-To-Staging_Cloud3_Onefile_V2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"windowStart": {
-										"value": "@pipeline().parameters.windowStart",
-										"type": "Expression"
-									},
-									"windowEnd": {
-										"value": "@pipeline().parameters.windowEnd",
-										"type": "Expression"
-									},
-									"filename": {
-										"value": "@activity('SpGetCOHFilename_cloud3').output.firstRow.Filename",
-										"type": "Expression"
-									}
-								}
-							}
-						},
-						{
 							"name": "SpGetTASFileLoadingStatus_Cloud3",
 							"type": "Lookup",
 							"dependsOn": [],
@@ -2741,12 +2389,36 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "COHGAP_Cloud1_copy1",
+										"name": "Set flgFullProcessingPending_cloud3",
+										"type": "SetVariable",
+										"dependsOn": [
+											{
+												"activity": "COHGAP_Cloud3",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgFullProcessingPendingcloud3",
+											"value": {
+												"value": "1",
+												"type": "Expression"
+											}
+										}
+									},
+									{
+										"name": "COHGAP_Cloud3",
 										"description": "Copy a file from the source store to the destination store.",
 										"type": "Copy",
 										"dependsOn": [
 											{
-												"activity": "CopyS3-To-Staging_Cloud1_copy1",
+												"activity": "CopyS3-To-Staging_Cloud3",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -2767,7 +2439,7 @@
 													{
 														"name": "Filename",
 														"value": {
-															"value": "@concat('COHGAP_cloud0',variables('Cloud1'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+															"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
 															"type": "Expression"
 														}
 													},
@@ -2783,7 +2455,7 @@
 													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
 													"wildcardFileName": {
-														"value": "@concat('COHGAP_cloud0',variables('Cloud1'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
+														"value": "@concat('COHGAP_cloud0',variables('Cloud3'),'_', formatDateTime(pipeline().TriggerTime, 'yyyy'), formatDateTime(pipeline().TriggerTime, 'MMM'), formatDateTime(pipeline().TriggerTime, 'dd'), '.csv')",
 														"type": "Expression"
 													},
 													"enablePartitionDiscovery": false
@@ -3048,7 +2720,7 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "LeapCSV_Staging_V2_Cloud1",
+												"referenceName": "LeapCSV_Staging_V2_Cloud3",
 												"type": "DatasetReference"
 											}
 										],
@@ -3066,37 +2738,13 @@
 										]
 									},
 									{
-										"name": "Set flgFullProcessingPending_copy1",
-										"type": "SetVariable",
-										"dependsOn": [
-											{
-												"activity": "COHGAP_Cloud1_copy1",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"policy": {
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"variableName": "flgFullProcessingPendingcloud1",
-											"value": {
-												"value": "1",
-												"type": "Expression"
-											}
-										}
-									},
-									{
-										"name": "CopyS3-To-Staging_Cloud1_copy1",
+										"name": "CopyS3-To-Staging_Cloud3",
 										"type": "ExecutePipeline",
 										"dependsOn": [],
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "CopyS3-To-Staging_Cloud1_OneFile_V2",
+												"referenceName": "CopyS3-To-Staging_Cloud3_Onefile_V2",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
@@ -3110,7 +2758,7 @@
 													"type": "Expression"
 												},
 												"filename": {
-													"value": "@activity('SpGetCOHFilename_cloud1').output.firstRow.Filename",
+													"value": "@activity('SpGetCOHFilename_cloud3').output.firstRow.Filename",
 													"type": "Expression"
 												}
 											}
