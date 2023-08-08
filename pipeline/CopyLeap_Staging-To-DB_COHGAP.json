@@ -2246,7 +2246,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable",
+						"activity": "SpGetCOHFilename_cloud1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2255,7 +2255,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_Cloud1_V2",
+						"referenceName": "CopyS3-To-Staging_Cloud1_OneFile_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -2266,6 +2266,10 @@
 						},
 						"windowEnd": {
 							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						},
+						"filename": {
+							"value": "@activity('SpGetCOHFilename_cloud1').output.firstRow.Filename",
 							"type": "Expression"
 						}
 					}
@@ -2276,7 +2280,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable",
+						"activity": "SpGetCOHFilename_cloud2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2285,7 +2289,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_Cloud2_V2",
+						"referenceName": "CopyS3-To-Staging_Cloud2_OneFile_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -2296,6 +2300,10 @@
 						},
 						"windowEnd": {
 							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						},
+						"filename": {
+							"value": "@activity('SpGetCOHFilename_cloud2').output.firstRow.Filename",
 							"type": "Expression"
 						}
 					}
@@ -2306,7 +2314,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "SpTruncateCOHGAPTemptable",
+						"activity": "SpGetCOHFilename_cloud3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2315,7 +2323,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "CopyS3-To-Staging_Cloud3_V2",
+						"referenceName": "CopyS3-To-Staging_Cloud3_Onefile_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -2327,7 +2335,125 @@
 						"windowEnd": {
 							"value": "@pipeline().parameters.windowEnd",
 							"type": "Expression"
+						},
+						"filename": {
+							"value": "@activity('SpGetCOHFilename_cloud3').output.firstRow.Filename",
+							"type": "Expression"
 						}
+					}
+				}
+			},
+			{
+				"name": "SpGetCOHFilename_cloud1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCOHFilename]",
+						"storedProcedureParameters": {
+							"Cloud": {
+								"type": "Int32",
+								"value": "1"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpGetCOHFilename_cloud2",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCOHFilename]",
+						"storedProcedureParameters": {
+							"Cloud": {
+								"type": "Int32",
+								"value": "2"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SpGetCOHFilename_cloud3",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SpTruncateCOHGAPTemptable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpGetCOHFilename]",
+						"storedProcedureParameters": {
+							"Cloud": {
+								"type": "Int32",
+								"value": "3"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
 					}
 				}
 			}
