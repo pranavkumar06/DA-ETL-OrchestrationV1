@@ -1446,7 +1446,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@equals(activity('SpGetTASFileLoadingStatus_Cloud1').output.firstRow.flgFileImported,'0')",
+									"value": "@equals(activity('SpGetTASFileLoadingStatus_Cloud1').output.firstRow.flgFileImported,0)\n",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -1839,6 +1839,22 @@
 									}
 								]
 							}
+						},
+						{
+							"name": "Wait2",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "If Condition1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 300
+							}
 						}
 					],
 					"timeout": "0.12:00:00"
@@ -1910,7 +1926,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@equals(activity('SpGetTASFileLoadingStatus_Cloud2').output.firstRow.flgFileImported,'0')",
+									"value": "@equals(activity('SpGetTASFileLoadingStatus_Cloud2').output.firstRow.flgFileImported,0)",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -2379,7 +2395,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@equals(activity('SpGetTASFileLoadingStatus_Cloud3').output.firstRow.flgFileImported,'0')",
+									"value": "@equals(activity('SpGetTASFileLoadingStatus_Cloud3').output.firstRow.flgFileImported,0)",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
