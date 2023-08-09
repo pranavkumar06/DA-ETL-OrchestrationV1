@@ -1394,7 +1394,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('flgFullProcessingPendingcloud1'), 1))\n",
+						"value": "@not(equals(variables('flgFullProcessingPendingcloud1'), '1'))\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -2795,15 +2795,15 @@
 				"defaultValue": "3"
 			},
 			"flgFullProcessingPendingcloud1": {
-				"type": "Boolean",
+				"type": "String",
 				"defaultValue": "0"
 			},
 			"flgFullProcessingPendingcloud2": {
-				"type": "Boolean",
+				"type": "String",
 				"defaultValue": "0"
 			},
 			"flgFullProcessingPendingcloud3": {
-				"type": "Boolean",
+				"type": "String",
 				"defaultValue": "0"
 			}
 		},
