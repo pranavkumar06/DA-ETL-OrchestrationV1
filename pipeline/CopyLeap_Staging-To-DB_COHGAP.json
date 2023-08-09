@@ -1394,7 +1394,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('flgFullProcessingPendingcloud1'), '1'))\n",
+						"value": "@not(equals(variables('flgFullProcessingPendingcloud1'), 1))\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -1858,7 +1858,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('flgFullProcessingPendingcloud2'), '1'))\n",
+						"value": "@not(equals(variables('flgFullProcessingPendingcloud2'), 1))\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -2322,7 +2322,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@not(equals(variables('flgFullProcessingPendingcloud3'), '1'))\n",
+						"value": "@not(equals(variables('flgFullProcessingPendingcloud3'), 1))\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -2795,15 +2795,15 @@
 				"defaultValue": "3"
 			},
 			"flgFullProcessingPendingcloud1": {
-				"type": "String",
+				"type": "Boolean",
 				"defaultValue": "0"
 			},
 			"flgFullProcessingPendingcloud2": {
-				"type": "String",
+				"type": "Boolean",
 				"defaultValue": "0"
 			},
 			"flgFullProcessingPendingcloud3": {
-				"type": "String",
+				"type": "Boolean",
 				"defaultValue": "0"
 			}
 		},
