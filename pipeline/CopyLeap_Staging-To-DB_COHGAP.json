@@ -5,6 +5,8 @@
 			{
 				"name": "SpTruncateCOHGAPTemptable",
 				"type": "SqlServerStoredProcedure",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -1269,6 +1271,8 @@
 			{
 				"name": "SpGetCOHFilename_cloud1",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpTruncateCOHGAPTemptable",
@@ -1307,6 +1311,8 @@
 			{
 				"name": "SpGetCOHFilename_cloud2",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpTruncateCOHGAPTemptable",
@@ -1345,6 +1351,8 @@
 			{
 				"name": "SpGetCOHFilename_cloud3",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpTruncateCOHGAPTemptable",
@@ -1383,6 +1391,8 @@
 			{
 				"name": "Until1 cloud1",
 				"type": "Until",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpGetCOHFilename_cloud1",
@@ -1871,6 +1881,8 @@
 			{
 				"name": "Until1 Cloud2",
 				"type": "Until",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpGetCOHFilename_cloud2",
@@ -2359,6 +2371,8 @@
 			{
 				"name": "Until1 Cloud3",
 				"type": "Until",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpGetCOHFilename_cloud3",
