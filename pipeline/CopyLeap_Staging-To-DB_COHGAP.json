@@ -1451,12 +1451,20 @@
 								},
 								"ifFalseActivities": [
 									{
-										"name": "Wait1",
-										"type": "Wait",
+										"name": "Set flgFullProcessingPending_copy1",
+										"type": "SetVariable",
 										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
 										"userProperties": [],
 										"typeProperties": {
-											"waitTimeInSeconds": 300
+											"variableName": "flgFullProcessingPendingcloud1",
+											"value": {
+												"value": "1",
+												"type": "Expression"
+											}
 										}
 									}
 								],
@@ -1836,6 +1844,22 @@
 												}
 											}
 										}
+									},
+									{
+										"name": "Wait1",
+										"type": "Wait",
+										"dependsOn": [
+											{
+												"activity": "Set flgFullProcessingPending",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
+										}
 									}
 								]
 							}
@@ -1915,12 +1939,20 @@
 								},
 								"ifFalseActivities": [
 									{
-										"name": "Wait1_cloud2",
-										"type": "Wait",
+										"name": "Set flgFullProcessingPending_cloud2_copy1",
+										"type": "SetVariable",
 										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
 										"userProperties": [],
 										"typeProperties": {
-											"waitTimeInSeconds": 300
+											"variableName": "flgFullProcessingPendingcloud2",
+											"value": {
+												"value": "1",
+												"type": "Expression"
+											}
 										}
 									}
 								],
@@ -2300,6 +2332,22 @@
 												}
 											}
 										]
+									},
+									{
+										"name": "Wait1_cloud2",
+										"type": "Wait",
+										"dependsOn": [
+											{
+												"activity": "Set flgFullProcessingPending_cloud2",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
+										}
 									}
 								]
 							}
@@ -2379,12 +2427,20 @@
 								},
 								"ifFalseActivities": [
 									{
-										"name": "Wait1_cloud3",
-										"type": "Wait",
+										"name": "Set flgFullProcessingPending_cloud3_copy1",
+										"type": "SetVariable",
 										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
 										"userProperties": [],
 										"typeProperties": {
-											"waitTimeInSeconds": 300
+											"variableName": "flgFullProcessingPendingcloud3",
+											"value": {
+												"value": "1",
+												"type": "Expression"
+											}
 										}
 									}
 								],
@@ -2763,6 +2819,22 @@
 													"type": "Expression"
 												}
 											}
+										}
+									},
+									{
+										"name": "Wait1_cloud3",
+										"type": "Wait",
+										"dependsOn": [
+											{
+												"activity": "Set flgFullProcessingPending_cloud3",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
 										}
 									}
 								]
