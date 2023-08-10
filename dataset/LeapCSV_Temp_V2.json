@@ -1,5 +1,5 @@
 {
-	"name": "LeapCSV_Temp_V2_Cloud1",
+	"name": "LeapCSV_Temp_V2",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DFLeapTempStorageLink",
