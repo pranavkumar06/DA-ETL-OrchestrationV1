@@ -32,6 +32,10 @@
 									"value": "@addminutes(utcnow(),330)",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "FileSetID",
+								"value": "120685"
 							}
 						],
 						"storeSettings": {
@@ -169,6 +173,16 @@
 							},
 							{
 								"source": {
+									"name": "FileSetID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FileSetId",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
 									"name": "Filename",
 									"type": "String"
 								},
@@ -239,6 +253,10 @@
 									"value": "@addminutes(utcnow(),330)",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "FileSetID",
+								"value": "712271"
 							}
 						],
 						"storeSettings": {
@@ -372,6 +390,16 @@
 								"sink": {
 									"name": "is_base",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FileSetID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FileSetId",
+									"type": "Int64"
 								}
 							},
 							{
