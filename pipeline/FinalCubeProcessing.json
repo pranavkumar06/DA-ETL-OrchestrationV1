@@ -3,32 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "PCode_Maximus_Job",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DWScaleafterProcessing_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "PCode_Maximus_Job",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DMinus1Date": {
-							"value": "@pipeline().parameters.DMinusOneDate",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "Until1",
 				"type": "Until",
 				"dependsOn": [],
@@ -338,26 +312,6 @@
 						}
 					],
 					"timeout": "0.12:00:00"
-				}
-			},
-			{
-				"name": "DWScaleafterProcessing_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Until1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DWScaleafterProcessing_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
 				}
 			}
 		],
