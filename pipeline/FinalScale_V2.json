@@ -22,6 +22,8 @@
 			{
 				"name": "AS_ResumeandScale_S8",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
