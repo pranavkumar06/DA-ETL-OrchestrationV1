@@ -65,6 +65,8 @@
 						{
 							"name": "AS_ResumeandScale_S4",
 							"type": "ExecutePipeline",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "DW_Resume_Scale_V2",
