@@ -1133,7 +1133,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"DMinus1Date": {
-							"value": "@pipeline().parameters.DMinusOneDate",
+							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
 							"type": "Expression"
 						}
 					}
