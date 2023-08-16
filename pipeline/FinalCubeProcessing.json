@@ -88,6 +88,8 @@
 									{
 										"name": "FinalScale_V2",
 										"type": "ExecutePipeline",
+										"state": "Inactive",
+										"onInactiveMarkAs": "Succeeded",
 										"dependsOn": [
 											{
 												"activity": "AS_CubeProcess_PCode_Sync_Fact",
@@ -128,6 +130,8 @@
 									{
 										"name": "AS_ResumeandScale_S4",
 										"type": "ExecutePipeline",
+										"state": "Inactive",
+										"onInactiveMarkAs": "Succeeded",
 										"dependsOn": [
 											{
 												"activity": "FinalScale_V2",
