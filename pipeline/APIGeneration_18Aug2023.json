@@ -1,0 +1,49 @@
+{
+	"name": "APIGeneration_18Aug2023",
+	"properties": {
+		"activities": [
+			{
+				"name": "APIDataFileGeneration",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "APIDataFileGeneration",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Send Success Notification",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "APIDataFileGeneration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com,varun@astix.in,helpdesk@astix.in,trivedi.dt.1@pg.com",
+						"Subject": "API Process Success",
+						"ErrorMessage": "API process and files generated successful"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
