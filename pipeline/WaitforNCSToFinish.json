@@ -28,7 +28,7 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlDWSource",
-									"sqlReaderQuery": "SELECT 1 AS flgdone",
+									"sqlReaderStoredProcedureName": "[dbo].[spNCSJobStatus]",
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -62,7 +62,7 @@
 										"dependsOn": [],
 										"userProperties": [],
 										"typeProperties": {
-											"waitTimeInSeconds": 300
+											"waitTimeInSeconds": 60
 										}
 									}
 								],
