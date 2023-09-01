@@ -22,7 +22,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "TAS_SBD_Master_cloud01.csv",
+									"value": "SBDMTR_cloud01_2023Sep01.csv",
 									"type": "Expression"
 								}
 							},
@@ -35,13 +35,13 @@
 							},
 							{
 								"name": "FileSetID",
-								"value": "120685"
+								"value": "0"
 							}
 						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "TAS_SBD_Master_cloud01.csv",
+							"wildcardFileName": "SBDMTR_cloud01_2023Sep01.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -243,7 +243,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "TAS_SBD_Master_cloud03.csv",
+									"value": "SBDMTR_cloud03_2023Sep01.csv",
 									"type": "Expression"
 								}
 							},
@@ -256,13 +256,13 @@
 							},
 							{
 								"name": "FileSetID",
-								"value": "712271"
+								"value": "0"
 							}
 						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "TAS_SBD_Master_cloud03.csv",
+							"wildcardFileName": "SBDMTR_cloud03_2023Sep01.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -464,7 +464,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "TAS_SBD_Master_cloud02.csv",
+									"value": "SBDMTR_cloud02_2023Sep01.csv",
 									"type": "Expression"
 								}
 							},
@@ -477,13 +477,13 @@
 							},
 							{
 								"name": "FileSetID",
-								"value": "120685"
+								"value": "0"
 							}
 						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "TAS_SBD_Master_cloud02.csv",
+							"wildcardFileName": "SBDMTR_cloud02_2023Sep01.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
