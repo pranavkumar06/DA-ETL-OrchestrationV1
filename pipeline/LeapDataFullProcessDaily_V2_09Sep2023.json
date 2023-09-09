@@ -392,16 +392,20 @@
 		],
 		"parameters": {
 			"DataProcessDate": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "09-Sep-2023"
 			},
 			"Container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cntleap"
 			},
 			"Directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "2023/09/09"
 			},
 			"Step": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
