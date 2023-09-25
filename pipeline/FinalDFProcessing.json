@@ -948,7 +948,7 @@
 				}
 			},
 			{
-				"name": "Wait 1 min",
+				"name": "Wait 60 min",
 				"type": "Wait",
 				"dependsOn": [
 					{
@@ -960,7 +960,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 1
+					"waitTimeInSeconds": 3600
 				}
 			},
 			{
@@ -968,7 +968,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Wait 1 min",
+						"activity": "Wait 60 min",
 						"dependencyConditions": [
 							"Succeeded"
 						]
