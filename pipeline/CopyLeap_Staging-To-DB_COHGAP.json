@@ -1244,7 +1244,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Transfer COH from TAS to DF",
+						"activity": "Wait2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2770,6 +2770,22 @@
 						}
 					],
 					"timeout": "0.12:00:00"
+				}
+			},
+			{
+				"name": "Wait2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Transfer COH from TAS to DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 3600
 				}
 			}
 		],
