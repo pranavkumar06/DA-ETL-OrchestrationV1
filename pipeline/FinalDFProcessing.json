@@ -463,6 +463,8 @@
 			{
 				"name": "AS_ResumeandScale_S9",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "FinalDFProcessing-TASProcessing",
