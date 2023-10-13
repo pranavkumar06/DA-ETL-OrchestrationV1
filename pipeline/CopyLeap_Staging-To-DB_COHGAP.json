@@ -1254,6 +1254,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "CopyS3-To-Staging_Cloud3_OneFile_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -2857,6 +2863,40 @@
 						},
 						"filename": {
 							"value": "@concat('COHPOINT_cloud02_', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'yyyy'),formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'MMM'), formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'dd'), '.csv')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CopyS3-To-Staging_Cloud3_OneFile_V2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Wait2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyS3-To-Staging_Cloud3_Onefile_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"windowStart": {
+							"value": "@pipeline().parameters.windowStart",
+							"type": "Expression"
+						},
+						"windowEnd": {
+							"value": "@pipeline().parameters.windowEnd",
+							"type": "Expression"
+						},
+						"filename": {
+							"value": "@concat('COHPOINT_cloud03_', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'yyyy'),formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'MMM'), formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'dd'), '.csv')",
 							"type": "Expression"
 						}
 					}
