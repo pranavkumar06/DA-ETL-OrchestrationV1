@@ -206,7 +206,7 @@
 				"typeProperties": {
 					"variableName": "filename",
 					"value": {
-						"value": "@pipeline().parameters.filename",
+						"value": "@concat('COHPOINT_cloud01_', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'yyyy'),formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'MMM'), formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'dd'), '.csv')",
 						"type": "Expression"
 					}
 				}
