@@ -67,6 +67,8 @@
 			{
 				"name": "ForEachCloud1FolderFiles",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Cloud1FilesFilter",
