@@ -5,14 +5,7 @@
 			{
 				"name": "Cloud1FilesMetaData",
 				"type": "GetMetadata",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -74,8 +67,6 @@
 			{
 				"name": "ForEachCloud1FolderFiles",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Cloud1FilesFilter",
@@ -192,23 +183,6 @@
 							}
 						}
 					]
-				}
-			},
-			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "filename",
-					"value": {
-						"value": "@concat('COHPOINT_cloud01_', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'yyyy'),formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'MMM'), formatDateTime(convertFromUtc(utcNow(), 'India Standard Time','dd-MMM-yyyy'), 'dd'), '.csv')",
-						"type": "Expression"
-					}
 				}
 			}
 		],
