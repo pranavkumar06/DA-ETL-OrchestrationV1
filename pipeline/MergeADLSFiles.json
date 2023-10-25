@@ -1898,7 +1898,7 @@
 						"parameters": {
 							"Container": "leap",
 							"Directory": "temp",
-							"Filename": "DBGPS_01Sep2023"
+							"Filename": "DBGPS_01Sep2023.csv.gz"
 						}
 					}
 				]
