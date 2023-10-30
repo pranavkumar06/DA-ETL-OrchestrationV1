@@ -339,7 +339,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@and(equals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH'),'8'),\nequals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm'),'30'))",
+									"value": "@greaterOrEquals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH:mm:ss'),'08:30:00')",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
