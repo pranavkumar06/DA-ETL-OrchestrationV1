@@ -950,22 +950,6 @@
 				}
 			},
 			{
-				"name": "Wait 1 min",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "SQL_Scale S6 1600 DTU",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 60
-				}
-			},
-			{
 				"name": "CopyLeap_Staging-To-DB_COHGAP",
 				"type": "ExecutePipeline",
 				"dependsOn": [
@@ -1172,7 +1156,7 @@
 				"type": "Until",
 				"dependsOn": [
 					{
-						"activity": "Wait 1 min",
+						"activity": "SQL_Scale S6 1600 DTU",
 						"dependencyConditions": [
 							"Succeeded"
 						]
