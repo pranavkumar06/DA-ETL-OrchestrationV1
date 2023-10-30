@@ -7,7 +7,7 @@
 				"type": "Until",
 				"dependsOn": [
 					{
-						"activity": "Wait2",
+						"activity": "Until 8_30",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -329,6 +329,67 @@
 				"typeProperties": {
 					"waitTimeInSeconds": 1800
 				}
+			},
+			{
+				"name": "Until 8_30",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Wait2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('flgTimeOK'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "If Condition3",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@and(equals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH'),'8'),\nequals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm'),'30'))",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Wait 5 min",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Set variable1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgTimeOK",
+											"value": ""
+										}
+									}
+								]
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
 			}
 		],
 		"parameters": {
@@ -342,6 +403,10 @@
 		},
 		"variables": {
 			"flgCanProcessStart": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgTimeOK": {
 				"type": "Boolean",
 				"defaultValue": false
 			}
