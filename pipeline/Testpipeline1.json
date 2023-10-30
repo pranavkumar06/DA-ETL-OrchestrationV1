@@ -50,8 +50,6 @@
 			{
 				"name": "Until 8_30",
 				"type": "Until",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
@@ -67,7 +65,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@and(equals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH'),'10'),\nequals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm'),'50'))",
+									"value": "@and(equals(int(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH')),10),\nequals(int(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm')),50))",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -104,40 +102,6 @@
 						}
 					],
 					"timeout": "0.12:00:00"
-				}
-			},
-			{
-				"name": "hour",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "hour",
-					"value": {
-						"value": "@int(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH'))",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "minute",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "minute",
-					"value": {
-						"value": "@int(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm'))",
-						"type": "Expression"
-					}
 				}
 			}
 		],
