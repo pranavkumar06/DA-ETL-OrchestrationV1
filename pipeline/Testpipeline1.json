@@ -103,6 +103,40 @@
 					],
 					"timeout": "0.12:00:00"
 				}
+			},
+			{
+				"name": "hour",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "hour",
+					"value": {
+						"value": "@int(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "minute",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "minute",
+					"value": {
+						"value": "@int(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm'))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -120,6 +154,14 @@
 			"flgTimeOK": {
 				"type": "Boolean",
 				"defaultValue": false
+			},
+			"hour": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"minute": {
+				"type": "Integer",
+				"defaultValue": 0
 			}
 		},
 		"annotations": []
