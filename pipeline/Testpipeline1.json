@@ -5,7 +5,13 @@
 			{
 				"name": "TimeToday",
 				"type": "SetVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "TimeToday",
@@ -18,6 +24,8 @@
 			{
 				"name": "FolderDate",
 				"type": "SetVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "TimeToday",
@@ -26,6 +34,10 @@
 						]
 					}
 				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "FolderDate",
@@ -33,6 +45,60 @@
 						"value": "@concat('/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'yyyy'), '/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'MM'), '/', formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'dd'), '/')",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Until 8_30",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('flgTimeOK'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "If Condition3",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@and(equals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH'),'10'),\nequals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'mm'),'40'))",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Wait 5 min",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Set variable1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgTimeOK",
+											"value": ""
+										}
+									}
+								]
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
 				}
 			}
 		],
@@ -47,6 +113,10 @@
 			},
 			"FolderDate": {
 				"type": "String"
+			},
+			"flgTimeOK": {
+				"type": "Boolean",
+				"defaultValue": false
 			}
 		},
 		"annotations": []
