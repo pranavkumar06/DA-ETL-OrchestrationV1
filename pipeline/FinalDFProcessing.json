@@ -954,7 +954,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Until 5_30",
+						"activity": "WaitTillPipeline",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1152,8 +1152,8 @@
 				}
 			},
 			{
-				"name": "Until 5_30",
-				"type": "Until",
+				"name": "WaitTillPipeline",
+				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
 						"activity": "SQL_Scale S6 1600 DTU",
@@ -1164,55 +1164,14 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "@bool(variables('flgCOHTimeOK'))",
-						"type": "Expression"
+					"pipeline": {
+						"referenceName": "WaitTillPipeline",
+						"type": "PipelineReference"
 					},
-					"activities": [
-						{
-							"name": "If Condition3",
-							"type": "IfCondition",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@greaterOrEquals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH:mm:ss'),'05:30:00')",
-									"type": "Expression"
-								},
-								"ifFalseActivities": [
-									{
-										"name": "Wait 5 min",
-										"type": "Wait",
-										"dependsOn": [],
-										"userProperties": [],
-										"typeProperties": {
-											"waitTimeInSeconds": 300
-										}
-									}
-								],
-								"ifTrueActivities": [
-									{
-										"name": "Set variable1",
-										"type": "SetVariable",
-										"dependsOn": [],
-										"policy": {
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"variableName": "flgCOHTimeOK",
-											"value": {
-												"value": "@bool(1)",
-												"type": "Expression"
-											}
-										}
-									}
-								]
-							}
-						}
-					],
-					"timeout": "0.12:00:00"
+					"waitOnCompletion": true,
+					"parameters": {
+						"TimeValue": "05:30:00"
+					}
 				}
 			}
 		],
