@@ -365,7 +365,10 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "flgTimeOK",
-											"value": ""
+											"value": {
+												"value": "@bool(1)",
+												"type": "Expression"
+											}
 										}
 									}
 								]
