@@ -399,6 +399,33 @@
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "spDataLoadSmartBasketFile",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SprefreshMaximusphase",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDataLoadSmartBasketFile]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
