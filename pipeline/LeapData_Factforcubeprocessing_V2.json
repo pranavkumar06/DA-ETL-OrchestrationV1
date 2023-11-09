@@ -420,7 +420,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[spDataLoadSmartBasketFile]"
+					"storedProcedureName": "[dbo].[spDataLoadSmartBasketFile]",
+					"storedProcedureParameters": {
+						"Rptmonthyear": {
+							"value": {
+								"value": "@pipeline().parameters.RptMonthYear",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Dev_DataFoundationDB",
