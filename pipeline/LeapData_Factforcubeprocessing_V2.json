@@ -435,6 +435,83 @@
 					"referenceName": "Dev_DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "spOLAPProcesStatusUpd",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactStoreDistribution_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spDataLoadSmartBasketFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactCOSData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactTargetData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactInventoryData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactARData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "spPopulateFactOrderData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spOLAPProcesStatusUpd]",
+					"storedProcedureParameters": {
+						"JobId": {
+							"value": "1",
+							"type": "Int32"
+						},
+						"OLAP": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"OLTP": {
+							"value": "1",
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
