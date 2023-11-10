@@ -46,7 +46,7 @@
 			}
 		],
 		"typeProperties": {
-			"table": "tblCustomerXML"
+			"table": "tblCustomerXMLData"
 		}
 	}
 }
