@@ -44,10 +44,6 @@
 				"precision": 16,
 				"scale": 0
 			}
-		],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": "tmpRawWinITCFRData"
-		}
+		]
 	}
 }
