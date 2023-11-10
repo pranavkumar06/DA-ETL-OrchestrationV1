@@ -219,6 +219,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "WINIT Daily Processing",
+						"dependencyConditions": [
+							"Completed"
+						]
 					}
 				],
 				"policy": {
