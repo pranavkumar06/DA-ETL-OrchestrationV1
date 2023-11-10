@@ -16,16 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "XmlSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"namespaces": true
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -44,7 +42,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "XMLFilefromStorage",
+						"referenceName": "CustomerCSV",
 						"type": "DatasetReference"
 					}
 				],

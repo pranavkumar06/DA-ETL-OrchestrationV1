@@ -1,0 +1,96 @@
+{
+	"name": "CustomerCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dfdatafoundationLink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ncsRetailer.csv",
+				"container": "test"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SUBDCODE",
+				"type": "String"
+			},
+			{
+				"name": "CUSTCODE",
+				"type": "String"
+			},
+			{
+				"name": "CUSTNAME",
+				"type": "String"
+			},
+			{
+				"name": "CHANNEL",
+				"type": "String"
+			},
+			{
+				"name": "DSE",
+				"type": "String"
+			},
+			{
+				"name": "CUSTTYPE",
+				"type": "String"
+			},
+			{
+				"name": "TOWN",
+				"type": "String"
+			},
+			{
+				"name": "TOWNCLASS",
+				"type": "String"
+			},
+			{
+				"name": "AREA",
+				"type": "String"
+			},
+			{
+				"name": "COVERAGESTS",
+				"type": "String"
+			},
+			{
+				"name": "DATE",
+				"type": "String"
+			},
+			{
+				"name": "SELECTEDDATE",
+				"type": "String"
+			},
+			{
+				"name": "CUSTCLASS",
+				"type": "String"
+			},
+			{
+				"name": "STATUS",
+				"type": "String"
+			},
+			{
+				"name": "MRAccCde",
+				"type": "String"
+			},
+			{
+				"name": "DSECode",
+				"type": "String"
+			},
+			{
+				"name": "Latitude",
+				"type": "String"
+			},
+			{
+				"name": "Longitude",
+				"type": "String"
+			}
+		]
+	}
+}
