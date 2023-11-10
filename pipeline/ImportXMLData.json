@@ -50,7 +50,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DataFoundationConnection",
+						"referenceName": "DataFoundationConnection_XML",
 						"type": "DatasetReference"
 					}
 				]
