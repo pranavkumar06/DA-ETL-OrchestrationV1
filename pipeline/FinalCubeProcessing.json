@@ -7,7 +7,7 @@
 				"type": "Until",
 				"dependsOn": [
 					{
-						"activity": "Until 8_30",
+						"activity": "Until 9_05",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -322,7 +322,7 @@
 				}
 			},
 			{
-				"name": "Until 8_30",
+				"name": "Until 9_05",
 				"type": "Until",
 				"dependsOn": [],
 				"userProperties": [],
@@ -339,7 +339,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greaterOrEquals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH:mm:ss'),'08:30:00')",
+									"value": "@greaterOrEquals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH:mm:ss'),'09:05:00')",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
