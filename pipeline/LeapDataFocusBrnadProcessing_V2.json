@@ -88,7 +88,7 @@
 				"type": "Until",
 				"dependsOn": [
 					{
-						"activity": "spPopulateFactFocusBrandData_PCode",
+						"activity": "Until 9_00",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -339,10 +339,78 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Until 9_00",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "spPopulateFactFocusBrandData_PCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('flgTimeOK'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "If Condition3",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greaterOrEquals(formatDateTime(convertFromUtc(utcNow(), 'India Standard Time'), 'HH:mm:ss'),'09:00:00')",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Wait 5 min",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Set variable1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgTimeOK",
+											"value": {
+												"value": "@bool(1)",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
 			}
 		],
 		"variables": {
 			"flgCanProcessStart": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"flgTimeOK": {
 				"type": "Boolean",
 				"defaultValue": false
 			}
