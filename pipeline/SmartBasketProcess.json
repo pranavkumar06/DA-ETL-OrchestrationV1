@@ -26,7 +26,7 @@
 					"storedProcedureParameters": {
 						"Rptmonthyear": {
 							"value": {
-								"value": "@pipeline().parameters.RptMonthYear",
+								"value": "@activity('spGetDFParameterDetail').output.firstRow.SBDRptMonthYear",
 								"type": "Expression"
 							},
 							"type": "Int32"
