@@ -162,6 +162,26 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "SmartBasketProcess",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spGetDFParameterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SmartBasketProcess",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
