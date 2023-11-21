@@ -123,7 +123,11 @@
 										"value": "@pipeline().parameters.DataProcessDate",
 										"type": "Expression"
 									},
-									"Cloud": 3
+									"Cloud": 3,
+									"Step": {
+										"value": "@pipeline().parameters.Step",
+										"type": "Expression"
+									}
 								}
 							}
 						}
