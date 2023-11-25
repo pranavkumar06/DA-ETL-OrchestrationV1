@@ -2,7 +2,7 @@
 	"name": "LeapDataMormningProcessing",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
