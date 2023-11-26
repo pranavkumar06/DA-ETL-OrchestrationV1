@@ -2,7 +2,7 @@
 	"name": "TAS_DB_Scale_200DTU",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
