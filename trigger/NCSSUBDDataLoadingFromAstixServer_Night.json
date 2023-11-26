@@ -2,7 +2,7 @@
 	"name": "NCSSUBDDataLoadingFromAstixServer_Night",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
