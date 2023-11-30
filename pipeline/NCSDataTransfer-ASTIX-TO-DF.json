@@ -71,6 +71,17 @@
 									"value": "@activity('WhenReadyToImport').output.firstRow.flgReadyLoad",
 									"type": "Expression"
 								},
+								"ifFalseActivities": [
+									{
+										"name": "Wait 10 minutes",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 600
+										}
+									}
+								],
 								"ifTrueActivities": [
 									{
 										"name": "CopyNCS_ASTIX_To_DF",
@@ -234,22 +245,6 @@
 									"value": "@bool(activity('WhenReadyToImport').output.firstRow.flgReadyLoad)",
 									"type": "Expression"
 								}
-							}
-						},
-						{
-							"name": "Wait 10 minutes",
-							"type": "Wait",
-							"dependsOn": [
-								{
-									"activity": "If Condition1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"waitTimeInSeconds": 600
 							}
 						}
 					],
