@@ -231,7 +231,7 @@
 							"typeProperties": {
 								"variableName": "flgCanProcessStart",
 								"value": {
-									"value": "@bool(1)",
+									"value": "@bool(activity('WhenReadyToImport').output.firstRow.flgReadyLoad)",
 									"type": "Expression"
 								}
 							}
