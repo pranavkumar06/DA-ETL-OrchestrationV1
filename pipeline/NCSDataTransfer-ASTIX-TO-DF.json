@@ -237,7 +237,7 @@
 							}
 						},
 						{
-							"name": "Wait 1 hour",
+							"name": "Wait 10 minutes",
 							"type": "Wait",
 							"dependsOn": [
 								{
@@ -249,7 +249,7 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 3600
+								"waitTimeInSeconds": 600
 							}
 						}
 					],
