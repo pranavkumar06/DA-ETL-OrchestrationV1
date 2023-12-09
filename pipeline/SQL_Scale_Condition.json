@@ -45,7 +45,7 @@
 		"parameters": {
 			"Scaleval": {
 				"type": "string",
-				"defaultValue": "S6"
+				"defaultValue": "S4"
 			},
 			"tier": {
 				"type": "string",
