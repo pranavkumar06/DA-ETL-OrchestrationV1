@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@and(equals(pipeline().parameters.flgcalled,1),contains('0',string(dayOfWeek(utcnow()))))",
+						"value": "@and(equals(pipeline().parameters.flgcalled,1),contains('0,7',string(dayOfWeek(utcnow()))))",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
