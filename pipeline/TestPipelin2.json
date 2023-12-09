@@ -335,9 +335,9 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "flag",
+					"variableName": "dayofweek",
 					"value": {
-						"value": "@contains('0,7',string(dayOfWeek(utcNow())))",
+						"value": "@string(dayOfWeek(utcNow()))",
 						"type": "Expression"
 					}
 				}
@@ -347,6 +347,9 @@
 			"flag": {
 				"type": "Boolean",
 				"defaultValue": false
+			},
+			"dayofweek": {
+				"type": "String"
 			}
 		},
 		"folder": {
