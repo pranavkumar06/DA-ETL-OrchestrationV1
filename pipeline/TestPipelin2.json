@@ -6,6 +6,8 @@
 				"name": "Store Data Copy",
 				"description": "Copy a file from the source store to the destination store.",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -315,8 +317,38 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Store Data Copy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "flag",
+					"value": {
+						"value": "@contains('0,7',string(dayOfWeek(utcNow())))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"flag": {
+				"type": "Boolean",
+				"defaultValue": false
+			}
+		},
 		"folder": {
 			"name": "V2 Pipelines"
 		},
