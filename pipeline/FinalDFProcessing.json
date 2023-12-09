@@ -455,7 +455,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "SQL_Scale",
+						"referenceName": "SQL_Scale_Condition",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,

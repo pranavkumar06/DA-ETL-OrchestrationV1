@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@contains('0',string(dayOfWeek(utcNow())))",
+						"value": "@contains('0,6',string(dayOfWeek(utcNow())))",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
