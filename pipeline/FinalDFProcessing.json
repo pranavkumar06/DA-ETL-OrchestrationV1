@@ -1081,6 +1081,8 @@
 			{
 				"name": "spDataHubDataPopulation",
 				"type": "SqlServerStoredProcedure",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LeapData_Factforcubeprocessing_V2",
