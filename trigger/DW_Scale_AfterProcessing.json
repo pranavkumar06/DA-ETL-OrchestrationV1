@@ -1,0 +1,39 @@
+{
+	"name": "DW_Scale_AfterProcessing",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "DW_Scale_AfterProcessing",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-12-09T13:27:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0,
+						10,
+						20,
+						30,
+						40,
+						50
+					],
+					"hours": [
+						10,
+						11,
+						12
+					]
+				}
+			}
+		}
+	}
+}
