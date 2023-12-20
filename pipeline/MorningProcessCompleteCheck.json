@@ -30,6 +30,17 @@
 									"value": "@equals(int(activity('Lookup1').output.firstRow.PGCubeProcessStatus),1)",
 									"type": "Expression"
 								},
+								"ifFalseActivities": [
+									{
+										"name": "Wait 5 min",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 3600
+										}
+									}
+								],
 								"ifTrueActivities": [
 									{
 										"name": "Set variable1",
@@ -49,22 +60,6 @@
 										}
 									}
 								]
-							}
-						},
-						{
-							"name": "Wait 5 min",
-							"type": "Wait",
-							"dependsOn": [
-								{
-									"activity": "If Condition1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"waitTimeInSeconds": 3600
 							}
 						},
 						{
