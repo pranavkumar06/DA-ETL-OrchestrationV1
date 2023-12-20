@@ -3429,6 +3429,46 @@
 						"ErrorMessage": "API process and files generated successful"
 					}
 				}
+			},
+			{
+				"name": "spDataHub_LoadFlag",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spDataHub_LoadFlag]",
+					"storedProcedureParameters": {
+						"CurrentDate": {
+							"value": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"flgProcessCOmplete": {
+							"value": "0",
+							"type": "Byte"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
