@@ -363,6 +363,26 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "MorningProcessCompleteCheck",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DCC",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MorningProcessCompleteCheck",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
