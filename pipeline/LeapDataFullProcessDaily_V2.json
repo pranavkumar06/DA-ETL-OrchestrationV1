@@ -3469,6 +3469,33 @@
 					"referenceName": "DataFoundationDB",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "SpScoreCard_PopulateInitialData",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DW_Resume_Scale_V2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spScoreCard_PopulateInitialData]"
+				},
+				"linkedServiceName": {
+					"referenceName": "DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
