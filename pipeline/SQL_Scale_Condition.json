@@ -63,7 +63,7 @@
 								"url": "https://management.azure.com/subscriptions/15354be3-bb86-4045-a1a1-7bf7d9ba1c31/resourceGroups/DataFoundation/providers/Microsoft.Sql/servers/pgdatafoundation/databases/db_PG_DMS_TeleCalling?api-version=2021-02-01-preview",
 								"method": "PUT",
 								"body": {
-									"value": "{\n\tlocation: \"eastus2\",\n    \"sku\": {\n    \"name\": \"GP_Gen5_4\",\n    \"tier\": \"General Purpose\"\n    }\n}",
+									"value": "{\n\tlocation: \"eastus2\",\n    \"sku\": {\n    \"name\": \"GP_Gen5_4\",\n    \"tier\": \"GeneralPurpose\"\n    }\n}",
 									"type": "Expression"
 								},
 								"authentication": {
