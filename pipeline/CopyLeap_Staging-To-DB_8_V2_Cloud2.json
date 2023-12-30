@@ -2046,6 +2046,212 @@
 															]
 														}
 													]
+												},
+												{
+													"value": "157",
+													"activities": [
+														{
+															"name": "SubDAssociation_Cloud2",
+															"description": "Copy a file from the source store to the destination store.",
+															"type": "Copy",
+															"dependsOn": [],
+															"policy": {
+																"timeout": "7.00:00:00",
+																"retry": 0,
+																"retryIntervalInSeconds": 30,
+																"secureOutput": false,
+																"secureInput": false
+															},
+															"userProperties": [],
+															"typeProperties": {
+																"source": {
+																	"type": "DelimitedTextSource",
+																	"additionalColumns": [
+																		{
+																			"name": "Filename",
+																			"value": {
+																				"value": "@activity('GetFileList').output.itemName",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "LastModifiedDatetime",
+																			"value": {
+																				"value": "@addminutes(utcnow(),330)",
+																				"type": "Expression"
+																			}
+																		},
+																		{
+																			"name": "FileSetID",
+																			"value": {
+																				"value": "@activity('SpCycFileSetEntry').output.firstRow.CycFileID",
+																				"type": "Expression"
+																			}
+																		}
+																	],
+																	"storeSettings": {
+																		"type": "AzureBlobStorageReadSettings",
+																		"recursive": true,
+																		"wildcardFileName": {
+																			"value": "@activity('GetFileList').output.itemName",
+																			"type": "Expression"
+																		},
+																		"enablePartitionDiscovery": false
+																	},
+																	"formatSettings": {
+																		"type": "DelimitedTextReadSettings"
+																	},
+																	"recursive": false
+																},
+																"sink": {
+																	"type": "SqlDWSink",
+																	"preCopyScript": {
+																		"value": "TRUNCATE TABLE @{item().temptablename}",
+																		"type": "Expression"
+																	},
+																	"allowPolyBase": true,
+																	"polyBaseSettings": {
+																		"rejectValue": 0,
+																		"rejectType": "value",
+																		"useTypeDefault": true
+																	},
+																	"disableMetricsCollection": false
+																},
+																"enableStaging": true,
+																"stagingSettings": {
+																	"linkedServiceName": {
+																		"referenceName": "DFPolybaseStagingStorageLink",
+																		"type": "LinkedServiceReference"
+																	},
+																	"path": "polybasestaging"
+																},
+																"dataIntegrationUnits": 2,
+																"translator": {
+																	"type": "TabularTranslator",
+																	"mappings": [
+																		{
+																			"source": {
+																				"name": "branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "branch_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "branch_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_sub_d_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_sub_d_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "retailer_sub_d_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "retailer_sub_d_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "sub_d_branch_code",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sub_d_branch_code",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "sub_d_branch_name",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "sub_d_branch_name",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "report_date",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "report_date",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "LastModifiedDatetime",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "Filename",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "Filename",
+																				"type": "String"
+																			}
+																		},
+																		{
+																			"source": {
+																				"name": "FileSetID",
+																				"type": "String"
+																			},
+																			"sink": {
+																				"name": "FileSetId",
+																				"type": "Int64"
+																			}
+																		}
+																	]
+																}
+															},
+															"inputs": [
+																{
+																	"referenceName": "LeapCSV_Staging_V2_Cloud1",
+																	"type": "DatasetReference"
+																}
+															],
+															"outputs": [
+																{
+																	"referenceName": "DS_Destination_table",
+																	"type": "DatasetReference",
+																	"parameters": {
+																		"tablename": {
+																			"value": "@item().temptablename",
+																			"type": "Expression"
+																		}
+																	}
+																}
+															]
+														}
+													]
 												}
 											]
 										}
