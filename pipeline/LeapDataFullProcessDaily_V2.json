@@ -3260,7 +3260,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ScaleVal": "DW1000c",
+						"ScaleVal": "DW300c",
 						"flgcalled": 1
 					}
 				}
