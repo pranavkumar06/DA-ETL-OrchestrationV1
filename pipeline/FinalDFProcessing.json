@@ -88,71 +88,11 @@
 				}
 			},
 			{
-				"name": "spRunForFiveStar-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spRolloverDataLoad-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "DF-To-TAS Transfer",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spRunForFiveStar]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "spCalculateLSSSchemeAgainstActData-TAS",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "spRunForFiveStar-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spCalculateLSSSchemeAgainstActData]"
-				},
-				"linkedServiceName": {
-					"referenceName": "TASDatabase_Check",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spCalculateLuckDrawStore-TAS",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "spTAS_UpdateTeleCallingActGPPoints-DF",
+						"activity": "NewTASProcessing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -525,119 +465,6 @@
 				}
 			},
 			{
-				"name": "FiveStar Data Transfer",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "spCalculateLSSSchemeAgainstActData-TAS",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "SqlDWSink",
-						"allowCopyCommand": true
-					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "DFPolybaseStagingStorageLink",
-							"type": "LinkedServiceReference"
-						},
-						"path": "polybasestaging"
-					},
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "TeleCallingId",
-									"type": "Int32"
-								},
-								"sink": {
-									"name": "TelecallingID",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "GPPoints",
-									"type": "Byte"
-								},
-								"sink": {
-									"name": "GPPOints",
-									"type": "Byte"
-								}
-							},
-							{
-								"source": {
-									"name": "ParameterId",
-									"type": "Byte"
-								},
-								"sink": {
-									"name": "Parameterid",
-									"type": "Byte"
-								}
-							}
-						]
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_TAS_tmpTeleCallingFiveStarGPPoints",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_tmpTAS_FiveStarGPPoints",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "spTAS_UpdateTeleCallingActGPPoints-DF",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "FiveStar Data Transfer",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[spTAS_UpdateTeleCallingActGPPoints]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Dev_DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "spTAS_PopulateStoreSchemeDistributionCount-TAS",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -687,7 +514,7 @@
 						]
 					},
 					{
-						"activity": "spTAS_UpdateTeleCallingActGPPoints-DF",
+						"activity": "NewTASProcessing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1222,6 +1049,32 @@
 				"linkedServiceName": {
 					"referenceName": "DataFoundationDB",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "NewTASProcessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spRolloverDataLoad-TAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "DF-To-TAS Transfer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "NewTASProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
