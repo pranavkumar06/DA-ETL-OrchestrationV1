@@ -3,71 +3,127 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
-				"type": "Lookup",
+				"name": "Until1",
+				"type": "Until",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpGetPGCubeProcessStatus]",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "DataFoundationConnection",
-						"type": "DatasetReference"
-					}
-				}
-			},
-			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "Lookup1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(int(activity('Lookup1').output.firstRow.PGCubeProcessStatus),1)",
+						"value": "@bool(variables('flgcanproceed'))",
 						"type": "Expression"
 					},
-					"ifTrueActivities": [
+					"activities": [
 						{
-							"name": "DW_Scale",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
+							"name": "If Condition1",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "Lookup1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
-								"pipeline": {
-									"referenceName": "DW_Scale_V2",
-									"type": "PipelineReference"
+								"expression": {
+									"value": "@equals(int(activity('Lookup1').output.firstRow.PGCubeProcessStatus),1)",
+									"type": "Expression"
 								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Scaleval": {
-										"value": "100DW",
-										"type": "Expression"
+								"ifFalseActivities": [
+									{
+										"name": "Wait 5 min",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 300
+										}
 									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "DW_Scale",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "DW_Scale_V2",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"Scaleval": {
+													"value": "100DW",
+													"type": "Expression"
+												}
+											}
+										}
+									},
+									{
+										"name": "Set Complete",
+										"type": "SetVariable",
+										"dependsOn": [
+											{
+												"activity": "DW_Scale",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flgcanproceed",
+											"value": {
+												"value": "@bool(1)",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "Lookup1",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpGetPGCubeProcessStatus]",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DataFoundationConnection",
+									"type": "DatasetReference"
 								}
 							}
 						}
-					]
+					],
+					"timeout": "0.12:00:00"
 				}
 			}
 		],
+		"variables": {
+			"flgcanproceed": {
+				"type": "Boolean",
+				"defaultValue": false
+			}
+		},
 		"folder": {
 			"name": "Resource Management"
 		},
