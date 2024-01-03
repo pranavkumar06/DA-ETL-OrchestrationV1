@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "TAS_PSR_C03_May_2022.csv",
+				"fileName": "Product Sales Report HQ Dec.csv",
 				"container": "leaptemp"
 			},
 			"columnDelimiter": ",",
