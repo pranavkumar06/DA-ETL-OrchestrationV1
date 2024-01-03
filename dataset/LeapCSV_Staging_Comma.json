@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Product Sales Report HQ Dec.csv",
+				"fileName": "Product Sales Report HQ Nov.csv",
 				"container": "leaptemp"
 			},
 			"columnDelimiter": ",",
