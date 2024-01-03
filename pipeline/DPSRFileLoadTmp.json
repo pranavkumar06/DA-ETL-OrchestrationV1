@@ -22,7 +22,7 @@
 							{
 								"name": "Filename",
 								"value": {
-									"value": "TAS_PSR_C03_Nov_2022.csv",
+									"value": "Product Sales Report HQ Nov.csv",
 									"type": "Expression"
 								}
 							},
@@ -38,7 +38,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "TAS_PSR_C03_Nov_2022.csv",
+								"value": "Product Sales Report HQ Nov.csv",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -698,13 +698,23 @@
 									"name": "transaction_customer_type",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"name": "promo_pass_on_amt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "promo_pass_on_amt",
+									"type": "String"
+								}
 							}
 						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "LeapCSV_Staging_Linefeed",
+						"referenceName": "LeapCSV_Staging_Comma",
 						"type": "DatasetReference"
 					}
 				],
@@ -713,7 +723,7 @@
 						"referenceName": "DS_Destination_table",
 						"type": "DatasetReference",
 						"parameters": {
-							"tablename": "tmpRawLEAPTAS_DPSR_08Jun"
+							"tablename": "tmpRawLEAPTAS_DPSR_Cloud1"
 						}
 					}
 				]
