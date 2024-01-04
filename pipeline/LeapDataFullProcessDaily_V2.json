@@ -87,7 +87,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "WaitforNCSToFinish",
+									"activity": "DW_Scale 1000",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -129,6 +129,30 @@
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "DW_Scale 1000",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "WaitforNCSToFinish",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Resume_Scale_V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ScaleVal": "DW1000c",
+									"flgcalled": 1
+								}
 							}
 						}
 					]
