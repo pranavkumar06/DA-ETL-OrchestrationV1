@@ -1092,6 +1092,8 @@
 			{
 				"name": "DW_Scale_1000",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "spDF_GenerateInvWiseNetSales-DF",
