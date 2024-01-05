@@ -1,0 +1,49 @@
+{
+	"name": "DCCFinalProcessing",
+	"properties": {
+		"activities": [
+			{
+				"name": "DCC_Processing",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DCC_Processing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DCC",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DCC_Processing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DCC",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"DMinusOneDate": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "V2 Pipelines"
+		},
+		"annotations": []
+	}
+}
