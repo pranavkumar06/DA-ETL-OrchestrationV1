@@ -1,0 +1,141 @@
+{
+	"name": "APIExtractPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "PurdDataFileGeneration_Temp",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PurdDataFileGeneration_Temp",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Purchase History Send Notification",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "PurdDataFileGeneration_Temp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "trivedi.dt.1@pg.com,maiti.am@pg.com",
+						"Subject": "Purchase History File generation notification",
+						"ErrorMessage": "Daily Purchase history file is generated."
+					}
+				}
+			},
+			{
+				"name": "spAPI_PopulateExtractIDCMP-DF",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Purchase History Send Notification",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spAPI_PopulateExtractIDCMP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Dev_DataFoundationDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "MasterDataForAPI",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "spAPI_PopulateExtractIDCMP-DF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MasterDataForAPI",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "APIDataFileGeneration",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "MasterDataForAPI",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "APIDataFileGeneration",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Send Success Notification",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "APIDataFileGeneration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Send Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "Avinash@astix.in,Alok@astix.in,gaurav@astix.in,phegade.md@pg.com,bussa.r@pg.com,varun@astix.in,helpdesk@astix.in,trivedi.dt.1@pg.com",
+						"Subject": "API Process Success",
+						"ErrorMessage": "API process and files generated successful"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Leap Data Pipeline"
+		},
+		"annotations": []
+	}
+}
