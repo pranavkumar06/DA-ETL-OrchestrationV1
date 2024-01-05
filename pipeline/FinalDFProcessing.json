@@ -953,30 +953,6 @@
 				}
 			},
 			{
-				"name": "DW_Resume_Scale DW100_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "PCode_Maximus_Job",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW100c",
-						"flgcalled": 1
-					}
-				}
-			},
-			{
 				"name": "MorningProcessCompleteCheck",
 				"type": "ExecutePipeline",
 				"dependsOn": [
