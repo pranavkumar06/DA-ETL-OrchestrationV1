@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SpOverAllCubeProcessStatus",
+				"name": "SpDAAllProcessStatusGet",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderStoredProcedureName": "[dbo].[SpOverAllCubeProcessStatus]",
+						"sqlReaderStoredProcedureName": "[dbo].[SpDAAllProcessStatusGet]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -32,7 +32,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "SpOverAllCubeProcessStatus",
+						"activity": "SpDAAllProcessStatusGet",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(int(activity('SpOverAllCubeProcessStatus').output.firstRow.flgDone),1)",
+						"value": "@equals(int(activity('SpDAAllProcessStatusGet').output.firstRow.flgIsProcessingDone),1)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
@@ -57,7 +57,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"ScaleVal": "DW100c",
+									"ScaleVal": "DW200c",
 									"flgcalled": 1
 								}
 							}
