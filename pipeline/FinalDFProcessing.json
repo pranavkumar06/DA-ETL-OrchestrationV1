@@ -695,13 +695,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale DW200_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "AS_ResumeandScale_S9",
+						"activity": "DWScaleafterProcessing_V21",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -882,7 +876,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DWScaleafterProcessing_V2",
+						"activity": "FinalCubeProcessing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -901,32 +895,6 @@
 							"type": "Expression"
 						}
 					}
-				}
-			},
-			{
-				"name": "DWScaleafterProcessing_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "FinalCubeProcessing",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "DCCFinalProcessing",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DWScaleafterProcessing_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
 				}
 			},
 			{
@@ -957,7 +925,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DCCFinalProcessing",
+						"activity": "DWScaleafterProcessing_V21",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1096,6 +1064,32 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "DCCFinalProcessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DWScaleafterProcessing_V21",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AS_ResumeandScale_S9",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "DCCFinalProcessing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DWScaleafterProcessing_V2",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
