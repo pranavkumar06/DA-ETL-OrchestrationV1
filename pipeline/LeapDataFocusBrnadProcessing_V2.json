@@ -5,14 +5,7 @@
 			{
 				"name": "FocusBrandLoading-LEAP-TO-DF",
 				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "SpDAProcessStatusUpdate_Start",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -334,7 +327,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "SpDAProcessStatusUpdate_Start_copy1",
+						"activity": "Until1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -411,73 +404,6 @@
 						}
 					],
 					"timeout": "0.12:00:00"
-				}
-			},
-			{
-				"name": "SpDAProcessStatusUpdate_Start",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpDAProcessStatusUpdate]",
-					"storedProcedureParameters": {
-						"flgStatus": {
-							"value": "1",
-							"type": "Byte"
-						},
-						"ProcessID": {
-							"value": "3",
-							"type": "Int32"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "SpDAProcessStatusUpdate_Start_copy1",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Until1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[SpDAProcessStatusUpdate]",
-					"storedProcedureParameters": {
-						"flgStatus": {
-							"value": "2",
-							"type": "Byte"
-						},
-						"ProcessID": {
-							"value": "3",
-							"type": "Int32"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "DataFoundationDB",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
