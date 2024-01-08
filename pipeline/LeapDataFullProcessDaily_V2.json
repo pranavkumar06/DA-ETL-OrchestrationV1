@@ -81,7 +81,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale 1000",
+									"activity": "DW_Scale 500",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -126,7 +126,7 @@
 							}
 						},
 						{
-							"name": "DW_Scale 1000",
+							"name": "DW_Scale 500",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
@@ -144,7 +144,7 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"ScaleVal": "DW1000c",
+									"ScaleVal": "DW500c",
 									"flgcalled": 1
 								}
 							}
@@ -154,7 +154,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale 1000",
+									"activity": "DW_Scale 500",
 									"dependencyConditions": [
 										"Succeeded"
 									]
