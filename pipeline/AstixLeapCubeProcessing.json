@@ -208,6 +208,8 @@
 						{
 							"name": "DW_Resume_Scale_V2",
 							"type": "ExecutePipeline",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Send Notification",
