@@ -1,0 +1,123 @@
+{
+	"name": "DW_Resume_Scale_V3",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SpDWScale",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(pipeline().parameters.flgcalled,1)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "DW_Resume",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Resume_V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "DW_Scale",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "DW_Resume",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Scale_V2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Scaleval": {
+										"value": "@pipeline().parameters.ScaleVal",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "SpDWScale",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpDWScale]",
+						"storedProcedureParameters": {
+							"CheckDate": {
+								"type": "DateTime",
+								"value": {
+									"value": "@pipeline().parameters.CheckDate",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"ScaleVal": {
+				"type": "string"
+			},
+			"flgcalled": {
+				"type": "int",
+				"defaultValue": 0
+			},
+			"CheckDate": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Resource Management"
+		},
+		"annotations": []
+	}
+}
