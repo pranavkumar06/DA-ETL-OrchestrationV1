@@ -108,8 +108,9 @@
 				"type": "int",
 				"defaultValue": 0
 			},
-			"CheckDate": {
-				"type": "string"
+			"flgStep": {
+				"type": "bool",
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
