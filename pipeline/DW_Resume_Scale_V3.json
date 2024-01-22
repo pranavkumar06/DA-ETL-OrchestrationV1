@@ -85,10 +85,10 @@
 						"type": "SqlDWSource",
 						"sqlReaderStoredProcedureName": "[dbo].[SpDWScale]",
 						"storedProcedureParameters": {
-							"CheckDate": {
-								"type": "DateTime",
+							"flgStep": {
+								"type": "Byte",
 								"value": {
-									"value": "@pipeline().parameters.CheckDate",
+									"value": "@pipeline().parameters.flgStep",
 									"type": "Expression"
 								}
 							}
