@@ -115,6 +115,11 @@
 				"type": "string"
 			}
 		},
+		"variables": {
+			"NewScalVal": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Resource Management"
 		},
