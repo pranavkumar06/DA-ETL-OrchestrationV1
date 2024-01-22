@@ -5,8 +5,6 @@
 			{
 				"name": "SpCycleStart",
 				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -38,8 +36,6 @@
 			{
 				"name": "SpCheckCCCRMorningProcessingDone",
 				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpCycleStart",
@@ -72,8 +68,6 @@
 			{
 				"name": "When Morning CCCR Processing Done",
 				"type": "IfCondition",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpCheckCCCRMorningProcessingDone",
