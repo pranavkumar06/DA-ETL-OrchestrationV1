@@ -184,7 +184,11 @@
 								"waitOnCompletion": true,
 								"parameters": {
 									"ScaleVal": "DW1000c",
-									"flgcalled": 1
+									"flgcalled": 1,
+									"CheckDate": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
 								}
 							}
 						},
