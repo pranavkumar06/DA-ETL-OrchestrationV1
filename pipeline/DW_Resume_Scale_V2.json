@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@and(equals(pipeline().parameters.flgcalled,1),equals(activity('SpDWScale').output.firstRow.flgCheckOK,1))",
+						"value": "@equals(pipeline().parameters.flgcalled,1)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
@@ -113,11 +113,6 @@
 			},
 			"CheckDate": {
 				"type": "string"
-			}
-		},
-		"variables": {
-			"NewScalVal": {
-				"type": "String"
 			}
 		},
 		"folder": {
