@@ -3384,7 +3384,11 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"ScaleVal": "DW500c",
-						"flgcalled": 1
+						"flgcalled": 1,
+						"CheckDate": {
+							"value": "@utcnow()",
+							"type": "Expression"
+						}
 					}
 				}
 			},
