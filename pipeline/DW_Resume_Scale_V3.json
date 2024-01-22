@@ -59,7 +59,7 @@
 								"waitOnCompletion": true,
 								"parameters": {
 									"Scaleval": {
-										"value": "@pipeline().parameters.ScaleVal",
+										"value": "@activity('SpDWScale').output.firstRow.ScaleVal",
 										"type": "Expression"
 									}
 								}
@@ -104,9 +104,6 @@
 			}
 		],
 		"parameters": {
-			"ScaleVal": {
-				"type": "string"
-			},
 			"flgcalled": {
 				"type": "int",
 				"defaultValue": 0
