@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@activity('SpMonthStartProcessingCheck').output.firstRow.flgProcessOK",
+						"value": "@equals(activity('SpMonthStartProcessingCheck').output.firstRow.flgProcessOK,1)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
