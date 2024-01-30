@@ -3,11 +3,36 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Maximus Rurban Split",
-				"type": "ExecutePipeline",
+				"name": "SpMonthStartProcessingCheck",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SpMonthStartProcessingCheck]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DataFoundationConnection",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "SpMonthStartProcessingCheck",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -15,20 +40,44 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Maximus Rurban Split",
-						"type": "PipelineReference"
+					"expression": {
+						"value": "@activity('SpMonthStartProcessingCheck').output.firstRow.flgProcessOK",
+						"type": "Expression"
 					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
+					"ifTrueActivities": [
+						{
+							"name": "Maximus Rurban Split",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Wait1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Maximus Rurban Split",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
 				}
 			}
 		],
