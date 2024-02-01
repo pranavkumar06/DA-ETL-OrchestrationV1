@@ -155,6 +155,33 @@
 												"type": "DatasetReference"
 											}
 										]
+									},
+									{
+										"name": "EXEC spDataLoadRawLeapTAS_DRCP_Cloud1",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "DRCP_Cloud1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[spDataLoadRawLeapTAS_DRCP_Cloud1]"
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
 									}
 								]
 							}
@@ -366,6 +393,33 @@
 												"type": "DatasetReference"
 											}
 										]
+									},
+									{
+										"name": "spDataLoadRawLeapTAS_DRCP_Cloud2",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "DRCP_Cloud2",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[spDataLoadRawLeapTAS_DRCP_Cloud2]"
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
 									}
 								]
 							}
