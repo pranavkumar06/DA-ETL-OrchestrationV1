@@ -5,7 +5,14 @@
 			{
 				"name": "spGetDFParameterDetail",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LoadFile-Staging-To-DB_DRCP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1176,6 +1183,22 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "DWScaleafterProcessing_V2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "LoadFile-Staging-To-DB_DRCP",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LoadFile-Staging-To-DB_DRCP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
