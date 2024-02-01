@@ -2343,6 +2343,8 @@
 			{
 				"name": "If SBD File Process",
 				"type": "IfCondition",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SpCheckSBDFileProcessStatus",
@@ -2384,6 +2386,8 @@
 			{
 				"name": "SpCheckSBDFileProcessStatus",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Loading Temp and Final Tables",
