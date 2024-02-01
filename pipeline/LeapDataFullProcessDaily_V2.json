@@ -111,7 +111,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale 1000",
+									"activity": "DW_Scale Processing",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -162,7 +162,7 @@
 							}
 						},
 						{
-							"name": "DW_Scale 1000",
+							"name": "DW_Scale Processing",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
@@ -178,17 +178,13 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "DW_Resume_Scale_V2",
+									"referenceName": "DW_Resume_Scale_V3",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"ScaleVal": "DW1000c",
 									"flgcalled": 1,
-									"CheckDate": {
-										"value": "@utcnow()",
-										"type": "Expression"
-									}
+									"flgStep": 2
 								}
 							}
 						},
@@ -197,7 +193,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale 1000",
+									"activity": "DW_Scale Processing",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -220,7 +216,7 @@
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
-									"activity": "DW_Scale 1000",
+									"activity": "DW_Scale Processing",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -250,7 +246,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale_V3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -283,7 +279,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale_V3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -306,7 +302,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale_V3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -3362,7 +3358,7 @@
 				}
 			},
 			{
-				"name": "DW_Resume_Scale_V2",
+				"name": "DW_Resume_Scale_V3",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -3378,17 +3374,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
+						"referenceName": "DW_Resume_Scale_V3",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ScaleVal": "DW500c",
 						"flgcalled": 1,
-						"CheckDate": {
-							"value": "@utcnow()",
-							"type": "Expression"
-						}
+						"flgStep": 1
 					}
 				}
 			},
@@ -3424,7 +3416,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale_V3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -3464,7 +3456,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "DW_Resume_Scale_V2",
+						"activity": "DW_Resume_Scale_V3",
 						"dependencyConditions": [
 							"Succeeded"
 						]
