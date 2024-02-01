@@ -145,12 +145,14 @@
 											},
 											"sink": {
 												"type": "SqlDWSink",
+												"preCopyScript": "TRUNCATE TABLE tmpRawLEAPTAS_DRCP_Cloud1",
 												"allowPolyBase": true,
 												"polyBaseSettings": {
 													"rejectValue": 0,
 													"rejectType": "value",
 													"useTypeDefault": true
-												}
+												},
+												"disableMetricsCollection": false
 											},
 											"enableStaging": true,
 											"stagingSettings": {
@@ -384,7 +386,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DS_DRCP_table",
+												"referenceName": "DS_DRCP_Cloud1",
 												"type": "DatasetReference"
 											}
 										]
