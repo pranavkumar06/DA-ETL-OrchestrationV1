@@ -109,8 +109,8 @@
 				"defaultValue": 0
 			},
 			"flgStep": {
-				"type": "bool",
-				"defaultValue": true
+				"type": "int",
+				"defaultValue": 1
 			}
 		},
 		"folder": {
