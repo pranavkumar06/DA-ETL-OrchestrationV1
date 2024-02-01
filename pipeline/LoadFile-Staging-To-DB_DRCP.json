@@ -974,14 +974,15 @@
 										"userProperties": [],
 										"typeProperties": {
 											"source": {
-												"type": "BinarySource",
+												"type": "DelimitedTextSource",
 												"storeSettings": {
 													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
-													"wildcardFileName": "DRCP_cloud03_*"
+													"wildcardFileName": "DRCP_cloud03_*",
+													"enablePartitionDiscovery": false
 												},
 												"formatSettings": {
-													"type": "BinaryReadSettings"
+													"type": "DelimitedTextReadSettings"
 												},
 												"recursive": false
 											},
@@ -1003,11 +1004,216 @@
 													"type": "LinkedServiceReference"
 												},
 												"path": "polybasestaging"
+											},
+											"translator": {
+												"type": "TabularTranslator",
+												"mappings": [
+													{
+														"source": {
+															"name": "branchcode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "branchcode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "branchname",
+															"type": "String"
+														},
+														"sink": {
+															"name": "branchname",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "retailercode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "retailercode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "retailername",
+															"type": "String"
+														},
+														"sink": {
+															"name": "retailername",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "retaileraddress",
+															"type": "String"
+														},
+														"sink": {
+															"name": "retaileraddress",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "retailercontact",
+															"type": "String"
+														},
+														"sink": {
+															"name": "retailercontact",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "stlname",
+															"type": "String"
+														},
+														"sink": {
+															"name": "stlname",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "dsecode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "dsecode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "dsename",
+															"type": "String"
+														},
+														"sink": {
+															"name": "dsename",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "channel",
+															"type": "String"
+														},
+														"sink": {
+															"name": "channel",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "channeltype",
+															"type": "String"
+														},
+														"sink": {
+															"name": "channeltype",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "channeldescription",
+															"type": "String"
+														},
+														"sink": {
+															"name": "channeldescription",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "routecode",
+															"type": "String"
+														},
+														"sink": {
+															"name": "routecode",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "routename",
+															"type": "String"
+														},
+														"sink": {
+															"name": "routename",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "sectorname",
+															"type": "String"
+														},
+														"sink": {
+															"name": "sectorname",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "latitude",
+															"type": "String"
+														},
+														"sink": {
+															"name": "latitude",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "longitude",
+															"type": "String"
+														},
+														"sink": {
+															"name": "longitude",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "visit_date",
+															"type": "String"
+														},
+														"sink": {
+															"name": "visit_date",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Filename",
+															"type": "String"
+														},
+														"sink": {
+															"name": "Filename",
+															"type": "String"
+														}
+													},
+													{
+														"source": {
+															"name": "Lastmodifieddatetime",
+															"type": "String"
+														},
+														"sink": {
+															"name": "LastModifiedDatetime",
+															"type": "String"
+														}
+													}
+												]
 											}
 										},
 										"inputs": [
 											{
-												"referenceName": "LeapStorageSourceDataset_V2_Cloud3",
+												"referenceName": "LeapCSV_Staging_V2_Cloud3",
 												"type": "DatasetReference"
 											}
 										],
