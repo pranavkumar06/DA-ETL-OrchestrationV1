@@ -28,68 +28,11 @@
 				}
 			},
 			{
-				"name": "DW_Resume_Scale DW200_V2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "spGetDFParameterDetail",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DW_Resume_Scale_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ScaleVal": "DW200c",
-						"flgcalled": 0
-					}
-				}
-			},
-			{
-				"name": "FinalCubeProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DWScaleafterProcessing_V21",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "FinalCubeProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DMinusOneDate": {
-							"value": "@activity('spGetDFParameterDetail').output.firstRow.DMinusOneDate",
-							"type": "Expression"
-						},
-						"flgcalled": 1
-					}
-				}
-			},
-			{
 				"name": "PCode_Maximus_Job",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "FinalCubeProcessing",
+						"activity": "spGetDFParameterDetail",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -111,75 +54,6 @@
 							"type": "Expression"
 						}
 					}
-				}
-			},
-			{
-				"name": "MorningProcessCompleteCheck",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DWScaleafterProcessing_V21",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "MorningProcessCompleteCheck",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "DCCFinalProcessing",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DW_Resume_Scale DW200_V2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DCCFinalProcessing",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "DWScaleafterProcessing_V21",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "DCCFinalProcessing",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "DWScaleafterProcessing_V2",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
 				}
 			}
 		],
