@@ -2,7 +2,7 @@
 	"name": "Trigger_AS_Pause",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
