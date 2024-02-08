@@ -749,6 +749,8 @@
 														{
 															"name": "spDataLoadtmpRawLEAPTAS_RTRM_ER",
 															"type": "SqlServerStoredProcedure",
+															"state": "Inactive",
+															"onInactiveMarkAs": "Succeeded",
 															"dependsOn": [
 																{
 																	"activity": "ERStoremaster",
@@ -785,6 +787,8 @@
 														{
 															"name": "CopyERStaging-To-ADLS-OneFile",
 															"type": "ExecutePipeline",
+															"state": "Inactive",
+															"onInactiveMarkAs": "Succeeded",
 															"dependsOn": [
 																{
 																	"activity": "spDataLoadtmpRawLEAPTAS_RTRM_ER",
@@ -816,6 +820,8 @@
 														{
 															"name": "DeleteERStagingOneFile_StoreMaster",
 															"type": "ExecutePipeline",
+															"state": "Inactive",
+															"onInactiveMarkAs": "Succeeded",
 															"dependsOn": [
 																{
 																	"activity": "CopyERStaging-To-ADLS-OneFile",
