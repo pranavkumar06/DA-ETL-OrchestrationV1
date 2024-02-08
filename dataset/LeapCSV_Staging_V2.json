@@ -5,11 +5,6 @@
 			"referenceName": "DFLeapTempStorageLink",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"filename": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "FileConnection"
 		},
