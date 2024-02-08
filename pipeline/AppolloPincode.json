@@ -93,7 +93,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "LeapCSV_Staging_V2",
+									"referenceName": "LeapCSV_Staging_Appollo",
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
