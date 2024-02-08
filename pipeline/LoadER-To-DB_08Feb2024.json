@@ -692,7 +692,7 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "extra_field_20",
+																				"name": "FileName",
 																				"type": "String"
 																			}
 																		},
@@ -702,7 +702,7 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "FileName",
+																				"name": "LastModifiedDatetime",
 																				"type": "String"
 																			}
 																		},
@@ -712,8 +712,8 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "LastModifiedDatetime",
-																				"type": "String"
+																				"name": "FileSetId",
+																				"type": "Int64"
 																			}
 																		}
 																	]
