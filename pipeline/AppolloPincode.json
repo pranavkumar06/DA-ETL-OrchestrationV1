@@ -61,6 +61,23 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlDWSource",
+									"sqlReaderStoredProcedureName": "[dbo].[SpApploFileFileData]",
+									"storedProcedureParameters": {
+										"RtpMonthYear": {
+											"type": "Int32",
+											"value": {
+												"value": "@item().RptMonthYear",
+												"type": "Expression"
+											}
+										},
+										"SiteCode": {
+											"type": "String",
+											"value": {
+												"value": "@item().SiteCode",
+												"type": "Expression"
+											}
+										}
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
