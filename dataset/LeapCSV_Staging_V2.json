@@ -5,6 +5,11 @@
 			"referenceName": "DFLeapTempStorageLink",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "FileConnection"
 		},
@@ -13,7 +18,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "CFR_cloud01_2021Apr18.csv",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
 				"container": "leaptemp-v2"
 			},
 			"columnDelimiter": "|",
