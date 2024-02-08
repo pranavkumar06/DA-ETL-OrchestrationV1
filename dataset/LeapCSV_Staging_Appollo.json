@@ -1,5 +1,5 @@
 {
-	"name": "LeapCSV_Staging_V2",
+	"name": "LeapCSV_Staging_Appollo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DFLeapTempStorageLink",
@@ -18,7 +18,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "xyz",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
 				"container": "leaptemp-v2"
 			},
 			"columnDelimiter": "|",
