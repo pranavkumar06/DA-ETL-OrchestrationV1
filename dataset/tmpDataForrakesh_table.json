@@ -142,7 +142,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tmpDataForrakesh"
+			"table": "tblApolloPinCodeAnalysis_1"
 		}
 	}
 }
