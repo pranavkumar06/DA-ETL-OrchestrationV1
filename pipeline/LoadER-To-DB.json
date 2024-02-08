@@ -692,23 +692,13 @@
 																				"type": "String"
 																			},
 																			"sink": {
-																				"name": "extra_field_20",
-																				"type": "String"
-																			}
-																		},
-																		{
-																			"source": {
-																				"name": "LastModifiedDatetime",
-																				"type": "String"
-																			},
-																			"sink": {
 																				"name": "FileName",
 																				"type": "String"
 																			}
 																		},
 																		{
 																			"source": {
-																				"name": "FileSetID",
+																				"name": "LastModifiedDatetime",
 																				"type": "String"
 																			},
 																			"sink": {
