@@ -84,7 +84,7 @@
 						"value": "@activity('FilterFiles_Cloud1').output.value",
 						"type": "Expression"
 					},
-					"batchCount": 20,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "DRCP_Could1",
@@ -398,6 +398,8 @@
 			{
 				"name": "CopyS3-To-Staging_Cloud1",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureInput": false
@@ -424,6 +426,8 @@
 			{
 				"name": "CopyS3-To-Staging_Cloud2",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureInput": false
@@ -528,7 +532,7 @@
 						"value": "@activity('FilterFiles_Cloud2').output.value",
 						"type": "Expression"
 					},
-					"batchCount": 20,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "DRCP_Could2",
@@ -842,6 +846,8 @@
 			{
 				"name": "CopyS3-To-Staging_Cloud3",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureInput": false
@@ -946,7 +952,7 @@
 						"value": "@activity('FilterFiles_Cloud3').output.value",
 						"type": "Expression"
 					},
-					"batchCount": 20,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "DRCP_Could3",
