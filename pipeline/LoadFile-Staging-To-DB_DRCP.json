@@ -368,7 +368,7 @@
 													},
 													{
 														"source": {
-															"name": "LatModifiedDatetime",
+															"name": "LastModifiedDatetime",
 															"type": "String"
 														},
 														"sink": {
