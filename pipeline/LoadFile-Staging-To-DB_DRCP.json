@@ -117,7 +117,7 @@
 													{
 														"name": "Filename",
 														"value": {
-															"value": "@activity('FilterFiles_Cloud1').output.itemName",
+															"value": "@activity('GetFileList_Cloud1').output.itemName\n",
 															"type": "Expression"
 														}
 													},
@@ -622,7 +622,7 @@
 													{
 														"name": "Filename",
 														"value": {
-															"value": "@activity('FilterFiles_Cloud2').output.itemName",
+															"value": "@activity('GetFileList_Cloud2').output.itemName",
 															"type": "Expression"
 														}
 													},
@@ -1009,7 +1009,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('FilterFiles_Cloud3').output.value",
+						"value": "@activity('GetFileList_Cloud3').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
