@@ -1009,7 +1009,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('GetFileList_Cloud3').output.value",
+						"value": "@activity('FilterFiles_Cloud3').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
