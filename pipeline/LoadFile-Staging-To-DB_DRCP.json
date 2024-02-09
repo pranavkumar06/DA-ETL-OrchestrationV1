@@ -1072,7 +1072,7 @@
 													{
 														"name": "Filename",
 														"value": {
-															"value": "@activity('FilterFiles_Cloud3').output.itemName",
+															"value": "@activity('GetFileList_Cloud3').output.itemName",
 															"type": "Expression"
 														}
 													},
