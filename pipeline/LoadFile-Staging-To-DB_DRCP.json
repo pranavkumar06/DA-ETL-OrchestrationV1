@@ -1026,6 +1026,33 @@
 								},
 								"ifTrueActivities": [
 									{
+										"name": "spDataLoadRawLeapTAS_DRCP_Cloud3",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "DRCP_Cloud3",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[spDataLoadRawLeapTAS_DRCP_Cloud3]"
+										},
+										"linkedServiceName": {
+											"referenceName": "DataFoundationDB",
+											"type": "LinkedServiceReference"
+										}
+									},
+									{
 										"name": "DRCP_Cloud3",
 										"description": "Copy a file from the source store to the destination store.",
 										"type": "Copy",
@@ -1041,6 +1068,26 @@
 										"typeProperties": {
 											"source": {
 												"type": "DelimitedTextSource",
+												"additionalColumns": [
+													{
+														"name": "Filename",
+														"value": {
+															"value": "@activity('FilterFiles_Cloud3').output.itemName",
+															"type": "Expression"
+														}
+													},
+													{
+														"name": "LastModifiedDatetime",
+														"value": {
+															"value": "@addminutes(utcnow(),330)",
+															"type": "Expression"
+														}
+													},
+													{
+														"name": "FileSetID",
+														"value": "0"
+													}
+												],
 												"storeSettings": {
 													"type": "AzureBlobStorageReadSettings",
 													"recursive": true,
@@ -1256,6 +1303,16 @@
 													},
 													{
 														"source": {
+															"name": "FileSetID",
+															"type": "String"
+														},
+														"sink": {
+															"name": "FileSetId",
+															"type": "Int64"
+														}
+													},
+													{
+														"source": {
 															"name": "Filename",
 															"type": "String"
 														},
@@ -1266,7 +1323,7 @@
 													},
 													{
 														"source": {
-															"name": "Lastmodifieddatetime",
+															"name": "LatModifiedDatetime",
 															"type": "String"
 														},
 														"sink": {
@@ -1289,33 +1346,6 @@
 												"type": "DatasetReference"
 											}
 										]
-									},
-									{
-										"name": "spDataLoadRawLeapTAS_DRCP_Cloud3",
-										"type": "SqlServerStoredProcedure",
-										"dependsOn": [
-											{
-												"activity": "DRCP_Cloud3",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"policy": {
-											"timeout": "0.12:00:00",
-											"retry": 0,
-											"retryIntervalInSeconds": 30,
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"storedProcedureName": "[dbo].[spDataLoadRawLeapTAS_DRCP_Cloud3]"
-										},
-										"linkedServiceName": {
-											"referenceName": "DataFoundationDB",
-											"type": "LinkedServiceReference"
-										}
 									}
 								]
 							}
