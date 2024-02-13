@@ -149,7 +149,6 @@
 											},
 											"sink": {
 												"type": "SqlDWSink",
-												"preCopyScript": "TRUNCATE TABLE tmpRawLEAPTAS_DRCP_Cloud1",
 												"allowPolyBase": true,
 												"polyBaseSettings": {
 													"rejectValue": 0,
@@ -390,7 +389,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DS_DRCP_Cloud1",
+												"referenceName": "DS_DRCP_Cloud1_Temp",
 												"type": "DatasetReference"
 											}
 										]
@@ -398,6 +397,8 @@
 									{
 										"name": "EXEC spDataLoadRawLeapTAS_DRCP_Cloud1",
 										"type": "SqlServerStoredProcedure",
+										"state": "Inactive",
+										"onInactiveMarkAs": "Succeeded",
 										"dependsOn": [
 											{
 												"activity": "DRCP_Cloud1",
@@ -581,6 +582,8 @@
 									{
 										"name": "spDataLoadRawLeapTAS_DRCP_Cloud2",
 										"type": "SqlServerStoredProcedure",
+										"state": "Inactive",
+										"onInactiveMarkAs": "Succeeded",
 										"dependsOn": [
 											{
 												"activity": "DRCP_Cloud2",
@@ -657,7 +660,6 @@
 											},
 											"sink": {
 												"type": "SqlDWSink",
-												"preCopyScript": "TRUNCATE TABLE tmpRawLEAPTAS_DRCP_Cloud2",
 												"allowPolyBase": true,
 												"polyBaseSettings": {
 													"rejectValue": 0,
@@ -898,7 +900,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DS_DRCP_Cloud2",
+												"referenceName": "DS_DRCP_Cloud2_Temp",
 												"type": "DatasetReference"
 											}
 										]
@@ -1034,6 +1036,8 @@
 									{
 										"name": "spDataLoadRawLeapTAS_DRCP_Cloud3",
 										"type": "SqlServerStoredProcedure",
+										"state": "Inactive",
+										"onInactiveMarkAs": "Succeeded",
 										"dependsOn": [
 											{
 												"activity": "DRCP_Cloud3",
@@ -1110,7 +1114,6 @@
 											},
 											"sink": {
 												"type": "SqlDWSink",
-												"preCopyScript": "TRUNCATE TABLE tmpRawLEAPTAS_DRCP_Cloud3",
 												"allowPolyBase": true,
 												"polyBaseSettings": {
 													"rejectValue": 0,
@@ -1351,7 +1354,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DS_DRCP_Cloud3",
+												"referenceName": "DS_DRCP_Cloud3_Temp",
 												"type": "DatasetReference"
 											}
 										]
