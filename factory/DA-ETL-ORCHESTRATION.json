@@ -1,0 +1,9 @@
+{
+	"name": "DA-ETL-ORCHESTRATION",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2348f4b6-3ae4-448d-91bb-cbc634bbafac",
+		"tenantId": "515445df-f272-4c96-aa97-d670cbdeab20"
+	}
+}
