@@ -108,6 +108,7 @@
 					"ifTrueActivities": [
 						{
 							"name": "FinalDFProcessing",
+							"description": "COMMENT",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
