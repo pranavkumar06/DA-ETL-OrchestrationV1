@@ -24,9 +24,9 @@
 			}
 		],
 		"variables": {
-			"SetTableCountVariable": {
+			"`SetTableCountVariable`": {
 				"type": "String",
-				"defaultValue": "@activity('spCountTables').output.TotalTablesCount"
+				"defaultValue": "`@activity('spCountTables').output.TotalTablesCount`"
 			}
 		},
 		"annotations": []
