@@ -23,6 +23,12 @@
 				}
 			}
 		],
+		"variables": {
+			"SetTableCountVariable": {
+				"type": "String",
+				"defaultValue": "@activity('spCountTables').output.TotalTablesCount"
+			}
+		},
 		"annotations": []
 	}
 }
