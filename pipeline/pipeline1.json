@@ -13,11 +13,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
-					{
-						"name": "TotalTables"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[spCountTables]"
 				},
